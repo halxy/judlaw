@@ -2,9 +2,6 @@ package util;
 
 import java.io.Serializable;
 
-
-import jud.Acordao;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
