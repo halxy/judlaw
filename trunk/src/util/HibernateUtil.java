@@ -2,8 +2,6 @@ package util;
 
 import java.io.Serializable;
 
-import jud.DocumentoJuridico;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
