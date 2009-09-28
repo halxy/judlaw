@@ -29,13 +29,20 @@ public class Cabecalho {
 		this.idDocumento = idDocumento;
 		this.numRegistro = numRegistro;
 		this.local = local;
-		this.partes = new ArrayList<Parte>();
+		inicializaListas();
 	}
 	
 	/**
 	 * 
 	 */
 	public Cabecalho() {
+		inicializaListas();
+	}
+	
+	/*
+	 * Metodo que inicializa as listas da classe.
+	 */
+	private void inicializaListas(){
 		this.partes = new ArrayList<Parte>();
 	}
 
