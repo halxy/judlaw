@@ -9,29 +9,21 @@ public class Cabecalho {
 	private String tipoDocumento; // HC, ACO, AI, etc.
 	private String idDocumento;
 	private String numRegistro; // ver Certidao de Julgamento STJ
-	private String local;
+	private String orgaoJulgador; // Pleno, Primeira Turma, etc.
 	private List<Parte> partes;
 	
-	/**
-	 * 
-	 * @param idTribunal
-	 * @param tipoDocumento
-	 * @param idDocumento
-	 * @param numRegistro
-	 * @param local
-	 * @param partes
-	 */
 	public Cabecalho(String idTribunal, String tipoDocumento,
-			String idDocumento, String numRegistro, String local,
+			String idDocumento, String numRegistro, String orgaoJulgador,
 			List<Parte> partes) {
+		super();
 		this.idTribunal = idTribunal;
 		this.tipoDocumento = tipoDocumento;
 		this.idDocumento = idDocumento;
 		this.numRegistro = numRegistro;
-		this.local = local;
-		inicializaListas();
+		this.orgaoJulgador = orgaoJulgador;
+		this.partes = partes;
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -77,15 +69,15 @@ public class Cabecalho {
 	public void setNumRegistro(String numRegistro) {
 		this.numRegistro = numRegistro;
 	}
-
-	public String getLocal() {
-		return local;
+	
+	public String getOrgaoJulgador() {
+		return orgaoJulgador;
 	}
 
-	public void setLocal(String local) {
-		this.local = local;
+	public void setOrgaoJulgador(String orgaoJulgador) {
+		this.orgaoJulgador = orgaoJulgador;
 	}
-
+	
 	public List<Parte> getPartes() {
 		return partes;
 	}
