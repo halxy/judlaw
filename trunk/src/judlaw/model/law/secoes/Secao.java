@@ -1,4 +1,4 @@
-package law.secoes;
+package judlaw.model.law.secoes;
 
 import java.util.ArrayList;
 
