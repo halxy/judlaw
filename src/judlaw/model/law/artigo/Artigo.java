@@ -1,4 +1,4 @@
-package law.artigo;
+package judlaw.model.law.artigo;
 
 import java.util.ArrayList;
 
