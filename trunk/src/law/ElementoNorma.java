@@ -6,7 +6,8 @@ import java.util.List;
 import referencia.Referencia;
 
 /**
- * 
+ * Classe ElementoNorma - superclasse que representa os elementos de uma norma:
+ * Partes, Livros, Titulos, Capitulos, Secoes, Subsecoes, Artigos, Paragrafos, Incisos, Alineas e Itens.
  * @author Halley Freitas
  *
  */
