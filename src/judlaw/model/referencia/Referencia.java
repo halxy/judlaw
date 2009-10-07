@@ -1,4 +1,4 @@
-package referencia;
+package judlaw.model.referencia;
 
 /**
  * 
