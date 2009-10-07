@@ -3,7 +3,8 @@ package law;
 import java.util.ArrayList;
 import java.util.List;
 
-import referencia.Referencia;
+import judlaw.model.referencia.Referencia;
+
 
 /**
  * Classe ElementoNorma - superclasse que representa os elementos de uma norma:
