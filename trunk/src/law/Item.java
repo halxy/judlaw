@@ -1,6 +1,9 @@
 package law;
 
 
-public class Item  extends ElementoNorma {
+public class Item extends ElementoNorma {
 
+	public Item() {
+
+	}
 }
