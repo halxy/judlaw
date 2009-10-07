@@ -1,4 +1,4 @@
-package util;
+package judlaw.model.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
