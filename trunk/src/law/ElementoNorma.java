@@ -21,17 +21,7 @@ public class ElementoNorma {
 	// O elemento no qual o elementoDaNorma está inserido. Ex: inciso está inserido no paragrafo.
 	private String elementoPai;
 	
-	public ElementoNorma(int identificador, String texto, String data,
-			String vigencia, List<Referencia> referenciasFeitas,
-			List<Referencia> referenciasRecebidas, String elementoPai) {
-		this.identificador = identificador;
-		this.texto = texto;
-		this.data = data;
-		this.vigencia = vigencia;
-		this.referenciasFeitas = referenciasFeitas;
-		this.referenciasRecebidas = referenciasRecebidas;
-		this.elementoPai = elementoPai;
-	}
+	
 
 	public ElementoNorma() {
 		inicializaListas();
