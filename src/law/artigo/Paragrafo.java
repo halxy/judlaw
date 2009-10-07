@@ -1,6 +1,8 @@
-package law;
+package law.artigo;
 
 import java.util.ArrayList;
+
+import law.ElementoNorma;
 
 
 public class Paragrafo extends ElementoNorma {
