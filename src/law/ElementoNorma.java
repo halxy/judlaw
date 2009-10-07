@@ -10,18 +10,19 @@ import referencia.Referencia;
  * @author Halley Freitas
  *
  */
-public class ElementoNorma {
+public abstract class ElementoNorma {
 	
 	private int identificador;
 	private String texto;
 	private String data;
 	private String vigencia;
+	// Listas de referencias associadas ao ElementoNorma
 	private List<Referencia> referenciasFeitas;
 	private List<Referencia> referenciasRecebidas;
 	// O elemento no qual o elementoDaNorma está inserido. Ex: inciso está inserido no paragrafo.
 	private String elementoPai;
-	
-	
+	// Lista de elementos que compoem o ElementoNorma
+	private List<? extends ElementoNorma> elementosNorma;
 
 	public ElementoNorma() {
 		inicializaListas();
@@ -88,5 +89,11 @@ public class ElementoNorma {
 		this.referenciasRecebidas = referenciasRecebidas;
 	}
 	
-	
+	public List<? extends ElementoNorma> getElementosNorma() {
+		return elementosNorma;
+	}
+
+	public void setElementosNorma(ArrayList<? extends ElementoNorma> arrayList) {
+		this.elementosNorma = arrayList;
+	}
 }
