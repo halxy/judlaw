@@ -1,4 +1,4 @@
-package util;
+package judlaw.model.util;
 
 import java.io.Serializable;
 import java.util.List;
