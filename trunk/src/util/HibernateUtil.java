@@ -1,4 +1,4 @@
-package util.persistencia;
+package util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
