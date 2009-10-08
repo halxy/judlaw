@@ -14,15 +14,18 @@ import judlaw.model.reference.Referencia;
  */
 public abstract class ElementoNorma {
 	
-	private int identificador;
+	private String identificador; // ex: art1, inc3, etc.
+	private String identificadorUnico; // ex: cp_art120_par2.
 	private String texto;
 	private String data;
 	private String vigencia;
+	// O elemento no qual o elementoDaNorma está inserido. Ex: inciso está inserido no paragrafo.
+	private String elementoPai;
+	
 	// Listas de referencias associadas ao ElementoNorma
 	private List<Referencia> referenciasFeitas;
 	private List<Referencia> referenciasRecebidas;
-	// O elemento no qual o elementoDaNorma está inserido. Ex: inciso está inserido no paragrafo.
-	private String elementoPai;
+		
 	// Lista de elementos que compoem o ElementoNorma
 	private List<? extends ElementoNorma> elementosNorma;
 
@@ -35,14 +38,23 @@ public abstract class ElementoNorma {
 		this.referenciasRecebidas = new ArrayList<Referencia>();
 	}
 	
-	public int getIdentificador() {
+	public String getIdentificador() {
 		return identificador;
 	}
 	
-	public void setIdentificador(int identificador) {
+	public void setIdentificador(String identificador) {
 		this.identificador = identificador;
 	}
 	
+	
+	public String getIdentificadorUnico() {
+		return identificadorUnico;
+	}
+
+	public void setIdentificadorUnico(String identificadorUnico) {
+		this.identificadorUnico = identificadorUnico;
+	}
+
 	public String getTexto() {
 		return texto;
 	}
@@ -95,7 +107,7 @@ public abstract class ElementoNorma {
 		return elementosNorma;
 	}
 
-	public void setElementosNorma(ArrayList<? extends ElementoNorma> arrayList) {
-		this.elementosNorma = arrayList;
+	public void setElementosNorma(List<? extends ElementoNorma> elementosNorma) {
+		this.elementosNorma = elementosNorma;
 	}
 }
