@@ -24,6 +24,7 @@ public class Norma {
 	private String epigrafe;
 	private String ementa;
 	private String autoria;
+	private String tipo;
 	
 	// Parte Normativa
 	private List<ElementoNorma> elementosNorma;
@@ -47,6 +48,14 @@ public class Norma {
 	private void inicializaListas(){
 		this.referenciasFeitas = new ArrayList<Referencia>();
 		this.referenciasRecebidas = new ArrayList<Referencia>();
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public String getEpigrafe() {
