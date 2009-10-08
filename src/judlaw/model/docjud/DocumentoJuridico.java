@@ -17,10 +17,21 @@ import java.util.List;
  *
  */
 public class DocumentoJuridico {
-
-	private Ementa ementa;
+	
 	private Cabecalho cabecalho;
+	private Ementa ementa;
+	private Relatorio relatorio;
 	private List<Voto> votos;
+	private Encerramento encerramento;
+	private List<Parte> partes; //inclui o relator, partes, etc.
+	
+	public Cabecalho getCabecalho() {
+		return cabecalho;
+	}
+	
+	public void setCabecalho(Cabecalho cabecalho) {
+		this.cabecalho = cabecalho;
+	}
 	
 	public Ementa getEmenta() {
 		return ementa;
@@ -30,12 +41,12 @@ public class DocumentoJuridico {
 		this.ementa = ementa;
 	}
 	
-	public Cabecalho getCabecalho() {
-		return cabecalho;
+	public Relatorio getRelatorio() {
+		return relatorio;
 	}
 	
-	public void setCabecalho(Cabecalho cabecalho) {
-		this.cabecalho = cabecalho;
+	public void setRelatorio(Relatorio relatorio) {
+		this.relatorio = relatorio;
 	}
 	
 	public List<Voto> getVotos() {
@@ -46,5 +57,19 @@ public class DocumentoJuridico {
 		this.votos = votos;
 	}
 	
-
+	public Encerramento getEncerramento() {
+		return encerramento;
+	}
+	
+	public void setEncerramento(Encerramento encerramento) {
+		this.encerramento = encerramento;
+	}
+	
+	public List<Parte> getPartes() {
+		return partes;
+	}
+	
+	public void setPartes(List<Parte> partes) {
+		this.partes = partes;
+	}
 }
