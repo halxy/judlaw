@@ -2,7 +2,8 @@ package judlaw.model.law.artigo;
 
 import java.util.ArrayList;
 
-import law.ElementoNorma;
+import judlaw.model.law.ElementoNorma;
+
 
 
 public class Artigo extends ElementoNorma {
