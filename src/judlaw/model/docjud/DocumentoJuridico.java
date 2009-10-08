@@ -1,8 +1,21 @@
+/* 
+ * Universidade Federal de Campina Grande
+
+ * Centro de Engenharia Eletrica e Informatica
+ * Programa de Pos-Graduacao em Informatica
+ * Sistema JudLaw
+ * Mestrando: Halley Freitas
+ * 		
+ */
 package judlaw.model.docjud;
 
 import java.util.List;
 
-
+/**
+ * 
+ * @author halley
+ *
+ */
 public class DocumentoJuridico {
 
 	private Ementa ementa;
