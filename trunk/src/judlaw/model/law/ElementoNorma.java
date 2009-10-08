@@ -3,7 +3,7 @@ package judlaw.model.law;
 import java.util.ArrayList;
 import java.util.List;
 
-import judlaw.model.referencia.Referencia;
+import judlaw.model.reference.Referencia;
 
 
 /**
