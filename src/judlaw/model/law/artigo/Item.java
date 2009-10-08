@@ -1,6 +1,6 @@
 package judlaw.model.law.artigo;
 
-import law.ElementoNorma;
+import judlaw.model.law.ElementoNorma;
 
 
 public class Item extends ElementoNorma {
