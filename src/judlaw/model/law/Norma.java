@@ -10,8 +10,9 @@
 package judlaw.model.law;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -54,7 +55,7 @@ public class Norma implements Serializable {
 	
 	// Parte Final
 	private String local;
-	private Date data; //dd/MM/aa
+	private String data; //dd/MM/aa
 	private String vigencia; // dd/MM/aa-dd2/MM2/aa2
 	
 	// Referências
@@ -66,11 +67,19 @@ public class Norma implements Serializable {
 	 */
 	public Norma() {
 		inicializaListas();
+		
 	}
 	
 	private void inicializaListas(){
 		this.referenciasFeitas = new ArrayList<Referencia>();
 		this.referenciasRecebidas = new ArrayList<Referencia>();
+	}
+	
+	/*
+	 * Seta a data como data atual;
+	 */
+	private void inicializaData() {
+	//	data.setDate( )
 	}
 
 	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_NORMA")
@@ -131,12 +140,11 @@ public class Norma implements Serializable {
 		this.local = local;
 	}
 
-	@Temporal(TemporalType.DATE)
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
@@ -171,6 +179,4 @@ public class Norma implements Serializable {
 	public void setIdentificadorUnico(String identificadorUnico) {
 		this.identificadorUnico = identificadorUnico;
 	}
-	
-	
 }

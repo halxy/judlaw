@@ -1,7 +1,13 @@
 package judlaw.model.util;
 
 import java.io.Serializable;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+
+import judlaw.model.law.Norma;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -14,13 +20,22 @@ import org.hibernate.Query;
  */
 public class DBManager {
 	
+	private static DBManager dbManager = null;
+	
 	/**
 	 * Default constructor.
 	 */
 	public DBManager(){
 		
 	}
-
+	
+	public static DBManager getInstance() {
+		if (dbManager == null) {
+			dbManager = new DBManager();
+		}
+		return dbManager;
+	}
+	
 	/**
 	 * Save the object in the database.
 	 * @param object The object to be saved.
@@ -122,5 +137,15 @@ public class DBManager {
 		Object object = results.get(0);
 		HibernateUtil.closeSession();
 		return object;
+	}
+	
+	/*
+	 * Main para testes
+	 */
+	public static void main(String[] args) {
+		DBManager dbManager = DBManager.getInstance();
+		
+		Norma n = new Norma();
+		dbManager.save(n);
 	}
 }
