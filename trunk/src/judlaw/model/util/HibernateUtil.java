@@ -22,7 +22,6 @@ public class HibernateUtil {
 	
 	static {
         try {
-
             factory = (SessionFactory) new AnnotationConfiguration().configure().buildSessionFactory();
         } catch (Throwable ex) {
             // Log exception!

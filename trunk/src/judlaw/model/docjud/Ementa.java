@@ -17,7 +17,7 @@ import judlaw.model.reference.Referencia;
 public class Ementa {
 
 	private String texto;
-	private List<Referencia> referenciasLegislativas;
+	private List<Referencia> referenciasLegislativas; //MODIFICAR TODO
 
 	public Ementa() {
 		inicializaListas();

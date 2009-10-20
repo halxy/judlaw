@@ -8,6 +8,6 @@
  */
 package judlaw.controller;
 
-public class JudLawFacade {
 
+public class JudLawFacade {
 }
