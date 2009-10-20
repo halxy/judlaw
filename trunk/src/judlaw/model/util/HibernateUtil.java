@@ -1,7 +1,5 @@
 package judlaw.model.util;
 
-import judlaw.model.law.Norma;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
