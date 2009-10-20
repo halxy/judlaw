@@ -9,8 +9,19 @@
  */
 package judlaw.model.law;
 
+import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import judlaw.model.reference.Referencia;
 
@@ -19,8 +30,19 @@ import judlaw.model.reference.Referencia;
  * @author Halley Freitas
  *
  */
-public class Norma {
+@Entity
+@SequenceGenerator(name="SEQ_NORMA", sequenceName="norma_sequence")
+public class Norma implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	//Id
+	private Long id;
+	private String identificadorUnico; // ex: cp
+	
 	// Parte Preliminar
 	private String epigrafe;
 	private String ementa;
@@ -32,7 +54,7 @@ public class Norma {
 	
 	// Parte Final
 	private String local;
-	private String data; //dd/MM/aa
+	private Date data; //dd/MM/aa
 	private String vigencia; // dd/MM/aa-dd2/MM2/aa2
 	
 	// Referências
@@ -51,6 +73,16 @@ public class Norma {
 		this.referenciasRecebidas = new ArrayList<Referencia>();
 	}
 
+	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_NORMA")
+	@Column(name="norma_id")
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getTipo() {
 		return tipo;
 	}
@@ -99,11 +131,12 @@ public class Norma {
 		this.local = local;
 	}
 
-	public String getData() {
+	@Temporal(TemporalType.DATE)
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
@@ -130,4 +163,14 @@ public class Norma {
 	public void setReferenciasRecebidas(List<Referencia> referenciasRecebidas) {
 		this.referenciasRecebidas = referenciasRecebidas;
 	}
+
+	public String getIdentificadorUnico() {
+		return identificadorUnico;
+	}
+
+	public void setIdentificadorUnico(String identificadorUnico) {
+		this.identificadorUnico = identificadorUnico;
+	}
+	
+	
 }
