@@ -6,7 +6,6 @@ import java.util.List;
 import judlaw.model.law.Norma;
 
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 
 
 /**
