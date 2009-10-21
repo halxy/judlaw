@@ -24,11 +24,11 @@ import judlaw.model.reference.Referencia;
 @SequenceGenerator(name="SEQ_ELENORMA", sequenceName="elenorma_sequence")
 public abstract class ElementoNorma implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	//id
+	@Id
+	@Column(name="elementonorma_id")
 	private Long id;
 	private String identificadorUnico; // ex: cp_art120_par2.
 	
@@ -45,7 +45,9 @@ public abstract class ElementoNorma implements Serializable {
 		
 	// Lista de elementos que compoem o ElementoNorma
 	private List<? extends ElementoNorma> elementosNorma;
-
+	
+	// Necessario para o mapeamento dos elementosNorma na Norma
+	private Norma norma;
 	
 	/**
 	 * Construtor sem parâmetros
@@ -59,14 +61,20 @@ public abstract class ElementoNorma implements Serializable {
 		this.referenciasRecebidas = new ArrayList<Referencia>();
 	}
 
-	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_ELENORMA")
-	@Column(name="elementonorma_id")
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Norma getNorma() {
+		return norma;
+	}
+
+	public void setNorma(Norma norma) {
+		this.norma = norma;
 	}
 
 	public String getIdentificadorUnico() {

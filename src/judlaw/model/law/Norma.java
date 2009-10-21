@@ -51,7 +51,7 @@ public class Norma implements Serializable {
 	private String tipo;
 	
 	// Parte Normativa
-	@OneToMany(mappedBy="Norma")
+	@OneToMany(mappedBy="norma")
 	private List<ElementoNorma> elementosNorma;
 	
 	// Parte Final
