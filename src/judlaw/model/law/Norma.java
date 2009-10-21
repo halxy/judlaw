@@ -10,9 +10,7 @@
 package judlaw.model.law;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -20,9 +18,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import judlaw.model.reference.Referencia;
 
@@ -74,13 +72,6 @@ public class Norma implements Serializable {
 		this.referenciasFeitas = new ArrayList<Referencia>();
 		this.referenciasRecebidas = new ArrayList<Referencia>();
 	}
-	
-	/*
-	 * Seta a data como data atual;
-	 */
-	private void inicializaData() {
-	//	data.setDate( )
-	}
 
 	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_NORMA")
 	@Column(name="norma_id")
@@ -123,7 +114,9 @@ public class Norma implements Serializable {
 	public void setAutoria(String autoria) {
 		this.autoria = autoria;
 	}
-
+	
+	@OneToMany(mappedBy="Norma")
+    @OrderBy("identificadorUnico")
 	public List<ElementoNorma> getElementosNorma() {
 		return elementosNorma;
 	}
