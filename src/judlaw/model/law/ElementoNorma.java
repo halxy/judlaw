@@ -39,7 +39,9 @@ public abstract class ElementoNorma implements Serializable {
 	private String elementoPai;
 	
 	// Listas de referencias associadas ao ElementoNorma
+	@OneToMany
 	private List<Referencia> referenciasFeitas;
+	@OneToMany
 	private List<Referencia> referenciasRecebidas;
 		
 	// Lista de elementos que compoem o ElementoNorma

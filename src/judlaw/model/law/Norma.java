@@ -57,7 +57,9 @@ public class Norma implements Serializable {
 	private String vigencia; // dd/MM/aa-dd2/MM2/aa2
 	
 	// Referências
+	@OneToMany
 	private List<Referencia> referenciasFeitas;
+	@OneToMany
 	private List<Referencia> referenciasRecebidas;
 	
 	/**
