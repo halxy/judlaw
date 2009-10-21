@@ -20,6 +20,7 @@
 			
 			<mapping class="judlaw.model.law.Norma"/>
 			<mapping class="judlaw.model.law.ElementoNorma"/>
+			<mapping class="judlaw.model.reference.Referencia"/>
 			
 		</session-factory>
 
