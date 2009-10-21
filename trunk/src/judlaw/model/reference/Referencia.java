@@ -27,7 +27,7 @@ public class Referencia implements Serializable {
 	private String origem;
 	private String destino;
 	private String tipo;
-	private String efeito;
+	private String efeito; // mais brando, mais grave, etc.
 	
 	/**
 	 * Construtor Referencia
