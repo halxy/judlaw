@@ -121,20 +121,6 @@ public class DBManager {
 		HibernateUtil.closeSession();
 	}
 	
-	/**
-	 * Retrieve the last generated id.
-	 * @return The last generated id.
-	 */
-	@SuppressWarnings("unchecked")
-	public Object selectLastGeneratedId(){
-		List results;
-		Query sqlQuery = HibernateUtil.getSession().createSQLQuery("SELECT currval ('blmsmatchsequence')");
-		results = sqlQuery.list();
-		Object object = results.get(0);
-		HibernateUtil.closeSession();
-		return object;
-	}
-	
 	/*
 	 * Main para testes
 	 */
