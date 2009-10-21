@@ -1,10 +1,6 @@
 package judlaw.model.util;
 
 import java.io.Serializable;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import judlaw.model.law.Norma;
@@ -146,6 +142,7 @@ public class DBManager {
 		DBManager dbManager = DBManager.getInstance();
 		
 		Norma n = new Norma();
+		
 		dbManager.save(n);
 	}
 }
