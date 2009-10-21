@@ -39,6 +39,8 @@ public class Norma implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//Id
+	@Id
+	@Column(name="norma_id")
 	private Long id;
 	private String identificadorUnico; // ex: cp
 	
@@ -49,6 +51,7 @@ public class Norma implements Serializable {
 	private String tipo;
 	
 	// Parte Normativa
+	@OneToMany(mappedBy="Norma")
 	private List<ElementoNorma> elementosNorma;
 	
 	// Parte Final
@@ -73,8 +76,6 @@ public class Norma implements Serializable {
 		this.referenciasRecebidas = new ArrayList<Referencia>();
 	}
 
-	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_NORMA")
-	@Column(name="norma_id")
 	public Long getId() {
 		return id;
 	}
@@ -115,8 +116,6 @@ public class Norma implements Serializable {
 		this.autoria = autoria;
 	}
 	
-	@OneToMany(mappedBy="Norma")
-    @OrderBy("identificadorUnico")
 	public List<ElementoNorma> getElementosNorma() {
 		return elementosNorma;
 	}

@@ -7,6 +7,11 @@ import judlaw.model.law.ElementoNorma;
 
 public class Titulo extends ElementoNorma {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Titulo() {
 		setElementosNorma(new ArrayList<Capitulo>());
 	}

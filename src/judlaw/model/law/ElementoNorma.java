@@ -1,7 +1,15 @@
 package judlaw.model.law;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 import judlaw.model.reference.Referencia;
 
@@ -12,10 +20,19 @@ import judlaw.model.reference.Referencia;
  * @author Halley Freitas
  *
  */
-public abstract class ElementoNorma {
+@Entity
+@SequenceGenerator(name="SEQ_ELENORMA", sequenceName="elenorma_sequence")
+public abstract class ElementoNorma implements Serializable {
 	
-	private String identificador; // ex: art1, inc3, etc.
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	//id
+	private Long id;
 	private String identificadorUnico; // ex: cp_art120_par2.
+	
+	//dados
 	private String texto;
 	private String data;
 	private String vigencia;
@@ -29,6 +46,10 @@ public abstract class ElementoNorma {
 	// Lista de elementos que compoem o ElementoNorma
 	private List<? extends ElementoNorma> elementosNorma;
 
+	
+	/**
+	 * Construtor sem parâmetros
+	 */
 	public ElementoNorma() {
 		inicializaListas();
 	}
@@ -37,16 +58,17 @@ public abstract class ElementoNorma {
 		this.referenciasFeitas = new ArrayList<Referencia>();
 		this.referenciasRecebidas = new ArrayList<Referencia>();
 	}
-	
-	public String getIdentificador() {
-		return identificador;
+
+	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_ELENORMA")
+	@Column(name="elementonorma_id")
+	public Long getId() {
+		return id;
 	}
-	
-	public void setIdentificador(String identificador) {
-		this.identificador = identificador;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
-	
-	
+
 	public String getIdentificadorUnico() {
 		return identificadorUnico;
 	}

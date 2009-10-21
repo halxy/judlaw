@@ -8,6 +8,11 @@ import judlaw.model.law.ElementoNorma;
 
 public class Artigo extends ElementoNorma {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private String caput;
 	
 	public Artigo() {
