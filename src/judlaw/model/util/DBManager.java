@@ -3,7 +3,7 @@ package judlaw.model.util;
 import java.io.Serializable;
 import java.util.List;
 
-import judlaw.model.law.Norma;
+import judlaw.model.lei.Norma;
 
 import org.hibernate.Criteria;
 
