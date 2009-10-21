@@ -21,7 +21,7 @@
 			<!-- Mapeamento das classes -->
 			<mapping class="judlaw.model.lei.Norma"/>
 			<mapping class="judlaw.model.lei.ElementoNorma"/>		
-			<mapping class="judlaw.model.reference.Referencia"/>
+			<mapping class="judlaw.model.ref.Referencia"/>
 			
 		</session-factory>
 
