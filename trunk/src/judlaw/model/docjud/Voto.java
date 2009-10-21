@@ -12,7 +12,7 @@ package judlaw.model.docjud;
 import java.util.ArrayList;
 import java.util.List;
 
-import judlaw.model.reference.Referencia;
+import judlaw.model.ref.Referencia;
 
 /**
  * 

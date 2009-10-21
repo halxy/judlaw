@@ -21,7 +21,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
-import judlaw.model.reference.Referencia;
+import judlaw.model.ref.Referencia;
 
 /**
  * Classe norma
