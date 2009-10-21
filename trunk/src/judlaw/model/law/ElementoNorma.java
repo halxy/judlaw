@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -27,6 +29,7 @@ public abstract class ElementoNorma implements Serializable {
 	
 	//id
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="elementonorma_id")
 	private Long id;
 	private String identificadorUnico; // ex: cp_art120_par2.
