@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import judlaw.model.reference.Referencia;
@@ -42,10 +43,9 @@ public abstract class ElementoNorma implements Serializable {
 	private List<Referencia> referenciasRecebidas;
 		
 	// Lista de elementos que compoem o ElementoNorma
+	@OneToMany(mappedBy="elementosNorma", targetEntity=ElementoNorma.class)
 	private List<? extends ElementoNorma> elementosNorma;
 	
-	// Necessario para o mapeamento dos elementosNorma na Norma
-	private Norma norma;
 	
 	/**
 	 * Construtor sem parâmetros
@@ -65,14 +65,6 @@ public abstract class ElementoNorma implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Norma getNorma() {
-		return norma;
-	}
-
-	public void setNorma(Norma norma) {
-		this.norma = norma;
 	}
 
 	public String getIdentificadorUnico() {
