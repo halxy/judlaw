@@ -34,7 +34,8 @@ public abstract class ElementoNorma implements Serializable {
 	private Long id;
 	private String identificadorUnico; // ex: cp_art120_par2.
 	
-	//dados
+	//informacoes
+	private String tipoElemento; // Artigo, Paragrafo, Inciso, etc.
 	private String texto;
 	private String data;
 	private String vigencia;
@@ -134,5 +135,13 @@ public abstract class ElementoNorma implements Serializable {
 
 	public void setElementosNorma(List<? extends ElementoNorma> elementosNorma) {
 		this.elementosNorma = elementosNorma;
+	}
+	
+	public String getTipoElemento() {
+		return tipoElemento;
+	}
+
+	public void setTipoElemento(String tipoElemento) {
+		this.tipoElemento = tipoElemento;
 	}
 }
