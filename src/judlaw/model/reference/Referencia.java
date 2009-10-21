@@ -1,11 +1,25 @@
 package judlaw.model.reference;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * 
  * @author Halley Freitas
  *
  */
-public class Referencia {
+@Entity
+public class Referencia implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+	//id 
+	@Id
+	@Column(name="referencia_id")
+	private Long id;
 	
 	private String origem;
 	private String destino;
@@ -31,5 +45,13 @@ public class Referencia {
 	
 	public void setDestino(String destino) {
 		this.destino = destino;
-	}	
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 }

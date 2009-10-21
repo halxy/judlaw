@@ -7,4 +7,9 @@ package judlaw.model.reference;
  */
 public class Inclusao extends Referencia {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 }
