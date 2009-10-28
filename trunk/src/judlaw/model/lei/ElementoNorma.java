@@ -24,7 +24,7 @@ import judlaw.model.ref.Referencia;
  */
 @Entity
 @SequenceGenerator(name="SEQ_ELENORMA", sequenceName="elenorma_sequence")
-public abstract class ElementoNorma implements Serializable {
+public class ElementoNorma implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
