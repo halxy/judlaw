@@ -19,13 +19,6 @@ public class DBManager {
 	private static DBManager dbManager = null;
 	
 	/**
-	 * Default constructor.
-	 */
-	public DBManager(){
-		
-	}
-	
-	/**
 	 * Retorna uma instancia do DBManager
 	 * @return
 	 */
