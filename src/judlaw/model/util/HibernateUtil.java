@@ -3,7 +3,7 @@ package judlaw.model.util;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.cfg.Configuration;
 
 /**
  * 
@@ -22,7 +22,7 @@ public class HibernateUtil {
 	
 	static {
         try {
-            factory = (SessionFactory) new AnnotationConfiguration().configure().buildSessionFactory();
+            factory = (SessionFactory) new Configuration().configure().buildSessionFactory();
         } catch (Throwable ex) {
             // Log exception!
             throw new ExceptionInInitializerError(ex);
