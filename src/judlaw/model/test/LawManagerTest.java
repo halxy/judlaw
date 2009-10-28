@@ -66,6 +66,7 @@ public class LawManagerTest {
 	 */
 	@Test public void testSaveElementoNorma() {
 		// verifica se a lista esta vazia antes
+		lawManager.removeTodosElementosNorma();
 		List<ElementoNorma> elementos = new ArrayList<ElementoNorma>();
 		elementos = lawManager.getTodosElementosNorma();
 		assertEquals(0, elementos.size());
