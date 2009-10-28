@@ -78,5 +78,4 @@ public class LawManagerTest {
 		elementos = lawManager.getTodosElementosNorma();
 		assertEquals(1, elementos.size());
 	}
-
 }
