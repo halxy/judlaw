@@ -40,7 +40,7 @@ public class Norma implements Serializable {
 	
 	//Id
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name="norma_id")
 	private Long id;
 	private String identificadorUnico; // ex: cp
