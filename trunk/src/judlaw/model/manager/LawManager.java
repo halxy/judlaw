@@ -27,6 +27,8 @@ public class LawManager {
         return lawManager;
     }
     
+    /* -------------------- ELEMENTO NORMA -------------------- */
+    
     /**
      * Persiste um elementoNorma na base de dados
      * @param elementoNorma
@@ -49,5 +51,16 @@ public class LawManager {
      */
 	public void removeTodosElementosNorma() {
 		dbManager.removeAll(new ElementoNorma());
+	}
+	
+	/**
+	 * Recupera os objetos pelo atributo
+	 * @param atributo
+	 * @param valor
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List recuperaElementoPorAtributo(String atributo, String valor) {
+		return dbManager.selectObjectsByField(new ElementoNorma(), atributo, valor);
 	}
 }

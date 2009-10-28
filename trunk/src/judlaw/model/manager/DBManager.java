@@ -1,12 +1,14 @@
 package judlaw.model.manager;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import judlaw.model.lei.Norma;
 import judlaw.model.util.HibernateUtil;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 
 
 /**
@@ -75,8 +77,7 @@ public class DBManager {
 	public void removeAll(Object object) {
 		List results;
 		HibernateUtil.beginTransaction();
-		results = HibernateUtil.getSession().createCriteria(	object.getClass()).list();
-		
+		results = HibernateUtil.getSession().createCriteria(object.getClass()).list();
 		for (Object result : results) {
 			remove(result);
 		}
@@ -105,6 +106,24 @@ public class DBManager {
 		Object obj = HibernateUtil.getSession().get(object.getClass(), id);
 		HibernateUtil.closeSession();
 		return obj;
+	}
+	
+	/**
+	 * Select objets by field
+	 * @param object
+	 * @param fieldName
+	 * @param fieldValue
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List selectObjectsByField(Object object, String fieldName, Object fieldValue) {
+		List results = new ArrayList();
+		HibernateUtil.beginTransaction();
+		results = HibernateUtil.getSession().createCriteria(object.getClass())
+				.add(Restrictions.eq(fieldName, fieldValue))
+				.list();
+		HibernateUtil.closeSession();
+		return results;
 	}
 	
 	/**
