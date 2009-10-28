@@ -24,33 +24,6 @@ public class TimeManager {
 	}
 	
 	/**
-	 * Verifica se a data não possui valores absurdos.
-	 * @param data
-	 * @return
-	 * @throws Exception 
-	 */
-	public boolean verificaData(String dia, String mes, String ano) throws Exception {
-		// Verifica o dia
-		int diaInt = Integer.parseInt(dia);
-		if (diaInt > 31 || diaInt < 1) {
-			throw new Exception("Dia invalido");
-		}
-		
-		// Verifica o mes
-		int mesInt = Integer.parseInt(mes);
-		if (mesInt > 12 || mesInt < 1) {
-			throw new Exception("Mes invalido");
-		}
-		
-		// Verifica o ano
-		int anoInt = Integer.parseInt(ano);
-		if (anoInt < 1) {
-			throw new Exception("Ano invalido");
-		}
-		return true;
-	}
-	
-	/**
 	 * Retorna a data mais atual
 	 * @param data1 - Modelo: dd/MM/yyyy
 	 * @param data2 - Modelo: dd/MM/yyyy
@@ -69,8 +42,6 @@ public class TimeManager {
 		} catch (Exception e) {
 			throw new NoSuchElementException("Missing values");
 		}
-		// Verifica se a data esta OK e transforma para o valor em INT.
-		verificaData(dia1, mes1, ano1);
 		int dataInt1 = Integer.parseInt(ano1+mes1+dia1);
 
 		// Manipulando a segunda data
