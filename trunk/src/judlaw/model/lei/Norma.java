@@ -13,15 +13,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-
 import judlaw.model.ref.Referencia;
 
 /**
@@ -29,20 +20,10 @@ import judlaw.model.ref.Referencia;
  * @author Halley Freitas
  *
  */
-@Entity
-@SequenceGenerator(name="SEQ_NORMA", sequenceName="norma_sequence")
 public class Norma implements Serializable {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
-	//Id
-	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	@Column(name="norma_id")
-	private Long id;
+	private Integer id;
 	private String identificadorUnico; // ex: cp
 	
 	// Parte Preliminar
@@ -52,7 +33,6 @@ public class Norma implements Serializable {
 	private String tipo;
 	
 	// Parte Normativa
-	@OneToMany(cascade=CascadeType.ALL)
 	private List<ElementoNorma> elementosNorma;
 	
 	// Parte Final
@@ -61,9 +41,7 @@ public class Norma implements Serializable {
 	private String vigencia; // dd/MM/aa-dd2/MM2/aa2
 	
 	// Referências
-	@OneToMany(cascade=CascadeType.ALL)
 	private List<Referencia> referenciasFeitas;
-	@OneToMany(cascade=CascadeType.ALL)
 	private List<Referencia> referenciasRecebidas;
 	
 	/**
@@ -79,11 +57,11 @@ public class Norma implements Serializable {
 		this.referenciasRecebidas = new ArrayList<Referencia>();
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
