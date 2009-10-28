@@ -1,5 +1,6 @@
 package judlaw.model.test;
 
+import static org.junit.Assert.*;
 import judlaw.model.lei.ElementoNorma;
 import judlaw.model.util.Constantes;
 
@@ -27,8 +28,15 @@ public class LawManagerTest {
 		inciso.setVigencia("28/10/2009-99/99/9999");
 		
 	}
-
-	@Test public void simpleAdd() {
+	/**
+	 * Test method for {@link judlaw.model.lei.ElementoNorma#getPai}.
+	 * @throws Exception 
+	 */
+	@Test public void testGetPai() {
+		ElementoNorma ele1 = new ElementoNorma();
+		ele1.setIdentificadorUnico("cp_art120_par1");
+		assertEquals("cp_art120", ele1.getPai());
+		assertEquals("cp_art120", ele1.getPai());
 	}
 	
 

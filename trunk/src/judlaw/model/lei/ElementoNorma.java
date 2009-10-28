@@ -113,7 +113,7 @@ public class ElementoNorma implements Serializable {
 	 */
 	public String getPai() {
 		if(this.pai == null && this.identificadorUnico != null) {
-			return getElementoPaiPeloIdUnico();
+			setPai( getPaiPeloIdUnico() );
 		}
 		return this.pai;
 	}
@@ -154,11 +154,10 @@ public class ElementoNorma implements Serializable {
 		this.tipoElemento = tipoElemento;
 	}
 	
-	/**
+	/*
 	 * Retorna o pai do elemento usando como parametro seu identificador unico
-	 * @return
 	 */
-	public String getElementoPaiPeloIdUnico() {
+	private String getPaiPeloIdUnico() {
 		String idUnico = getIdentificadorUnico();
 		StringTokenizer tokenId = new StringTokenizer(idUnico, "_");
 		String tokenAux = "";
