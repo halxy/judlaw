@@ -24,7 +24,7 @@ public class LawManagerTest {
 	private LawManager lawManager = LawManager.getInstance();
 	
 	//ElementoNorma
-	private ElementoNorma artigo, paragrafo, inciso;
+	private ElementoNorma inciso;
 	List<Referencia> referencias1, referencias2;
 	
 	@Before public void setUp(){
@@ -70,7 +70,6 @@ public class LawManagerTest {
 		elementos = lawManager.getTodosElementosNorma();
 		assertEquals(0, elementos.size());
 		
-		System.out.println("PASSOUUU!");
 		// persiste o elemento
 		lawManager.saveElementoNorma( inciso );
 		
