@@ -3,6 +3,7 @@ package judlaw.model.lei;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -40,8 +41,8 @@ public class ElementoNorma implements Serializable {
 	private String texto;
 	private String data;
 	private String vigencia;
-	// O elemento no qual o elementoDaNorma está inserido. Ex: inciso está inserido no paragrafo.
-	private String elementoPai;
+	// O elemento/normal no qual o elementoDaNorma está inserido. Ex: inciso está inserido no paragrafo.
+	private String pai;
 	
 	// Listas de referencias associadas ao ElementoNorma
 	@OneToMany(cascade=CascadeType.ALL)
@@ -106,12 +107,19 @@ public class ElementoNorma implements Serializable {
 		this.vigencia = vigencia;
 	}
 	
-	public String getElementoPai() {
-		return elementoPai;
+	/**
+	 * Retorna o pai do elemento
+	 * @return
+	 */
+	public String getPai() {
+		if(this.pai == null && this.identificadorUnico != null) {
+			return getElementoPaiPeloIdUnico();
+		}
+		return this.pai;
 	}
-
-	public void setElementoPai(String elementoPai) {
-		this.elementoPai = elementoPai;
+	
+	public void setPai(String pai) {
+		this.pai = pai;
 	}
 	
 	public List<Referencia> getReferenciasFeitas() {
@@ -144,5 +152,20 @@ public class ElementoNorma implements Serializable {
 
 	public void setTipoElemento(String tipoElemento) {
 		this.tipoElemento = tipoElemento;
+	}
+	
+	/**
+	 * Retorna o pai do elemento usando como parametro seu identificador unico
+	 * @return
+	 */
+	public String getElementoPaiPeloIdUnico() {
+		String idUnico = getIdentificadorUnico();
+		StringTokenizer tokenId = new StringTokenizer(idUnico, "_");
+		String tokenAux = "";
+		while( tokenId.hasMoreTokens() ) {
+			tokenAux = tokenId.nextToken();
+		}
+		int posicaoId = idUnico.indexOf("_"+tokenAux);	
+		return idUnico.substring(0, posicaoId);
 	}
 }
