@@ -9,6 +9,7 @@
  */
 package judlaw.model.docjud;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -16,7 +17,9 @@ import java.util.List;
  * @author halley
  *
  */
-public class DocumentoJuridico {
+public class DocumentoJuridico implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private Cabecalho cabecalho;
 	private Ementa ementa;
