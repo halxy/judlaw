@@ -42,6 +42,18 @@ public class Referencia implements Serializable {
 		this.tipo = tipo;
 		this.efeito = efeito;
 	}
+	
+	/**
+	 * 
+	 * @param origem
+	 * @param destino
+	 * @param tipo
+	 */
+	public Referencia(String origem, String destino, String tipo) {
+		this.origem = origem;
+		this.destino = destino;
+		this.tipo = tipo;
+	}
 
 	/**
 	 * Construtor vazio
