@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,7 +52,7 @@ public class Norma implements Serializable {
 	private String tipo;
 	
 	// Parte Normativa
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<ElementoNorma> elementosNorma;
 	
 	// Parte Final
@@ -60,9 +61,9 @@ public class Norma implements Serializable {
 	private String vigencia; // dd/MM/aa-dd2/MM2/aa2
 	
 	// Referências
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Referencia> referenciasFeitas;
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Referencia> referenciasRecebidas;
 	
 	/**
