@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import judlaw.model.manager.DBManager;
 import judlaw.model.ref.Referencia;
 
 
@@ -181,5 +182,9 @@ public class ElementoNorma implements Serializable {
 	 */
 	public void removeReferenciaRecebida(Referencia ref) {
 		getReferenciasFeitas().remove(ref);
+	}
+	
+	public static void main(String[] args) {
+		DBManager.getInstance().save(new ElementoNorma());
 	}
 }
