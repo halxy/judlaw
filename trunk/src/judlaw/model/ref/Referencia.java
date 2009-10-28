@@ -2,8 +2,6 @@ package judlaw.model.ref;
 
 import java.io.Serializable;
 
-import judlaw.model.manager.DBManager;
-
 /**
  * 
  * @author Halley Freitas
