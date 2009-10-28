@@ -48,8 +48,7 @@ public class Norma implements Serializable {
 	 * 
 	 */
 	public Norma() {
-		inicializaListas();
-		
+		inicializaListas();	
 	}
 	
 	private void inicializaListas(){
