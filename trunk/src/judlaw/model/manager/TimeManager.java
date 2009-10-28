@@ -1,4 +1,4 @@
-package judlaw.model.util;
+package judlaw.model.manager;
 
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
