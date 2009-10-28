@@ -19,9 +19,7 @@
          	<property name="hbm2ddl.auto">update</property>
 			
 			<!-- Mapeamento das classes -->
-			<mapping class="judlaw.model.lei.Norma"/>
-			<mapping class="judlaw.model.lei.ElementoNorma"/>		
-			<mapping class="judlaw.model.ref.Referencia"/>
+			<mapping resource="judlaw/model/util/Referencia.hbm.xml"/>
 			
 		</session-factory>
 
