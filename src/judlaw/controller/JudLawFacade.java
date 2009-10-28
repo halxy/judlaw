@@ -8,10 +8,13 @@
  */
 package judlaw.controller;
 
+import judlaw.model.manager.LawManager;
+
 
 public class JudLawFacade {
 	
 	private static JudLawFacade facade = null;
+	private LawManager lawManager = LawManager.getInstance();
 	
 	/**
 	 * Retorna uma instancia da JudLawFacade.
@@ -23,4 +26,14 @@ public class JudLawFacade {
 		}
 		return facade;
 	}
+	
+	/* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES ELEMENTO NORMA -------------------- */
+    /* ------------------------------------------------------------------ */
+	/**
+     * Remove todos os elementosNorma;
+     */
+    public void removeElementosNorma() {
+    	lawManager.removeTodosElementosNorma();
+    }
 }
