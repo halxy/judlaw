@@ -84,4 +84,23 @@ public class LawManagerTest {
 		assertEquals(elementoBD.getReferenciasFeitas().size(), inciso.getReferenciasFeitas().size());
 		assertEquals(elementoBD.getReferenciasRecebidas().size(), inciso.getReferenciasRecebidas().size());
 	}
+	
+	/**
+	 * Test method for {@link judlaw.model.manager.LawManager#recuperaElementoPorAtributo(java.lang.String, java.lang.String)}. 
+	 */
+	@Test public void testRecuperaElementoPorAtributo() {
+		// verifica se a lista esta vazia antes
+		lawManager.removeTodosElementosNorma();
+		List<ElementoNorma> elementos = new ArrayList<ElementoNorma>();
+		elementos = lawManager.getTodosElementosNorma();
+		assertEquals(0, elementos.size());
+		
+		// persiste o elemento
+		lawManager.saveElementoNorma( inciso );
+		
+		// procura o elemento cujo identificador unico seja "cp_art120_par2_inc1"
+		ElementoNorma elemento = (ElementoNorma) lawManager.recuperaElementoPorAtributo
+													("identificadorUnico","cp_art120_par2_inc1").get(0);
+		assertEquals(elemento.getPai(), inciso.getPai());
+	}
 }
