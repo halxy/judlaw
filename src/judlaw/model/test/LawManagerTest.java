@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import judlaw.model.lei.ElementoNorma;
+import judlaw.model.manager.LawManager;
 import judlaw.model.ref.Referencia;
 import judlaw.model.util.Constantes;
 
@@ -19,7 +20,12 @@ import org.junit.Test;
  */
 public class LawManagerTest {
 
-	ElementoNorma artigo, paragrafo, inciso;
+	// DBManager
+	private LawManager lawManager = LawManager.getInstance();
+	
+	//ElementoNorma
+	private ElementoNorma artigo, paragrafo, inciso;
+	List<Referencia> referencias1, referencias2;
 	
 	@Before public void setUp(){
 		// Setando as propriedades dos elementos da norma
@@ -32,18 +38,17 @@ public class LawManagerTest {
 		inciso.setData("28/10/2009");
 		inciso.setVigencia("28/10/2009-99/99/9999");
 		
-		List<Referencia> referenciasFeitas = new ArrayList<Referencia>();
-		referenciasFeitas.add(new Referencia(inciso.getIdentificadorUnico(), 
+		referencias1 = new ArrayList<Referencia>();
+		referencias1.add(new Referencia(inciso.getIdentificadorUnico(), 
 											  "cp_art121_par2", 
 											  Constantes.SIMPLES));
-		inciso.setReferenciasFeitas(referenciasFeitas);
+		inciso.setReferenciasFeitas(referencias1);
 		
-		List<Referencia> referenciasRecebidas = new ArrayList<Referencia>();
-		referenciasRecebidas.add(new Referencia(inciso.getIdentificadorUnico(), 
+		referencias2 = new ArrayList<Referencia>();
+		referencias2.add(new Referencia(inciso.getIdentificadorUnico(), 
 											  "cp_art110_par1", 
 											  Constantes.SIMPLES));
-		inciso.setReferenciasRecebidas(referenciasRecebidas);
-		
+		inciso.setReferenciasRecebidas(referencias2);		
 	}
 	/**
 	 * Test method for {@link judlaw.model.lei.ElementoNorma#getPai}.
@@ -56,5 +61,22 @@ public class LawManagerTest {
 		assertEquals("cp_art120", ele1.getPai());
 	}
 	
+	/**
+	 * Test method for {@link judlaw.model.manager.LawManager#saveElementoNorma}. 
+	 */
+	@Test public void testSaveElementoNorma() {
+		// verifica se a lista esta vazia antes
+		List<ElementoNorma> elementos = new ArrayList<ElementoNorma>();
+		elementos = lawManager.getTodosElementosNorma();
+		assertEquals(0, elementos.size());
+		
+		System.out.println("PASSOUUU!");
+		// persiste o elemento
+		lawManager.saveElementoNorma( inciso );
+		
+		// verifica a nova lista
+		elementos = lawManager.getTodosElementosNorma();
+		assertEquals(1, elementos.size());
+	}
 
 }
