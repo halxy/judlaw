@@ -27,7 +27,7 @@ public class LawManager {
         return lawManager;
     }
     
-    /* -------------------- ELEMENTO NORMA -------------------- */
+    /* -------------------- OPERACOES ELEMENTO NORMA -------------------- */
     
     /**
      * Persiste um elementoNorma na base de dados
