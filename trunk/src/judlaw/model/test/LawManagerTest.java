@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Classe de Testes para o Módulo de leis
+ * Classe de Testes para a classe LawManager
  * @author Halley Freitas
  *
  */
