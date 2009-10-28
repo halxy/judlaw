@@ -1,6 +1,5 @@
-package judlaw.model.lei;
+package judlaw.model.manager;
 
-import judlaw.model.util.TimeManager;
 
 /**
  * Classe responsável por gerenciar o módulo das leis
@@ -10,7 +9,7 @@ import judlaw.model.util.TimeManager;
 public class LawManager {
 	
 	private static LawManager lawManager = null;
-	private TimeManager timeManager = TimeManager.getInstance();
+//	private TimeManager timeManager = TimeManager.getInstance();
 	
 	
    /**

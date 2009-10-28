@@ -1,9 +1,10 @@
-package judlaw.model.util;
+package judlaw.model.manager;
 
 import java.io.Serializable;
 import java.util.List;
 
 import judlaw.model.lei.Norma;
+import judlaw.model.util.HibernateUtil;
 
 import org.hibernate.Criteria;
 

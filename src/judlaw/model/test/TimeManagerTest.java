@@ -1,7 +1,7 @@
 package judlaw.model.test;
 
 import static org.junit.Assert.assertEquals;
-import judlaw.model.util.TimeManager;
+import judlaw.model.manager.TimeManager;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +24,7 @@ public class TimeManagerTest {
 	}
 	
 	/**
-	 * Test method for {@link judlaw.model.util.TimeManager#verificaData(java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for {@link judlaw.model.manager.TimeManager#verificaData(java.lang.String, java.lang.String, java.lang.String)}.
 	 * @throws Exception 
 	 */
 	@Test (expected=Exception.class) public void testVerificaData() throws Exception {
@@ -34,7 +34,7 @@ public class TimeManagerTest {
 	}
 	
 	/**
-	 * Test method for {@link judlaw.model.util.TimeManager#dataMaisAtual(java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for {@link judlaw.model.manager.TimeManager#dataMaisAtual(java.lang.String, java.lang.String, java.lang.String)}.
 	 * @throws Exception 
 	 */
 	@Test
