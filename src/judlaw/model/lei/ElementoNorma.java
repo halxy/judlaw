@@ -5,14 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
 import judlaw.model.ref.Referencia;
 
 
@@ -22,16 +14,11 @@ import judlaw.model.ref.Referencia;
  * @author Halley Freitas
  *
  */
-@Entity
 public class ElementoNorma implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	//id
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="elementonorma_id")
-	private Long id;
+	private Integer id;
 	private String identificadorUnico; // ex: cp_art120_par2.
 	
 	//informacoes
@@ -43,13 +30,10 @@ public class ElementoNorma implements Serializable {
 	private String pai;
 	
 	// Listas de referencias associadas ao ElementoNorma
-	@OneToMany(cascade=CascadeType.ALL)
 	private List<Referencia> referenciasFeitas;
-	@OneToMany(cascade=CascadeType.ALL)
 	private List<Referencia> referenciasRecebidas;
 		
 	// Lista de elementos que compoem o ElementoNorma
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="elementosNorma", targetEntity=ElementoNorma.class)
 	private List<? extends ElementoNorma> elementosNorma;
 	
 	
@@ -66,11 +50,11 @@ public class ElementoNorma implements Serializable {
 		this.elementosNorma = new ArrayList<ElementoNorma>();
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
