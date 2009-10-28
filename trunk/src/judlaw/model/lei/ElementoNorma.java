@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,13 +44,13 @@ public abstract class ElementoNorma implements Serializable {
 	private String elementoPai;
 	
 	// Listas de referencias associadas ao ElementoNorma
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Referencia> referenciasFeitas;
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Referencia> referenciasRecebidas;
 		
 	// Lista de elementos que compoem o ElementoNorma
-	@OneToMany(mappedBy="elementosNorma", targetEntity=ElementoNorma.class)
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="elementosNorma", targetEntity=ElementoNorma.class)
 	private List<? extends ElementoNorma> elementosNorma;
 	
 	
