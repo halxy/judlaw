@@ -8,6 +8,18 @@ import judlaw.model.util.TimeManager;
  *
  */
 public class LawManager {
-
+	
+	private static LawManager lawManager = null;
 	private TimeManager timeManager = TimeManager.getInstance();
+	
+	
+   /**
+    * Retorna uma instancia da classe LawManager
+    * @return
+    */
+    public static LawManager getInstance(){
+        if(lawManager == null)
+        	lawManager = new LawManager();
+        return lawManager;
+    }
 }
