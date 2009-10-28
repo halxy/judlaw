@@ -10,4 +10,17 @@ package judlaw.controller;
 
 
 public class JudLawFacade {
+	
+	private static JudLawFacade facade = null;
+	
+	/**
+	 * Retorna uma instancia da JudLawFacade.
+	 * @return Retorna uma instancia da JudLawFacade.
+	 */
+	public static JudLawFacade getInstance() {
+		if (facade == null) {
+			facade = new JudLawFacade();
+		}
+		return facade;
+	}
 }
