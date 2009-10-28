@@ -24,6 +24,10 @@ public class DBManager {
 		
 	}
 	
+	/**
+	 * Retorna uma instancia do DBManager
+	 * @return
+	 */
 	public static DBManager getInstance() {
 		if (dbManager == null) {
 			dbManager = new DBManager();

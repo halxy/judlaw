@@ -10,7 +10,9 @@ import org.junit.Test;
  */
 public class LeiPackageTest {
 
-	@Before public void setUp(){}
+	@Before public void setUp(){
+		
+	}
 
 	@Test public void simpleAdd() {
 	}
