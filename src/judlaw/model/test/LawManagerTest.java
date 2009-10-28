@@ -8,7 +8,7 @@ import org.junit.Test;
  * @author Halley Freitas
  *
  */
-public class LeiPackageTest {
+public class LawManagerTest {
 
 	@Before public void setUp(){
 		
