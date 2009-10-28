@@ -22,17 +22,7 @@ public class TimeManagerTest {
 		data4 = "13/11/2009";
 		data5 = "13/11/2009";
 	}
-	
-	/**
-	 * Test method for {@link judlaw.model.manager.TimeManager#verificaData(java.lang.String, java.lang.String, java.lang.String)}.
-	 * @throws Exception 
-	 */
-	@Test (expected=Exception.class) public void testVerificaData() throws Exception {
-		tm.verificaData("32", "11", "2009");
-		tm.verificaData("31", "13", "2009");
-		tm.verificaData("31", "12", "0");
-	}
-	
+
 	/**
 	 * Test method for {@link judlaw.model.manager.TimeManager#dataMaisAtual(java.lang.String, java.lang.String, java.lang.String)}.
 	 * @throws Exception 
