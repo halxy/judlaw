@@ -77,5 +77,11 @@ public class LawManagerTest {
 		// verifica a nova lista
 		elementos = lawManager.getTodosElementosNorma();
 		assertEquals(1, elementos.size());
+		
+		// verificando o elemento recuperado do BD
+		ElementoNorma elementoBD = elementos.get(0);
+		assertEquals(elementoBD.getIdentificadorUnico(), inciso.getIdentificadorUnico());
+		assertEquals(elementoBD.getReferenciasFeitas().size(), inciso.getReferenciasFeitas().size());
+		assertEquals(elementoBD.getReferenciasRecebidas().size(), inciso.getReferenciasRecebidas().size());
 	}
 }
