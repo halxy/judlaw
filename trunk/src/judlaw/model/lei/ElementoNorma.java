@@ -65,6 +65,7 @@ public class ElementoNorma implements Serializable {
 	private void inicializaListas(){
 		this.referenciasFeitas = new ArrayList<Referencia>();
 		this.referenciasRecebidas = new ArrayList<Referencia>();
+		this.elementosNorma = new ArrayList<ElementoNorma>();
 	}
 
 	public Long getId() {
@@ -166,5 +167,37 @@ public class ElementoNorma implements Serializable {
 		}
 		int posicaoId = idUnico.indexOf("_"+tokenAux);	
 		return idUnico.substring(0, posicaoId);
+	}
+	
+	/**
+	 * Adiciona uma referencia feita
+	 * @param ref
+	 */
+	public void addReferenciaFeita(Referencia ref) {
+		getReferenciasFeitas().add(ref);
+	}
+	
+	/**
+	 * Remove uma referencia feita
+	 * @param ref
+	 */
+	public void removeReferenciaFeita(Referencia ref) {
+		getReferenciasFeitas().remove(ref);
+	}
+	
+	/**
+	 * Adiciona uma referencia recebida
+	 * @param ref
+	 */
+	public void addReferenciaRecebida(Referencia ref) {
+		getReferenciasRecebidas().add(ref);
+	}
+	
+	/**
+	 * Remove uma referencia recebida
+	 * @param ref
+	 */
+	public void removeReferenciaRecebida(Referencia ref) {
+		getReferenciasFeitas().remove(ref);
 	}
 }
