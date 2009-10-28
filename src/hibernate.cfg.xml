@@ -19,7 +19,9 @@
          	<property name="hbm2ddl.auto">update</property>
 			
 			<!-- Mapeamento das classes -->
-			<mapping resource="judlaw/model/util/Referencia.hbm.xml"/>
+			<mapping resource="judlaw/model/hibernate/Referencia.hbm.xml"/>
+			<mapping resource="judlaw/model/hibernate/ElementoNorma.hbm.xml"/>
+			<mapping resource="judlaw/model/hibernate/Norma.hbm.xml"/>
 			
 		</session-factory>
 
