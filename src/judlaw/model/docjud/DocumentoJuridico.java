@@ -12,6 +12,8 @@ package judlaw.model.docjud;
 import java.io.Serializable;
 import java.util.List;
 
+import judlaw.model.util.HibernateUtil;
+
 /**
  * 
  * @author halley
@@ -21,6 +23,9 @@ public class DocumentoJuridico implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	//id
+	private Integer id;
+	
 	private Cabecalho cabecalho;
 	private Ementa ementa;
 	private Relatorio relatorio;
@@ -28,6 +33,15 @@ public class DocumentoJuridico implements Serializable {
 	private Encerramento encerramento;
 	private List<Parte> partes; //inclui o relator, partes, etc.
 	
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public Cabecalho getCabecalho() {
 		return cabecalho;
 	}
@@ -74,5 +88,21 @@ public class DocumentoJuridico implements Serializable {
 	
 	public void setPartes(List<Parte> partes) {
 		this.partes = partes;
+	}
+	
+	public static void main(String[] args) {
+		DocumentoJuridico docjud = new DocumentoJuridico();
+		Cabecalho cabecalho = new Cabecalho();
+		cabecalho.setIdDocumento("12345");
+		cabecalho.setDocumentojuridico(docjud);
+		docjud.setCabecalho(cabecalho);
+		
+		HibernateUtil.beginTransaction();
+		HibernateUtil.getSession().save(docjud);
+		HibernateUtil.getSession().flush();
+		HibernateUtil.getSession().save(cabecalho);
+		HibernateUtil.commitTransaction();
+		HibernateUtil.closeSession();
+		
 	}
 }
