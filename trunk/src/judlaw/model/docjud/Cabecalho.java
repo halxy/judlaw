@@ -9,11 +9,17 @@
  */
 package judlaw.model.docjud;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cabecalho {
+public class Cabecalho implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
+	//id (chave estrangeira - DocumentoJuridico)
+	private Integer id;
+	
 	private String idTribunal; // STF, STJ, TJRS, etc.
 	private String tipoDocumento; // HC, ACO, AI, etc.
 	private String idDocumento;
@@ -21,6 +27,17 @@ public class Cabecalho {
 	private String orgaoJulgador; // Pleno, Primeira Turma, etc.
 	private List<Parte> partes;
 	
+	//Documento Juridico
+	private DocumentoJuridico documentojuridico;
+
+	public DocumentoJuridico getDocumentojuridico() {
+		return documentojuridico;
+	}
+
+	public void setDocumentojuridico(DocumentoJuridico documentojuridico) {
+		this.documentojuridico = documentojuridico;
+	}
+
 	public Cabecalho(String idTribunal, String tipoDocumento,
 			String idDocumento, String numRegistro, String orgaoJulgador,
 			List<Parte> partes) {
@@ -45,6 +62,14 @@ public class Cabecalho {
 	 */
 	private void inicializaListas(){
 		this.partes = new ArrayList<Parte>();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getIdTribunal() {
