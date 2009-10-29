@@ -40,7 +40,6 @@ public class DBManager {
 		HibernateUtil.getSession().save(object);
 		HibernateUtil.commitTransaction();
 		HibernateUtil.closeSession();
-
 	}
 
 	/**
