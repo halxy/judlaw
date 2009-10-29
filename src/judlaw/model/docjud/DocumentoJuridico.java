@@ -12,7 +12,7 @@ package judlaw.model.docjud;
 import java.io.Serializable;
 import java.util.List;
 
-import judlaw.model.util.HibernateUtil;
+import judlaw.model.manager.DocJudManager;
 
 /**
  * 
@@ -93,16 +93,12 @@ public class DocumentoJuridico implements Serializable {
 	public static void main(String[] args) {
 		DocumentoJuridico docjud = new DocumentoJuridico();
 		Cabecalho cabecalho = new Cabecalho();
-		cabecalho.setIdDocumento("12345");
+		cabecalho.setIdDocumento("12");
+		cabecalho.setIdTribunal("4234234");
 		cabecalho.setDocumentojuridico(docjud);
 		docjud.setCabecalho(cabecalho);
 		
-		HibernateUtil.beginTransaction();
-		HibernateUtil.getSession().save(docjud);
-		HibernateUtil.getSession().flush();
-		HibernateUtil.getSession().save(cabecalho);
-		HibernateUtil.commitTransaction();
-		HibernateUtil.closeSession();
+		DocJudManager.getInstance().saveDocumentoJuridico(docjud);
 		
 	}
 }
