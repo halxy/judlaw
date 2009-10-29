@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	 
+	<hibernate-mapping>
+	
+  		<class name="judlaw.model.docjud.Cabecalho" table="cabecalho">
+  		  
+			<id  
+			 	name="id" 
+			 	column="docjud_id">
+			 	<generator class="foreign">
+			 		<param name="property">documentojuridico</param>
+			 	</generator>  	 					
+			</id>
+			
+			<property
+				name="idTribunal"
+				type="java.lang.String"
+			/>
+			
+			<property
+				name="tipoDocumento"
+				type="java.lang.String"
+			/>
+			
+			<property
+				name="idDocumento"
+				type="java.lang.String"
+			/>
+			
+			<property
+				name="numRegistro"
+				type="java.lang.String"
+			/>
+			
+			<property
+				name="orgaoJulgador"
+				type="java.lang.String"
+			/>
+			
+			<property name="partes" type="java.util.ArrayList" />
+			
+			<one-to-one name="documentojuridico" class="judlaw.model.docjud.DocumentoJuridico" constrained="true" />
+			
+  		</class>
+  </hibernate-mapping>
