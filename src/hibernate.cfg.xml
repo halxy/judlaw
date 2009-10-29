@@ -20,8 +20,12 @@
 			
 			<!-- Mapeamento das classes -->
 			<mapping resource="judlaw/model/hibernate/Referencia.hbm.xml"/>
+			
 			<mapping resource="judlaw/model/hibernate/lei/ElementoNorma.hbm.xml"/>
 			<mapping resource="judlaw/model/hibernate/lei/Norma.hbm.xml"/>
+			
+			<mapping resource="judlaw/model/hibernate/docjud/Cabecalho.hbm.xml"/>
+			<mapping resource="judlaw/model/hibernate/docjud/DocumentoJuridico.hbm.xml"/>
 			
 		</session-factory>
 
