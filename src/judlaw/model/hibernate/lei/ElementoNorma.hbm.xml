@@ -40,11 +40,10 @@
 				type="java.lang.String"
 			/>	
 			
-			
 			<property name="referenciasFeitas" type="java.util.ArrayList" />
 			
 			<property name="referenciasRecebidas" type="java.util.ArrayList" />
-			
+				
 			<property name="elementosNorma" type="java.util.ArrayList" />
 			
   		</class>

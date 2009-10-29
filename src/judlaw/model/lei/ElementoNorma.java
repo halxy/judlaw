@@ -37,7 +37,6 @@ public class ElementoNorma implements Serializable {
 	// Lista de elementos que compoem o ElementoNorma
 	private List<? extends ElementoNorma> elementosNorma;
 	
-	
 	/**
 	 * Construtor sem parâmetros
 	 */
