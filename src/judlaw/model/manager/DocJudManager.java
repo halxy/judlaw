@@ -12,8 +12,6 @@ import judlaw.model.util.HibernateUtil;
 public class DocJudManager {
 	
 	private static DocJudManager docjudManager = null;
-//	private DBManager dbManager = DBManager.getInstance();
-//	private TimeManager timeManager = TimeManager.getInstance();
 	
 	
    /**
