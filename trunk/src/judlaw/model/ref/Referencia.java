@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import judlaw.model.manager.DBManager;
-
 /**
  * 
  * @author Halley Freitas
@@ -99,9 +97,5 @@ public class Referencia {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	
-	public static void main(String[] args) {
-		DBManager.getInstance().save(new Referencia());
 	}
 }
