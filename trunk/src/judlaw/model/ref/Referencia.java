@@ -1,16 +1,30 @@
 package judlaw.model.ref;
 
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import judlaw.model.manager.DBManager;
 
 /**
  * 
  * @author Halley Freitas
  *
  */
-public class Referencia implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+@Entity
+@Table(name = "referencia")
+@SequenceGenerator(name = "referencia_seq", sequenceName = "referencia_seq", initialValue = 1, allocationSize = 1)
+public class Referencia {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="referencia_seq")
+	@Column(name="referencia_id")
 	private Integer id;
+	
 	private String origem;
 	private String destino;
 	private String tipo; // Simples, Inclusao, Alteracao, etc.
@@ -85,5 +99,9 @@ public class Referencia implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public static void main(String[] args) {
+		DBManager.getInstance().save(new Referencia());
 	}
 }
