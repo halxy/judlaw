@@ -16,7 +16,7 @@ public class Constantes {
 	public static final String ITEM = "Item";
 	
 	// Tipos de Referencia
-	public static final String SIMPLES = "Simples";
+	public static final String CITACAO = "Citação";
 	public static final String INCLUSAO = "Inclusão";
 	public static final String ALTERACAO = "Alteração";
 	public static final String REVOGACAO = "Revogação";
