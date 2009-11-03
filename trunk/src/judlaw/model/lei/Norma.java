@@ -33,7 +33,7 @@ public class Norma implements Serializable {
 	private String tipo;
 	
 	// Parte Normativa
-private List<ElementoNorma> elementosNorma;
+	private List<ElementoNorma> elementosNorma;
 	
 	// Parte Final
 	private String local;

@@ -1,12 +1,25 @@
 package judlaw.model.lei;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 import judlaw.model.manager.DBManager;
 import judlaw.model.ref.Referencia;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 
 /**
@@ -15,14 +28,18 @@ import judlaw.model.ref.Referencia;
  * @author Halley Freitas
  *
  */
-public class ElementoNorma implements Serializable {
+@Entity
+@Table(name = "elementonorma")
+@SequenceGenerator(name = "elementonorma_seq", sequenceName = "elementonorma_seq", initialValue = 1, allocationSize = 1)
+public class ElementoNorma {
 	
-	private static final long serialVersionUID = 1L;
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="elementonorma_seq")
+	@Column(name="elementonorma_id")
 	private Integer id;
-	private String identificadorUnico; // ex: cp_art120_par2.
-	
+
 	//informacoes
+	private String identificadorUnico; // ex: cp_art120_par2.
 	private String tipoElemento; // Artigo, Paragrafo, Inciso, etc.
 	private String texto;
 	private String data;
@@ -31,7 +48,11 @@ public class ElementoNorma implements Serializable {
 	private String pai;
 	
 	// Listas de referencias associadas ao ElementoNorma
+	@OneToMany(mappedBy="elementonorma", cascade={CascadeType.MERGE})
+	@JoinColumn(name="elementonorma_id")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Referencia> referenciasFeitas;
+	
 	private List<Referencia> referenciasRecebidas;
 		
 	// Lista de elementos que compoem o ElementoNorma

@@ -9,23 +9,19 @@
  */
 package judlaw.model.docjud;
 
-import java.io.Serializable;
 import java.util.List;
-
-import judlaw.model.manager.DocJudManager;
 
 /**
  * 
  * @author halley
  *
  */
-public class DocumentoJuridico implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+public class DocumentoJuridico {
 	
 	//id
 	private Integer id;
 	
+	private String identificadorUnico;
 	private Cabecalho cabecalho;
 	private Ementa ementa;
 	private Relatorio relatorio;
@@ -34,6 +30,14 @@ public class DocumentoJuridico implements Serializable {
 	private List<Parte> partes; //inclui o relator, partes, etc.
 	
 	
+	public String getIdentificadorUnico() {
+		return identificadorUnico;
+	}
+
+	public void setIdentificadorUnico(String identificadorUnico) {
+		this.identificadorUnico = identificadorUnico;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -88,17 +92,5 @@ public class DocumentoJuridico implements Serializable {
 	
 	public void setPartes(List<Parte> partes) {
 		this.partes = partes;
-	}
-	
-	public static void main(String[] args) {
-		DocumentoJuridico docjud = new DocumentoJuridico();
-		Cabecalho cabecalho = new Cabecalho();
-		cabecalho.setIdDocumento("12");
-		cabecalho.setIdTribunal("4234234");
-		cabecalho.setDocumentojuridico(docjud);
-		docjud.setCabecalho(cabecalho);
-		
-		DocJudManager.getInstance().saveDocumentoJuridico(docjud);
-		
 	}
 }
