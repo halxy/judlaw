@@ -29,7 +29,7 @@ public class ReferenciaManager {
 			return dbManager.selectAll( new Referencia() );
 		}
 	    
-		public void removeTodasReferencias() {
+		public void removeTodasReferencias(){
 			dbManager.removeAll( new Referencia() );
 		}
 		
