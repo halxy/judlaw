@@ -41,13 +41,13 @@ public class LawManagerTest {
 		referencias1 = new ArrayList<Referencia>();
 		referencias1.add(new Referencia(inciso.getIdentificadorUnico(), 
 											  "cp_art121_par2", 
-											  Constantes.SIMPLES));
+											  Constantes.CITACAO));
 		inciso.setReferenciasFeitas(referencias1);
 		
 		referencias2 = new ArrayList<Referencia>();
 		referencias2.add(new Referencia(inciso.getIdentificadorUnico(), 
 											  "cp_art110_par1", 
-											  Constantes.SIMPLES));
+											  Constantes.CITACAO));
 		inciso.setReferenciasRecebidas(referencias2);		
 	}
 	/**
