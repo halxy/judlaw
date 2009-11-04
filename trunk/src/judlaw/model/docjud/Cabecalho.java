@@ -20,7 +20,7 @@ public class Cabecalho implements Serializable {
 	//id (chave estrangeira - DocumentoJuridico)
 	private Integer id;
 	
-	private String idTribunal; // STF, STJ, TJRS, etc.
+	private String tribunal; // STF, STJ, TJRS, etc.
 	private String tipoDocumento; // HC, ACO, AI, etc.
 	private String idDocumento;
 	private String numRegistro; // ver Certidao de Julgamento STJ
@@ -38,11 +38,11 @@ public class Cabecalho implements Serializable {
 		this.documentojuridico = documentojuridico;
 	}
 
-	public Cabecalho(String idTribunal, String tipoDocumento,
+	public Cabecalho(String tribunal, String tipoDocumento,
 			String idDocumento, String numRegistro, String orgaoJulgador,
 			List<Parte> partes) {
 		super();
-		this.idTribunal = idTribunal;
+		this.tribunal = tribunal;
 		this.tipoDocumento = tipoDocumento;
 		this.idDocumento = idDocumento;
 		this.numRegistro = numRegistro;
@@ -72,12 +72,12 @@ public class Cabecalho implements Serializable {
 		this.id = id;
 	}
 
-	public String getIdTribunal() {
-		return idTribunal;
+	public String getTribunal() {
+		return tribunal;
 	}
 
-	public void setIdTribunal(String idTribunal) {
-		this.idTribunal = idTribunal;
+	public void setTribunal(String tribunal) {
+		this.tribunal = tribunal;
 	}
 
 	public String getTipoDocumento() {
