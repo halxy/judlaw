@@ -18,6 +18,7 @@ package judlaw.model.bean;
 public abstract class Documento {
 	
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
+	private String tipo;
 	private String dataPublicacao; // dd/MM/yyy
 	
 	public String getIdentificadorUnico() {
@@ -28,6 +29,14 @@ public abstract class Documento {
 		this.identificadorUnico = identificadorUnico;
 	}
 	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 	public String getDataPublicacao() {
 		return dataPublicacao;
 	}
