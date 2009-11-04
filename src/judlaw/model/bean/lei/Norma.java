@@ -39,11 +39,11 @@ public class Norma extends DocumentoLegal {
 	private String ementa;
 	private String autoria;
 	
-	// Parte Normativa //FAZER
-	private List<ElementoNorma> elementosNorma; //TODO
-	
 	// Parte Final
 	private String local;
+	
+	// Parte Normativa //FAZER
+	private List<ElementoNorma> elementosNorma; //TODO
 	
 	/**
 	 * 
