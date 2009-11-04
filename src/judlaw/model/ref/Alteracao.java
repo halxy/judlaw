@@ -21,6 +21,26 @@ public class Alteracao extends Referencia {
 	private String tipo; // inclusao, revogacao, alteracao;
 	private String caracteristica; // mais branda, mais punitiva, etc.
 	
+	/**
+	 * 
+	 * @param origem
+	 * @param destino
+	 * @param data
+	 * @param tipo
+	 * @param caracteristica
+	 */
+	public Alteracao(String origem, String destino, String data, String tipo,
+			String caracteristica) {
+		super(origem, destino, data);
+		this.tipo = tipo;
+		this.caracteristica = caracteristica;
+	}
+
+	/**
+	 * Construtor vazio
+	 */
+	public Alteracao(){super();}
+	
 	public Integer getId() {
 		return id;
 	}
