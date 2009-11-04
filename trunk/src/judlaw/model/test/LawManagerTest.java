@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
-import judlaw.model.lei.ElementoNorma;
+import judlaw.model.bean.lei.ElementoNorma;
 import judlaw.model.manager.LawManager;
 import judlaw.model.ref.Referencia;
 import judlaw.model.util.Constantes;
@@ -39,7 +39,7 @@ public class LawManagerTest {
 		inciso.setVigencia("28/10/2009-99/99/9999");		
 	}
 	/**
-	 * Test method for {@link judlaw.model.lei.ElementoNorma#getPai}.
+	 * Test method for {@link judlaw.model.bean.lei.ElementoNorma#getPai}.
 	 * @throws Exception 
 	 */
 	@Test public void testGetPai() {
