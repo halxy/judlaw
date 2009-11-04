@@ -27,6 +27,4 @@ public abstract class DocumentoLegal extends Documento {
 	public void setVigencia(String vigencia) {
 		this.vigencia = vigencia;
 	}
-	
-	
 }
