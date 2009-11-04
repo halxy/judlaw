@@ -30,4 +30,8 @@ public class Constantes {
 	public static final String ALTERACAO = "Alteração";
 	public static final String REVOGACAO = "Revogação";
 	
+	// Caracteristicas de Alteracao (Referencia)
+	public static final String MAIS_RESTRITIVA = "Mais restritiva";
+	public static final String MENOS_RESTRITIVA = "Menos restritiva";
+	
 }
