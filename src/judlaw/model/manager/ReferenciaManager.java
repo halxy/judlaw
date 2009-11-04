@@ -10,7 +10,8 @@
  */
 package judlaw.model.manager;
 
-import judlaw.model.bean.ref.Referencia;
+import judlaw.model.bean.ref.CitacaoDocJud;
+
 
 /**
  * Classe ReferenciaManager - Gerencia a manipulacao dos objetos do tipo Referencia: 
@@ -34,8 +35,8 @@ public class ReferenciaManager {
 	        return referenciaManager;
 	    }
 	    
-		public void saveReferencia(Referencia referencia) {
-			dbManager.save(referencia);
+		public void saveCitacaoDocJud(CitacaoDocJud citacaoDocJud) {
+			dbManager.save(citacaoDocJud);
 		}
 	    
 //	    @SuppressWarnings("unchecked")
