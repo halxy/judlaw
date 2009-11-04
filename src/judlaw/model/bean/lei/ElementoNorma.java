@@ -24,24 +24,21 @@ import judlaw.model.manager.DBManager;
 @Entity
 @Table(name = "elementonorma")
 @SequenceGenerator(name = "elementonorma_seq", sequenceName = "elementonorma_seq", initialValue = 1, allocationSize = 1)
-public class ElementoNorma {
+public class ElementoNorma extends DocumentoLegal {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="elementonorma_seq")
 	@Column(name="elementonorma_id")
 	private Integer id;
 
-	//informacoes
-	private String identificadorUnico; // ex: cp_art120_par2.
-	private String tipoElemento; // Artigo, Paragrafo, Inciso, etc.
 	private String texto;
-	private String data;
-	private String vigencia;
-	// O elemento/normal no qual o elementoDaNorma está inserido. Ex: inciso está inserido no paragrafo.
-	private String pai;
 		
+	
+	// ESTUDAR PARA REFAZER ESSA PARTE DE BAIXO
 	// Lista de elementos que compoem o ElementoNorma
-	private List<? extends ElementoNorma> elementosNorma;
+	private List<? extends ElementoNorma> elementosNorma; //TODO
+	// O elemento/normal no qual o elementoDaNorma está inserido. Ex: inciso está inserido no paragrafo.
+	private String pai; //TODO
 	
 	/**
 	 * Construtor sem parâmetros
@@ -62,14 +59,6 @@ public class ElementoNorma {
 		this.id = id;
 	}
 
-	public String getIdentificadorUnico() {
-		return identificadorUnico;
-	}
-
-	public void setIdentificadorUnico(String identificadorUnico) {
-		this.identificadorUnico = identificadorUnico;
-	}
-
 	public String getTexto() {
 		return texto;
 	}
@@ -78,28 +67,12 @@ public class ElementoNorma {
 		this.texto = texto;
 	}
 	
-	public String getData() {
-		return data;
-	}
-	
-	public void setData(String data) {
-		this.data = data;
-	}
-	
-	public String getVigencia() {
-		return vigencia;
-	}
-	
-	public void setVigencia(String vigencia) {
-		this.vigencia = vigencia;
-	}
-	
 	/**
 	 * Retorna o pai do elemento
 	 * @return
 	 */
 	public String getPai() {
-		if(this.pai == null && this.identificadorUnico != null) {
+		if(this.pai == null && getIdentificadorUnico() != null) {
 			setPai( getPaiPeloIdUnico() );
 		}
 		return this.pai;
@@ -115,14 +88,6 @@ public class ElementoNorma {
 
 	public void setElementosNorma(List<? extends ElementoNorma> elementosNorma) {
 		this.elementosNorma = elementosNorma;
-	}
-	
-	public String getTipoElemento() {
-		return tipoElemento;
-	}
-
-	public void setTipoElemento(String tipoElemento) {
-		this.tipoElemento = tipoElemento;
 	}
 	
 	/*
