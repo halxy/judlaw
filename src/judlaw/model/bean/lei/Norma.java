@@ -9,17 +9,15 @@
  */
 package judlaw.model.bean.lei;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
- * Classe norma
+ * Classe Norma
  * @author Halley Freitas
  *
  */
-public class Norma implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
+public class Norma {
+
 	private Integer id;
 	private String identificadorUnico; // ex: cp
 	
