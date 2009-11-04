@@ -13,6 +13,20 @@ public abstract class Referencia {
 	private String data; // data em que foi feita a referência
 	
 	/**
+	 * 
+	 * @param origem
+	 * @param destino
+	 * @param data
+	 */
+	public Referencia(String origem, String destino, String data) {
+		this.origem = origem;
+		this.destino = destino;
+		this.data = data;
+	}
+	
+	public Referencia(){}
+
+	/**
 	 *
 	 * @return
 	 */
