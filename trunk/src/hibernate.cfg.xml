@@ -19,7 +19,24 @@
          	<property name="hbm2ddl.auto">update</property>
 			
 			<!-- Mapeamento das classes -->
-			<mapping class="judlaw.model.ref.Referencia"/>
+			
+			<!-- Pacote ref -->
+			<mapping class="judlaw.model.bean.ref.Alteracao"/>
+			<mapping class="judlaw.model.bean.ref.CitacaoDocJud"/>
+			<mapping class="judlaw.model.bean.ref.CitacaoDocLeg"/>
+					
+			<!-- Pacote docjud -->
+			<mapping class="judlaw.model.bean.docjud.Cabecalho"/>
+			<mapping class="judlaw.model.bean.docjud.DocumentoJuridico"/>
+			<mapping class="judlaw.model.bean.docjud.Ementa"/>
+			<mapping class="judlaw.model.bean.docjud.Encerramento"/>
+			<mapping class="judlaw.model.bean.docjud.Parte"/>
+			<mapping class="judlaw.model.bean.docjud.Relatorio"/>
+			<mapping class="judlaw.model.bean.docjud.Voto"/>
+			
+			<!-- Pacote lei -->
+			<mapping class="judlaw.model.bean.lei.ElementoNorma"/>
+			<mapping class="judlaw.model.bean.lei.Norma"/>
 			
 		</session-factory>
 
