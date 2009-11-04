@@ -13,7 +13,6 @@ public class Encerramento {
 
 	private String decisao;
 	private String local; 
-	private String data;
 	
 	public String getDecisao() {
 		return decisao;
@@ -30,14 +29,4 @@ public class Encerramento {
 	public void setLocal(String local) {
 		this.local = local;
 	}
-	
-	public String getData() {
-		return data;
-	}
-	
-	public void setData(String data) {
-		this.data = data;
-	}
-	
-	
 }
