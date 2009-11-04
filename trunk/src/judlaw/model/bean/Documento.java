@@ -18,7 +18,7 @@ package judlaw.model.bean;
 public abstract class Documento {
 	
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
-	private String tipo;
+	private String tipo; // tipos de Documentos Juridicos e Documentos Legais
 	private String dataPublicacao; // dd/MM/yyy
 	
 	public String getIdentificadorUnico() {
