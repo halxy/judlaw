@@ -1,6 +1,6 @@
 package judlaw.model.manager;
 
-import judlaw.model.ref.Referencia;
+import judlaw.model.bean.ref.Referencia;
 
 /**
  * Classe ReferenciaManager - Gerencia a manipulacao dos objetos do tipo Referencia: 
