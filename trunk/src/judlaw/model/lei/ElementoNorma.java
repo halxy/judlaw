@@ -4,22 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import judlaw.model.manager.DBManager;
-import judlaw.model.ref.Referencia;
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 
 /**
@@ -46,14 +39,6 @@ public class ElementoNorma {
 	private String vigencia;
 	// O elemento/normal no qual o elementoDaNorma está inserido. Ex: inciso está inserido no paragrafo.
 	private String pai;
-	
-	// Listas de referencias associadas ao ElementoNorma
-	@OneToMany(mappedBy="elementonorma", cascade={CascadeType.MERGE})
-	@JoinColumn(name="elementonorma_id")
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private List<Referencia> referenciasFeitas;
-	
-	private List<Referencia> referenciasRecebidas;
 		
 	// Lista de elementos que compoem o ElementoNorma
 	private List<? extends ElementoNorma> elementosNorma;
@@ -66,8 +51,6 @@ public class ElementoNorma {
 	}
 	
 	private void inicializaListas(){
-		this.referenciasFeitas = new ArrayList<Referencia>();
-		this.referenciasRecebidas = new ArrayList<Referencia>();
 		this.elementosNorma = new ArrayList<ElementoNorma>();
 	}
 
@@ -126,22 +109,6 @@ public class ElementoNorma {
 		this.pai = pai;
 	}
 	
-	public List<Referencia> getReferenciasFeitas() {
-		return referenciasFeitas;
-	}
-	
-	public void setReferenciasFeitas(List<Referencia> referenciasFeitas) {
-		this.referenciasFeitas = referenciasFeitas;
-	}
-	
-	public List<Referencia> getReferenciasRecebidas() {
-		return referenciasRecebidas;
-	}
-	
-	public void setReferenciasRecebidas(List<Referencia> referenciasRecebidas) {
-		this.referenciasRecebidas = referenciasRecebidas;
-	}
-	
 	public List<? extends ElementoNorma> getElementosNorma() {
 		return elementosNorma;
 	}
@@ -170,38 +137,6 @@ public class ElementoNorma {
 		}
 		int posicaoId = idUnico.indexOf("_"+tokenAux);	
 		return idUnico.substring(0, posicaoId);
-	}
-	
-	/**
-	 * Adiciona uma referencia feita
-	 * @param ref
-	 */
-	public void addReferenciaFeita(Referencia ref) {
-		getReferenciasFeitas().add(ref);
-	}
-	
-	/**
-	 * Remove uma referencia feita
-	 * @param ref
-	 */
-	public void removeReferenciaFeita(Referencia ref) {
-		getReferenciasFeitas().remove(ref);
-	}
-	
-	/**
-	 * Adiciona uma referencia recebida
-	 * @param ref
-	 */
-	public void addReferenciaRecebida(Referencia ref) {
-		getReferenciasRecebidas().add(ref);
-	}
-	
-	/**
-	 * Remove uma referencia recebida
-	 * @param ref
-	 */
-	public void removeReferenciaRecebida(Referencia ref) {
-		getReferenciasFeitas().remove(ref);
 	}
 	
 	public static void main(String[] args) {
