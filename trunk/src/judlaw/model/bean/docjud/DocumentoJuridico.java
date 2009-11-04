@@ -9,35 +9,56 @@
  */
 package judlaw.model.bean.docjud;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import judlaw.model.bean.Documento;
 
 /**
  * 
  * @author halley
  *
  */
-public class DocumentoJuridico {
+@Entity
+@Table(name = "documentojuridico")
+@SequenceGenerator(name = "documentojuridico_seq", sequenceName = "documentojuridico_seq", initialValue = 1, allocationSize = 1)
+public class DocumentoJuridico extends Documento {
 	
-	//id
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="documentojuridico_seq")
+	@Column(name="documentojuridico_id")
 	private Integer id;
 	
-	private String identificadorUnico;
 	private Cabecalho cabecalho;
 	private Ementa ementa;
 	private Relatorio relatorio;
 	private List<Voto> votos;
 	private Encerramento encerramento;
-	private List<Parte> partes; //inclui o relator, partes, etc.
+	private List<Parte> partes; // relator, partes, etc.
 	
+	/**
+	 * Construtor vazio que apenas inicializa as listas
+	 */
+	public DocumentoJuridico() {
+		inicializaListas();
+	}
 	
-	public String getIdentificadorUnico() {
-		return identificadorUnico;
+	/*
+	 * Inicializa as listas da classe
+	 */
+	private void inicializaListas() {
+		this.votos = new ArrayList<Voto>();
+		this.partes = new ArrayList<Parte>();
 	}
-
-	public void setIdentificadorUnico(String identificadorUnico) {
-		this.identificadorUnico = identificadorUnico;
-	}
-
+	
 	public Integer getId() {
 		return id;
 	}

@@ -9,11 +9,12 @@
  */
 package judlaw.model.bean.docjud;
 
-import java.io.Serializable;
-
-public class Cabecalho implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+/**
+ * 
+ * @author Halley Freitas
+ *
+ */
+public class Cabecalho {
 
 	//id (chave estrangeira - DocumentoJuridico)
 	private Integer id;
@@ -35,7 +36,6 @@ public class Cabecalho implements Serializable {
 	}
 
 	public Cabecalho(String tribunal, String tipoDocumento, String codRegistro, String orgaoJulgador) {
-		super();
 		this.tribunal = tribunal;
 		this.tipoDocumento = tipoDocumento;
 		this.codRegistro = codRegistro;
@@ -43,7 +43,7 @@ public class Cabecalho implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Construtor Vazio
 	 */
 	public Cabecalho() {}
 	
