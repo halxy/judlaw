@@ -33,9 +33,9 @@ public class LawManagerTest {
 		/* -------------------- INCISO -------------------- */
 		inciso = new ElementoNorma();
 		inciso.setIdentificadorUnico("cp_art120_par2_inc1");
-		inciso.setTipoElemento(Constantes.INCISO);
+		inciso.setTipo(Constantes.INCISO);
 		inciso.setTexto("Texto do inciso");
-		inciso.setData("28/10/2009");
+		inciso.setDataPublicacao("28/10/2009");
 		inciso.setVigencia("28/10/2009-99/99/9999");		
 	}
 	/**
