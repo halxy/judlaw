@@ -22,7 +22,6 @@ public class Cabecalho implements Serializable {
 	
 	private String tribunal; // STF, STJ, TJRS, etc.
 	private String tipoDocumento; // HC, ACO, AI, etc.
-	private String idDocumento;
 	private String numRegistro; // ver Certidao de Julgamento STJ
 	private String orgaoJulgador; // Pleno, Primeira Turma, etc.
 	private List<Parte> partes;
@@ -38,13 +37,11 @@ public class Cabecalho implements Serializable {
 		this.documentojuridico = documentojuridico;
 	}
 
-	public Cabecalho(String tribunal, String tipoDocumento,
-			String idDocumento, String numRegistro, String orgaoJulgador,
+	public Cabecalho(String tribunal, String tipoDocumento, String numRegistro, String orgaoJulgador,
 			List<Parte> partes) {
 		super();
 		this.tribunal = tribunal;
 		this.tipoDocumento = tipoDocumento;
-		this.idDocumento = idDocumento;
 		this.numRegistro = numRegistro;
 		this.orgaoJulgador = orgaoJulgador;
 		this.partes = partes;
@@ -86,14 +83,6 @@ public class Cabecalho implements Serializable {
 
 	public void setTipoDocumento(String tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
-	}
-
-	public String getIdDocumento() {
-		return idDocumento;
-	}
-
-	public void setIdDocumento(String idDocumento) {
-		this.idDocumento = idDocumento;
 	}
 
 	public String getNumRegistro() {
