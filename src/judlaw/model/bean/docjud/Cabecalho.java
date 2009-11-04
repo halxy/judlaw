@@ -21,7 +21,6 @@ public class Cabecalho {
 	private Integer id;
 	
 	private String tribunal; // STF, STJ, TJRS, etc.
-	private String tipoDocumento; // HC, ACO, AI, etc.
 	private String codRegistro; // ver Certidao de Julgamento STJ
 	private String orgaoJulgador; // Pleno, Primeira Turma, etc.
 	
@@ -36,9 +35,8 @@ public class Cabecalho {
 		this.documentojuridico = documentojuridico;
 	}
 
-	public Cabecalho(String tribunal, String tipoDocumento, String codRegistro, String orgaoJulgador) {
+	public Cabecalho(String tribunal, String codRegistro, String orgaoJulgador) {
 		this.tribunal = tribunal;
-		this.tipoDocumento = tipoDocumento;
 		this.codRegistro = codRegistro;
 		this.orgaoJulgador = orgaoJulgador;
 	}
@@ -62,14 +60,6 @@ public class Cabecalho {
 
 	public void setTribunal(String tribunal) {
 		this.tribunal = tribunal;
-	}
-
-	public String getTipoDocumento() {
-		return tipoDocumento;
-	}
-
-	public void setTipoDocumento(String tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
 	}
 	
 	public String getCodRegistro() {
