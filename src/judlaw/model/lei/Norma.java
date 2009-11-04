@@ -10,10 +10,7 @@
 package judlaw.model.lei;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-
-import judlaw.model.ref.Referencia;
 
 /**
  * Classe norma
@@ -40,21 +37,10 @@ public class Norma implements Serializable {
 	private String data; //dd/MM/aa
 	private String vigencia; // dd/MM/aa-dd2/MM2/aa2
 	
-	// Referências
-	private List<Referencia> referenciasFeitas;
-	private List<Referencia> referenciasRecebidas;
-	
 	/**
 	 * 
 	 */
-	public Norma() {
-		inicializaListas();	
-	}
-	
-	private void inicializaListas(){
-		this.referenciasFeitas = new ArrayList<Referencia>();
-		this.referenciasRecebidas = new ArrayList<Referencia>();
-	}
+	public Norma() {}
 
 	public Integer getId() {
 		return id;
@@ -126,22 +112,6 @@ public class Norma implements Serializable {
 
 	public void setVigencia(String vigencia) {
 		this.vigencia = vigencia;
-	}
-
-	public List<Referencia> getReferenciasFeitas() {
-		return referenciasFeitas;
-	}
-
-	public void setReferenciasFeitas(List<Referencia> referenciasFeitas) {
-		this.referenciasFeitas = referenciasFeitas;
-	}
-
-	public List<Referencia> getReferenciasRecebidas() {
-		return referenciasRecebidas;
-	}
-
-	public void setReferenciasRecebidas(List<Referencia> referenciasRecebidas) {
-		this.referenciasRecebidas = referenciasRecebidas;
 	}
 
 	public String getIdentificadorUnico() {
