@@ -31,9 +31,9 @@ public class ElementoNorma extends DocumentoLegal {
 	@Column(name="elementonorma_id")
 	private Integer id;
 
+	// Texto do Elemento da Norma
 	private String texto;
 		
-	
 	// ESTUDAR PARA REFAZER ESSA PARTE DE BAIXO
 	// Lista de elementos que compoem o ElementoNorma
 	private List<? extends ElementoNorma> elementosNorma; //TODO
