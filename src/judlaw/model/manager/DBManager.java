@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import judlaw.model.lei.Norma;
+import judlaw.model.bean.lei.Norma;
 import judlaw.model.util.HibernateUtil;
 
 import org.hibernate.Criteria;

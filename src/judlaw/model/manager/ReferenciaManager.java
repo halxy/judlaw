@@ -2,8 +2,8 @@ package judlaw.model.manager;
 
 import java.util.List;
 
-import judlaw.model.docjud.DocumentoJuridico;
-import judlaw.model.lei.Norma;
+import judlaw.model.bean.docjud.DocumentoJuridico;
+import judlaw.model.bean.lei.Norma;
 import judlaw.model.ref.Referencia;
 
 public class ReferenciaManager {

@@ -2,7 +2,7 @@ package judlaw.model.manager;
 
 import java.util.List;
 
-import judlaw.model.lei.ElementoNorma;
+import judlaw.model.bean.lei.ElementoNorma;
 
 
 /**
