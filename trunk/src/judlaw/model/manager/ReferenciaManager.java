@@ -42,7 +42,7 @@ public class ReferenciaManager {
 		
 		public void saveReferencia(DocumentoJuridico docjud, Norma norma, String tipo, String efeito) {
 			Referencia ref = new Referencia();
-			ref.setOrigem( docjud.getCabecalho().getIdDocumento() );
+			ref.setOrigem( docjud.getIdentificadorUnico() );
 			ref.setDestino( norma.getIdentificadorUnico() );
 			ref.setTipo(tipo);
 			ref.setEfeito(efeito);
