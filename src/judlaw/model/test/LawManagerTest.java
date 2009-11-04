@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import judlaw.model.bean.lei.ElementoNorma;
+import judlaw.model.bean.ref.Referencia;
 import judlaw.model.manager.LawManager;
-import judlaw.model.ref.Referencia;
 import judlaw.model.util.Constantes;
 
 import org.junit.Before;
