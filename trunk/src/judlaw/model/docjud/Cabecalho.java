@@ -10,8 +10,6 @@
 package judlaw.model.docjud;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Cabecalho implements Serializable {
 
@@ -22,9 +20,8 @@ public class Cabecalho implements Serializable {
 	
 	private String tribunal; // STF, STJ, TJRS, etc.
 	private String tipoDocumento; // HC, ACO, AI, etc.
-	private String numRegistro; // ver Certidao de Julgamento STJ
+	private String codRegistro; // ver Certidao de Julgamento STJ
 	private String orgaoJulgador; // Pleno, Primeira Turma, etc.
-	private List<Parte> partes;
 	
 	//Documento Juridico
 	private DocumentoJuridico documentojuridico;
@@ -37,30 +34,19 @@ public class Cabecalho implements Serializable {
 		this.documentojuridico = documentojuridico;
 	}
 
-	public Cabecalho(String tribunal, String tipoDocumento, String numRegistro, String orgaoJulgador,
-			List<Parte> partes) {
+	public Cabecalho(String tribunal, String tipoDocumento, String codRegistro, String orgaoJulgador) {
 		super();
 		this.tribunal = tribunal;
 		this.tipoDocumento = tipoDocumento;
-		this.numRegistro = numRegistro;
+		this.codRegistro = codRegistro;
 		this.orgaoJulgador = orgaoJulgador;
-		this.partes = partes;
 	}
 
 	/**
 	 * 
 	 */
-	public Cabecalho() {
-		inicializaListas();
-	}
+	public Cabecalho() {}
 	
-	/*
-	 * Metodo que inicializa as listas da classe.
-	 */
-	private void inicializaListas(){
-		this.partes = new ArrayList<Parte>();
-	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -84,28 +70,20 @@ public class Cabecalho implements Serializable {
 	public void setTipoDocumento(String tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
 	}
-
-	public String getNumRegistro() {
-		return numRegistro;
-	}
-
-	public void setNumRegistro(String numRegistro) {
-		this.numRegistro = numRegistro;
-	}
 	
+	public String getCodRegistro() {
+		return codRegistro;
+	}
+
+	public void setCodRegistro(String codRegistro) {
+		this.codRegistro = codRegistro;
+	}
+
 	public String getOrgaoJulgador() {
 		return orgaoJulgador;
 	}
 
 	public void setOrgaoJulgador(String orgaoJulgador) {
 		this.orgaoJulgador = orgaoJulgador;
-	}
-	
-	public List<Parte> getPartes() {
-		return partes;
-	}
-
-	public void setPartes(List<Parte> partes) {
-		this.partes = partes;
 	}
 }
