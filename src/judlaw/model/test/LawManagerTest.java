@@ -36,19 +36,7 @@ public class LawManagerTest {
 		inciso.setTipoElemento(Constantes.INCISO);
 		inciso.setTexto("Texto do inciso");
 		inciso.setData("28/10/2009");
-		inciso.setVigencia("28/10/2009-99/99/9999");
-		
-		referencias1 = new ArrayList<Referencia>();
-		referencias1.add(new Referencia(inciso.getIdentificadorUnico(), 
-											  "cp_art121_par2", 
-											  Constantes.CITACAO));
-		inciso.setReferenciasFeitas(referencias1);
-		
-		referencias2 = new ArrayList<Referencia>();
-		referencias2.add(new Referencia(inciso.getIdentificadorUnico(), 
-											  "cp_art110_par1", 
-											  Constantes.CITACAO));
-		inciso.setReferenciasRecebidas(referencias2);		
+		inciso.setVigencia("28/10/2009-99/99/9999");		
 	}
 	/**
 	 * Test method for {@link judlaw.model.lei.ElementoNorma#getPai}.
@@ -81,8 +69,6 @@ public class LawManagerTest {
 		// verificando o elemento recuperado do BD
 		ElementoNorma elementoBD = elementos.get(0);
 		assertEquals(elementoBD.getIdentificadorUnico(), inciso.getIdentificadorUnico());
-		assertEquals(elementoBD.getReferenciasFeitas().size(), inciso.getReferenciasFeitas().size());
-		assertEquals(elementoBD.getReferenciasRecebidas().size(), inciso.getReferenciasRecebidas().size());
 	}
 	
 	/**
