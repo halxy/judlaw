@@ -1,6 +1,6 @@
 package judlaw.model.manager;
 
-import judlaw.model.docjud.DocumentoJuridico;
+import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.util.HibernateUtil;
 
 
