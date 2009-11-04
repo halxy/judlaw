@@ -11,29 +11,39 @@ package judlaw.model.bean.lei;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 /**
  * Classe Norma
  * @author Halley Freitas
  *
  */
-public class Norma {
-
+@Entity
+@Table(name = "norma")
+@SequenceGenerator(name = "norma_seq", sequenceName = "norma_seq", initialValue = 1, allocationSize = 1)
+public class Norma extends DocumentoLegal {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="norma_seq")
+	@Column(name="norma_id")
 	private Integer id;
-	private String identificadorUnico; // ex: cp
 	
 	// Parte Preliminar
 	private String epigrafe;
 	private String ementa;
 	private String autoria;
-	private String tipo;
 	
-	// Parte Normativa
-	private List<ElementoNorma> elementosNorma;
+	// Parte Normativa //FAZER
+	private List<ElementoNorma> elementosNorma; //TODO
 	
 	// Parte Final
 	private String local;
-	private String data; //dd/MM/aa
-	private String vigencia; // dd/MM/aa-dd2/MM2/aa2
 	
 	/**
 	 * 
@@ -46,14 +56,6 @@ public class Norma {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
 	}
 
 	public String getEpigrafe() {
@@ -94,29 +96,5 @@ public class Norma {
 
 	public void setLocal(String local) {
 		this.local = local;
-	}
-
-	public String getData() {
-		return data;
-	}
-
-	public void setData(String data) {
-		this.data = data;
-	}
-
-	public String getVigencia() {
-		return vigencia;
-	}
-
-	public void setVigencia(String vigencia) {
-		this.vigencia = vigencia;
-	}
-
-	public String getIdentificadorUnico() {
-		return identificadorUnico;
-	}
-
-	public void setIdentificadorUnico(String identificadorUnico) {
-		this.identificadorUnico = identificadorUnico;
 	}
 }
