@@ -1,3 +1,13 @@
+/* 
+ * Universidade Federal de Campina Grande
+
+
+ * Centro de Engenharia Eletrica e Informatica
+ * Programa de Pos-Graduacao em Ciencia da Computacao
+ * Sistema JudLaw
+ * Mestrando: Halley Freitas
+ * 		
+ */
 package judlaw.model.util;
 
 public class Constantes {
@@ -15,8 +25,7 @@ public class Constantes {
 	public static final String ALINEA = "Alinea";
 	public static final String ITEM = "Item";
 	
-	// Tipos de Referencia
-	public static final String CITACAO = "Citação";
+	// Tipos de Alteracao (Referencia)
 	public static final String INCLUSAO = "Inclusão";
 	public static final String ALTERACAO = "Alteração";
 	public static final String REVOGACAO = "Revogação";
