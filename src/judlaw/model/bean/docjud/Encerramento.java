@@ -9,6 +9,11 @@
  */
 package judlaw.model.bean.docjud;
 
+/**
+ * 
+ * @author Halley Freitas
+ *
+ */
 public class Encerramento {
 
 	private String decisao;
