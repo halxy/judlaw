@@ -1,11 +1,13 @@
 package judlaw.model.manager;
 
-import java.util.List;
-
-import judlaw.model.bean.docjud.DocumentoJuridico;
-import judlaw.model.bean.lei.Norma;
 import judlaw.model.ref.Referencia;
 
+/**
+ * Classe ReferenciaManager - Gerencia a manipulacao dos objetos do tipo Referencia: 
+ * Alteracao, CitacaoDocJud e CitacaoDocLeg;
+ * @author Halley Freitas
+ *
+ */
 public class ReferenciaManager {
 	
 	private static ReferenciaManager referenciaManager = null;
@@ -26,25 +28,25 @@ public class ReferenciaManager {
 			dbManager.save(referencia);
 		}
 	    
-	    @SuppressWarnings("unchecked")
-		public List<Referencia> getTodasReferencias(){
-			return dbManager.selectAll( new Referencia() );
-		}
-	    
-		public void removeTodasReferencias(){
-			dbManager.removeAll( new Referencia() );
-		}
-		
-		@SuppressWarnings("unchecked")
-		public List<Referencia> recuperaReferenciaPorAtributo(String atributo, String valor) {
-			return dbManager.selectObjectsByField(new Referencia(), atributo, valor);
-		}
-		
-		public void saveReferencia(DocumentoJuridico docjud, Norma norma, String tipo, String efeito) {
-			Referencia ref = new Referencia();
-			ref.setOrigem( docjud.getIdentificadorUnico() );
-			ref.setDestino( norma.getIdentificadorUnico() );
-			ref.setTipo(tipo);
-			ref.setEfeito(efeito);
-		}
+//	    @SuppressWarnings("unchecked")
+//		public List<Referencia> getTodasReferencias(){
+//			return dbManager.selectAll( new Referencia() );
+//		}
+//	    
+//		public void removeTodasReferencias(){
+//			dbManager.removeAll( new Referencia() );
+//		}
+//		
+//		@SuppressWarnings("unchecked")
+//		public List<Referencia> recuperaReferenciaPorAtributo(String atributo, String valor) {
+//			return dbManager.selectObjectsByField(new Referencia(), atributo, valor);
+//		}
+//		
+//		public void saveReferencia(DocumentoJuridico docjud, Norma norma, String tipo, String efeito) {
+//			Referencia ref = new Referencia();
+//			ref.setOrigem( docjud.getIdentificadorUnico() );
+//			ref.setDestino( norma.getIdentificadorUnico() );
+//			ref.setTipo(tipo);
+//			ref.setEfeito(efeito);
+//		}
 }
