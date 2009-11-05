@@ -43,6 +43,19 @@ public class Voto {
 	@JoinColumn(name="documentojuridico_id")
 	private DocumentoJuridico documentoJuridico;
 	
+	/**
+	 * 
+	 * @param texto
+	 */
+	public Voto(String texto) {
+		this.texto = texto;
+	}
+	
+	/**
+	 * Construtor vazio
+	 */
+	public Voto(){}
+
 	public String getTexto() {
 		return texto;
 	}
