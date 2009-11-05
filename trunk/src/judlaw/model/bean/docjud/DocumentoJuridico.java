@@ -27,6 +27,9 @@ import javax.persistence.Table;
 
 import judlaw.model.bean.Documento;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 /**
  * 
  * @author halley
@@ -56,6 +59,7 @@ public class DocumentoJuridico extends Documento {
 	
 	@OneToMany(mappedBy="documentoJuridico", cascade = CascadeType.ALL)
     @Column(name="voto_fk")
+    @LazyCollection(LazyCollectionOption.FALSE)
 	private List<Voto> votos;
 	
 	@OneToOne(cascade = CascadeType.ALL)
