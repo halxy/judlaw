@@ -3,13 +3,13 @@ package judlaw.model.test;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import judlaw.model.bean.docjud.Cabecalho;
 import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.bean.docjud.Ementa;
 import judlaw.model.bean.docjud.Encerramento;
 import judlaw.model.bean.docjud.Relatorio;
+import judlaw.model.bean.docjud.Voto;
 import judlaw.model.manager.DocJudManager;
 
 import org.junit.Before;
@@ -33,9 +33,7 @@ public class DocJudManagerTest {
 	public void testSaveDocumentoJuridico() {
 		// esvazia lista de documentos juridicos
 		docJudManager.removeDocumentosJuridicos();
-		List<DocumentoJuridico> documentosJuridicos = new ArrayList<DocumentoJuridico>();
-		documentosJuridicos = docJudManager.getDocumentosJuridicos();
-		assertEquals(0, documentosJuridicos.size());
+		assertEquals(0, docJudManager.getDocumentosJuridicos().size());
 		
 		//Cria e persiste o documento juridico		
 		//Cabecalho
@@ -48,7 +46,11 @@ public class DocJudManagerTest {
 		//Relatorio
 		Relatorio relatorio1 = new Relatorio("relatorio1");
 		//Encerramento
-		Encerramento encerramento1 = new Encerramento("decisao1", "local1");	
+		Encerramento encerramento1 = new Encerramento("decisao1", "local1");
+		//Votos
+		ArrayList<Voto> votos = new ArrayList<Voto>();
+		votos.add( new Voto("voto1") );
+		votos.add( new Voto("voto2") );
 		//Documento Juridico
 		DocumentoJuridico docJud1 = new DocumentoJuridico();
 		docJud1.setIdentificadorUnico("idUnico");
@@ -56,14 +58,19 @@ public class DocJudManagerTest {
 		docJud1.setEmenta(ementa1);
 		docJud1.setRelatorio(relatorio1);
 		docJud1.setEncerramento(encerramento1);
+		docJud1.setVotos(votos);
 		docJudManager.salvaDocumentoJuridico(docJud1);
 		
-		// verifica a nova lista
-		documentosJuridicos = docJudManager.getDocumentosJuridicos();
-		assertEquals(1, documentosJuridicos.size());
+		// verifica as listas
+		assertEquals(1, docJudManager.getDocumentosJuridicos().size() );
+		assertEquals(1, docJudManager.getCabecalhos().size() );
+		assertEquals(1, docJudManager.getEmentas().size() );
+		assertEquals(1, docJudManager.getRelatorios().size() );
+		assertEquals(1, docJudManager.getEncerramentos().size() );
+		assertEquals(2, docJudManager.getVotos().size() );
 		
 		// verificando a alteracao recuperada do BD
-		DocumentoJuridico docJudBD = documentosJuridicos.get(0);
+		DocumentoJuridico docJudBD = docJudManager.getDocumentosJuridicos().get(0);
 		//verificando apenas um atributo de documento juridico
 		assertEquals( docJud1.getIdentificadorUnico(), docJudBD.getIdentificadorUnico() );
 		

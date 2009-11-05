@@ -7,6 +7,7 @@ import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.bean.docjud.Ementa;
 import judlaw.model.bean.docjud.Encerramento;
 import judlaw.model.bean.docjud.Relatorio;
+import judlaw.model.bean.docjud.Voto;
 
 
 /**
@@ -115,7 +116,7 @@ public class DocJudManager {
 	}
 	
 	/* ------------------------------------------------------------------ */
-    /* -------------------- OPERACOES ENCERRAMENTO----------------------- */
+    /* -------------------- OPERACOES ENCERRAMENTO ---------------------- */
     /* ------------------------------------------------------------------ */
 	/**
 	 * 
@@ -127,5 +128,20 @@ public class DocJudManager {
 	
 	public void removeEncerramentos() {
 		dbManager.removeAll( new Encerramento() );
+	}
+	
+	/* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES VOTO ------------------------------ */
+    /* ------------------------------------------------------------------ */
+	/**
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Voto> getVotos() {
+		return dbManager.selectAll( new Voto() );
+	}
+	
+	public void removeVotos() {
+		dbManager.removeAll( new Voto() );
 	}
 }
