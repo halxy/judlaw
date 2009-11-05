@@ -4,6 +4,9 @@ import java.util.List;
 
 import judlaw.model.bean.docjud.Cabecalho;
 import judlaw.model.bean.docjud.DocumentoJuridico;
+import judlaw.model.bean.docjud.Ementa;
+import judlaw.model.bean.docjud.Encerramento;
+import judlaw.model.bean.docjud.Relatorio;
 
 
 /**
@@ -35,8 +38,22 @@ public class DocJudManager {
      * @param documentoJuridico
      */
     public void salvaDocumentoJuridico(DocumentoJuridico documentoJuridico) {
+    	//Setando Cabecalho
     	Cabecalho cabecalho = documentoJuridico.getCabecalho();
     	cabecalho.setDocumentoJuridico(documentoJuridico);
+    	
+    	//Setando Ementa
+    	Ementa ementa = documentoJuridico.getEmenta();
+    	ementa.setDocumentoJuridico(documentoJuridico);
+    	
+    	//Setando Encerramento
+    	Encerramento encerramento = documentoJuridico.getEncerramento();
+    	encerramento.setDocumentoJuridico(documentoJuridico);
+    	
+    	//Setando Relatorio
+    	Relatorio relatorio = documentoJuridico.getRelatorio();
+    	relatorio.setDocumentoJuridico(documentoJuridico);
+    	
     	dbManager.save(documentoJuridico);
     }
     

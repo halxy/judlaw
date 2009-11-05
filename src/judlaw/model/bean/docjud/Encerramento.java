@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -35,6 +36,10 @@ public class Encerramento {
 	
 	private String decisao;
 	private String local; 
+	
+	//Documento Juridico
+	@OneToOne(mappedBy = "encerramento")
+	private DocumentoJuridico documentoJuridico;
 	
 	/**
 	 * 
@@ -73,5 +78,13 @@ public class Encerramento {
 	
 	public void setLocal(String local) {
 		this.local = local;
+	}
+
+	public DocumentoJuridico getDocumentoJuridico() {
+		return documentoJuridico;
+	}
+
+	public void setDocumentoJuridico(DocumentoJuridico documentoJuridico) {
+		this.documentoJuridico = documentoJuridico;
 	}
 }
