@@ -21,6 +21,9 @@ public class ReferenciaManagerTest {
 	public void setUp() throws Exception {
 	}
 
+	/* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES ALTERACAO ------------------------- */
+    /* ------------------------------------------------------------------ */
 	/**
 	 * Test method for {@link judlaw.model.manager.ReferenciaManager#salvaAlteracao(judlaw.model.bean.ref.Alteracao)}.
 	 */
@@ -53,6 +56,9 @@ public class ReferenciaManagerTest {
 	//	fail("Not yet implemented");
 	}
 
+	/* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES CITACAODOCJUD --------------------- */
+    /* ------------------------------------------------------------------ */
 	/**
 	 * Test method for {@link judlaw.model.manager.ReferenciaManager#salvaCitacaoDocJud(judlaw.model.bean.ref.CitacaoDocJud)}.
 	 */
@@ -85,6 +91,9 @@ public class ReferenciaManagerTest {
 	//	fail("Not yet implemented");
 	}
 
+	/* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES CITACAODOCLEG --------------------- */
+    /* ------------------------------------------------------------------ */
 	/**
 	 * Test method for {@link judlaw.model.manager.ReferenciaManager#salvaCitacaoDocLeg(judlaw.model.bean.ref.CitacaoDocLeg)}.
 	 */
