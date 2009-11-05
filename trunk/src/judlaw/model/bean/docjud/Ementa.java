@@ -10,15 +10,52 @@
  */
 package judlaw.model.bean.docjud;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 /**
  * 
  * @author Halley Freitas
  *
  */
+@Entity
+@Table(name = "ementa")
+@SequenceGenerator(name = "ementa_seq", sequenceName = "ementa_seq", initialValue = 1, allocationSize = 1)
 public class Ementa {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ementa_seq")
+	@Column(name="ementa_id")
+	private Integer id;
 
 	private String texto;
 	
+	/**
+	 * 
+	 * @param texto
+	 */
+	public Ementa(String texto) {
+		this.texto = texto;
+	}
+	
+	/**
+	 * Construtor Vazio
+	 */
+	public Ementa() {}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getTexto() {
 		return texto;
 	}
