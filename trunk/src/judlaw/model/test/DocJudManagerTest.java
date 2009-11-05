@@ -26,12 +26,13 @@ public class DocJudManagerTest {
 	@Before public void setUp(){
 	}
 
-	@Test
+	
 	/**
 	 * Testa a persistencia de um documento juridico, verificando a corretude dessa acao em relacao aos
 	 * seus dependentes: Cabecalho, Ementa, Encerramento, Parte, Relatorio e Voto.
 	 * 
 	 */
+	@Test
 	public void testSaveDocumentoJuridico() {
 		/* ---------- Esvazia a lista de Documentos Juridicos ----------*/
 		docJudManager.removeDocumentosJuridicos();
@@ -102,27 +103,33 @@ public class DocJudManagerTest {
 		// Relacao Bidirecional
 		assertEquals( docJudBD.getEncerramento().getDocumentoJuridico().getIdentificadorUnico(), 
 					  docJud1.getEncerramento().getDocumentoJuridico().getIdentificadorUnico() );
+		
+		// VOTOS
+		assertEquals( docJudBD.getVotos().get(0).getTexto(), votos.get(0).getTexto() );
+		assertEquals( docJudBD.getVotos().get(1).getTexto(), votos.get(1).getTexto() );
+		// Relacao Bidirecional
+		assertEquals( docJudBD.getVotos().get(0).getDocumentoJuridico().getIdentificadorUnico(),
+				      docJud1.getVotos().get(0).getDocumentoJuridico().getIdentificadorUnico());
 	}
 	
+	
 	/**
-	 * Teste que verifica se ao remover os documentos juridicos, as instancias das entidades que dependem
-	 * deles tambem sao removidas
+	 * Testa se ao remover um DocumentoJuridico, as instancias que dependem dele tambem sao removidas
 	 */
 	@Test
 	public void testRemoveDocumentoJuridico() {
-		// esvazia as listas
+		/* ---------- Esvazia a lista de Documentos Juridicos ----------*/
 		docJudManager.removeDocumentosJuridicos();
+		assertEquals(0, docJudManager.getDocumentosJuridicos().size());
+		//Verifica se as demais listas também estão vazias
 		assertEquals( 0, docJudManager.getDocumentosJuridicos().size() );
-		docJudManager.removeCabecalhos();
 		assertEquals( 0, docJudManager.getCabecalhos().size() );
-		docJudManager.removeEmentas();
 		assertEquals( 0, docJudManager.getEmentas().size() );
-		docJudManager.removeRelatorios();
 		assertEquals( 0, docJudManager.getRelatorios().size() );
-		docJudManager.removeEncerramentos();
 		assertEquals( 0, docJudManager.getEncerramentos().size() );
+		assertEquals( 0, docJudManager.getVotos().size() );
 		
-		//Cria e persiste o documento juridico		
+		/* ---------- Elementos do DocumentoJuridico ----------*/		
 		//Cabecalho
 		Cabecalho cabecalho1 = new Cabecalho();
 		cabecalho1.setCodRegistro("codRegistro");
@@ -134,24 +141,31 @@ public class DocJudManagerTest {
 		Relatorio relatorio1 = new Relatorio("relatorio1");
 		//Encerramento
 		Encerramento encerramento1 = new Encerramento("decisao1", "local1");
-		//Documento Juridico
+		//Votos
+		ArrayList<Voto> votos = new ArrayList<Voto>();
+		votos.add( new Voto("voto1") );
+		votos.add( new Voto("voto2") );
+		
+		/* ---------- Criacao e Persistencia do DocumentoJuridico ----------*/	
 		DocumentoJuridico docJud1 = new DocumentoJuridico();
 		docJud1.setIdentificadorUnico("idUnico");
 		docJud1.setCabecalho(cabecalho1);
 		docJud1.setEmenta(ementa1);
 		docJud1.setRelatorio(relatorio1);
 		docJud1.setEncerramento(encerramento1);
+		docJud1.setVotos(votos);
 		docJudManager.salvaDocumentoJuridico(docJud1);
 		
-		// verifica as listas apos a inclusao
+		/* ---------- Verifica se os elementos foram inseridos em suas respectivas tabelas  ----------*/
 		assertEquals( 1, docJudManager.getDocumentosJuridicos().size() );
 		assertEquals( 1, docJudManager.getCabecalhos().size() );
 		assertEquals( 1, docJudManager.getEmentas().size() );
 		assertEquals( 1, docJudManager.getRelatorios().size() );
 		assertEquals( 1, docJudManager.getEncerramentos().size() );
+		assertEquals( 2, docJudManager.getVotos().size() );
 		
 		/*
-		 * removendo a lista de documentos juridicos e esperando que a lista de cabecalhos
+		 * Removendo a lista de documentos juridicos eh esperado que a lista dos demais elementos
 		 * tambem seja removida
 		 */
 		docJudManager.removeDocumentosJuridicos();
@@ -160,6 +174,7 @@ public class DocJudManagerTest {
 		assertEquals( 0, docJudManager.getEmentas().size() );
 		assertEquals( 0, docJudManager.getRelatorios().size() );
 		assertEquals( 0, docJudManager.getEncerramentos().size() );
+		assertEquals( 0, docJudManager.getVotos().size() );
 	}
 	/**
 	 * Teste que verifica se ao modificar um documento juridico, ele é persistido corretamente
