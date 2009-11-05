@@ -10,8 +10,13 @@
  */
 package judlaw.model.bean.docjud;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -21,9 +26,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "cabecalho")
+@SequenceGenerator(name = "cabecalho_seq", sequenceName = "cabecalho_seq", initialValue = 1, allocationSize = 1)
 public class Cabecalho {
-
-	@OneToOne(mappedBy = "documentojuridico")
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="cabecalho_seq")
+	@Column(name="cabecalho_id")
 	private Integer id;
 	
 	private String tribunal; // STF, STJ, TJRS, etc.
@@ -31,7 +39,8 @@ public class Cabecalho {
 	private String orgaoJulgador; // Pleno, Primeira Turma, etc.
 	
 	//Documento Juridico
-	private DocumentoJuridico documentojuridico;
+	@OneToOne(mappedBy = "cabecalho")
+	private DocumentoJuridico documentoJuridico;
 
 	public Cabecalho(String tribunal, String codRegistro, String orgaoJulgador) {
 		this.tribunal = tribunal;
@@ -76,11 +85,11 @@ public class Cabecalho {
 		this.orgaoJulgador = orgaoJulgador;
 	}
 	
-	public DocumentoJuridico getDocumentojuridico() {
-		return documentojuridico;
+	public DocumentoJuridico getDocumentoJuridico() {
+		return documentoJuridico;
 	}
 
-	public void setDocumentojuridico(DocumentoJuridico documentojuridico) {
-		this.documentojuridico = documentojuridico;
+	public void setDocumentoJuridico(DocumentoJuridico documentoJuridico) {
+		this.documentoJuridico = documentoJuridico;
 	}
 }

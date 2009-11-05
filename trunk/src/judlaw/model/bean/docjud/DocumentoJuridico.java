@@ -10,7 +10,6 @@
  */
 package judlaw.model.bean.docjud;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -45,11 +44,11 @@ public class DocumentoJuridico extends Documento {
     @JoinColumn(name="cabecalho_fk")
 	private Cabecalho cabecalho;
 	
-	private Ementa ementa;
-	private Relatorio relatorio;
-	private List<Voto> votos;
-	private Encerramento encerramento;
-	private List<Parte> partes; // relator, partes, etc.
+//	private Ementa ementa;
+//	private Relatorio relatorio;
+//	private List<Voto> votos;
+//	private Encerramento encerramento;
+//	private List<Parte> partes; // relator, partes, etc.
 	
 	// Atributos advindos de Documento
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
@@ -73,11 +72,11 @@ public class DocumentoJuridico extends Documento {
 			List<Parte> partes, String identificadorUnico, String tipo,
 			String dataPublicacao) {
 		this.cabecalho = cabecalho;
-		this.ementa = ementa;
-		this.relatorio = relatorio;
-		this.votos = votos;
-		this.encerramento = encerramento;
-		this.partes = partes;
+//		this.ementa = ementa;
+//		this.relatorio = relatorio;
+//		this.votos = votos;
+//		this.encerramento = encerramento;
+//		this.partes = partes;
 		this.identificadorUnico = identificadorUnico;
 		this.tipo = tipo;
 		this.dataPublicacao = dataPublicacao;
@@ -94,8 +93,8 @@ public class DocumentoJuridico extends Documento {
 	 * Inicializa as listas da classe
 	 */
 	private void inicializaListas() {
-		this.votos = new ArrayList<Voto>();
-		this.partes = new ArrayList<Parte>();
+//		this.votos = new ArrayList<Voto>();
+//		this.partes = new ArrayList<Parte>();
 	}
 	
 	public Integer getId() {
@@ -114,45 +113,45 @@ public class DocumentoJuridico extends Documento {
 		this.cabecalho = cabecalho;
 	}
 	
-	public Ementa getEmenta() {
-		return ementa;
-	}
-	
-	public void setEmenta(Ementa ementa) {
-		this.ementa = ementa;
-	}
-	
-	public Relatorio getRelatorio() {
-		return relatorio;
-	}
-	
-	public void setRelatorio(Relatorio relatorio) {
-		this.relatorio = relatorio;
-	}
-	
-	public List<Voto> getVotos() {
-		return votos;
-	}
-	
-	public void setVotos(List<Voto> votos) {
-		this.votos = votos;
-	}
-	
-	public Encerramento getEncerramento() {
-		return encerramento;
-	}
-	
-	public void setEncerramento(Encerramento encerramento) {
-		this.encerramento = encerramento;
-	}
-	
-	public List<Parte> getPartes() {
-		return partes;
-	}
-	
-	public void setPartes(List<Parte> partes) {
-		this.partes = partes;
-	}
+//	public Ementa getEmenta() {
+//		return ementa;
+//	}
+//	
+//	public void setEmenta(Ementa ementa) {
+//		this.ementa = ementa;
+//	}
+//	
+//	public Relatorio getRelatorio() {
+//		return relatorio;
+//	}
+//	
+//	public void setRelatorio(Relatorio relatorio) {
+//		this.relatorio = relatorio;
+//	}
+//	
+//	public List<Voto> getVotos() {
+//		return votos;
+//	}
+//	
+//	public void setVotos(List<Voto> votos) {
+//		this.votos = votos;
+//	}
+//	
+//	public Encerramento getEncerramento() {
+//		return encerramento;
+//	}
+//	
+//	public void setEncerramento(Encerramento encerramento) {
+//		this.encerramento = encerramento;
+//	}
+//	
+//	public List<Parte> getPartes() {
+//		return partes;
+//	}
+//	
+//	public void setPartes(List<Parte> partes) {
+//		this.partes = partes;
+//	}
 
 	public String getIdentificadorUnico() {
 		return identificadorUnico;
