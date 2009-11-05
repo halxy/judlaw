@@ -44,10 +44,18 @@ public class DocumentoJuridico extends Documento {
     @JoinColumn(name="cabecalho_fk")
 	private Cabecalho cabecalho;
 	
-//	private Ementa ementa;
-//	private Relatorio relatorio;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="ementa_fk")
+	private Ementa ementa;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="relatorio_fk")
+	private Relatorio relatorio;
 //	private List<Voto> votos;
-//	private Encerramento encerramento;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="encerramento_fk")
+	private Encerramento encerramento;
 //	private List<Parte> partes; // relator, partes, etc.
 	
 	// Atributos advindos de Documento
@@ -72,10 +80,10 @@ public class DocumentoJuridico extends Documento {
 			List<Parte> partes, String identificadorUnico, String tipo,
 			String dataPublicacao) {
 		this.cabecalho = cabecalho;
-//		this.ementa = ementa;
-//		this.relatorio = relatorio;
+		this.ementa = ementa;
+		this.relatorio = relatorio;
 //		this.votos = votos;
-//		this.encerramento = encerramento;
+		this.encerramento = encerramento;
 //		this.partes = partes;
 		this.identificadorUnico = identificadorUnico;
 		this.tipo = tipo;
@@ -113,22 +121,22 @@ public class DocumentoJuridico extends Documento {
 		this.cabecalho = cabecalho;
 	}
 	
-//	public Ementa getEmenta() {
-//		return ementa;
-//	}
-//	
-//	public void setEmenta(Ementa ementa) {
-//		this.ementa = ementa;
-//	}
-//	
-//	public Relatorio getRelatorio() {
-//		return relatorio;
-//	}
-//	
-//	public void setRelatorio(Relatorio relatorio) {
-//		this.relatorio = relatorio;
-//	}
-//	
+	public Ementa getEmenta() {
+		return ementa;
+	}
+	
+	public void setEmenta(Ementa ementa) {
+		this.ementa = ementa;
+	}
+	
+	public Relatorio getRelatorio() {
+		return relatorio;
+	}
+	
+	public void setRelatorio(Relatorio relatorio) {
+		this.relatorio = relatorio;
+	}
+	
 //	public List<Voto> getVotos() {
 //		return votos;
 //	}
@@ -137,14 +145,14 @@ public class DocumentoJuridico extends Documento {
 //		this.votos = votos;
 //	}
 //	
-//	public Encerramento getEncerramento() {
-//		return encerramento;
-//	}
-//	
-//	public void setEncerramento(Encerramento encerramento) {
-//		this.encerramento = encerramento;
-//	}
-//	
+	public Encerramento getEncerramento() {
+		return encerramento;
+	}
+	
+	public void setEncerramento(Encerramento encerramento) {
+		this.encerramento = encerramento;
+	}
+	
 //	public List<Parte> getPartes() {
 //		return partes;
 //	}
