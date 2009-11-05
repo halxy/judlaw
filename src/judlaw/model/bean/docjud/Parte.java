@@ -10,6 +10,7 @@
  */
 package judlaw.model.bean.docjud;
 
+
 /**
  * Define o comportamento das partes;
  * @author hal
@@ -17,8 +18,12 @@ package judlaw.model.bean.docjud;
  */
 public class Parte {
 
+	private Integer id;
+	
 	private String titulo;
 	private String nome;
+	
+	private DocumentoJuridico documentoJuridico;
 	
 	/**
 	 * 
@@ -49,5 +54,21 @@ public class Parte {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}	
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public DocumentoJuridico getDocumentoJuridico() {
+		return documentoJuridico;
+	}
+
+	public void setDocumentoJuridico(DocumentoJuridico documentoJuridico) {
+		this.documentoJuridico = documentoJuridico;
+	}
 }
