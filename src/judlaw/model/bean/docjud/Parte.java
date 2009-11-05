@@ -13,7 +13,7 @@ package judlaw.model.bean.docjud;
 
 /**
  * Define o comportamento das partes;
- * @author hal
+ * @author Halley Freitas
  *
  */
 public class Parte {
