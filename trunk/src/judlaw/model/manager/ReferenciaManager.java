@@ -71,7 +71,7 @@ public class ReferenciaManager {
 	}
 	
 	/* ------------------------------------------------------------------ */
-    /* -------------------- OPERACOES CITACAODOCJUD ------------------------- */
+    /* -------------------- OPERACOES CITACAODOCJUD --------------------- */
     /* ------------------------------------------------------------------ */
     
     public void salvaCitacaoDocJud(CitacaoDocJud citacaoDocJud) {
@@ -102,7 +102,7 @@ public class ReferenciaManager {
 	}
 	
 	/* ------------------------------------------------------------------ */
-    /* -------------------- OPERACOES CITACAODOCLEG ------------------------- */
+    /* -------------------- OPERACOES CITACAODOCLEG --------------------- */
     /* ------------------------------------------------------------------ */
     
 	public void salvaCitacaoDocLeg(CitacaoDocLeg citacaoDocLeg) {
