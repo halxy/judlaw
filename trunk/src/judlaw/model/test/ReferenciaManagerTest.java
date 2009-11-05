@@ -3,7 +3,14 @@
  */
 package judlaw.model.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import judlaw.model.bean.ref.Alteracao;
+import judlaw.model.manager.ReferenciaManager;
+import judlaw.model.util.Constantes;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +20,8 @@ import org.junit.Test;
  *
  */
 public class ReferenciaManagerTest {
+	
+	ReferenciaManager refManager = ReferenciaManager.getInstance();
 
 	/**
 	 * @throws java.lang.Exception
@@ -29,7 +38,28 @@ public class ReferenciaManagerTest {
 	 */
 	@Test
 	public void testSalvaAlteracao() {
-		fail("Not yet implemented");
+		// esvazia lista de alteracoes
+		refManager.removeAlteracoes();
+		List<Alteracao> alteracoes = new ArrayList<Alteracao>();
+		alteracoes = refManager.getAlteracoes();
+		assertEquals(0, alteracoes.size());
+		
+		// cria e persiste alteracao
+		Alteracao alteracao1 = new Alteracao("origem1", "destino1", "18/11/2009", 
+											 Constantes.INCLUSAO, Constantes.MAIS_RESTRITIVA);
+		refManager.salvaAlteracao(alteracao1);
+		
+		// verifica a nova lista
+		alteracoes = refManager.getAlteracoes();
+		assertEquals(1, alteracoes.size());
+		
+		// verificando a alteracao recuperada do BD
+		Alteracao alteracaoBD = alteracoes.get(0);
+		assertEquals( alteracao1.getOrigem(), alteracaoBD.getOrigem() );
+		assertEquals( alteracao1.getDestino(), alteracaoBD.getDestino() );
+		assertEquals( alteracao1.getData(), alteracaoBD.getData() );
+		assertEquals( alteracao1.getTipo(), alteracaoBD.getTipo() );
+		assertEquals( alteracao1.getCaracteristica(), alteracaoBD.getCaracteristica() );
 	}
 
 	/**
