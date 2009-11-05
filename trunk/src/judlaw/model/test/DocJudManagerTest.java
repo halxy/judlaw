@@ -83,25 +83,25 @@ public class DocJudManagerTest {
 		// Relacao Bidirecional
 		assertEquals( docJudBD.getCabecalho().getDocumentoJuridico().getIdentificadorUnico(), 
 					  docJud1.getCabecalho().getDocumentoJuridico().getIdentificadorUnico() );
+		
 		// EMENTA
-		//verificando se as propriedades da ementa foram setadas corretamente;
-		assertEquals( docJud1.getEmenta().getTexto(), ementa1.getTexto() );
-		// verificando se a relacao bidirecional funciona
-		assertEquals( docJud1.getEmenta().getDocumentoJuridico().getIdentificadorUnico(), 
-				      docJud1.getIdentificadorUnico() );
+		assertEquals( docJudBD.getEmenta().getTexto(), docJud1.getEmenta().getTexto() );
+		// Relacao Bidirecional
+		assertEquals( docJudBD.getEmenta().getDocumentoJuridico().getIdentificadorUnico(), 
+					  docJud1.getEmenta().getDocumentoJuridico().getIdentificadorUnico() );
+		
 		// RELATORIO
-		//verificando se as propriedades do relatorio foram setadas corretamente;
-		assertEquals( docJud1.getRelatorio().getTexto(), relatorio1.getTexto() );
-		// verificando se a relacao bidirecional funciona
-		assertEquals( docJud1.getRelatorio().getDocumentoJuridico().getIdentificadorUnico(), 
-				      docJud1.getIdentificadorUnico() );
+		assertEquals( docJudBD.getRelatorio().getTexto(), docJud1.getRelatorio().getTexto() );
+		// Relacao Bidirecional
+		assertEquals( docJudBD.getRelatorio().getDocumentoJuridico().getIdentificadorUnico(), 
+					  docJud1.getRelatorio().getDocumentoJuridico().getIdentificadorUnico() );
+		
 		// ENCERRAMENTO
-		//verificando se as propriedades do encerramento foram setadas corretamente;
-		assertEquals( docJud1.getEncerramento().getDecisao(), encerramento1.getDecisao() );
-		assertEquals( docJud1.getEncerramento().getLocal(), encerramento1.getLocal() );
-		// verificando se a relacao bidirecional funciona
-		assertEquals( docJud1.getEncerramento().getDocumentoJuridico().getIdentificadorUnico(), 
-				      docJud1.getIdentificadorUnico() );
+		assertEquals( docJudBD.getEncerramento().getDecisao(), docJud1.getEncerramento().getDecisao() );
+		assertEquals( docJudBD.getEncerramento().getLocal(), docJud1.getEncerramento().getLocal() );
+		// Relacao Bidirecional
+		assertEquals( docJudBD.getEncerramento().getDocumentoJuridico().getIdentificadorUnico(), 
+					  docJud1.getEncerramento().getDocumentoJuridico().getIdentificadorUnico() );
 	}
 	
 	/**
