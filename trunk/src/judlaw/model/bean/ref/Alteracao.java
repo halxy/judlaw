@@ -59,18 +59,34 @@ public class Alteracao extends Referencia {
 		this.id = id;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTipo() {
 		return tipo;
 	}
 
+	/**
+	 * 
+	 * @param tipo
+	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getCaracteristica() {
 		return caracteristica;
 	}
 
+	/**
+	 * 
+	 * @param caracteristica
+	 */
 	public void setCaracteristica(String caracteristica) {
 		this.caracteristica = caracteristica;
 	}
