@@ -42,6 +42,12 @@ public class Cabecalho {
 	@OneToOne(mappedBy = "cabecalho")
 	private DocumentoJuridico documentoJuridico;
 
+	/**
+	 * 
+	 * @param tribunal
+	 * @param codRegistro
+	 * @param orgaoJulgador
+	 */
 	public Cabecalho(String tribunal, String codRegistro, String orgaoJulgador) {
 		this.tribunal = tribunal;
 		this.codRegistro = codRegistro;
