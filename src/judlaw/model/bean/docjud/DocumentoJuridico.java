@@ -45,6 +45,11 @@ public class DocumentoJuridico extends Documento {
 	private Encerramento encerramento;
 	private List<Parte> partes; // relator, partes, etc.
 	
+	// Atributos advindos de Documento
+	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
+	private String tipo; // tipos de Documentos Juridicos e Documentos Legais
+	private String dataPublicacao; // dd/MM/yyy
+	
 	/**
 	 * Construtor vazio que apenas inicializa as listas
 	 */
@@ -114,5 +119,29 @@ public class DocumentoJuridico extends Documento {
 	
 	public void setPartes(List<Parte> partes) {
 		this.partes = partes;
+	}
+
+	public String getIdentificadorUnico() {
+		return identificadorUnico;
+	}
+
+	public void setIdentificadorUnico(String identificadorUnico) {
+		this.identificadorUnico = identificadorUnico;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getDataPublicacao() {
+		return dataPublicacao;
+	}
+
+	public void setDataPublicacao(String dataPublicacao) {
+		this.dataPublicacao = dataPublicacao;
 	}
 }
