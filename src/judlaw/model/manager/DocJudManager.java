@@ -1,7 +1,9 @@
 package judlaw.model.manager;
 
+import java.util.List;
+
+import judlaw.model.bean.docjud.Cabecalho;
 import judlaw.model.bean.docjud.DocumentoJuridico;
-import judlaw.model.util.HibernateUtil;
 
 
 /**
@@ -12,6 +14,7 @@ import judlaw.model.util.HibernateUtil;
 public class DocJudManager {
 	
 	private static DocJudManager docjudManager = null;
+	private static DBManager dbManager = DBManager.getInstance();
 	
 	
    /**
@@ -24,17 +27,35 @@ public class DocJudManager {
         return docjudManager;
     }
     
-    /**
-     * Persiste um Documento Juridico na base de dados
-     * @param elementoNorma
-     */
-	public void saveDocumentoJuridico(DocumentoJuridico documentoJuridico) {
-		HibernateUtil.beginTransaction();
-		HibernateUtil.getSession().save(documentoJuridico);
-		HibernateUtil.getSession().flush();
-		HibernateUtil.getSession().save(documentoJuridico.getCabecalho());
-		HibernateUtil.commitTransaction();
-		HibernateUtil.closeSession();
+//    /**
+//     * Persiste um Documento Juridico na base de dados
+//     * @param elementoNorma
+//     */
+//	public void saveDocumentoJuridico(DocumentoJuridico documentoJuridico) {
+//		HibernateUtil.beginTransaction();
+//		HibernateUtil.getSession().save(documentoJuridico);
+//		HibernateUtil.getSession().flush();
+//		HibernateUtil.getSession().save(documentoJuridico.getCabecalho());
+//		HibernateUtil.commitTransaction();
+//		HibernateUtil.closeSession();
+//	}
+    
+    public void salvaDocumentoJuridico(DocumentoJuridico documentoJuridico) {
+    	Cabecalho cabecalho = documentoJuridico.getCabecalho();
+    	cabecalho.setDocumentoJuridico(documentoJuridico);
+    	dbManager.save(documentoJuridico);
+    }
+    
+    @SuppressWarnings("unchecked")
+	public List<DocumentoJuridico> getDocumentosJuridicos() {
+		return dbManager.selectAll( new DocumentoJuridico() );
+	}
+	
+	/**
+	 * removeDocumentosJuridicos - por se tratar de um BD temporal, usar apenas em ocasiões especiais
+	 */
+	public void removeDocumentosJuridicos() {
+		dbManager.removeAll( new DocumentoJuridico() );
 	}
     
 }
