@@ -54,8 +54,8 @@ public class DocumentoJuridico extends Documento {
     @JoinColumn(name="relatorio_fk")
 	private Relatorio relatorio;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="voto_fk")
+	@OneToMany(mappedBy="documentojuridico", cascade = CascadeType.ALL)
+    @Column(name="voto_fk")
 	private List<Voto> votos;
 	
 	@OneToOne(cascade = CascadeType.ALL)

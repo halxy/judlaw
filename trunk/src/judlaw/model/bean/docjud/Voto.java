@@ -15,6 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -36,9 +38,10 @@ public class Voto {
 	
 	private String texto;
 	
-//	//Documento Juridico
-//	@ManyToOne(cascade = "relatorio")
-//	private DocumentoJuridico documentoJuridico;
+	//Documento Juridico
+	@ManyToOne
+	@JoinColumn(name="documentojuridico")
+	private DocumentoJuridico documentoJuridico;
 	
 	public String getTexto() {
 		return texto;
@@ -54,5 +57,13 @@ public class Voto {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public DocumentoJuridico getDocumentoJuridico() {
+		return documentoJuridico;
+	}
+
+	public void setDocumentoJuridico(DocumentoJuridico documentoJuridico) {
+		this.documentoJuridico = documentoJuridico;
 	}
 }
