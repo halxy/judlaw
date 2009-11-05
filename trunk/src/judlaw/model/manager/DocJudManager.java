@@ -27,19 +27,13 @@ public class DocJudManager {
         return docjudManager;
     }
     
-//    /**
-//     * Persiste um Documento Juridico na base de dados
-//     * @param elementoNorma
-//     */
-//	public void saveDocumentoJuridico(DocumentoJuridico documentoJuridico) {
-//		HibernateUtil.beginTransaction();
-//		HibernateUtil.getSession().save(documentoJuridico);
-//		HibernateUtil.getSession().flush();
-//		HibernateUtil.getSession().save(documentoJuridico.getCabecalho());
-//		HibernateUtil.commitTransaction();
-//		HibernateUtil.closeSession();
-//	}
-    
+    /* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES DOCUMENTOJURIDICO ----------------- */
+    /* ------------------------------------------------------------------ */
+    /**
+     * 
+     * @param documentoJuridico
+     */
     public void salvaDocumentoJuridico(DocumentoJuridico documentoJuridico) {
     	Cabecalho cabecalho = documentoJuridico.getCabecalho();
     	cabecalho.setDocumentoJuridico(documentoJuridico);
@@ -57,5 +51,19 @@ public class DocJudManager {
 	public void removeDocumentosJuridicos() {
 		dbManager.removeAll( new DocumentoJuridico() );
 	}
-    
+	
+	/* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES CABECALHO ------------------------- */
+    /* ------------------------------------------------------------------ */
+	/**
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Cabecalho> getCabecalhos() {
+		return dbManager.selectAll( new Cabecalho() );
+	}
+	
+	public void removeCabecalhos() {
+		dbManager.removeAll( new Cabecalho() );
+	}
 }
