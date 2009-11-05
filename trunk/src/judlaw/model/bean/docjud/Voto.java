@@ -10,6 +10,7 @@
  */
 package judlaw.model.bean.docjud;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,7 +40,7 @@ public class Voto {
 	private String texto;
 	
 	//Documento Juridico
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="documentojuridico_id")
 	private DocumentoJuridico documentoJuridico;
 	
