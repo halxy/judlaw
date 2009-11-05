@@ -10,6 +10,7 @@
  */
 package judlaw.model.bean.docjud;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,6 +20,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -51,11 +53,17 @@ public class DocumentoJuridico extends Documento {
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="relatorio_fk")
 	private Relatorio relatorio;
-//	private List<Voto> votos;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="voto_fk")
+	private List<Voto> votos;
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="encerramento_fk")
 	private Encerramento encerramento;
+	
+//	@OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name="parte_fk")
 //	private List<Parte> partes; // relator, partes, etc.
 	
 	// Atributos advindos de Documento
@@ -82,7 +90,7 @@ public class DocumentoJuridico extends Documento {
 		this.cabecalho = cabecalho;
 		this.ementa = ementa;
 		this.relatorio = relatorio;
-//		this.votos = votos;
+		this.votos = votos;
 		this.encerramento = encerramento;
 //		this.partes = partes;
 		this.identificadorUnico = identificadorUnico;
@@ -98,15 +106,8 @@ public class DocumentoJuridico extends Documento {
 		this.ementa = new Ementa();
 		this.relatorio = new Relatorio();
 		this.encerramento = new Encerramento();
-		inicializaListas();
-	}
-	
-	/*
-	 * Inicializa as listas da classe
-	 */
-	private void inicializaListas() {
-//		this.votos = new ArrayList<Voto>();
-//		this.partes = new ArrayList<Parte>();
+		this.votos = new ArrayList<Voto>();
+	//	this.partes = new ArrayList<Parte>();
 	}
 	
 	public Integer getId() {
@@ -141,14 +142,14 @@ public class DocumentoJuridico extends Documento {
 		this.relatorio = relatorio;
 	}
 	
-//	public List<Voto> getVotos() {
-//		return votos;
-//	}
-//	
-//	public void setVotos(List<Voto> votos) {
-//		this.votos = votos;
-//	}
-//	
+	public List<Voto> getVotos() {
+		return votos;
+	}
+	
+	public void setVotos(List<Voto> votos) {
+		this.votos = votos;
+	}
+	
 	public Encerramento getEncerramento() {
 		return encerramento;
 	}
