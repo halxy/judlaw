@@ -25,13 +25,15 @@
 			<mapping class="judlaw.model.bean.ref.CitacaoDocJud"/>
 			<mapping class="judlaw.model.bean.ref.CitacaoDocLeg"/>
 			
-		<!-- 			
+			<!-- Pacote docjud -->
 			<mapping class="judlaw.model.bean.docjud.Cabecalho"/>
 			<mapping class="judlaw.model.bean.docjud.DocumentoJuridico"/>
 			<mapping class="judlaw.model.bean.docjud.Ementa"/>
-			<mapping class="judlaw.model.bean.docjud.Encerramento"/>
-			<mapping class="judlaw.model.bean.docjud.Parte"/>
 			<mapping class="judlaw.model.bean.docjud.Relatorio"/>
+			<mapping class="judlaw.model.bean.docjud.Encerramento"/>
+			
+		<!-- 			
+			<mapping class="judlaw.model.bean.docjud.Parte"/>
 			<mapping class="judlaw.model.bean.docjud.Voto"/>
 			
 			<mapping class="judlaw.model.bean.lei.ElementoNorma"/>
