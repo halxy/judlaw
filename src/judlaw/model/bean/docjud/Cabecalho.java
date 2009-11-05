@@ -10,14 +10,20 @@
  */
 package judlaw.model.bean.docjud;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 /**
  * 
  * @author Halley Freitas
  *
  */
+@Entity
+@Table(name = "cabecalho")
 public class Cabecalho {
 
-	//id (chave estrangeira - DocumentoJuridico)
+	@OneToOne(mappedBy = "documentojuridico")
 	private Integer id;
 	
 	private String tribunal; // STF, STJ, TJRS, etc.
@@ -26,14 +32,6 @@ public class Cabecalho {
 	
 	//Documento Juridico
 	private DocumentoJuridico documentojuridico;
-
-	public DocumentoJuridico getDocumentojuridico() {
-		return documentojuridico;
-	}
-
-	public void setDocumentojuridico(DocumentoJuridico documentojuridico) {
-		this.documentojuridico = documentojuridico;
-	}
 
 	public Cabecalho(String tribunal, String codRegistro, String orgaoJulgador) {
 		this.tribunal = tribunal;
@@ -76,5 +74,13 @@ public class Cabecalho {
 
 	public void setOrgaoJulgador(String orgaoJulgador) {
 		this.orgaoJulgador = orgaoJulgador;
+	}
+	
+	public DocumentoJuridico getDocumentojuridico() {
+		return documentojuridico;
+	}
+
+	public void setDocumentojuridico(DocumentoJuridico documentojuridico) {
+		this.documentojuridico = documentojuridico;
 	}
 }
