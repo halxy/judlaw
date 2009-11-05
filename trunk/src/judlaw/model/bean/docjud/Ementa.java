@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -34,6 +35,10 @@ public class Ementa {
 	private Integer id;
 
 	private String texto;
+	
+	//Documento Juridico
+	@OneToOne(mappedBy = "ementa")
+	private DocumentoJuridico documentoJuridico;
 	
 	/**
 	 * 
@@ -62,5 +67,13 @@ public class Ementa {
 
 	public void setTexto(String texto) {
 		this.texto = texto;
+	}
+
+	public DocumentoJuridico getDocumentoJuridico() {
+		return documentoJuridico;
+	}
+
+	public void setDocumentoJuridico(DocumentoJuridico documentoJuridico) {
+		this.documentoJuridico = documentoJuridico;
 	}
 }
