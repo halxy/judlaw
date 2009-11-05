@@ -26,16 +26,18 @@ public class DocJudManagerTest {
 	@Before public void setUp(){
 	}
 
-	/**
-	 * Test method for {@link judlaw.model.manager.DocJudManager#saveDocumentoJuridico(judlaw.model.docjud.DocumentoJuridico)}.
-	 */
 	@Test
+	/**
+	 * Testa a persistencia de um documento juridico, verificando a corretude dessa acao em relacao aos
+	 * seus dependentes: Cabecalho, Ementa, Encerramento, Parte, Relatorio e Voto.
+	 * 
+	 */
 	public void testSaveDocumentoJuridico() {
-		// esvazia lista de documentos juridicos
+		/* ---------- Esvazia a lista de Documentos Juridicos ----------*/
 		docJudManager.removeDocumentosJuridicos();
 		assertEquals(0, docJudManager.getDocumentosJuridicos().size());
 		
-		//Cria e persiste o documento juridico		
+		/* ---------- Elementos do DocumentoJuridico ----------*/		
 		//Cabecalho
 		Cabecalho cabecalho1 = new Cabecalho();
 		cabecalho1.setCodRegistro("codRegistro");
@@ -51,7 +53,8 @@ public class DocJudManagerTest {
 		ArrayList<Voto> votos = new ArrayList<Voto>();
 		votos.add( new Voto("voto1") );
 		votos.add( new Voto("voto2") );
-		//Documento Juridico
+		
+		/* ---------- Criacao e Persistencia do DocumentoJuridico ----------*/	
 		DocumentoJuridico docJud1 = new DocumentoJuridico();
 		docJud1.setIdentificadorUnico("idUnico");
 		docJud1.setCabecalho(cabecalho1);
@@ -61,7 +64,7 @@ public class DocJudManagerTest {
 		docJud1.setVotos(votos);
 		docJudManager.salvaDocumentoJuridico(docJud1);
 		
-		// verifica as listas
+		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
 		assertEquals(1, docJudManager.getDocumentosJuridicos().size() );
 		assertEquals(1, docJudManager.getCabecalhos().size() );
 		assertEquals(1, docJudManager.getEmentas().size() );
@@ -69,17 +72,17 @@ public class DocJudManagerTest {
 		assertEquals(1, docJudManager.getEncerramentos().size() );
 		assertEquals(2, docJudManager.getVotos().size() );
 		
-		// verificando a alteracao recuperada do BD
+		/* ---------- Verifica se os atributos e elementos foram persistidos corretamente ----------*/
 		DocumentoJuridico docJudBD = docJudManager.getDocumentosJuridicos().get(0);
-		//verificando apenas um atributo de documento juridico
-		assertEquals( docJud1.getIdentificadorUnico(), docJudBD.getIdentificadorUnico() );
+
+		// Atributo identificadorUnico
+		assertEquals( docJudBD.getIdentificadorUnico(), docJud1.getIdentificadorUnico() );
 		
 		// CABECALHO
-		//verificando se as propriedades do cabecalho foram setadas corretamente;
-		assertEquals( docJud1.getCabecalho().getCodRegistro(), cabecalho1.getCodRegistro() );
-		// verificando se a relacao bidirecional funciona
-		assertEquals( docJud1.getCabecalho().getDocumentoJuridico().getIdentificadorUnico(), 
-				      docJud1.getIdentificadorUnico() );
+		assertEquals( docJudBD.getCabecalho().getCodRegistro(), docJud1.getCabecalho().getCodRegistro() );
+		// Relacao Bidirecional
+		assertEquals( docJudBD.getCabecalho().getDocumentoJuridico().getIdentificadorUnico(), 
+					  docJud1.getCabecalho().getDocumentoJuridico().getIdentificadorUnico() );
 		// EMENTA
 		//verificando se as propriedades da ementa foram setadas corretamente;
 		assertEquals( docJud1.getEmenta().getTexto(), ementa1.getTexto() );
