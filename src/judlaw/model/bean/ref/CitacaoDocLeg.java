@@ -28,11 +28,52 @@ public class CitacaoDocLeg extends Referencia {
 	@Column(name="citacaodocleg_id")
 	private Integer id;
 
+	// Atributos advindos de Referencia
+	private String origem; // identificadorUnico do Documento que fez a referência
+	private String destino; // identificadorUnico do Documento que recebeu a referência
+	private String data; // data em que foi feita a referência
+	
+	
+	public CitacaoDocLeg(String origem, String destino, String data) {
+		this.origem = origem;
+		this.destino = destino;
+		this.data = data;
+	}
+	
+	/**
+	 * Construtor vazio
+	 */
+	public CitacaoDocLeg(){}
+
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getOrigem() {
+		return origem;
+	}
+
+	public void setOrigem(String origem) {
+		this.origem = origem;
+	}
+
+	public String getDestino() {
+		return destino;
+	}
+
+	public void setDestino(String destino) {
+		this.destino = destino;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
 	}
 }

@@ -28,6 +28,49 @@ public class CitacaoDocJud extends Referencia {
 	@Column(name="citacaodocjud_id")
 	private Integer id;
 
+	// Atributos advindos de Referencia
+	private String origem; // identificadorUnico do Documento que fez a referência
+	private String destino; // identificadorUnico do Documento que recebeu a referência
+	private String data; // data em que foi feita a referência
+	
+	/**
+	 * 
+	 * @param origem
+	 * @param destino
+	 * @param data
+	 */
+	public CitacaoDocJud(String origem, String destino, String data) {
+		this.origem = origem;
+		this.destino = destino;
+		this.data = data;
+	}
+	
+	public CitacaoDocJud(){}
+
+	public String getOrigem() {
+		return origem;
+	}
+
+	public void setOrigem(String origem) {
+		this.origem = origem;
+	}
+
+	public String getDestino() {
+		return destino;
+	}
+
+	public void setDestino(String destino) {
+		this.destino = destino;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
 	public Integer getId() {
 		return id;
 	}
