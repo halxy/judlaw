@@ -83,4 +83,49 @@ public class DocJudManager {
 	public void removeCabecalhos() {
 		dbManager.removeAll( new Cabecalho() );
 	}
+	
+	/* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES EMENTA ---------------------------- */
+    /* ------------------------------------------------------------------ */
+	/**
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Ementa> getEmentas() {
+		return dbManager.selectAll( new Ementa() );
+	}
+	
+	public void removeEmentas() {
+		dbManager.removeAll( new Ementa() );
+	}
+	
+	/* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES RELATORIO ------------------------- */
+    /* ------------------------------------------------------------------ */
+	/**
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Relatorio> getRelatorios() {
+		return dbManager.selectAll( new Relatorio() );
+	}
+	
+	public void removeRelatorios() {
+		dbManager.removeAll( new Relatorio() );
+	}
+	
+	/* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES ENCERRAMENTO----------------------- */
+    /* ------------------------------------------------------------------ */
+	/**
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Encerramento> getEncerramentos() {
+		return dbManager.selectAll( new Encerramento() );
+	}
+	
+	public void removeEncerramentos() {
+		dbManager.removeAll( new Encerramento() );
+	}
 }
