@@ -31,17 +31,16 @@ public class Alteracao extends Referencia {
 	private String tipo; // inclusao, revogacao, alteracao;
 	private String caracteristica; // mais branda, mais punitiva, etc.
 	
-	/**
-	 * 
-	 * @param origem
-	 * @param destino
-	 * @param data
-	 * @param tipo
-	 * @param caracteristica
-	 */
+	// Atributos advindos de Referencia
+	private String origem; // identificadorUnico do Documento que fez a referência
+	private String destino; // identificadorUnico do Documento que recebeu a referência
+	private String data; // data em que foi feita a referência
+	
 	public Alteracao(String origem, String destino, String data, String tipo,
 			String caracteristica) {
-		super(origem, destino, data);
+		this.origem = origem;
+		this.destino = destino;
+		this.data = data;
 		this.tipo = tipo;
 		this.caracteristica = caracteristica;
 	}
@@ -49,7 +48,7 @@ public class Alteracao extends Referencia {
 	/**
 	 * Construtor vazio
 	 */
-	public Alteracao(){super();}
+	public Alteracao(){}
 	
 	public Integer getId() {
 		return id;
@@ -89,5 +88,29 @@ public class Alteracao extends Referencia {
 	 */
 	public void setCaracteristica(String caracteristica) {
 		this.caracteristica = caracteristica;
+	}
+
+	public String getOrigem() {
+		return origem;
+	}
+
+	public void setOrigem(String origem) {
+		this.origem = origem;
+	}
+
+	public String getDestino() {
+		return destino;
+	}
+
+	public void setDestino(String destino) {
+		this.destino = destino;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
 	}
 }
