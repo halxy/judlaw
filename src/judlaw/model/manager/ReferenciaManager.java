@@ -42,7 +42,9 @@ public class ReferenciaManager {
     /* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES ALTERACAO ------------------------- */
     /* ------------------------------------------------------------------ */
-    
+    /**
+     * 
+     */
     public void salvaAlteracao(Alteracao alteracao) {
 		dbManager.save(alteracao);
 	}

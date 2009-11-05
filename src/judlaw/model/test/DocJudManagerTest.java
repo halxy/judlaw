@@ -61,4 +61,42 @@ public class DocJudManagerTest {
 		assertEquals( docJud1.getCabecalho().getDocumentoJuridico().getIdentificadorUnico(), 
 				      docJud1.getIdentificadorUnico() );
 	}
+	
+	/**
+	 * Teste que verifica se ao remover os documentos juridicos, as instancias das entidades que dependem
+	 * deles tambem sao removidas
+	 */
+	@Test
+	public void testRemoveDocumentoJuridico() {
+		// esvazia as listas
+		docJudManager.removeDocumentosJuridicos();
+		assertEquals( 0, docJudManager.getDocumentosJuridicos().size() );
+		docJudManager.removeCabecalhos();
+		assertEquals( 0, docJudManager.getCabecalhos().size() );
+		
+		//Cria e persiste o documento juridico		
+		//Cabecalho
+		Cabecalho cabecalho1 = new Cabecalho();
+		cabecalho1.setCodRegistro("codRegistro");
+		cabecalho1.setOrgaoJulgador("orgaoJulgador");
+		cabecalho1.setTribunal("tribunal");
+		
+		//Documento Juridico
+		DocumentoJuridico docJud1 = new DocumentoJuridico();
+		docJud1.setIdentificadorUnico("idUnico");
+		docJud1.setCabecalho(cabecalho1);
+		docJudManager.salvaDocumentoJuridico(docJud1);
+		
+		// verifica as listas apos a inclusao
+		assertEquals(1, docJudManager.getDocumentosJuridicos().size());
+		assertEquals(1, docJudManager.getCabecalhos().size());
+		
+		/*
+		 * removendo a lista de documentos juridicos e esperando que a lista de cabecalhos
+		 * tambem seja removida
+		 */
+		docJudManager.removeDocumentosJuridicos();
+		assertEquals(0, docJudManager.getDocumentosJuridicos().size());
+		assertEquals(0, docJudManager.getCabecalhos().size());
+	}
 }
