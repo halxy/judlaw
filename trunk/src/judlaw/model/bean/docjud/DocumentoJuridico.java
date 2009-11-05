@@ -94,6 +94,10 @@ public class DocumentoJuridico extends Documento {
 	 * Construtor vazio que apenas inicializa as listas
 	 */
 	public DocumentoJuridico() {
+		this.cabecalho = new Cabecalho();
+		this.ementa = new Ementa();
+		this.relatorio = new Relatorio();
+		this.encerramento = new Encerramento();
 		inicializaListas();
 	}
 	
