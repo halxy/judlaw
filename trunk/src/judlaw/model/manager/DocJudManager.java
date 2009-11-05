@@ -55,6 +55,11 @@ public class DocJudManager {
     	Relatorio relatorio = documentoJuridico.getRelatorio();
     	relatorio.setDocumentoJuridico(documentoJuridico);
     	
+    	//Setando Votos
+    	List<Voto> votos = documentoJuridico.getVotos();
+    	for(Voto v : votos) {
+    		v.setDocumentoJuridico(documentoJuridico);
+    	}    	
     	dbManager.save(documentoJuridico);
     }
     
