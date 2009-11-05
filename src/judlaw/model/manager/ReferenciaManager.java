@@ -10,7 +10,11 @@
  */
 package judlaw.model.manager;
 
+import java.util.List;
+
+import judlaw.model.bean.ref.Alteracao;
 import judlaw.model.bean.ref.CitacaoDocJud;
+import judlaw.model.bean.ref.CitacaoDocLeg;
 
 
 /**
@@ -25,39 +29,106 @@ public class ReferenciaManager {
 	private static DBManager dbManager = DBManager.getInstance();
 	
 	
-	   /**
-	    * Retorna uma instancia da classe ReferenciaManager
-	    * @return
-	    */
-	    public static ReferenciaManager getInstance(){
-	        if(referenciaManager == null)
-	        	referenciaManager = new ReferenciaManager();
-	        return referenciaManager;
-	    }
+   /**
+    * Retorna uma instancia da classe ReferenciaManager
+    * @return
+    */
+    public static ReferenciaManager getInstance(){
+        if(referenciaManager == null)
+        	referenciaManager = new ReferenciaManager();
+        return referenciaManager;
+    }
 	    
-		public void saveCitacaoDocJud(CitacaoDocJud citacaoDocJud) {
-			dbManager.save(citacaoDocJud);
-		}
+    /* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES ALTERACAO ------------------------- */
+    /* ------------------------------------------------------------------ */
+    
+    public void salvaAlteracao(Alteracao alteracao) {
+		dbManager.save(alteracao);
+	}
 	    
-//	    @SuppressWarnings("unchecked")
-//		public List<Referencia> getTodasReferencias(){
-//			return dbManager.selectAll( new Referencia() );
-//		}
-//	    
-//		public void removeTodasReferencias(){
-//			dbManager.removeAll( new Referencia() );
-//		}
-//		
-//		@SuppressWarnings("unchecked")
-//		public List<Referencia> recuperaReferenciaPorAtributo(String atributo, String valor) {
-//			return dbManager.selectObjectsByField(new Referencia(), atributo, valor);
-//		}
-//		
-//		public void saveReferencia(DocumentoJuridico docjud, Norma norma, String tipo, String efeito) {
-//			Referencia ref = new Referencia();
-//			ref.setOrigem( docjud.getIdentificadorUnico() );
-//			ref.setDestino( norma.getIdentificadorUnico() );
-//			ref.setTipo(tipo);
-//			ref.setEfeito(efeito);
-//		}
+	@SuppressWarnings("unchecked")
+	public List<Alteracao> getAlteracoes() {
+		return dbManager.selectAll( new Alteracao() );
+	}
+	
+	/**
+	 * removeAlteracoes - por se tratar de um BD temporal, usar apenas em ocasiões especiais
+	 */
+	public void removeAlteracoes() {
+		dbManager.removeAll( new Alteracao() );
+	}
+	
+	/**
+	 * Recupera as Alteracoes que atraves de valores dos seus atributos
+	 * @param atributo
+	 * @param valor
+	 * @return Lista com as Alteracoes recuperadas
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Alteracao> recuperaAlteracaoPorAtributo(String atributo, String valor) {
+		return dbManager.selectObjectsByField(new Alteracao(), atributo, valor);
+	}
+	
+	/* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES CITACAODOCJUD ------------------------- */
+    /* ------------------------------------------------------------------ */
+    
+    public void salvaCitacaoDocJud(CitacaoDocJud citacaoDocJud) {
+		dbManager.save(citacaoDocJud);
+	}
+	    
+	@SuppressWarnings("unchecked")
+	public List<CitacaoDocJud> getCitacoesDocJud() {
+		return dbManager.selectAll( new CitacaoDocJud() );
+	}
+	
+	/**
+	 * removeCitacoesDocJud - por se tratar de um BD temporal, usar apenas em ocasiões especiais
+	 */
+	public void removeCitacoesDocJud() {
+		dbManager.removeAll( new CitacaoDocJud() );
+	}
+	
+	/**
+	 * Recupera as CitacoesDocJud que atraves de valores dos seus atributos
+	 * @param atributo
+	 * @param valor
+	 * @return Lista com as CitacoesDocJud recuperadas
+	 */
+	@SuppressWarnings("unchecked")
+	public List<CitacaoDocJud> recuperaCitacaoDocJudPorAtributo(String atributo, String valor) {
+		return dbManager.selectObjectsByField(new CitacaoDocJud(), atributo, valor);
+	}
+	
+	/* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES CITACAODOCLEG ------------------------- */
+    /* ------------------------------------------------------------------ */
+    
+	public void salvaCitacaoDocLeg(CitacaoDocLeg citacaoDocLeg) {
+		dbManager.save(citacaoDocLeg);
+	}
+	    
+	@SuppressWarnings("unchecked")
+	public List<CitacaoDocLeg> getCitacoesDocLeg() {
+		return dbManager.selectAll( new CitacaoDocLeg() );
+	}
+	
+	/**
+	 * removeCitacoesDocLeg - por se tratar de um BD temporal, usar apenas em ocasiões especiais
+	 */
+	public void removeCitacoesDocLeg() {
+		dbManager.removeAll( new CitacaoDocLeg() );
+	}
+	
+	/**
+	 * Recupera as CitacoesDocLeg que atraves de valores dos seus atributos
+	 * @param atributo
+	 * @param valor
+	 * @return Lista com as CitacoesDocLeg recuperadas
+	 */
+	@SuppressWarnings("unchecked")
+	public List<CitacaoDocLeg> recuperaCitacaoDocLegPorAtributo(String atributo, String valor) {
+		return dbManager.selectObjectsByField(new CitacaoDocLeg(), atributo, valor);
+	}
 }
