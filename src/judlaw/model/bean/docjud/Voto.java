@@ -40,7 +40,7 @@ public class Voto {
 	
 	//Documento Juridico
 	@ManyToOne
-	@JoinColumn(name="documentojuridico")
+	@JoinColumn(name="documentojuridico_id")
 	private DocumentoJuridico documentoJuridico;
 	
 	public String getTexto() {
