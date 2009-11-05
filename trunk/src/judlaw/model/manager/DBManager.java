@@ -47,7 +47,7 @@ public class DBManager {
 	 */	
 	public void save(Object object) {
 		HibernateUtil.beginTransaction();
-		HibernateUtil.getSession().save(object);
+		HibernateUtil.getSession().saveOrUpdate(object);
 		HibernateUtil.commitTransaction();
 		HibernateUtil.closeSession();
 	}
