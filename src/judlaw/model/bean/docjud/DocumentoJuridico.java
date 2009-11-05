@@ -51,6 +51,33 @@ public class DocumentoJuridico extends Documento {
 	private String dataPublicacao; // dd/MM/yyy
 	
 	/**
+	 * 
+	 * @param cabecalho
+	 * @param ementa
+	 * @param relatorio
+	 * @param votos
+	 * @param encerramento
+	 * @param partes
+	 * @param identificadorUnico
+	 * @param tipo
+	 * @param dataPublicacao
+	 */
+	public DocumentoJuridico(Cabecalho cabecalho, Ementa ementa,
+			Relatorio relatorio, List<Voto> votos, Encerramento encerramento,
+			List<Parte> partes, String identificadorUnico, String tipo,
+			String dataPublicacao) {
+		this.cabecalho = cabecalho;
+		this.ementa = ementa;
+		this.relatorio = relatorio;
+		this.votos = votos;
+		this.encerramento = encerramento;
+		this.partes = partes;
+		this.identificadorUnico = identificadorUnico;
+		this.tipo = tipo;
+		this.dataPublicacao = dataPublicacao;
+	}
+
+	/**
 	 * Construtor vazio que apenas inicializa as listas
 	 */
 	public DocumentoJuridico() {
