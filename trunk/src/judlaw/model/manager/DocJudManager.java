@@ -6,6 +6,7 @@ import judlaw.model.bean.docjud.Cabecalho;
 import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.bean.docjud.Ementa;
 import judlaw.model.bean.docjud.Encerramento;
+import judlaw.model.bean.docjud.Parte;
 import judlaw.model.bean.docjud.Relatorio;
 import judlaw.model.bean.docjud.Voto;
 
@@ -59,7 +60,12 @@ public class DocJudManager {
     	List<Voto> votos = documentoJuridico.getVotos();
     	for(Voto v : votos) {
     		v.setDocumentoJuridico(documentoJuridico);
-    	}    	
+    	}
+    	//Setando Partes
+    	List<Parte> partes = documentoJuridico.getPartes();
+    	for(Parte p : partes) {
+    		p.getDocumentosJuridicos().add(documentoJuridico);
+    	}
     	dbManager.save(documentoJuridico);
     }
     
@@ -148,5 +154,20 @@ public class DocJudManager {
 	
 	public void removeVotos() {
 		dbManager.removeAll( new Voto() );
+	}
+	
+	/* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES CABECALHO ------------------------- */
+    /* ------------------------------------------------------------------ */
+	/**
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Parte> getPartes() {
+		return dbManager.selectAll( new Parte() );
+	}
+	
+	public void removePartes() {
+		dbManager.removeAll( new Parte() );
 	}
 }
