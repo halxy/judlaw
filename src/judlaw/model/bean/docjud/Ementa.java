@@ -46,15 +46,12 @@ public class Ementa {
 	 */
 	public Ementa(String texto) {
 		this.texto = texto;
-		this.documentoJuridico = new DocumentoJuridico();
 	}
 	
 	/**
 	 * Construtor Vazio
 	 */
-	public Ementa() {
-		this.documentoJuridico = new DocumentoJuridico();
-	}
+	public Ementa() {}
 
 	public Integer getId() {
 		return id;
