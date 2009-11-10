@@ -2,7 +2,6 @@
 "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 
 	<hibernate-configuration>
-
 		<session-factory>
 			
 			<!-- Enable Hibernate's automatic session context management -->
@@ -34,11 +33,9 @@
 			<mapping class="judlaw.model.bean.docjud.Voto"/>
 			<mapping class="judlaw.model.bean.docjud.Parte"/>
 			
-		<!-- 			
+			<!-- Pacote lei -->
 			<mapping class="judlaw.model.bean.lei.ElementoNorma"/>
 			<mapping class="judlaw.model.bean.lei.Norma"/>
-		-->	
 			
 		</session-factory>
-
   </hibernate-configuration> 
