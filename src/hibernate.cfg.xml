@@ -22,7 +22,7 @@
 			<!-- Pacote ref -->
 			<mapping class="judlaw.model.bean.ref.Alteracao"/>
 			<mapping class="judlaw.model.bean.ref.CitacaoDocJud"/>
-			<mapping class="judlaw.model.bean.ref.CitacaoDocLeg"/>
+			<mapping class="judlaw.model.bean.ref.CitacaoTextLeg"/>
 			
 			<!-- Pacote docjud -->
 			<mapping class="judlaw.model.bean.docjud.Cabecalho"/>
