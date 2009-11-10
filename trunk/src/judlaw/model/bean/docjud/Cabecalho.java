@@ -52,12 +52,15 @@ public class Cabecalho {
 		this.tribunal = tribunal;
 		this.codRegistro = codRegistro;
 		this.orgaoJulgador = orgaoJulgador;
+		this.documentoJuridico = new DocumentoJuridico();
 	}
 
 	/**
 	 * Construtor Vazio
 	 */
-	public Cabecalho() {}
+	public Cabecalho() {
+		this.documentoJuridico = new DocumentoJuridico();
+	}
 	
 	public Integer getId() {
 		return id;

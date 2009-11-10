@@ -49,12 +49,15 @@ public class Encerramento {
 	public Encerramento(String decisao, String local) {
 		this.decisao = decisao;
 		this.local = local;
+		this.documentoJuridico = new DocumentoJuridico();
 	}
 	
 	/**
 	 * Construtor Vazio
 	 */
-	public Encerramento(){}
+	public Encerramento(){
+		this.documentoJuridico = new DocumentoJuridico();
+	}
 
 	public Integer getId() {
 		return id;

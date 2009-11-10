@@ -46,12 +46,15 @@ public class Relatorio {
 	 */
 	public Relatorio(String texto) {
 		this.texto = texto;
+		this.documentoJuridico = new DocumentoJuridico();
 	}
 	
 	/**
 	 * Construtor Vazio
 	 */
-	public Relatorio(){}
+	public Relatorio(){
+		this.documentoJuridico = new DocumentoJuridico();
+	}
 
 	public Integer getId() {
 		return id;
