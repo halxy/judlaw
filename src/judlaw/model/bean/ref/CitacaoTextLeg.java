@@ -21,7 +21,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "citacaodocleg")
 @SequenceGenerator(name = "citacaodocleg_seq", sequenceName = "citacaodocleg_seq", initialValue = 1, allocationSize = 1)
-public class CitacaoDocLeg extends Referencia {
+public class CitacaoTextLeg extends Referencia {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="citacaodocleg_seq")
@@ -34,7 +34,7 @@ public class CitacaoDocLeg extends Referencia {
 	private String data; // data em que foi feita a referência
 	
 	
-	public CitacaoDocLeg(String origem, String destino, String data) {
+	public CitacaoTextLeg(String origem, String destino, String data) {
 		this.origem = origem;
 		this.destino = destino;
 		this.data = data;
@@ -43,7 +43,7 @@ public class CitacaoDocLeg extends Referencia {
 	/**
 	 * Construtor vazio
 	 */
-	public CitacaoDocLeg(){}
+	public CitacaoTextLeg(){}
 
 	public Integer getId() {
 		return id;
