@@ -9,6 +9,7 @@ import judlaw.model.bean.docjud.Cabecalho;
 import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.bean.docjud.Ementa;
 import judlaw.model.bean.docjud.Encerramento;
+import judlaw.model.bean.docjud.Parte;
 import judlaw.model.bean.docjud.Relatorio;
 import judlaw.model.bean.docjud.Voto;
 import judlaw.model.manager.DocJudManager;
@@ -50,6 +51,10 @@ public class DocJudManagerTest {
 		ArrayList<Voto> votos = new ArrayList<Voto>();
 		votos.add( new Voto("voto1") );
 		votos.add( new Voto("voto2") );
+		//Partes
+		ArrayList<Parte> partes = new ArrayList<Parte>();
+		partes.add( new Parte("titulo1", "nome1") );
+		partes.add( new Parte("titulo2", "nome2") );
 		
 		/* ---------- Criacao e Persistencia do DocumentoJuridico ----------*/	
 		DocumentoJuridico docJud1 = new DocumentoJuridico();
@@ -59,6 +64,7 @@ public class DocJudManagerTest {
 		docJud1.setRelatorio(relatorio1);
 		docJud1.setEncerramento(encerramento1);
 		docJud1.setVotos(votos);
+		docJud1.setPartes(partes);
 		docJudManager.salvaDocumentoJuridico(docJud1);
 		
 		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
@@ -68,6 +74,7 @@ public class DocJudManagerTest {
 		assertEquals(1, docJudManager.getRelatorios().size() );
 		assertEquals(1, docJudManager.getEncerramentos().size() );
 		assertEquals(2, docJudManager.getVotos().size() );
+		assertEquals(2, docJudManager.getPartes().size() );
 		
 		/* ---------- Verifica se os atributos e elementos foram persistidos corretamente ----------*/
 		DocumentoJuridico docJudBD = docJudManager.getDocumentosJuridicos().get(0);
@@ -106,6 +113,13 @@ public class DocJudManagerTest {
 		//Relacao Bidirecional
 		assertEquals( docJudBD.getVotos().get(0).getDocumentoJuridico().getIdentificadorUnico(),
 				      docJud1.getVotos().get(0).getDocumentoJuridico().getIdentificadorUnico());
+		
+		//PARTES
+		assertEquals( docJudBD.getPartes().get(0).getTitulo(), partes.get(0).getTitulo() );
+		assertEquals( docJudBD.getPartes().get(1).getNome(), partes.get(1).getNome() );
+		//Relacao Bidirecional
+		assertEquals( docJudBD.getPartes().get(0).getDocumentosJuridicos().get(0).getIdentificadorUnico(),
+				      docJud1.getPartes().get(0).getDocumentosJuridicos().get(0).getIdentificadorUnico());
 	}
 	
 	

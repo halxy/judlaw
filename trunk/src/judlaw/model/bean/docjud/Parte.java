@@ -22,6 +22,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 
 /**
  * Define o comportamento das partes (relator, acusador, etc.);
@@ -42,6 +45,7 @@ public class Parte {
 	private String nome;
 	
 	@ManyToMany(mappedBy="partes")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<DocumentoJuridico> documentosJuridicos;
 	
 	/**
