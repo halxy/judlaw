@@ -69,7 +69,7 @@ public class DocumentoJuridico extends Documento {
 	private Encerramento encerramento;
 	
 	// DocumentoJuridico é o Mapping Owner.
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "docjudpartes",
 			joinColumns = {
 				@JoinColumn(name="documentojuridico_id")           
