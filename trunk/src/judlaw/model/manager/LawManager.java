@@ -38,7 +38,7 @@ public class LawManager {
 		//Setando ElementosNorma
     	List<ElementoNorma> elementosNorma = norma.getElementosNorma();
     	for(ElementoNorma eleN : elementosNorma) {
-    		eleN.setTextoLegalPai(norma);
+    		eleN.setNormaPai(norma);
     	}
 		dbManager.save(norma);
 	}
@@ -54,7 +54,7 @@ public class LawManager {
 		//Setando ElementosNorma
     	List<ElementoNorma> elementosNorma = elementoNorma.getElementosNorma();
     	for(ElementoNorma eleN : elementosNorma) {
-    		eleN.setTextoLegalPai(elementoNorma);
+    		eleN.setElementoNormaPai(elementoNorma);
     	}
 		dbManager.save(elementoNorma);
 	}
