@@ -51,6 +51,11 @@ public class LawManager {
      * @param elementoNorma
      */
 	public void salvaElementoNorma(ElementoNorma elementoNorma) {
+		//Setando ElementosNorma
+    	List<ElementoNorma> elementosNorma = elementoNorma.getElementosNorma();
+    	for(ElementoNorma eleN : elementosNorma) {
+    		eleN.setTextoLegalPai(elementoNorma);
+    	}
 		dbManager.save(elementoNorma);
 	}
     
