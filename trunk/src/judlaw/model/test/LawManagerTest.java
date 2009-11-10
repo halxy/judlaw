@@ -38,16 +38,6 @@ public class LawManagerTest {
 		inciso.setDataPublicacao("28/10/2009");
 		inciso.setVigencia("28/10/2009-99/99/9999");		
 	}
-	/**
-	 * Test method for {@link judlaw.model.bean.lei.ElementoNorma#getPai}.
-	 * @throws Exception 
-	 */
-	@Test public void testGetPai() {
-		ElementoNorma ele1 = new ElementoNorma();
-		ele1.setIdentificadorUnico("cp_art120_par1");
-		assertEquals("cp_art120", ele1.getPai());
-		assertEquals("cp_art120", ele1.getPai());
-	}
 	
 	/**
 	 * Test method for {@link judlaw.model.manager.LawManager#saveElementoNorma}. 
@@ -84,9 +74,8 @@ public class LawManagerTest {
 		// persiste o elemento
 		lawManager.saveElementoNorma( inciso );
 		
-		// procura o elemento cujo identificador unico seja "cp_art120_par2_inc1"
-		ElementoNorma elemento = (ElementoNorma) lawManager.recuperaElementoPorAtributo
-													("identificadorUnico","cp_art120_par2_inc1").get(0);
-		assertEquals(elemento.getPai(), inciso.getPai());
+//		// procura o elemento cujo identificador unico seja "cp_art120_par2_inc1"
+//		ElementoNorma elemento = (ElementoNorma) lawManager.recuperaElementoPorAtributo
+//													("identificadorUnico","cp_art120_par2_inc1").get(0);
 	}
 }
