@@ -210,6 +210,7 @@ public class DocJudManagerTest {
 		assertEquals( 0, docJudManager.getRelatorios().size() );
 		assertEquals( 0, docJudManager.getEncerramentos().size() );
 		assertEquals( 0, docJudManager.getVotos().size() );
+		assertEquals( 0, docJudManager.getPartes().size() );
 		
 		/* ---------- Elementos do DocumentoJuridico ----------*/		
 		//Cabecalho
@@ -227,6 +228,10 @@ public class DocJudManagerTest {
 		ArrayList<Voto> votos = new ArrayList<Voto>();
 		votos.add( new Voto("voto1") );
 		votos.add( new Voto("voto2") );
+		//Partes
+		ArrayList<Parte> partes = new ArrayList<Parte>();
+		partes.add( new Parte("titulo1", "nome1") );
+		partes.add( new Parte("titulo2", "nome2") );
 		
 		/* ---------- Criacao e Persistencia do DocumentoJuridico ----------*/	
 		DocumentoJuridico docJud1 = new DocumentoJuridico();
@@ -236,6 +241,7 @@ public class DocJudManagerTest {
 		docJud1.setRelatorio(relatorio1);
 		docJud1.setEncerramento(encerramento1);
 		docJud1.setVotos(votos);
+		docJud1.setPartes(partes);
 		docJudManager.salvaDocumentoJuridico(docJud1);
 		
 		/* ---------- Verifica se os atributos e elementos foram persistidos corretamente ----------*/
@@ -276,6 +282,13 @@ public class DocJudManagerTest {
 		assertEquals( docJudBD.getVotos().get(0).getDocumentoJuridico().getIdentificadorUnico(),
 				      docJud1.getVotos().get(0).getDocumentoJuridico().getIdentificadorUnico());
 		
+		//PARTES
+		assertEquals( docJudBD.getPartes().get(0).getTitulo(), partes.get(0).getTitulo() );
+		assertEquals( docJudBD.getPartes().get(1).getNome(), partes.get(1).getNome() );
+		//Relacao Bidirecional
+		assertEquals( docJudBD.getPartes().get(0).getDocumentosJuridicos().get(0).getIdentificadorUnico(),
+				      docJud1.getPartes().get(0).getDocumentosJuridicos().get(0).getIdentificadorUnico());
+		
 		/* ---------- ALTERACOES ----------*/
 		// Cabecalho
 		Cabecalho cabecalhoBD = docJudBD.getCabecalho();
@@ -293,6 +306,10 @@ public class DocJudManagerTest {
 		List<Voto> votosBD = docJudBD.getVotos();
 		votosBD.get(0).setTexto("voto11");
 		votosBD.get(1).setTexto("voto22");
+		// Partes
+		List<Parte> partesBD = docJudBD.getPartes();
+		partesBD.get(0).setTitulo("titulo11");
+		partesBD.get(1).setNome("nome22");
 		
 		//Setando as novas propriedades no objeto
 		docJudBD.setCabecalho(cabecalhoBD);
@@ -300,6 +317,7 @@ public class DocJudManagerTest {
 		docJudBD.setRelatorio(relatorioBD);
 		docJudBD.setEncerramento(encerramentoBD);
 		docJudBD.setVotos(votosBD);
+		docJudBD.setPartes(partesBD);
 		docJudManager.salvaDocumentoJuridico(docJudBD);
 		
 		/* ---------- Verifica se os elementos foram inseridos em suas respectivas tabelas  ----------*/
@@ -309,6 +327,7 @@ public class DocJudManagerTest {
 		assertEquals( 1, docJudManager.getRelatorios().size() );
 		assertEquals( 1, docJudManager.getEncerramentos().size() );
 		assertEquals( 2, docJudManager.getVotos().size() );
+		assertEquals( 2, docJudManager.getPartes().size() );
 		
 		/* ---------- Verifica se as propriedades foram modificadas  ----------*/
 		DocumentoJuridico docJudBD2 = docJudManager.getDocumentosJuridicos().get(0);
@@ -318,5 +337,7 @@ public class DocJudManagerTest {
 		assertEquals( docJudBD2.getEncerramento().getDecisao(), encerramentoBD.getDecisao() );
 		assertEquals( docJudBD2.getVotos().get(0).getTexto(), votosBD.get(0).getTexto() );
 		assertEquals( docJudBD2.getVotos().get(1).getTexto(), votosBD.get(1).getTexto() );
+		assertEquals( docJudBD2.getPartes().get(0).getTitulo(), partesBD.get(0).getTitulo() );
+		assertEquals( docJudBD2.getPartes().get(1).getNome(), partesBD.get(1).getNome() );
 	}
 }
