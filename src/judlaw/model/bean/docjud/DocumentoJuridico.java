@@ -78,6 +78,7 @@ public class DocumentoJuridico extends Documento {
 				@JoinColumn(name="parte_id")
     		}
 	)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Parte> partes; // relator, partes, etc.
 	
 	// Atributos advindos de Documento
