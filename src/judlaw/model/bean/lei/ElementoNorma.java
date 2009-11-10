@@ -57,7 +57,7 @@ public class ElementoNorma extends TextoLegal {
     @LazyCollection(LazyCollectionOption.FALSE)
 	private List<ElementoNorma> elementosNorma;
 	
-	//TextoLegal pai do ElementoNorma (pode ser uma Norma ou outro ElementoNorma
+	//TextoLegal pai do ElementoNorma (pode ser uma Norma ou outro ElementoNorma)
 	@ManyToOne
 	@JoinColumn(name="textolegaipai_id")
 	private TextoLegal textoLegalPai;
@@ -79,6 +79,7 @@ public class ElementoNorma extends TextoLegal {
 		this.tipo = tipo;
 		this.dataPublicacao = dataPublicacao;
 		this.vigencia = vigencia;
+		this.elementosNorma = new ArrayList<ElementoNorma>();
 	}
 	
 	/**
@@ -91,8 +92,7 @@ public class ElementoNorma extends TextoLegal {
 	 * @param elementosNorma
 	 */
 	public ElementoNorma(String texto, String identificadorUnico, String tipo,
-			String dataPublicacao, String vigencia,
-			List<ElementoNorma> elementosNorma) {
+			String dataPublicacao, String vigencia, List<ElementoNorma> elementosNorma) {
 		this.texto = texto;
 		this.identificadorUnico = identificadorUnico;
 		this.tipo = tipo;
