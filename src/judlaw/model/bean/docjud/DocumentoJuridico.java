@@ -20,6 +20,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -66,9 +68,17 @@ public class DocumentoJuridico extends Documento {
     @JoinColumn(name="encerramento_fk")
 	private Encerramento encerramento;
 	
-//	@OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name="parte_fk")
-//	private List<Parte> partes; // relator, partes, etc.
+	// DocumentoJuridico é o Mapping Owner.
+	@ManyToMany
+	@JoinTable(name = "docjudpartes",
+			joinColumns = {
+				@JoinColumn(name="documentojuridico_id")           
+    		},
+    		inverseJoinColumns = {
+				@JoinColumn(name="parte_id")
+    		}
+	)
+	private List<Parte> partes; // relator, partes, etc.
 	
 	// Atributos advindos de Documento
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
@@ -96,7 +106,7 @@ public class DocumentoJuridico extends Documento {
 		this.relatorio = relatorio;
 		this.votos = votos;
 		this.encerramento = encerramento;
-//		this.partes = partes;
+		this.partes = partes;
 		this.identificadorUnico = identificadorUnico;
 		this.tipo = tipo;
 		this.dataPublicacao = dataPublicacao;
@@ -111,7 +121,7 @@ public class DocumentoJuridico extends Documento {
 		this.relatorio = new Relatorio();
 		this.encerramento = new Encerramento();
 		this.votos = new ArrayList<Voto>();
-	//	this.partes = new ArrayList<Parte>();
+		this.partes = new ArrayList<Parte>();
 	}
 	
 	public Integer getId() {
@@ -162,13 +172,13 @@ public class DocumentoJuridico extends Documento {
 		this.encerramento = encerramento;
 	}
 	
-//	public List<Parte> getPartes() {
-//		return partes;
-//	}
-//	
-//	public void setPartes(List<Parte> partes) {
-//		this.partes = partes;
-//	}
+	public List<Parte> getPartes() {
+		return partes;
+	}
+	
+	public void setPartes(List<Parte> partes) {
+		this.partes = partes;
+	}
 
 	public String getIdentificadorUnico() {
 		return identificadorUnico;
