@@ -55,6 +55,17 @@ public class Parte {
 		this.nome = nome;
 		this.documentosJuridicos = documentosJuridicos;
 	}
+	
+	/**
+	 * 
+	 * @param titulo
+	 * @param nome
+	 */
+	public Parte(String titulo, String nome) {
+		this.titulo = titulo;
+		this.nome = nome;
+		this.documentosJuridicos =  new ArrayList<DocumentoJuridico>();
+	}
 
 	/**
 	 * Construtor vazio
