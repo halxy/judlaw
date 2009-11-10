@@ -53,14 +53,19 @@ public class ElementoNorma extends TextoLegal {
 	private String dataPublicacao; // dd/MM/yyy
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
 		
-	@OneToMany(mappedBy="textoLegalPai", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="elementoNormaPai", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
 	private List<ElementoNorma> elementosNorma;
 	
-	//TextoLegal pai do ElementoNorma (pode ser uma Norma ou outro ElementoNorma)
+	//Quando o pai do ElementoNorma é outro ElementoNorma
 	@ManyToOne
-	@JoinColumn(name="textolegaipai_id")
-	private TextoLegal textoLegalPai;
+	@JoinColumn(name="elementonormapai_id", nullable = true)
+	private ElementoNorma elementoNormaPai;
+	
+	//Quando o pai do ElementoNorma é outro ElementoNorma
+	@ManyToOne
+	@JoinColumn(name="normapai_id", nullable = true)
+	private Norma normaPai;
 	
 	/**
 	 * 
@@ -164,12 +169,20 @@ public class ElementoNorma extends TextoLegal {
 		this.vigencia = vigencia;
 	}
 
-	public TextoLegal getTextoLegalPai() {
-		return textoLegalPai;
+	public ElementoNorma getElementoNormaPai() {
+		return elementoNormaPai;
 	}
 
-	public void setTextoLegalPai(TextoLegal textoLegalPai) {
-		this.textoLegalPai = textoLegalPai;
+	public void setElementoNormaPai(ElementoNorma elementoNormaPai) {
+		this.elementoNormaPai = elementoNormaPai;
+	}
+
+	public Norma getNormaPai() {
+		return normaPai;
+	}
+
+	public void setNormaPai(Norma normaPai) {
+		this.normaPai = normaPai;
 	}
 	
 //	/*

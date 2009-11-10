@@ -49,7 +49,7 @@ public class Norma extends TextoLegal {
 	// Parte Final
 	private String local;
 	
-	@OneToMany(mappedBy="textoLegalPai", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="normaPai", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
 	private List<ElementoNorma> elementosNorma;
 	
