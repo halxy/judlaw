@@ -138,6 +138,7 @@ public class DocJudManagerTest {
 		assertEquals( 0, docJudManager.getRelatorios().size() );
 		assertEquals( 0, docJudManager.getEncerramentos().size() );
 		assertEquals( 0, docJudManager.getVotos().size() );
+		assertEquals( 0, docJudManager.getPartes().size() );
 		
 		/* ---------- Elementos do DocumentoJuridico ----------*/		
 		//Cabecalho
@@ -155,6 +156,10 @@ public class DocJudManagerTest {
 		ArrayList<Voto> votos = new ArrayList<Voto>();
 		votos.add( new Voto("voto1") );
 		votos.add( new Voto("voto2") );
+		//Partes
+		ArrayList<Parte> partes = new ArrayList<Parte>();
+		partes.add( new Parte("titulo1", "nome1") );
+		partes.add( new Parte("titulo2", "nome2") );
 		
 		/* ---------- Criacao e Persistencia do DocumentoJuridico ----------*/	
 		DocumentoJuridico docJud1 = new DocumentoJuridico();
@@ -164,6 +169,7 @@ public class DocJudManagerTest {
 		docJud1.setRelatorio(relatorio1);
 		docJud1.setEncerramento(encerramento1);
 		docJud1.setVotos(votos);
+		docJud1.setPartes(partes);
 		docJudManager.salvaDocumentoJuridico(docJud1);
 		
 		/* ---------- Verifica se os elementos foram inseridos em suas respectivas tabelas  ----------*/
@@ -173,6 +179,7 @@ public class DocJudManagerTest {
 		assertEquals( 1, docJudManager.getRelatorios().size() );
 		assertEquals( 1, docJudManager.getEncerramentos().size() );
 		assertEquals( 2, docJudManager.getVotos().size() );
+		assertEquals( 2, docJudManager.getPartes().size() );
 		
 		/*
 		 * Removendo a lista de documentos juridicos eh esperado que a lista dos demais elementos
@@ -185,6 +192,7 @@ public class DocJudManagerTest {
 		assertEquals( 0, docJudManager.getRelatorios().size() );
 		assertEquals( 0, docJudManager.getEncerramentos().size() );
 		assertEquals( 0, docJudManager.getVotos().size() );
+		assertEquals( 0, docJudManager.getPartes().size() );
 	}
 	
 	/**
