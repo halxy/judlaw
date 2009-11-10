@@ -19,13 +19,13 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "citacaodocleg")
-@SequenceGenerator(name = "citacaodocleg_seq", sequenceName = "citacaodocleg_seq", initialValue = 1, allocationSize = 1)
+@Table(name = "citacaotextleg")
+@SequenceGenerator(name = "citacaotextleg_seq", sequenceName = "citacaotextleg_seq", initialValue = 1, allocationSize = 1)
 public class CitacaoTextLeg extends Referencia {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="citacaodocleg_seq")
-	@Column(name="citacaodocleg_id")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="citacaotextleg_seq")
+	@Column(name="citacaotextleg_id")
 	private Integer id;
 
 	// Atributos advindos de Referencia
