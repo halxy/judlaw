@@ -27,8 +27,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import judlaw.model.bean.Documento;
-
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -40,7 +38,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Entity
 @Table(name = "documentojuridico")
 @SequenceGenerator(name = "documentojuridico_seq", sequenceName = "documentojuridico_seq", initialValue = 1, allocationSize = 1)
-public class DocumentoJuridico extends Documento {
+public class DocumentoJuridico {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="documentojuridico_seq")
@@ -81,7 +79,6 @@ public class DocumentoJuridico extends Documento {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Parte> partes; // relator, partes, etc.
 	
-	// Atributos advindos de Documento
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
 	private String tipo; // tipos de Documentos Juridicos e Documentos Legais
 	private String dataPublicacao; // dd/MM/yyy
