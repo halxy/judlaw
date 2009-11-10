@@ -10,35 +10,58 @@
  */
 package judlaw.model.bean.docjud;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 
 /**
- * Define o comportamento das partes;
+ * Define o comportamento das partes (relator, acusador, etc.);
  * @author Halley Freitas
  *
  */
+@Entity
+@Table(name = "parte")
+@SequenceGenerator(name = "parte_seq", sequenceName = "parte_seq", initialValue = 1, allocationSize = 1)
 public class Parte {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="parte_seq")
+	@Column(name="parte_id")
 	private Integer id;
 	
 	private String titulo;
 	private String nome;
 	
-	private DocumentoJuridico documentoJuridico;
+	@ManyToMany(mappedBy="partes")
+	private List<DocumentoJuridico> documentosJuridicos;
 	
 	/**
-	 * 
+	 * Construtor default
 	 * @param titulo
 	 * @param nome
+	 * @param documentosJuridicos
 	 */
-	public Parte(String titulo, String nome) {
+	public Parte(String titulo, String nome, List<DocumentoJuridico> documentosJuridicos) {
 		this.titulo = titulo;
 		this.nome = nome;
+		this.documentosJuridicos = documentosJuridicos;
 	}
-	
+
 	/**
 	 * Construtor vazio
 	 */
-	public Parte() {}
+	public Parte() {
+		this.documentosJuridicos = new ArrayList<DocumentoJuridico>();
+	}
 
 	public String getTitulo() {
 		return titulo;
@@ -64,11 +87,11 @@ public class Parte {
 		this.id = id;
 	}
 
-	public DocumentoJuridico getDocumentoJuridico() {
-		return documentoJuridico;
+	public List<DocumentoJuridico> getDocumentosJuridicos() {
+		return documentosJuridicos;
 	}
 
-	public void setDocumentoJuridico(DocumentoJuridico documentoJuridico) {
-		this.documentoJuridico = documentoJuridico;
+	public void setDocumentosJuridicos(List<DocumentoJuridico> documentosJuridicos) {
+		this.documentosJuridicos = documentosJuridicos;
 	}
 }
