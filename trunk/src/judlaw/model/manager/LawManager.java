@@ -3,6 +3,7 @@ package judlaw.model.manager;
 import java.util.List;
 
 import judlaw.model.bean.lei.ElementoNorma;
+import judlaw.model.bean.lei.Norma;
 
 
 /**
@@ -27,6 +28,21 @@ public class LawManager {
         return lawManager;
     }
     
+	/* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES NORMA ----------------------------- */
+    /* ------------------------------------------------------------------ */
+    /**
+     * 
+     */
+    public void salvaNorma(Norma norma) {
+		//Setando ElementosNorma
+    	List<ElementoNorma> elementosNorma = norma.getElementosNorma();
+    	for(ElementoNorma eleN : elementosNorma) {
+    		eleN.setTextoLegalPai(norma);
+    	}
+		dbManager.save(norma);
+	}
+	
     /* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES ELEMENTO NORMA -------------------- */
     /* ------------------------------------------------------------------ */
@@ -34,7 +50,7 @@ public class LawManager {
      * Persiste um elementoNorma na base de dados
      * @param elementoNorma
      */
-	public void saveElementoNorma(ElementoNorma elementoNorma) {
+	public void salvaElementoNorma(ElementoNorma elementoNorma) {
 		dbManager.save(elementoNorma);
 	}
     
@@ -43,14 +59,14 @@ public class LawManager {
      * @return
      */
     @SuppressWarnings("unchecked")
-	public List<ElementoNorma> getTodosElementosNorma(){
+	public List<ElementoNorma> getElementosNorma(){
 		return dbManager.selectAll(new ElementoNorma());
 	}
     
     /**
      * Remove todos os elementosNorma
      */
-	public void removeTodosElementosNorma() {
+	public void removeElementosNorma() {
 		dbManager.removeAll(new ElementoNorma());
 	}
 	

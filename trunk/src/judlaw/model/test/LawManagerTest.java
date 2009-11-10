@@ -44,16 +44,16 @@ public class LawManagerTest {
 	 */
 	@Test public void testSaveElementoNorma() {
 		// verifica se a lista esta vazia antes
-		lawManager.removeTodosElementosNorma();
+		lawManager.removeElementosNorma();
 		List<ElementoNorma> elementos = new ArrayList<ElementoNorma>();
-		elementos = lawManager.getTodosElementosNorma();
+		elementos = lawManager.getElementosNorma();
 		assertEquals(0, elementos.size());
 		
 		// persiste o elemento
-		lawManager.saveElementoNorma( inciso );
+		lawManager.salvaElementoNorma( inciso );
 		
 		// verifica a nova lista
-		elementos = lawManager.getTodosElementosNorma();
+		elementos = lawManager.getElementosNorma();
 		assertEquals(1, elementos.size());
 		
 		// verificando o elemento recuperado do BD
@@ -66,13 +66,13 @@ public class LawManagerTest {
 	 */
 	@Test public void testRecuperaElementoPorAtributo() {
 		// verifica se a lista esta vazia antes
-		lawManager.removeTodosElementosNorma();
+		lawManager.removeElementosNorma();
 		List<ElementoNorma> elementos = new ArrayList<ElementoNorma>();
-		elementos = lawManager.getTodosElementosNorma();
+		elementos = lawManager.getElementosNorma();
 		assertEquals(0, elementos.size());
 		
 		// persiste o elemento
-		lawManager.saveElementoNorma( inciso );
+		lawManager.salvaElementoNorma( inciso );
 		
 //		// procura o elemento cujo identificador unico seja "cp_art120_par2_inc1"
 //		ElementoNorma elemento = (ElementoNorma) lawManager.recuperaElementoPorAtributo
