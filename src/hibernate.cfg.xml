@@ -32,9 +32,9 @@
 			<mapping class="judlaw.model.bean.docjud.Relatorio"/>
 			<mapping class="judlaw.model.bean.docjud.Encerramento"/>
 			<mapping class="judlaw.model.bean.docjud.Voto"/>
+			<mapping class="judlaw.model.bean.docjud.Parte"/>
 			
 		<!-- 			
-			<mapping class="judlaw.model.bean.docjud.Parte"/>
 			<mapping class="judlaw.model.bean.lei.ElementoNorma"/>
 			<mapping class="judlaw.model.bean.lei.Norma"/>
 		-->	
