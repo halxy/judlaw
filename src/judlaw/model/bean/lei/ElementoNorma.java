@@ -34,7 +34,7 @@ import judlaw.model.manager.DBManager;
 @Entity
 @Table(name = "elementonorma")
 @SequenceGenerator(name = "elementonorma_seq", sequenceName = "elementonorma_seq", initialValue = 1, allocationSize = 1)
-public class ElementoNorma extends DocumentoLegal {
+public class ElementoNorma extends TextoLegal {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="elementonorma_seq")

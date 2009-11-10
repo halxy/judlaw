@@ -28,7 +28,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "norma")
 @SequenceGenerator(name = "norma_seq", sequenceName = "norma_seq", initialValue = 1, allocationSize = 1)
-public class Norma extends DocumentoLegal {
+public class Norma extends TextoLegal {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="norma_seq")
