@@ -34,6 +34,6 @@ public class JudLawFacade {
      * Remove todos os elementosNorma;
      */
     public void removeElementosNorma() {
-    	lawManager.removeTodosElementosNorma();
+    	lawManager.removeElementosNorma();
     }
 }
