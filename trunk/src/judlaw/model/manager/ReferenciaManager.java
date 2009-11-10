@@ -14,7 +14,7 @@ import java.util.List;
 
 import judlaw.model.bean.ref.Alteracao;
 import judlaw.model.bean.ref.CitacaoDocJud;
-import judlaw.model.bean.ref.CitacaoDocLeg;
+import judlaw.model.bean.ref.CitacaoTextLeg;
 
 
 /**
@@ -107,20 +107,20 @@ public class ReferenciaManager {
     /* -------------------- OPERACOES CITACAODOCLEG --------------------- */
     /* ------------------------------------------------------------------ */
     
-	public void salvaCitacaoDocLeg(CitacaoDocLeg citacaoDocLeg) {
+	public void salvaCitacaoDocLeg(CitacaoTextLeg citacaoDocLeg) {
 		dbManager.save(citacaoDocLeg);
 	}
 	    
 	@SuppressWarnings("unchecked")
-	public List<CitacaoDocLeg> getCitacoesDocLeg() {
-		return dbManager.selectAll( new CitacaoDocLeg() );
+	public List<CitacaoTextLeg> getCitacoesDocLeg() {
+		return dbManager.selectAll( new CitacaoTextLeg() );
 	}
 	
 	/**
 	 * removeCitacoesDocLeg - por se tratar de um BD temporal, usar apenas em ocasiões especiais
 	 */
 	public void removeCitacoesDocLeg() {
-		dbManager.removeAll( new CitacaoDocLeg() );
+		dbManager.removeAll( new CitacaoTextLeg() );
 	}
 	
 	/**
@@ -130,7 +130,7 @@ public class ReferenciaManager {
 	 * @return Lista com as CitacoesDocLeg recuperadas
 	 */
 	@SuppressWarnings("unchecked")
-	public List<CitacaoDocLeg> recuperaCitacaoDocLegPorAtributo(String atributo, String valor) {
-		return dbManager.selectObjectsByField(new CitacaoDocLeg(), atributo, valor);
+	public List<CitacaoTextLeg> recuperaCitacaoDocLegPorAtributo(String atributo, String valor) {
+		return dbManager.selectObjectsByField(new CitacaoTextLeg(), atributo, valor);
 	}
 }
