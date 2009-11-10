@@ -12,17 +12,21 @@ package judlaw.model.bean.lei;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import judlaw.model.manager.DBManager;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 
 /**
@@ -43,21 +47,64 @@ public class ElementoNorma extends TextoLegal {
 
 	// Texto do Elemento da Norma
 	private String texto;
-		
-	// ESTUDAR PARA REFAZER ESSA PARTE DE BAIXO
-	// Lista de elementos que compoem o ElementoNorma
-	private List<? extends ElementoNorma> elementosNorma; //TODO
-	// O elemento/normal no qual o elementoDaNorma está inserido. Ex: inciso está inserido no paragrafo.
-	private String pai; //TODO
 	
+	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
+	private String tipo; // tipo do textoLegal
+	private String dataPublicacao; // dd/MM/yyy
+	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
+		
+	@OneToMany(mappedBy="textoLegalPai", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+	private List<ElementoNorma> elementosNorma;
+	
+	//TextoLegal pai do ElementoNorma (pode ser uma Norma ou outro ElementoNorma
+	@ManyToOne
+	@JoinColumn(name="textolegaipai_id")
+	private TextoLegal textoLegalPai;
+	
+	/**
+	 * 
+	 * @param texto
+	 * @param identificadorUnico
+	 * @param tipo
+	 * @param dataPublicacao
+	 * @param vigencia
+	 * @param elementosNorma
+	 * @param textoLegalPai
+	 */
+	public ElementoNorma(String texto, String identificadorUnico, String tipo,
+			String dataPublicacao, String vigencia) {
+		this.texto = texto;
+		this.identificadorUnico = identificadorUnico;
+		this.tipo = tipo;
+		this.dataPublicacao = dataPublicacao;
+		this.vigencia = vigencia;
+	}
+	
+	/**
+	 * 
+	 * @param texto
+	 * @param identificadorUnico
+	 * @param tipo
+	 * @param dataPublicacao
+	 * @param vigencia
+	 * @param elementosNorma
+	 */
+	public ElementoNorma(String texto, String identificadorUnico, String tipo,
+			String dataPublicacao, String vigencia,
+			List<ElementoNorma> elementosNorma) {
+		this.texto = texto;
+		this.identificadorUnico = identificadorUnico;
+		this.tipo = tipo;
+		this.dataPublicacao = dataPublicacao;
+		this.vigencia = vigencia;
+		this.elementosNorma = elementosNorma;
+	}
+
 	/**
 	 * Construtor sem parâmetros
 	 */
 	public ElementoNorma() {
-		inicializaListas();
-	}
-	
-	private void inicializaListas(){
 		this.elementosNorma = new ArrayList<ElementoNorma>();
 	}
 
@@ -76,45 +123,66 @@ public class ElementoNorma extends TextoLegal {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
-	
-	/**
-	 * Retorna o pai do elemento
-	 * @return
-	 */
-	public String getPai() {
-		if(this.pai == null && getIdentificadorUnico() != null) {
-			setPai( getPaiPeloIdUnico() );
-		}
-		return this.pai;
-	}
-	
-	public void setPai(String pai) {
-		this.pai = pai;
-	}
-	
-	public List<? extends ElementoNorma> getElementosNorma() {
+
+	public List<ElementoNorma> getElementosNorma() {
 		return elementosNorma;
 	}
 
-	public void setElementosNorma(List<? extends ElementoNorma> elementosNorma) {
+	public void setElementosNorma(List<ElementoNorma> elementosNorma) {
 		this.elementosNorma = elementosNorma;
 	}
-	
-	/*
-	 * Retorna o pai do elemento usando como parametro seu identificador unico
-	 */
-	private String getPaiPeloIdUnico() {
-		String idUnico = getIdentificadorUnico();
-		StringTokenizer tokenId = new StringTokenizer(idUnico, "_");
-		String tokenAux = "";
-		while( tokenId.hasMoreTokens() ) {
-			tokenAux = tokenId.nextToken();
-		}
-		int posicaoId = idUnico.indexOf("_"+tokenAux);	
-		return idUnico.substring(0, posicaoId);
+
+	public String getIdentificadorUnico() {
+		return identificadorUnico;
+	}
+
+	public void setIdentificadorUnico(String identificadorUnico) {
+		this.identificadorUnico = identificadorUnico;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getDataPublicacao() {
+		return dataPublicacao;
+	}
+
+	public void setDataPublicacao(String dataPublicacao) {
+		this.dataPublicacao = dataPublicacao;
+	}
+
+	public String getVigencia() {
+		return vigencia;
+	}
+
+	public void setVigencia(String vigencia) {
+		this.vigencia = vigencia;
+	}
+
+	public TextoLegal getTextoLegalPai() {
+		return textoLegalPai;
+	}
+
+	public void setTextoLegalPai(TextoLegal textoLegalPai) {
+		this.textoLegalPai = textoLegalPai;
 	}
 	
-	public static void main(String[] args) {
-		DBManager.getInstance().save(new ElementoNorma());
-	}
+//	/*
+//	 * Retorna o pai do elemento usando como parametro seu identificador unico
+//	 */
+//	private String getPaiPeloIdUnico() {
+//		String idUnico = getIdentificadorUnico();
+//		StringTokenizer tokenId = new StringTokenizer(idUnico, "_");
+//		String tokenAux = "";
+//		while( tokenId.hasMoreTokens() ) {
+//			tokenAux = tokenId.nextToken();
+//		}
+//		int posicaoId = idUnico.indexOf("_"+tokenAux);	
+//		return idUnico.substring(0, posicaoId);
+//	}
 }
