@@ -49,12 +49,15 @@ public class Voto {
 	 */
 	public Voto(String texto) {
 		this.texto = texto;
+		this.documentoJuridico = new DocumentoJuridico();
 	}
 	
 	/**
 	 * Construtor vazio
 	 */
-	public Voto(){}
+	public Voto(){
+		this.documentoJuridico = new DocumentoJuridico();
+	}
 
 	public String getTexto() {
 		return texto;
