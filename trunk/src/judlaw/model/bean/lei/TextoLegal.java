@@ -11,6 +11,7 @@
 package judlaw.model.bean.lei;
 
 
+
 /**
  * Classe Abstrata TextoLegal - Superclasse de Norma e ElementoNorma
  * @author Halley Freitas
