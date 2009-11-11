@@ -398,6 +398,9 @@ public class DocJudManagerTest {
 		assertEquals( docJudBD2.getEmenta().getTexto(), ementaBD.getTexto() );
 	}
 	
+	/**
+	 * Testa remover as propriedades Cabecalho, Ementa, Relatorio e Encerramento
+	 */
 	@Test
 	public void testRemovePropriedades() {
 		/* ---------- Verifica se a lista esta vazia ----------*/
