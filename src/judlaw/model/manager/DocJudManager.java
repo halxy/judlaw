@@ -247,6 +247,21 @@ public class DocJudManager {
 		dbManager.removeAll( new Voto() );
 	}
 	
+	public void adicionaVoto(Voto voto, DocumentoJuridico docJud) {
+		List<Voto> votos = docJud.getVotos();
+		votos.add(voto);
+		dbManager.save( docJud );
+		voto.setDocumentoJuridico(docJud);
+		dbManager.save(voto);
+	}
+	
+	public void removeVoto(Voto voto, DocumentoJuridico docJud) {
+		List<Voto> votos = docJud.getVotos();
+		votos.remove( voto );
+		dbManager.save( docJud ); 
+		dbManager.remove( voto );
+	}
+	
 	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES Partes ---------------------------- */
     /* ------------------------------------------------------------------ */
