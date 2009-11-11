@@ -40,7 +40,18 @@ public class LawManager {
     	for(ElementoNorma eleN : elementosNorma) {
     		eleN.setNormaPai(norma);
     	}
-		dbManager.save(norma);
+		//Persistindo
+    	dbManager.save(norma);
+    	
+    	//Persistindo os nós filhos
+    	List<ElementoNorma> listaElementos = elementosNorma; // 1o nivel - elementosNorma filhos da Norma
+		for(ElementoNorma elementoN : listaElementos) {
+			List<ElementoNorma> filhos = elementoN.getElementosNorma();
+			for(ElementoNorma filho : filhos) {
+				filho.setElementoNormaPai(elementoN);
+				dbManager.save(filho);
+			}
+		}
 	}
     
     public void removeNormas() {
