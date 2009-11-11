@@ -58,12 +58,11 @@ public class LawManagerTest {
 		 *                         Norma1
 		 *                         /    \
 		 *                       Art1   Art2
-		 *                       /      /   \
+		 *                       /      /  \
 		 *                      Par1  Par2  Par3
 		 *                     /   \
 		 *                  Inc1   Inc2 
 		 */
-		
 		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
 		//Quantidade de normas
 		assertEquals(1, lawManager.getNormas().size() );
