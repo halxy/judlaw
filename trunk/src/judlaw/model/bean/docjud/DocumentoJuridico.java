@@ -46,7 +46,7 @@ public class DocumentoJuridico {
 	private Integer id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="cabecalho_fk")
+    @JoinColumn(name="cabecalho_fk", nullable = true)
 	private Cabecalho cabecalho;
 	
 	@OneToOne(cascade = CascadeType.ALL)
