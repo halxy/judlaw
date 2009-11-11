@@ -176,6 +176,18 @@ public class DocJudManager {
 		dbManager.removeAll( new Encerramento() );
 	}
 	
+	/**
+	 * Altera um encerramento que ja esta inserido no Banco de Dados
+	 * @param encerramento
+	 * @param docJud
+	 */
+	public void alteraEncerramentoBD(Encerramento encerramento, DocumentoJuridico docJud) {
+		Encerramento encerramentoBD = docJud.getEncerramento();
+		encerramentoBD.setDecisao( encerramento.getDecisao() );
+		encerramento.setLocal( encerramento.getLocal() );
+		dbManager.save(docJud);
+	}
+	
 	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES VOTO ------------------------------ */
     /* ------------------------------------------------------------------ */
@@ -192,7 +204,7 @@ public class DocJudManager {
 	}
 	
 	/* ------------------------------------------------------------------ */
-    /* -------------------- OPERACOES CABECALHO ------------------------- */
+    /* -------------------- OPERACOES Partes ---------------------------- */
     /* ------------------------------------------------------------------ */
 	/**
 	 * 
