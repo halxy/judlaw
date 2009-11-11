@@ -41,7 +41,7 @@ public class LawManagerTest {
 		assertEquals(1, lawManager.getNormas().size() );
 		assertEquals(1, lawManager.getNormas().get(0).getElementosNorma().size() );
 		assertEquals(2, lawManager.getElementosNorma().size() );
-		assertEquals(2, lawManager.getElementosNorma().get(0).getElementosNorma().size() );
+		assertEquals(1, lawManager.getElementosNorma().get(0).getElementosNorma().size() );
 		
 		/* ---------- Verifica se os atributos e elementos foram persistidos corretamente ----------*/
 		Norma normaBD = lawManager.getNormas().get(0);
