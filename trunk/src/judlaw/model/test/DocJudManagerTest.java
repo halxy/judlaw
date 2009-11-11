@@ -29,6 +29,12 @@ public class DocJudManagerTest {
 	public void setUp() {
 		/* ---------- Esvazia a lista de Documentos Juridicos ----------*/
 		docJudManager.removeDocumentosJuridicos();
+		docJudManager.removeCabecalhos();
+		docJudManager.removeEmentas();
+		docJudManager.removeRelatorios();
+		docJudManager.removeEncerramentos();
+		docJudManager.removeVotos();
+		docJudManager.removePartes();	
 	}
 	/**
 	 * Testa a persistencia de um documento juridico, verificando a corretude dessa acao em relacao aos
@@ -446,5 +452,68 @@ public class DocJudManagerTest {
 		assertEquals( 0, docJudManager.getEmentas().size() );
 		assertEquals( 0, docJudManager.getRelatorios().size() );
 		assertEquals( 0, docJudManager.getEncerramentos().size() );
+	}
+	
+	/**
+	 * Testa as operacoes de adicionar, remover e alterar Votos
+	 */
+	@Test
+	public void testOperacoesVotos() {
+		//Votos
+		ArrayList<Voto> votos = new ArrayList<Voto>();
+		votos.add( new Voto("voto1") );
+		votos.add( new Voto("voto2") );
+		
+		/* ---------- Criacao e Persistencia do DocumentoJuridico ----------*/	
+		DocumentoJuridico docJud1 = new DocumentoJuridico();
+		docJud1.setIdentificadorUnico("idUnico");
+		docJud1.setVotos(votos);
+		docJudManager.salvaDocumentoJuridico(docJud1);
+		
+		DocumentoJuridico docJudBD = docJudManager.getDocumentosJuridicos().get(0);
+		//Verifica a cardinalidade das listas
+		assertEquals( 1, docJudManager.getDocumentosJuridicos().size() );
+		assertEquals( 2, docJudBD.getVotos().size() );
+		assertEquals( 2, docJudManager.getVotos().size() );
+		
+		//Adicionando Votos
+		docJudManager.adicionaVoto(new Voto("voto3"), docJudBD);
+		
+		//Verifica a cardinalidade das listas
+		assertEquals( 1, docJudManager.getDocumentosJuridicos().size() );
+		assertEquals( 3, docJudManager.getDocumentosJuridicos().get(0).getVotos().size() );
+		assertEquals( 3, docJudManager.getVotos().size() );
+		
+		//Verifica as propriedades dos votos
+		assertEquals( docJudManager.getVotos().get(0).getDocumentoJuridico().getIdentificadorUnico(),
+					  docJudBD.getIdentificadorUnico());
+		assertEquals( docJudManager.getVotos().get(1).getDocumentoJuridico().getIdentificadorUnico(),
+				  docJudBD.getIdentificadorUnico());
+		assertEquals( docJudManager.getVotos().get(2).getDocumentoJuridico().getIdentificadorUnico(),
+				  docJudBD.getIdentificadorUnico());
+		
+		//Removendo Votos
+		Voto votoBD = docJudBD.getVotos().get(0);
+		System.out.println("voto a remover: "+votoBD.getTexto());
+		docJudManager.removeVoto(votoBD, docJudBD);
+		
+		//Verifica a cardinalidade das listas
+		assertEquals( 1, docJudManager.getDocumentosJuridicos().size() );
+		for(Voto voto : docJudManager.getDocumentosJuridicos().get(0).getVotos()) {
+			System.out.println(voto.getTexto());
+		}
+		assertEquals( 2, docJudManager.getDocumentosJuridicos().get(0).getVotos().size() );
+		assertEquals( 2, docJudManager.getVotos().size() );
+		
+		//Verifica os elementos que sobraram
+		assertEquals( "voto2", docJudManager.getDocumentosJuridicos().get(0).getVotos().get(0).getTexto() );
+		assertEquals( "voto3", docJudManager.getDocumentosJuridicos().get(0).getVotos().get(1).getTexto() );
+	}
+	
+	/**
+	 * Testa as operacoes de adicionar, remover e alterar Partes
+	 */
+	@Test
+	public void testOperacoesPartes() {
 	}
 }
