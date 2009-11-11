@@ -96,6 +96,19 @@ public class DocJudManager {
 		dbManager.removeAll( new Cabecalho() );
 	}
 	
+	/**
+	 * Altera um cabecalho que ja esta inserido no Banco de Dados
+	 * @param cabecalho
+	 * @param docJud
+	 */
+	public void alteraCabecalhoBD(Cabecalho cabecalho, DocumentoJuridico docJud) {
+		Cabecalho cabecalhoBD = docJud.getCabecalho();
+		cabecalhoBD.setCodRegistro( cabecalho.getCodRegistro() );
+		cabecalhoBD.setOrgaoJulgador( cabecalho.getOrgaoJulgador() );
+		cabecalhoBD.setTribunal( cabecalho.getTribunal() );
+		dbManager.save(docJud);
+	}
+	
 	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES EMENTA ---------------------------- */
     /* ------------------------------------------------------------------ */
@@ -111,6 +124,17 @@ public class DocJudManager {
 		dbManager.removeAll( new Ementa() );
 	}
 	
+	/**
+	 * Altera uma ementa que ja esta inserida no Banco de Dados
+	 * @param ementa
+	 * @param docJud
+	 */
+	public void alteraEmentaBD(Ementa ementa, DocumentoJuridico docJud) {
+		Ementa ementaBD = docJud.getEmenta();
+		ementaBD.setTexto( ementa.getTexto() );
+		dbManager.save(docJud);
+	}
+	
 	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES RELATORIO ------------------------- */
     /* ------------------------------------------------------------------ */
@@ -124,6 +148,17 @@ public class DocJudManager {
 	
 	public void removeRelatorios() {
 		dbManager.removeAll( new Relatorio() );
+	}
+	
+	/**
+	 * Altera um relatorio que ja esta inserido no Banco de Dados
+	 * @param ementa
+	 * @param docJud
+	 */
+	public void alteraRelatorioBD(Relatorio relatorio, DocumentoJuridico docJud) {
+		Relatorio relatorioBD = docJud.getRelatorio();
+		relatorioBD.setTexto( relatorio.getTexto() );
+		dbManager.save(docJud);
 	}
 	
 	/* ------------------------------------------------------------------ */
