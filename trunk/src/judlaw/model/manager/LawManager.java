@@ -72,8 +72,9 @@ public class LawManager {
     private void salvaElementoRecursivo(ElementoNorma elementoNorma) {
     	List<ElementoNorma> filhos = elementoNorma.getElementosNorma();
 		for(ElementoNorma filho : filhos) {
-			filho.setElementoNormaPai(elementoNorma);
+			filho.setElementoNormaPai(elementoNorma);			
 			dbManager.save(filho);
+			salvaElementoRecursivo(filho);
 		}
     }
     
