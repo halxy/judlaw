@@ -14,6 +14,7 @@ import judlaw.model.bean.docjud.Relatorio;
 import judlaw.model.bean.docjud.Voto;
 import judlaw.model.manager.DocJudManager;
 
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -24,6 +25,11 @@ import org.junit.Test;
 public class DocJudManagerTest {
 	DocJudManager docJudManager = DocJudManager.getInstance();
 	
+	@Before
+	public void setUp() {
+		/* ---------- Esvazia a lista de Documentos Juridicos ----------*/
+		docJudManager.removeDocumentosJuridicos();
+	}
 	/**
 	 * Testa a persistencia de um documento juridico, verificando a corretude dessa acao em relacao aos
 	 * seus dependentes: Cabecalho, Ementa, Encerramento, Parte, Relatorio e Voto.
@@ -31,8 +37,7 @@ public class DocJudManagerTest {
 	 */
 	@Test
 	public void testSaveDocumentoJuridico() {
-		/* ---------- Esvazia a lista de Documentos Juridicos ----------*/
-		docJudManager.removeDocumentosJuridicos();
+		/* ---------- Verifica se a lista esta vazia ----------*/
 		assertEquals(0, docJudManager.getDocumentosJuridicos().size());
 		
 		/* ---------- Elementos do DocumentoJuridico ----------*/		
@@ -128,11 +133,10 @@ public class DocJudManagerTest {
 	 */
 	@Test
 	public void testRemoveDocumentoJuridico() {
-		/* ---------- Esvazia a lista de Documentos Juridicos ----------*/
-		docJudManager.removeDocumentosJuridicos();
+		/* ---------- Verifica se a lista esta vazia ----------*/
 		assertEquals(0, docJudManager.getDocumentosJuridicos().size());
+
 		//Verifica se as demais listas também estão vazias
-		assertEquals( 0, docJudManager.getDocumentosJuridicos().size() );
 		assertEquals( 0, docJudManager.getCabecalhos().size() );
 		assertEquals( 0, docJudManager.getEmentas().size() );
 		assertEquals( 0, docJudManager.getRelatorios().size() );
@@ -200,11 +204,10 @@ public class DocJudManagerTest {
 	 */
 	@Test
 	public void testAlteraDocumentoJuridico() {
-		/* ---------- Esvazia a lista de Documentos Juridicos ----------*/
-		docJudManager.removeDocumentosJuridicos();
+		/* ---------- Verifica se a lista esta vazia ----------*/
 		assertEquals(0, docJudManager.getDocumentosJuridicos().size());
+		
 		//Verifica se as demais listas também estão vazias
-		assertEquals( 0, docJudManager.getDocumentosJuridicos().size() );
 		assertEquals( 0, docJudManager.getCabecalhos().size() );
 		assertEquals( 0, docJudManager.getEmentas().size() );
 		assertEquals( 0, docJudManager.getRelatorios().size() );
@@ -341,13 +344,15 @@ public class DocJudManagerTest {
 		assertEquals( docJudBD2.getPartes().get(1).getNome(), partesBD.get(1).getNome() );
 	}
 	
+	/**
+	 * Teste do metodos metodos alteraPropriedadeBD da classe DocJudManager
+	 */
 	@Test
 	public void testAlteraPropriedades() {
-		/* ---------- Esvazia a lista de Documentos Juridicos ----------*/
-		docJudManager.removeDocumentosJuridicos();
+		/* ---------- Verifica se a lista esta vazia ----------*/
 		assertEquals(0, docJudManager.getDocumentosJuridicos().size());
+		
 		//Verifica se as demais listas também estão vazias
-		assertEquals( 0, docJudManager.getDocumentosJuridicos().size() );
 		assertEquals( 0, docJudManager.getCabecalhos().size() );
 		assertEquals( 0, docJudManager.getEmentas().size() );
 		
@@ -391,5 +396,52 @@ public class DocJudManagerTest {
 		DocumentoJuridico docJudBD2 = docJudManager.getDocumentosJuridicos().get(0);
 		assertEquals( docJudBD2.getCabecalho().getCodRegistro(), cabecalhoBD.getCodRegistro() );
 		assertEquals( docJudBD2.getEmenta().getTexto(), ementaBD.getTexto() );
+	}
+	
+	@Test
+	public void testRemovePropriedades() {
+		/* ---------- Verifica se a lista esta vazia ----------*/
+		assertEquals( 0, docJudManager.getDocumentosJuridicos().size() );
+		
+		//Cabecalho
+		Cabecalho cabecalho1 = new Cabecalho();
+		cabecalho1.setCodRegistro("codRegistro");
+		cabecalho1.setOrgaoJulgador("orgaoJulgador");
+		cabecalho1.setTribunal("tribunal");
+		//Ementa
+		Ementa ementa1 = new Ementa("ementa1");
+		//Relatorio
+		Relatorio relatorio1 = new Relatorio("relatorio1");
+		//Encerramento
+		Encerramento encerramento1 = new Encerramento("decisao1", "local1");
+		
+		/* ---------- Criacao e Persistencia do DocumentoJuridico ----------*/	
+		DocumentoJuridico docJud1 = new DocumentoJuridico();
+		docJud1.setIdentificadorUnico("idUnico");
+		docJud1.setCabecalho(cabecalho1);
+		docJud1.setEmenta(ementa1);
+		docJud1.setRelatorio(relatorio1);
+		docJud1.setEncerramento(encerramento1);
+		docJudManager.salvaDocumentoJuridico(docJud1);
+		
+		//Verifica a cardinalidade das listas
+		assertEquals( 1, docJudManager.getDocumentosJuridicos().size() );
+		assertEquals( 1, docJudManager.getCabecalhos().size() );
+		assertEquals( 1, docJudManager.getEmentas().size() );
+		assertEquals( 1, docJudManager.getRelatorios().size() );
+		assertEquals( 1, docJudManager.getEncerramentos().size() );
+		
+		/* ---------- Remove os cabecalhos ----------*/
+		docJudManager.removeCabecalho( docJudManager.getDocumentosJuridicos().get(0) );
+		docJudManager.removeEmenta( docJudManager.getDocumentosJuridicos().get(0) );
+		docJudManager.removeRelatorio( docJudManager.getDocumentosJuridicos().get(0) );
+		docJudManager.removeEncerramento( docJudManager.getDocumentosJuridicos().get(0) );
+		
+		//Verifica a cardinalidade das listas
+		assertEquals( 1, docJudManager.getDocumentosJuridicos().size() );
+		assertEquals( 0, docJudManager.getCabecalhos().size() );
+		assertEquals( 0, docJudManager.getEmentas().size() );
+		assertEquals( 0, docJudManager.getRelatorios().size() );
+		assertEquals( 0, docJudManager.getEncerramentos().size() );
 	}
 }
