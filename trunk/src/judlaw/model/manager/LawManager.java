@@ -36,7 +36,7 @@ public class LawManager {
      */
     public void salvaNorma(Norma norma) {
 		//Setando ElementosNorma
-    	List<ElementoNorma> elementosNorma = norma.getElementosNorma();
+    	List<ElementoNorma> elementosNorma = norma.getElementosNorma(); // 1o nivel - elementosNorma filhos da Norma
     	for(ElementoNorma eleN : elementosNorma) {
     		eleN.setNormaPai(norma);
     	}
@@ -44,15 +44,9 @@ public class LawManager {
     	dbManager.save(norma);
     	
     	//Persistindo os nós filhos
-    	List<ElementoNorma> listaElementos = elementosNorma; // 1o nivel - elementosNorma filhos da Norma
-  
-    	for(ElementoNorma elementoN : listaElementos) {
-			List<ElementoNorma> filhos = elementoN.getElementosNorma();
-			for(ElementoNorma filho : filhos) {
-				filho.setElementoNormaPai(elementoN);
-				dbManager.save(filho);
-			}
-		}
+    	for(ElementoNorma eleN : elementosNorma) {
+    		salvaElementoRecursivo(eleN);
+    	}
 	}
     
     public void removeNormas() {
@@ -71,6 +65,18 @@ public class LawManager {
     /* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES ELEMENTO NORMA -------------------- */
     /* ------------------------------------------------------------------ */
+    
+    /*
+     * Salva um elementoNorma e todos seus nos filhos recursivamente
+     */
+    private void salvaElementoRecursivo(ElementoNorma elementoNorma) {
+    	List<ElementoNorma> filhos = elementoNorma.getElementosNorma();
+		for(ElementoNorma filho : filhos) {
+			filho.setElementoNormaPai(elementoNorma);
+			dbManager.save(filho);
+		}
+    }
+    
     /**
      * Persiste um elementoNorma na base de dados
      * @param elementoNorma
