@@ -109,6 +109,17 @@ public class DocJudManager {
 		dbManager.save(docJud);
 	}
 	
+	/**
+	 * Remove o cabecalho de um documentoJuridico
+	 * @param docJud
+	 */
+	public void removeCabecalho(DocumentoJuridico docJud) {
+		Cabecalho cabecalho = docJud.getCabecalho();
+		docJud.setCabecalho(null);
+		dbManager.save(docJud);
+		dbManager.remove(cabecalho);
+	}
+	
 	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES EMENTA ---------------------------- */
     /* ------------------------------------------------------------------ */
@@ -122,6 +133,17 @@ public class DocJudManager {
 	
 	public void removeEmentas() {
 		dbManager.removeAll( new Ementa() );
+	}
+	
+	/**
+	 * Remove ementa
+	 * @param docJud
+	 */
+	public void removeEmenta(DocumentoJuridico docJud) {
+		Ementa ementa = docJud.getEmenta();
+		docJud.setEmenta(null);
+		dbManager.save(docJud);
+		dbManager.remove(ementa);
 	}
 	
 	/**
@@ -151,6 +173,17 @@ public class DocJudManager {
 	}
 	
 	/**
+	 * Remove relatoro
+	 * @param docJud
+	 */
+	public void removeRelatorio(DocumentoJuridico docJud) {
+		Relatorio relatorio = docJud.getRelatorio();
+		docJud.setRelatorio(null);
+		dbManager.save(docJud);
+		dbManager.remove(relatorio);
+	}
+	
+	/**
 	 * Altera um relatorio que ja esta inserido no Banco de Dados
 	 * @param ementa
 	 * @param docJud
@@ -174,6 +207,17 @@ public class DocJudManager {
 	
 	public void removeEncerramentos() {
 		dbManager.removeAll( new Encerramento() );
+	}
+	
+	/**
+	 * Remove encerramento
+	 * @param docJud
+	 */
+	public void removeEncerramento(DocumentoJuridico docJud) {
+		Encerramento encerramento = docJud.getEncerramento();
+		docJud.setEncerramento(null);
+		dbManager.save(docJud);
+		dbManager.remove(encerramento);
 	}
 	
 	/**
