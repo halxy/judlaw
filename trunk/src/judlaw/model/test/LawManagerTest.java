@@ -5,6 +5,7 @@ import judlaw.model.bean.lei.ElementoNorma;
 import judlaw.model.bean.lei.Norma;
 import judlaw.model.manager.LawManager;
 
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -17,12 +18,17 @@ public class LawManagerTest {
 	// DBManager
 	private LawManager lawManager = LawManager.getInstance();
 	
+	@Before
+	public void setUp() {
+		/* ---------- Esvazia a lista de Normas e ElementosNorma ----------*/
+		lawManager.removeNormas();
+		lawManager.removeElementosNorma();
+	}
+	
 	@Test
 	public void testSalvaNorma() {
-		/* ---------- Esvazia a lista de Normas ----------*/
-		lawManager.removeNormas();
+		/* ---------- Verifica se as listas estao vazias ----------*/
 		assertEquals( 0, lawManager.getNormas().size() );
-		lawManager.removeElementosNorma();
 		assertEquals( 0, lawManager.getElementosNorma().size() );
 		
 		/* ---------- Elementos da Norma ----------*/
