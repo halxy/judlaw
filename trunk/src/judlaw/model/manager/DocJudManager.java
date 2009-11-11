@@ -276,4 +276,19 @@ public class DocJudManager {
 	public void removePartes() {
 		dbManager.removeAll( new Parte() );
 	}
+	
+	public void adicionaParte(Parte parte, DocumentoJuridico docJud) {
+		List<Parte> partes = docJud.getPartes();
+		partes.add(parte);
+		dbManager.save( docJud );
+		parte.getDocumentosJuridicos().add(docJud);
+		dbManager.save(parte);
+	}
+	
+	public void removeParte(Parte parte, DocumentoJuridico docJud) {
+		List<Parte> partes = docJud.getPartes();
+		partes.remove( parte );
+		dbManager.save( docJud ); 
+		dbManager.remove( parte );
+	}
 }
