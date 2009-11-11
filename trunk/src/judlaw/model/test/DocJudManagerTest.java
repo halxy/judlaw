@@ -340,4 +340,90 @@ public class DocJudManagerTest {
 		assertEquals( docJudBD2.getPartes().get(0).getTitulo(), partesBD.get(0).getTitulo() );
 		assertEquals( docJudBD2.getPartes().get(1).getNome(), partesBD.get(1).getNome() );
 	}
+	
+	@Test
+	public void testAlteraPropriedades() {
+		/* ---------- Esvazia a lista de Documentos Juridicos ----------*/
+		docJudManager.removeDocumentosJuridicos();
+		assertEquals(0, docJudManager.getDocumentosJuridicos().size());
+		//Verifica se as demais listas também estão vazias
+		assertEquals( 0, docJudManager.getDocumentosJuridicos().size() );
+		assertEquals( 0, docJudManager.getCabecalhos().size() );
+		assertEquals( 0, docJudManager.getEmentas().size() );
+		assertEquals( 0, docJudManager.getRelatorios().size() );
+		assertEquals( 0, docJudManager.getEncerramentos().size() );
+		assertEquals( 0, docJudManager.getVotos().size() );
+		assertEquals( 0, docJudManager.getPartes().size() );
+		
+		/* ---------- Elementos do DocumentoJuridico ----------*/		
+		//Cabecalho
+		Cabecalho cabecalho1 = new Cabecalho();
+		cabecalho1.setCodRegistro("codRegistro");
+		cabecalho1.setOrgaoJulgador("orgaoJulgador");
+		cabecalho1.setTribunal("tribunal");
+		//Ementa
+		Ementa ementa1 = new Ementa("ementa1");
+		//Relatorio
+		Relatorio relatorio1 = new Relatorio("relatorio1");
+		//Encerramento
+		Encerramento encerramento1 = new Encerramento("decisao1", "local1");
+		//Votos
+		ArrayList<Voto> votos = new ArrayList<Voto>();
+		votos.add( new Voto("voto1") );
+		votos.add( new Voto("voto2") );
+		//Partes
+		ArrayList<Parte> partes = new ArrayList<Parte>();
+		partes.add( new Parte("titulo1", "nome1") );
+		partes.add( new Parte("titulo2", "nome2") );
+		
+		/* ---------- Criacao e Persistencia do DocumentoJuridico ----------*/	
+		DocumentoJuridico docJud1 = new DocumentoJuridico();
+		docJud1.setIdentificadorUnico("idUnico");
+		docJud1.setCabecalho(cabecalho1);
+		docJud1.setEmenta(ementa1);
+		docJud1.setRelatorio(relatorio1);
+		docJud1.setEncerramento(encerramento1);
+		docJud1.setVotos(votos);
+		docJud1.setPartes(partes);
+		docJudManager.salvaDocumentoJuridico(docJud1);
+		
+		/* ---------- Verifica se os atributos e elementos foram persistidos corretamente ----------*/
+		DocumentoJuridico docJudBD = docJudManager.getDocumentosJuridicos().get(0);
+		
+		/* ---------- ALTERACOES ----------*/
+		// Cabecalho
+		Cabecalho cabecalhoBD = new Cabecalho();
+		cabecalhoBD.setCodRegistro("codRegistro2");
+		// Ementa
+		Ementa ementaBD = new Ementa();
+		ementaBD.setTexto("ementa2");
+		// Relatorio
+		Relatorio relatorioBD = docJudBD.getRelatorio();
+		relatorioBD.setTexto("relatorio2");
+		// Encerramento
+		Encerramento encerramentoBD = docJudBD.getEncerramento();
+		encerramentoBD.setDecisao("decisao2");
+		// Votos
+		List<Voto> votosBD = docJudBD.getVotos();
+		votosBD.get(0).setTexto("voto11");
+		votosBD.get(1).setTexto("voto22");
+		// Partes
+		List<Parte> partesBD = docJudBD.getPartes();
+		partesBD.get(0).setTitulo("titulo11");
+		partesBD.get(1).setNome("nome22");
+		
+		/* ---------- Alterando  ----------*/
+		docJudManager.alteraCabecalhoBD(cabecalhoBD, docJudBD);
+		docJudManager.alteraEmentaBD(ementaBD, docJudBD);
+		
+		/* ---------- Verifica se os elementos foram inseridos em suas respectivas tabelas  ----------*/
+		assertEquals( 1, docJudManager.getDocumentosJuridicos().size() );
+		assertEquals( 1, docJudManager.getCabecalhos().size() );
+		assertEquals( 1, docJudManager.getEmentas().size() );	
+		
+		/* ---------- Verifica se as propriedades foram modificadas  ----------*/
+		DocumentoJuridico docJudBD2 = docJudManager.getDocumentosJuridicos().get(0);
+		assertEquals( docJudBD2.getCabecalho().getCodRegistro(), cabecalhoBD.getCodRegistro() );
+		assertEquals( docJudBD2.getEmenta().getTexto(), ementaBD.getTexto() );
+	}
 }
