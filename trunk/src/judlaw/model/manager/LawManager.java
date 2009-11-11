@@ -42,6 +42,19 @@ public class LawManager {
     	}
 		dbManager.save(norma);
 	}
+    
+    public void removeNormas() {
+		dbManager.removeAll( new Norma() );
+	}
+    
+    /**
+     * Retorna todos as normas
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+	public List<Norma> getNormas(){
+		return dbManager.selectAll( new Norma() );
+	}
 	
     /* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES ELEMENTO NORMA -------------------- */
