@@ -1,16 +1,10 @@
 package judlaw.model.test;
 
 import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import judlaw.model.bean.lei.ElementoNorma;
-import judlaw.model.bean.ref.Referencia;
+import judlaw.model.bean.lei.Norma;
 import judlaw.model.manager.LawManager;
-import judlaw.model.util.Constantes;
 
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -23,59 +17,44 @@ public class LawManagerTest {
 	// DBManager
 	private LawManager lawManager = LawManager.getInstance();
 	
-	//ElementoNorma
-	private ElementoNorma inciso;
-	List<Referencia> referencias1, referencias2;
-	
-	@Before public void setUp(){
-		// Setando as propriedades dos elementos da norma
-		
-		/* -------------------- INCISO -------------------- */
-		inciso = new ElementoNorma();
-		inciso.setIdentificadorUnico("cp_art120_par2_inc1");
-		inciso.setTipo(Constantes.INCISO);
-		inciso.setTexto("Texto do inciso");
-		inciso.setDataPublicacao("28/10/2009");
-		inciso.setVigencia("28/10/2009-99/99/9999");		
-	}
-	
-	/**
-	 * Test method for {@link judlaw.model.manager.LawManager#saveElementoNorma}. 
-	 */
-	@Test public void testSaveElementoNorma() {
-		// verifica se a lista esta vazia antes
+	@Test
+	public void testSalvaNorma() {
+		/* ---------- Esvazia a lista de Normas ----------*/
+		lawManager.removeNormas();
+		assertEquals( 0, lawManager.getNormas().size() );
 		lawManager.removeElementosNorma();
-		List<ElementoNorma> elementos = new ArrayList<ElementoNorma>();
-		elementos = lawManager.getElementosNorma();
-		assertEquals(0, elementos.size());
+		assertEquals( 0, lawManager.getElementosNorma().size() );
 		
-		// persiste o elemento
-		lawManager.salvaElementoNorma( inciso );
+		/* ---------- Elementos da Norma ----------*/
+		ElementoNorma elementoNorma1 = new ElementoNorma("textoEN1", "identificadorUnicoEN1", "tipoEN1", 
+														"dataPublicacaoEN1", "vigenciaEN1");
+		ElementoNorma elementoNorma2 = new ElementoNorma("textoEN2", "identificadorUnicoEN2", "tipoEN2", 
+				"dataPublicacaoEN2", "vigenciaEN2");
+		elementoNorma1.getElementosNorma().add(elementoNorma2);
 		
-		// verifica a nova lista
-		elementos = lawManager.getElementosNorma();
-		assertEquals(1, elementos.size());
+		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+								"dataPublicacaoN1", "vigenciaN1");
+		norma1.getElementosNorma().add(elementoNorma1);
+		lawManager.salvaNorma(norma1);
 		
-		// verificando o elemento recuperado do BD
-		ElementoNorma elementoBD = elementos.get(0);
-		assertEquals(elementoBD.getIdentificadorUnico(), inciso.getIdentificadorUnico());
-	}
-	
-	/**
-	 * Test method for {@link judlaw.model.manager.LawManager#recuperaElementoPorAtributo(java.lang.String, java.lang.String)}. 
-	 */
-	@Test public void testRecuperaElementoPorAtributo() {
-		// verifica se a lista esta vazia antes
-		lawManager.removeElementosNorma();
-		List<ElementoNorma> elementos = new ArrayList<ElementoNorma>();
-		elementos = lawManager.getElementosNorma();
-		assertEquals(0, elementos.size());
+		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
+		assertEquals(1, lawManager.getNormas().size() );
+		assertEquals(1, lawManager.getNormas().get(0).getElementosNorma().size() );
+		assertEquals(2, lawManager.getElementosNorma().size() );
+		assertEquals(2, lawManager.getElementosNorma().get(0).getElementosNorma().size() );
 		
-		// persiste o elemento
-		lawManager.salvaElementoNorma( inciso );
+		/* ---------- Verifica se os atributos e elementos foram persistidos corretamente ----------*/
+		Norma normaBD = lawManager.getNormas().get(0);
+
+		//Atributo identificadorUnico
+		assertEquals( normaBD.getIdentificadorUnico(), norma1.getIdentificadorUnico() );
 		
-//		// procura o elemento cujo identificador unico seja "cp_art120_par2_inc1"
-//		ElementoNorma elemento = (ElementoNorma) lawManager.recuperaElementoPorAtributo
-//													("identificadorUnico","cp_art120_par2_inc1").get(0);
+		//ELEMENTONORMA1
+		assertEquals( normaBD.getElementosNorma().get(0).getIdentificadorUnico(), 
+					  norma1.getElementosNorma().get(0).getIdentificadorUnico() );
+		//Relacao Bidirecional
+		assertEquals( normaBD.getElementosNorma().get(0).getNormaPai().getIdentificadorUnico(), 
+					  norma1.getElementosNorma().get(0).getNormaPai().getIdentificadorUnico() );
+		
 	}
 }
