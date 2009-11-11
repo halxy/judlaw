@@ -55,6 +55,5 @@ public class LawManagerTest {
 		//Relacao Bidirecional
 		assertEquals( normaBD.getElementosNorma().get(0).getNormaPai().getIdentificadorUnico(), 
 					  norma1.getElementosNorma().get(0).getNormaPai().getIdentificadorUnico() );
-		
 	}
 }
