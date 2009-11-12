@@ -23,6 +23,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import judlaw.model.bean.ref.CitacaoTextLeg;
+
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -53,10 +55,17 @@ public class Norma extends TextoLegal {
     @LazyCollection(LazyCollectionOption.FALSE)
 	private List<ElementoNorma> elementosNorma;
 	
+	/* --------- Atributos --------- */
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
 	private String tipo; // tipo do textoLegal
 	private String dataPublicacao; // dd/MM/yyy
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
+	
+	/* --------- Referencias --------- */
+	@OneToMany(mappedBy="normaOrigem", cascade = CascadeType.ALL)
+    @Column(name="citacoesfeitas_fk")
+    @LazyCollection(LazyCollectionOption.FALSE)
+	private List<CitacaoTextLeg> citacoesFeitas;
 	
 	/**
 	 * 
@@ -96,6 +105,7 @@ public class Norma extends TextoLegal {
 		this.dataPublicacao = dataPublicacao;
 		this.vigencia = vigencia;
 		this.elementosNorma = new ArrayList<ElementoNorma>();
+		this.citacoesFeitas = new ArrayList<CitacaoTextLeg>();
 	}
 
 
@@ -104,6 +114,7 @@ public class Norma extends TextoLegal {
 	 */
 	public Norma() {
 		this.elementosNorma = new ArrayList<ElementoNorma>();
+		this.citacoesFeitas = new ArrayList<CitacaoTextLeg>();
 	}
 
 	public Integer getId() {
@@ -184,5 +195,13 @@ public class Norma extends TextoLegal {
 
 	public void setVigencia(String vigencia) {
 		this.vigencia = vigencia;
+	}
+
+	public List<CitacaoTextLeg> getCitacoesFeitas() {
+		return citacoesFeitas;
+	}
+
+	public void setCitacoesFeitas(List<CitacaoTextLeg> citacoesFeitas) {
+		this.citacoesFeitas = citacoesFeitas;
 	}
 }
