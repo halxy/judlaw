@@ -492,7 +492,9 @@ public class DocJudManagerTest {
 	}
 	
 	/**
-	 * Testa as operacoes de adicionar, remover e alterar Votos
+	 * Testa as operacoes de adicionar, remover e alterar Votos.
+	 * Votos tem um tratamento diferenciado das demais por se tratar de uma lista,
+	 * dai um metodo so para ele.
 	 */
 	@Test
 	public void testOperacoesVotos() {
@@ -545,6 +547,8 @@ public class DocJudManagerTest {
 	
 	/**
 	 * Testa as operacoes de adicionar, remover e alterar Partes
+	 * Partes tem um tratamento diferenciado das demais por se tratar de uma lista,
+	 * dai um metodo so para ela.
 	 */
 	@Test
 	public void testOperacoesPartes() {
