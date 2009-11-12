@@ -103,9 +103,15 @@ public class DocJudManager {
 	 */
 	public void alteraCabecalhoBD(Cabecalho cabecalho, DocumentoJuridico docJud) {
 		Cabecalho cabecalhoBD = docJud.getCabecalho();
+		if(cabecalhoBD == null) {
+			cabecalhoBD = new Cabecalho();
+		}
 		cabecalhoBD.setCodRegistro( cabecalho.getCodRegistro() );
 		cabecalhoBD.setOrgaoJulgador( cabecalho.getOrgaoJulgador() );
 		cabecalhoBD.setTribunal( cabecalho.getTribunal() );
+		cabecalhoBD.setDocumentoJuridico(docJud);
+		dbManager.save(cabecalhoBD);
+		docJud.setCabecalho(cabecalhoBD);
 		dbManager.save(docJud);
 	}
 	
@@ -115,7 +121,7 @@ public class DocJudManager {
 	 */
 	public void removeCabecalho(DocumentoJuridico docJud) {
 		Cabecalho cabecalho = docJud.getCabecalho();
-		docJud.setCabecalho(null);
+		docJud.setCabecalho( null );
 		dbManager.save(docJud);
 		dbManager.remove(cabecalho);
 	}
@@ -153,7 +159,12 @@ public class DocJudManager {
 	 */
 	public void alteraEmentaBD(Ementa ementa, DocumentoJuridico docJud) {
 		Ementa ementaBD = docJud.getEmenta();
+		if(ementaBD == null) {
+			ementaBD = new Ementa();
+		}
 		ementaBD.setTexto( ementa.getTexto() );
+		dbManager.save(ementaBD);
+		docJud.setEmenta(ementaBD);
 		dbManager.save(docJud);
 	}
 	
@@ -190,7 +201,12 @@ public class DocJudManager {
 	 */
 	public void alteraRelatorioBD(Relatorio relatorio, DocumentoJuridico docJud) {
 		Relatorio relatorioBD = docJud.getRelatorio();
+		if(relatorioBD == null) {
+			relatorioBD = new Relatorio();
+		}
 		relatorioBD.setTexto( relatorio.getTexto() );
+		dbManager.save(relatorioBD);
+		docJud.setRelatorio(relatorioBD);
 		dbManager.save(docJud);
 	}
 	
@@ -227,8 +243,13 @@ public class DocJudManager {
 	 */
 	public void alteraEncerramentoBD(Encerramento encerramento, DocumentoJuridico docJud) {
 		Encerramento encerramentoBD = docJud.getEncerramento();
+		if(encerramentoBD == null) {
+			encerramentoBD = new Encerramento();
+		}
 		encerramentoBD.setDecisao( encerramento.getDecisao() );
 		encerramento.setLocal( encerramento.getLocal() );
+		dbManager.save(encerramentoBD);
+		docJud.setEncerramento(encerramentoBD);
 		dbManager.save(docJud);
 	}
 	
