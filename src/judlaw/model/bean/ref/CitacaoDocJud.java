@@ -15,8 +15,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import judlaw.model.bean.docjud.DocumentoJuridico;
 
 @Entity
 @Table(name = "citacaodocjud")
@@ -29,30 +33,34 @@ public class CitacaoDocJud extends Referencia {
 	private Integer id;
 
 	// Atributos advindos de Referencia
-	private String origem; // identificadorUnico do Documento que fez a referência
+	@ManyToOne
+	@JoinColumn(name="origem_id")
+	private DocumentoJuridico documentoJuridicoOrigem;
 	private String destino; // identificadorUnico do Documento que recebeu a referência
 	private String data; // data em que foi feita a referência
 	
+	
 	/**
 	 * 
-	 * @param origem
+	 * @param documentoJuridicoOrigem
 	 * @param destino
 	 * @param data
 	 */
-	public CitacaoDocJud(String origem, String destino, String data) {
-		this.origem = origem;
+	public CitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, String destino,
+			String data) {
+		this.documentoJuridicoOrigem = documentoJuridicoOrigem;
 		this.destino = destino;
 		this.data = data;
 	}
-	
+
 	public CitacaoDocJud(){}
 
-	public String getOrigem() {
-		return origem;
+	public DocumentoJuridico getDocumentoJuridicoOrigem() {
+		return documentoJuridicoOrigem;
 	}
 
-	public void setOrigem(String origem) {
-		this.origem = origem;
+	public void setDocumentoJuridicoOrigem(DocumentoJuridico documentoJuridicoOrigem) {
+		this.documentoJuridicoOrigem = documentoJuridicoOrigem;
 	}
 
 	public String getDestino() {
