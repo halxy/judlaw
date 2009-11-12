@@ -27,6 +27,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import judlaw.model.bean.ref.CitacaoDocJud;
+
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -83,6 +85,11 @@ public class DocumentoJuridico {
 	private String tipo; // tipos de Documentos Juridicos e Documentos Legais
 	private String dataPublicacao; // dd/MM/yyy
 	
+	@OneToMany(mappedBy="documentoJuridicoOrigem", cascade = CascadeType.ALL)
+    @Column(name="citacoesfeitas_fk")
+    @LazyCollection(LazyCollectionOption.FALSE)
+	private List<CitacaoDocJud> citacoesFeitas;
+	
 	/**
 	 * 
 	 * @param cabecalho
@@ -120,6 +127,7 @@ public class DocumentoJuridico {
 		this.encerramento = new Encerramento();
 		this.votos = new ArrayList<Voto>();
 		this.partes = new ArrayList<Parte>();
+		this.citacoesFeitas = new ArrayList<CitacaoDocJud>();
 	}
 	
 	public Integer getId() {
@@ -200,5 +208,13 @@ public class DocumentoJuridico {
 
 	public void setDataPublicacao(String dataPublicacao) {
 		this.dataPublicacao = dataPublicacao;
+	}
+
+	public List<CitacaoDocJud> getCitacoesFeitas() {
+		return citacoesFeitas;
+	}
+
+	public void setCitacoesFeitas(List<CitacaoDocJud> citacoesFeitas) {
+		this.citacoesFeitas = citacoesFeitas;
 	}
 }
