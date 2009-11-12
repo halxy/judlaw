@@ -32,13 +32,13 @@ public class CitacaoDocJud extends Referencia {
 	@Column(name="citacaodocjud_id")
 	private Integer id;
 
-	// Atributos advindos de Referencia
-	@ManyToOne
-	@JoinColumn(name="origem_id")
-	private DocumentoJuridico documentoJuridicoOrigem;
+	/* --------- Atributos --------- */
 	private String destino; // identificadorUnico do Documento que recebeu a referência
 	private String data; // data em que foi feita a referência
 	
+	@ManyToOne
+	@JoinColumn(name="origem_id")
+	private DocumentoJuridico documentoJuridicoOrigem;
 	
 	/**
 	 * 
