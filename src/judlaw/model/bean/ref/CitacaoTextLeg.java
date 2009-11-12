@@ -15,8 +15,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import judlaw.model.bean.lei.Norma;
 
 @Entity
 @Table(name = "citacaotextleg")
@@ -28,18 +32,26 @@ public class CitacaoTextLeg extends Referencia {
 	@Column(name="citacaotextleg_id")
 	private Integer id;
 
-	// Atributos advindos de Referencia
-	private String origem; // identificadorUnico do Documento que fez a referência
+	/* --------- Atributos --------- */
 	private String destino; // identificadorUnico do Documento que recebeu a referência
 	private String data; // data em que foi feita a referência
 	
+	@ManyToOne
+	@JoinColumn(name="origemNorma_id")
+	private Norma normaOrigem;
 	
-	public CitacaoTextLeg(String origem, String destino, String data) {
-		this.origem = origem;
+	/**
+	 * 
+	 * @param normaOrigem
+	 * @param destino
+	 * @param data
+	 */
+	public CitacaoTextLeg(Norma normaOrigem, String destino, String data) {
+		this.normaOrigem = normaOrigem;
 		this.destino = destino;
 		this.data = data;
 	}
-	
+
 	/**
 	 * Construtor vazio
 	 */
@@ -51,14 +63,6 @@ public class CitacaoTextLeg extends Referencia {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getOrigem() {
-		return origem;
-	}
-
-	public void setOrigem(String origem) {
-		this.origem = origem;
 	}
 
 	public String getDestino() {
@@ -75,5 +79,13 @@ public class CitacaoTextLeg extends Referencia {
 
 	public void setData(String data) {
 		this.data = data;
+	}
+
+	public Norma getNormaOrigem() {
+		return normaOrigem;
+	}
+
+	public void setNormaOrigem(Norma normaOrigem) {
+		this.normaOrigem = normaOrigem;
 	}
 }
