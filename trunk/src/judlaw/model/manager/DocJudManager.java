@@ -163,6 +163,7 @@ public class DocJudManager {
 			ementaBD = new Ementa();
 		}
 		ementaBD.setTexto( ementa.getTexto() );
+		ementaBD.setDocumentoJuridico(docJud);
 		dbManager.save(ementaBD);
 		docJud.setEmenta(ementaBD);
 		dbManager.save(docJud);
@@ -205,6 +206,7 @@ public class DocJudManager {
 			relatorioBD = new Relatorio();
 		}
 		relatorioBD.setTexto( relatorio.getTexto() );
+		relatorioBD.setDocumentoJuridico(docJud);
 		dbManager.save(relatorioBD);
 		docJud.setRelatorio(relatorioBD);
 		dbManager.save(docJud);
@@ -248,6 +250,7 @@ public class DocJudManager {
 		}
 		encerramentoBD.setDecisao( encerramento.getDecisao() );
 		encerramento.setLocal( encerramento.getLocal() );
+		encerramentoBD.setDocumentoJuridico(docJud);
 		dbManager.save(encerramentoBD);
 		docJud.setEncerramento(encerramentoBD);
 		dbManager.save(docJud);
