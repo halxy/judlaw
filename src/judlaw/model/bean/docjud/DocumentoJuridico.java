@@ -81,10 +81,12 @@ public class DocumentoJuridico {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Parte> partes; // relator, partes, etc.
 	
+	/* --------- Atributos --------- */
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
 	private String tipo; // tipos de Documentos Juridicos e Documentos Legais
 	private String dataPublicacao; // dd/MM/yyy
 	
+	/* --------- Referencias --------- */
 	@OneToMany(mappedBy="documentoJuridicoOrigem", cascade = CascadeType.ALL)
     @Column(name="citacoesfeitas_fk")
     @LazyCollection(LazyCollectionOption.FALSE)
