@@ -286,6 +286,12 @@ public class DocJudManager {
 		dbManager.remove( voto );
 	}
 	
+	public void alteraVotoBD(Voto votoLista, Voto newVoto, DocumentoJuridico docJud) {
+		List<Voto> votos = docJud.getVotos();
+		votos.get( votos.indexOf(votoLista) ).setTexto( newVoto.getTexto() );
+		dbManager.save( docJud ); 
+	}
+	
 	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES Partes ---------------------------- */
     /* ------------------------------------------------------------------ */
