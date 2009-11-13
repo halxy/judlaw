@@ -543,6 +543,14 @@ public class DocJudManagerTest {
 		//Verifica os elementos que sobraram
 		assertEquals( "voto2", docJudManager.getDocumentosJuridicos().get(0).getVotos().get(0).getTexto() );
 		assertEquals( "voto3", docJudManager.getDocumentosJuridicos().get(0).getVotos().get(1).getTexto() );
+		
+		//Alterando um Voto
+		docJudManager.alteraVotoBD( docJudBD.getVotos().get(0), new Voto("voto1"), docJudBD);
+		//Verificando se a alteracao foi feita corretamente
+		assertEquals( "voto1", docJudManager.getDocumentosJuridicos().get(0).getVotos().get(0).getTexto() );
+		assertEquals( "voto1", docJudManager.getVotos().get(0).getTexto() );
+		assertEquals( "voto1", docJudManager.getVotos().get(0).getDocumentoJuridico().getIdentificadorUnico(),
+					  docJudBD.getIdentificadorUnico() );
 	}
 	
 	/**
