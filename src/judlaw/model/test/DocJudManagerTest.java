@@ -615,4 +615,75 @@ public class DocJudManagerTest {
 		assertEquals( docJudManager.getPartes().get(0).getDocumentosJuridicos().get(0).getIdentificadorUnico(),
 					  docJudBD.getIdentificadorUnico() );
 	}
+	
+	/**
+	 * Testa as buscas no banco de dados por atributos
+	 */
+	@Test
+	public void testBuscasPorAtributos() {
+		/* ---------- Verifica se a lista esta vazia ----------*/
+		assertEquals(0, docJudManager.getDocumentosJuridicos().size());
+		
+		//Verifica se as demais listas também estão vazias
+		assertEquals( 0, docJudManager.getCabecalhos().size() );
+		assertEquals( 0, docJudManager.getEmentas().size() );
+		assertEquals( 0, docJudManager.getRelatorios().size() );
+		assertEquals( 0, docJudManager.getEncerramentos().size() );
+		assertEquals( 0, docJudManager.getVotos().size() );
+		assertEquals( 0, docJudManager.getPartes().size() );
+		
+		/* ---------- Elementos do DocumentoJuridico ----------*/		
+		//Cabecalho
+		Cabecalho cabecalho1 = new Cabecalho();
+		cabecalho1.setCodRegistro("codRegistro");
+		cabecalho1.setOrgaoJulgador("orgaoJulgador");
+		cabecalho1.setTribunal("tribunal");
+		//Ementa
+		Ementa ementa1 = new Ementa("ementa1");
+		//Relatorio
+		Relatorio relatorio1 = new Relatorio("relatorio1");
+		//Encerramento
+		Encerramento encerramento1 = new Encerramento("decisao1", "local1");
+		//Votos
+		ArrayList<Voto> votos = new ArrayList<Voto>();
+		votos.add( new Voto("voto1") );
+		votos.add( new Voto("voto2") );
+		//Partes
+		ArrayList<Parte> partes = new ArrayList<Parte>();
+		partes.add( new Parte("titulo1", "nome1") );
+		partes.add( new Parte("titulo2", "nome2") );
+		
+		/* ---------- Criacao e Persistencia do DocumentoJuridico ----------*/	
+		DocumentoJuridico docJud1 = new DocumentoJuridico();
+		docJud1.setIdentificadorUnico("idUnico");
+		docJud1.setCabecalho(cabecalho1);
+		docJud1.setEmenta(ementa1);
+		docJud1.setRelatorio(relatorio1);
+		docJud1.setEncerramento(encerramento1);
+		docJud1.setVotos(votos);
+		docJud1.setPartes(partes);
+		docJudManager.salvaDocumentoJuridico(docJud1);
+		
+		/* ---------- Buscas ----------*/
+		//Cabecalho
+		List<Cabecalho> cabecalhos = docJudManager.selectCabecalhoPorAtributo("codRegistro", "codRegistro");
+		assertEquals( cabecalhos.get(0).getCodRegistro(), cabecalho1.getCodRegistro() );
+		assertEquals( cabecalhos.get(0).getDocumentoJuridico().getIdentificadorUnico(), 
+					  docJud1.getIdentificadorUnico() );
+		//Ementa
+		List<Ementa> ementas = docJudManager.selectEmentaPorAtributo("texto", "ementa1");
+		assertEquals( ementas.get(0).getTexto(), ementa1.getTexto() );
+		assertEquals( ementas.get(0).getDocumentoJuridico().getIdentificadorUnico(), 
+					  docJud1.getIdentificadorUnico() );
+		//Relatorio
+		List<Relatorio> relatorios = docJudManager.selectRelatorioPorAtributo("texto", "relatorio1");
+		assertEquals( relatorios.get(0).getTexto(), relatorio1.getTexto() );
+		assertEquals( relatorios.get(0).getDocumentoJuridico().getIdentificadorUnico(), 
+					  docJud1.getIdentificadorUnico() );
+		//Encerramento
+		List<Encerramento> encerramentos = docJudManager.selectEncerramentoPorAtributo("decisao", "decisao1");
+		assertEquals( encerramentos.get(0).getLocal(), encerramento1.getLocal() );
+		assertEquals( encerramentos.get(0).getDocumentoJuridico().getIdentificadorUnico(), 
+					  docJud1.getIdentificadorUnico() );
+	}
 }
