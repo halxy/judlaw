@@ -549,7 +549,7 @@ public class DocJudManagerTest {
 		//Verificando se a alteracao foi feita corretamente
 		assertEquals( "voto1", docJudManager.getDocumentosJuridicos().get(0).getVotos().get(0).getTexto() );
 		assertEquals( "voto1", docJudManager.getVotos().get(0).getTexto() );
-		assertEquals( "voto1", docJudManager.getVotos().get(0).getDocumentoJuridico().getIdentificadorUnico(),
+		assertEquals( docJudManager.getVotos().get(0).getDocumentoJuridico().getIdentificadorUnico(),
 					  docJudBD.getIdentificadorUnico() );
 	}
 	
@@ -605,5 +605,14 @@ public class DocJudManagerTest {
 		//Verifica os elementos que sobraram
 		assertEquals( "titulo2", docJudManager.getDocumentosJuridicos().get(0).getPartes().get(0).getTitulo() );
 		assertEquals( "titulo3", docJudManager.getDocumentosJuridicos().get(0).getPartes().get(1).getTitulo() );
+		
+		//Alterando uma Parte
+		docJudManager.alteraParteBD( docJudBD.getPartes().get(0), new Parte("titulo1", "nome1"), docJudBD);
+		//Verificando se a alteracao foi feita corretamente
+		assertEquals( "titulo1", docJudManager.getDocumentosJuridicos().get(0).getPartes().get(0).getTitulo() );
+		assertEquals( "nome1", docJudManager.getDocumentosJuridicos().get(0).getPartes().get(0).getNome() );
+		assertEquals( "titulo1", docJudManager.getPartes().get(0).getTitulo() );
+		assertEquals( docJudManager.getPartes().get(0).getDocumentosJuridicos().get(0).getIdentificadorUnico(),
+					  docJudBD.getIdentificadorUnico() );
 	}
 }
