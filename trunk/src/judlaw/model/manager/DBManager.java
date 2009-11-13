@@ -14,7 +14,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import judlaw.model.bean.lei.Norma;
 import judlaw.model.util.HibernateUtil;
 
 import org.hibernate.Criteria;
@@ -144,16 +143,5 @@ public class DBManager {
 		HibernateUtil.getSession().update(object);
 		HibernateUtil.commitTransaction();
 		HibernateUtil.closeSession();
-	}
-	
-	/*
-	 * Main para testes
-	 */
-	public static void main(String[] args) {
-		DBManager dbManager = DBManager.getInstance();
-		
-		Norma n = new Norma();
-		
-		dbManager.save(n);
 	}
 }
