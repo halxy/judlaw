@@ -126,6 +126,11 @@ public class DocJudManager {
 		dbManager.remove(cabecalho);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Cabecalho> selectCabecalhoPorAtributo(String atributo, String valor) {
+		return dbManager.selectObjectsByField(new Cabecalho(), atributo, valor);
+	}
+	 
 	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES EMENTA ---------------------------- */
     /* ------------------------------------------------------------------ */
@@ -169,6 +174,11 @@ public class DocJudManager {
 		dbManager.save(docJud);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Ementa> selectEmentaPorAtributo(String atributo, String valor) {
+		return dbManager.selectObjectsByField(new Ementa(), atributo, valor);
+	}
+	
 	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES RELATORIO ------------------------- */
     /* ------------------------------------------------------------------ */
@@ -210,6 +220,11 @@ public class DocJudManager {
 		dbManager.save(relatorioBD);
 		docJud.setRelatorio(relatorioBD);
 		dbManager.save(docJud);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Relatorio> selectRelatorioPorAtributo(String atributo, String valor) {
+		return dbManager.selectObjectsByField(new Relatorio(), atributo, valor);
 	}
 	
 	/* ------------------------------------------------------------------ */
@@ -256,6 +271,11 @@ public class DocJudManager {
 		dbManager.save(docJud);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Encerramento> selectEncerramentoPorAtributo(String atributo, String valor) {
+		return dbManager.selectObjectsByField(new Encerramento(), atributo, valor);
+	}
+	
 	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES VOTO ------------------------------ */
     /* ------------------------------------------------------------------ */
@@ -290,6 +310,11 @@ public class DocJudManager {
 		List<Voto> votos = docJud.getVotos();
 		votos.get( votos.indexOf(votoLista) ).setTexto( newVoto.getTexto() );
 		dbManager.save( docJud ); 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Voto> selectVotoPorAtributo(String atributo, String valor) {
+		return dbManager.selectObjectsByField(new Voto(), atributo, valor);
 	}
 	
 	/* ------------------------------------------------------------------ */
@@ -327,5 +352,10 @@ public class DocJudManager {
 		partes.get( partes.indexOf(parteLista) ).setNome( newParte.getNome() );
 		partes.get( partes.indexOf(parteLista) ).setTitulo( newParte.getTitulo() );
 		dbManager.save( docJud ); 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Parte> selectPartePorAtributo(String atributo, String valor) {
+		return dbManager.selectObjectsByField(new Parte(), atributo, valor);
 	}
 }
