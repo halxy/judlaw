@@ -321,4 +321,11 @@ public class DocJudManager {
 		dbManager.save( docJud ); 
 		dbManager.remove( parte );
 	}
+	
+	public void alteraParteBD(Parte parteLista, Parte newParte, DocumentoJuridico docJud) {
+		List<Parte> partes = docJud.getPartes();
+		partes.get( partes.indexOf(parteLista) ).setNome( newParte.getNome() );
+		partes.get( partes.indexOf(parteLista) ).setTitulo( newParte.getTitulo() );
+		dbManager.save( docJud ); 
+	}
 }
