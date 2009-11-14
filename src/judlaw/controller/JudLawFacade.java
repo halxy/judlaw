@@ -8,7 +8,7 @@
  */
 package judlaw.controller;
 
-import judlaw.model.manager.LawManager;
+import judlaw.model.dbmanager.LawManager;
 
 
 public class JudLawFacade {
