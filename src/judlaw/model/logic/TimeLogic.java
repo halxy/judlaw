@@ -8,17 +8,17 @@ import java.util.StringTokenizer;
  * @author Halley Freitas
  *
  */
-public class TimeManager {
+public class TimeLogic {
 
-	private static TimeManager timeManager = null;
+	private static TimeLogic timeManager = null;
 	
 	/**
 	 * 
 	 * @return
 	 */
-	public static TimeManager getInstance() {
+	public static TimeLogic getInstance() {
 		if (timeManager == null) {
-			timeManager = new TimeManager();
+			timeManager = new TimeLogic();
 		}
 		return timeManager;
 	}
