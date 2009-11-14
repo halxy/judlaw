@@ -1,7 +1,7 @@
 package judlaw.model.test;
 
 import static org.junit.Assert.assertEquals;
-import judlaw.model.logic.TimeManager;
+import judlaw.model.logic.TimeLogic;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import org.junit.Test;
  *
  */
 public class TimeManagerTest {
-	TimeManager tm = TimeManager.getInstance();
+	TimeLogic tm = TimeLogic.getInstance();
 	String data1, data2, data3, data4, data5;
 	
 	@Before public void setUp(){
@@ -24,7 +24,7 @@ public class TimeManagerTest {
 	}
 
 	/**
-	 * Test method for {@link judlaw.model.logic.TimeManager#dataMaisAtual(java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for {@link judlaw.model.logic.TimeLogic#dataMaisAtual(java.lang.String, java.lang.String, java.lang.String)}.
 	 * @throws Exception 
 	 */
 	@Test
