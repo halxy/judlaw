@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import judlaw.model.bean.ref.Alteracao;
-import judlaw.model.manager.ReferenciaManager;
+import judlaw.model.dbmanager.ReferenciaManager;
 import judlaw.model.util.Constantes;
 
 import org.junit.Before;
@@ -34,7 +34,7 @@ public class ReferenciaManagerTest {
     /* -------------------- OPERACOES ALTERACAO ------------------------- */
     /* ------------------------------------------------------------------ */
 	/**
-	 * Test method for {@link judlaw.model.manager.ReferenciaManager#salvaAlteracao(judlaw.model.bean.ref.Alteracao)}.
+	 * Test method for {@link judlaw.model.dbmanager.ReferenciaManager#salvaAlteracao(judlaw.model.bean.ref.Alteracao)}.
 	 */
 	@Test
 	public void testSalvaAlteracao() {
@@ -63,7 +63,7 @@ public class ReferenciaManagerTest {
 	}
 
 	/**
-	 * Test method for {@link judlaw.model.manager.ReferenciaManager#getAlteracoes()}.
+	 * Test method for {@link judlaw.model.dbmanager.ReferenciaManager#getAlteracoes()}.
 	 */
 	@Test
 	public void testGetAlteracoes() {
@@ -71,7 +71,7 @@ public class ReferenciaManagerTest {
 	}
 
 	/**
-	 * Test method for {@link judlaw.model.manager.ReferenciaManager#removeAlteracoes()}.
+	 * Test method for {@link judlaw.model.dbmanager.ReferenciaManager#removeAlteracoes()}.
 	 */
 	@Test
 	public void testRemoveAlteracoes() {
@@ -79,7 +79,7 @@ public class ReferenciaManagerTest {
 	}
 
 	/**
-	 * Test method for {@link judlaw.model.manager.ReferenciaManager#recuperaAlteracaoPorAtributo(java.lang.String, java.lang.String)}.
+	 * Test method for {@link judlaw.model.dbmanager.ReferenciaManager#recuperaAlteracaoPorAtributo(java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testRecuperaAlteracaoPorAtributo() {
@@ -90,7 +90,7 @@ public class ReferenciaManagerTest {
     /* -------------------- OPERACOES CITACAODOCJUD --------------------- */
     /* ------------------------------------------------------------------ */
 	/**
-	 * Test method for {@link judlaw.model.manager.ReferenciaManager#salvaCitacaoDocJud(judlaw.model.bean.ref.CitacaoDocJud)}.
+	 * Test method for {@link judlaw.model.dbmanager.ReferenciaManager#salvaCitacaoDocJud(judlaw.model.bean.ref.CitacaoDocJud)}.
 	 */
 	@Test
 	public void testSalvaCitacaoDocJud() {
@@ -98,7 +98,7 @@ public class ReferenciaManagerTest {
 	}
 
 	/**
-	 * Test method for {@link judlaw.model.manager.ReferenciaManager#getCitacoesDocJud()}.
+	 * Test method for {@link judlaw.model.dbmanager.ReferenciaManager#getCitacoesDocJud()}.
 	 */
 	@Test
 	public void testGetCitacoesDocJud() {
@@ -106,7 +106,7 @@ public class ReferenciaManagerTest {
 	}
 
 	/**
-	 * Test method for {@link judlaw.model.manager.ReferenciaManager#removeCitacoesDocJud()}.
+	 * Test method for {@link judlaw.model.dbmanager.ReferenciaManager#removeCitacoesDocJud()}.
 	 */
 	@Test
 	public void testRemoveCitacoesDocJud() {
@@ -114,7 +114,7 @@ public class ReferenciaManagerTest {
 	}
 
 	/**
-	 * Test method for {@link judlaw.model.manager.ReferenciaManager#recuperaCitacaoDocJudPorAtributo(java.lang.String, java.lang.String)}.
+	 * Test method for {@link judlaw.model.dbmanager.ReferenciaManager#recuperaCitacaoDocJudPorAtributo(java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testRecuperaCitacaoDocJudPorAtributo() {
@@ -125,7 +125,7 @@ public class ReferenciaManagerTest {
     /* -------------------- OPERACOES CITACAODOCLEG --------------------- */
     /* ------------------------------------------------------------------ */
 	/**
-	 * Test method for {@link judlaw.model.manager.ReferenciaManager#salvaCitacaoDocLeg(judlaw.model.bean.ref.CitacaoDocLeg)}.
+	 * Test method for {@link judlaw.model.dbmanager.ReferenciaManager#salvaCitacaoDocLeg(judlaw.model.bean.ref.CitacaoDocLeg)}.
 	 */
 	@Test
 	public void testSalvaCitacaoDocLeg() {
@@ -133,7 +133,7 @@ public class ReferenciaManagerTest {
 	}
 
 	/**
-	 * Test method for {@link judlaw.model.manager.ReferenciaManager#getCitacoesDocLeg()}.
+	 * Test method for {@link judlaw.model.dbmanager.ReferenciaManager#getCitacoesDocLeg()}.
 	 */
 	@Test
 	public void testGetCitacoesDocLeg() {
@@ -141,7 +141,7 @@ public class ReferenciaManagerTest {
 	}
 
 	/**
-	 * Test method for {@link judlaw.model.manager.ReferenciaManager#removeCitacoesDocLeg()}.
+	 * Test method for {@link judlaw.model.dbmanager.ReferenciaManager#removeCitacoesDocLeg()}.
 	 */
 	@Test
 	public void testRemoveCitacoesDocLeg() {
@@ -149,7 +149,7 @@ public class ReferenciaManagerTest {
 	}
 
 	/**
-	 * Test method for {@link judlaw.model.manager.ReferenciaManager#recuperaCitacaoDocLegPorAtributo(java.lang.String, java.lang.String)}.
+	 * Test method for {@link judlaw.model.dbmanager.ReferenciaManager#recuperaCitacaoDocLegPorAtributo(java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testRecuperaCitacaoDocLegPorAtributo() {
