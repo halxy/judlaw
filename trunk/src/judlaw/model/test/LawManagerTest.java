@@ -3,7 +3,7 @@ package judlaw.model.test;
 import static org.junit.Assert.assertEquals;
 import judlaw.model.bean.lei.ElementoNorma;
 import judlaw.model.bean.lei.Norma;
-import judlaw.model.manager.LawManager;
+import judlaw.model.dbmanager.LawManager;
 
 import org.junit.Before;
 import org.junit.Test;
