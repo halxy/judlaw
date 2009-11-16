@@ -257,10 +257,10 @@ public class LawManagerTest {
 					  paragrafo2.getTexto() );
 		assertEquals( normaBD.getElementosNorma().get(0).getElementosNorma().get(1).getTexto(), 
 				      paragrafo3.getTexto() );
-//		//Relacao Bidirecional
-//		assertEquals( normaBD.getElementosNorma().get(0).getElementosNorma().get(0).getElementosNorma().get(0).getElementoNormaPai().getIdentificadorUnico(), 
-//				      norma1.getElementosNorma().get(0).getElementosNorma().get(0).getElementosNorma().get(0).getElementoNormaPai().getIdentificadorUnico() );
-//		assertEquals( normaBD.getElementosNorma().get(0).getElementosNorma().get(0).getElementosNorma().get(1).getElementoNormaPai().getIdentificadorUnico(), 
-//					  norma1.getElementosNorma().get(0).getElementosNorma().get(0).getElementosNorma().get(1).getElementoNormaPai().getIdentificadorUnico() );
+		//Relacao Bidirecional
+		assertEquals( normaBD.getElementosNorma().get(0).getElementosNorma().get(0).getElementoNormaPai().getIdentificadorUnico(), 
+				      artigo2.getIdentificadorUnico() );
+		assertEquals( normaBD.getElementosNorma().get(0).getElementosNorma().get(1).getElementoNormaPai().getIdentificadorUnico(), 
+					  artigo2.getIdentificadorUnico() );
 	}
 }
