@@ -15,8 +15,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import judlaw.model.bean.lei.ElementoNorma;
+import judlaw.model.bean.lei.Norma;
 
 @Entity
 @Table(name = "alteracao")
@@ -27,19 +32,102 @@ public class Alteracao extends Referencia {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="alteracao_seq")
 	@Column(name="alteracao_id")
 	private Integer id;
-
+	
+	// Atributos
+	private String data; // data em que foi feita a referência
 	private String tipo; // inclusao, revogacao, alteracao;
 	private String caracteristica; // mais branda, mais punitiva, etc.
 	
-	// Atributos advindos de Referencia
-	private String origem; // identificadorUnico do Documento que fez a referência
-	private String destino; // identificadorUnico do Documento que recebeu a referência
-	private String data; // data em que foi feita a referência
+	/* --------- Referencias --------- */
+	/*
+	 * ORIGENS
+	 */
+	//Norma
+	@ManyToOne
+	@JoinColumn(name="origemnorma_id")
+	private Norma normaOrigem;
 	
-	public Alteracao(String origem, String destino, String data, String tipo,
+	//Norma
+	@ManyToOne
+	@JoinColumn(name="origemelementonorma_id")
+	private ElementoNorma elementoNormaOrigem;
+	
+	/*
+	 * DESTINOS
+	 */
+	//Quando o destino da alteracao eh uma norma
+	@ManyToOne
+	@JoinColumn(name="destinonorma_id")
+	private Norma normaDestino;
+	
+	//Quando o destino da alteracao eh um elementoNorma
+	@ManyToOne
+	@JoinColumn(name="destinoelementonorma_id")
+	private ElementoNorma elementoNormaDestino;
+	
+	/**
+	 * 
+	 * @param normaOrigem
+	 * @param normaDestino
+	 * @param data
+	 * @param tipo
+	 * @param caracteristica
+	 */
+	public Alteracao(Norma normaOrigem, Norma normaDestino, String data, String tipo,
 			String caracteristica) {
-		this.origem = origem;
-		this.destino = destino;
+		this.normaOrigem = normaOrigem;
+		this.normaDestino = normaDestino;
+		this.data = data;
+		this.tipo = tipo;
+		this.caracteristica = caracteristica;
+	}
+	
+	/**
+	 * 
+	 * @param normaOrigem
+	 * @param elementoNormaDestino
+	 * @param data
+	 * @param tipo
+	 * @param caracteristica
+	 */
+	public Alteracao(Norma normaOrigem, ElementoNorma elementoNormaDestino, String data, String tipo,
+			String caracteristica) {
+		this.normaOrigem = normaOrigem;
+		this.elementoNormaDestino = elementoNormaDestino;
+		this.data = data;
+		this.tipo = tipo;
+		this.caracteristica = caracteristica;
+	}
+	
+	/**
+	 * 
+	 * @param elementoNormaOrigem
+	 * @param normaDestino
+	 * @param data
+	 * @param tipo
+	 * @param caracteristica
+	 */
+	public Alteracao(ElementoNorma elementoNormaOrigem, Norma normaDestino, String data, String tipo,
+			String caracteristica) {
+		this.elementoNormaOrigem = elementoNormaOrigem;
+		this.normaDestino = normaDestino;
+		this.data = data;
+		this.tipo = tipo;
+		this.caracteristica = caracteristica;
+	}
+	
+	/**
+	 * 
+	 * @param elementoNormaOrigem
+	 * @param elementoNormaDestino
+	 * @param data
+	 * @param tipo
+	 * @param caracteristica
+	 */
+	public Alteracao(ElementoNorma elementoNormaOrigem, ElementoNorma elementoNormaDestino, String data, String tipo,
+			String caracteristica) {
+		this.elementoNormaOrigem = elementoNormaOrigem;
+		this.elementoNormaDestino = elementoNormaDestino;
 		this.data = data;
 		this.tipo = tipo;
 		this.caracteristica = caracteristica;
@@ -90,27 +178,43 @@ public class Alteracao extends Referencia {
 		this.caracteristica = caracteristica;
 	}
 
-	public String getOrigem() {
-		return origem;
-	}
-
-	public void setOrigem(String origem) {
-		this.origem = origem;
-	}
-
-	public String getDestino() {
-		return destino;
-	}
-
-	public void setDestino(String destino) {
-		this.destino = destino;
-	}
-
 	public String getData() {
 		return data;
 	}
 
 	public void setData(String data) {
 		this.data = data;
+	}
+
+	public Norma getNormaOrigem() {
+		return normaOrigem;
+	}
+
+	public void setNormaOrigem(Norma normaOrigem) {
+		this.normaOrigem = normaOrigem;
+	}
+
+	public ElementoNorma getElementoNormaOrigem() {
+		return elementoNormaOrigem;
+	}
+
+	public void setElementoNormaOrigem(ElementoNorma elementoNormaOrigem) {
+		this.elementoNormaOrigem = elementoNormaOrigem;
+	}
+
+	public Norma getNormaDestino() {
+		return normaDestino;
+	}
+
+	public void setNormaDestino(Norma normaDestino) {
+		this.normaDestino = normaDestino;
+	}
+
+	public ElementoNorma getElementoNormaDestino() {
+		return elementoNormaDestino;
+	}
+
+	public void setElementoNormaDestino(ElementoNorma elementoNormaDestino) {
+		this.elementoNormaDestino = elementoNormaDestino;
 	}
 }
