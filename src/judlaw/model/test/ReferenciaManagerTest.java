@@ -49,7 +49,7 @@ public class ReferenciaManagerTest {
 		//Quantidade de normas
 		assertEquals(2, lawManager.getNormas().size() );
 		
-		/* Criando a alteracao */
+		/* Criando uma ALTERACAO */
 		refManager.criaAlteracao(norma1, norma2, "16/11/2009", "inclusao", "");
 		
 		/* Verificando se os atributos foram persistidos corretamente */
@@ -64,7 +64,7 @@ public class ReferenciaManagerTest {
 		assertEquals( refManager.getAlteracoes().get(0).getElementoNormaOrigem(),
 			          null );
 		assertEquals( refManager.getAlteracoes().get(0).getElementoNormaDestino(),
-		          null );
+		              null );
 		
 		// Atributos das normas
 		//NORMA1
@@ -77,6 +77,52 @@ public class ReferenciaManagerTest {
 				      norma2.getIdentificadorUnico());
 		assertEquals( lawManager.getNormas().get(1).getAlteracoesRecebidas().get(0).getData(),
 					  "16/11/2009");
+	}
+	
+	/**
+	 * Testa se as citacoesTextLeg estao sendo salvas corretamente
+	 */
+	@Test
+	public void testSalvaCitacaoTextLeg(){
+		/* Criando e persistindo as normas */
+		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+				"dataPublicacaoN1", "vigenciaN1");
 		
+		Norma norma2 = new Norma("epigrafeN2", "ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
+				"dataPublicacaoN2", "vigenciaN2");
+		
+		lawManager.salvaNorma(norma1);
+		lawManager.salvaNorma(norma2);
+		//Quantidade de normas
+		assertEquals(2, lawManager.getNormas().size() );
+		
+		/* Criando uma ALTERACAO */
+		refManager.criaCitacaoTextLeg(norma1, norma2, "16/11/2009");
+		
+		/* Verificando se os atributos foram persistidos corretamente */
+		//Quantidade de alteracoes
+		assertEquals(1, refManager.getCitacoesTextLeg().size() );
+		
+		// Atributos da Referencia
+		assertEquals( refManager.getCitacoesTextLeg().get(0).getNormaOrigem().getIdentificadorUnico(),
+				      norma1.getIdentificadorUnico() );
+		assertEquals( refManager.getCitacoesTextLeg().get(0).getNormaDestino().getIdentificadorUnico(),
+			      	  norma2.getIdentificadorUnico() );
+		assertEquals( refManager.getCitacoesTextLeg().get(0).getElementoNormaOrigem(),
+			          null );
+		assertEquals( refManager.getCitacoesTextLeg().get(0).getElementoNormaDestino(),
+		          	  null );
+		
+		// Atributos das normas
+		//NORMA1 (Citacoes Feitas)
+		assertEquals( lawManager.getNormas().get(0).getIdentificadorUnico(),
+					  norma1.getIdentificadorUnico());
+		assertEquals( lawManager.getNormas().get(0).getCitacoesFeitas().get(0).getData(),
+				  	  "16/11/2009");
+		//NORMA2 (Citacoes recebidas)
+		assertEquals( lawManager.getNormas().get(1).getIdentificadorUnico(),
+				      norma2.getIdentificadorUnico());
+		assertEquals( lawManager.getNormas().get(1).getCitacoesRecebidasTextLeg().get(0).getData(),
+					  "16/11/2009");
 	}
 }

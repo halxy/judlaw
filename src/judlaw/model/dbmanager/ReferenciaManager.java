@@ -138,7 +138,7 @@ public class ReferenciaManager {
 	 * @param normaDestino
 	 * @param data
 	 */
-	public void criaTextLeg(Norma normaOrigem, Norma normaDestino, String data){
+	public void criaCitacaoTextLeg(Norma normaOrigem, Norma normaDestino, String data){
     	CitacaoTextLeg citacaoTextLeg = new CitacaoTextLeg(normaOrigem, normaDestino, data);
     	dbManager.save(citacaoTextLeg);
     	normaOrigem.getCitacoesFeitas().add( citacaoTextLeg );
