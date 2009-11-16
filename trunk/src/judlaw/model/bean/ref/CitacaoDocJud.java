@@ -51,17 +51,17 @@ public class CitacaoDocJud extends Referencia {
 	 */
 	//Quando o destino da citacao eh um documento juridico
 	@ManyToOne
-	@JoinColumn(name="destinodocjud_id")
+	@JoinColumn(name="destinodocjud_id", nullable = true)
 	private DocumentoJuridico documentoJuridicoDestino;
 	
 	//Quando o destino da citacao eh uma norma
 	@ManyToOne
-	@JoinColumn(name="destinonorma_id")
+	@JoinColumn(name="destinonorma_id", nullable = true)
 	private Norma normaDestino;
 	
 	//Quando o destino da citacao eh um elementoNorma
 	@ManyToOne
-	@JoinColumn(name="destinoelementonorma_id")
+	@JoinColumn(name="destinoelementonorma_id", nullable = true)
 	private ElementoNorma elementoNormaDestino;
 	
 	/**
