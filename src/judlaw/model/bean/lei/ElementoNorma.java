@@ -26,6 +26,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import judlaw.model.bean.ref.CitacaoDocJud;
+import judlaw.model.bean.ref.CitacaoTextLeg;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -73,11 +74,25 @@ public class ElementoNorma extends TextoLegal {
 	private Norma normaPai;
 	
 	/* --------- Referencias --------- */
-	//Citacoes recebidas de documentos juridicos
+	/*
+	 * CITACOES
+	 */
+	//Feitas
+	@OneToMany(mappedBy="elementoNormaOrigem", cascade = CascadeType.ALL)
+    @Column(name="citacoesfeitas_fk")
+    @LazyCollection(LazyCollectionOption.FALSE)
+	private List<CitacaoTextLeg> citacoesFeitas;
+	
+	//Recebidas
 	@OneToMany(mappedBy="elementoNormaDestino", cascade = CascadeType.ALL)
     @Column(name="citacoesrecebidasdocjud_fk")
     @LazyCollection(LazyCollectionOption.FALSE)
 	private List<CitacaoDocJud> citacoesRecebidasDocJud;
+	
+	@OneToMany(mappedBy="elementoNormaDestino", cascade = CascadeType.ALL)
+    @Column(name="citacoesrecebidastextleg_fk")
+    @LazyCollection(LazyCollectionOption.FALSE)
+	private List<CitacaoTextLeg> citacoesRecebidasTextLeg;
 	
 	/**
 	 * 
@@ -97,7 +112,10 @@ public class ElementoNorma extends TextoLegal {
 		this.dataPublicacao = dataPublicacao;
 		this.vigencia = vigencia;
 		this.elementosNorma = new ArrayList<ElementoNorma>();
+		//Referencias
+		this.citacoesFeitas = new ArrayList<CitacaoTextLeg>();
 		this.citacoesRecebidasDocJud = new ArrayList<CitacaoDocJud>();
+		this.citacoesRecebidasTextLeg = new ArrayList<CitacaoTextLeg>();
 	}
 	
 	/**
@@ -124,7 +142,10 @@ public class ElementoNorma extends TextoLegal {
 	 */
 	public ElementoNorma() {
 		this.elementosNorma = new ArrayList<ElementoNorma>();
+		//Referencias
+		this.citacoesFeitas = new ArrayList<CitacaoTextLeg>();
 		this.citacoesRecebidasDocJud = new ArrayList<CitacaoDocJud>();
+		this.citacoesRecebidasTextLeg = new ArrayList<CitacaoTextLeg>();
 	}
 
 	public Integer getId() {
@@ -206,5 +227,22 @@ public class ElementoNorma extends TextoLegal {
 	public void setCitacoesRecebidasDocJud(
 			List<CitacaoDocJud> citacoesRecebidasDocJud) {
 		this.citacoesRecebidasDocJud = citacoesRecebidasDocJud;
+	}
+
+	public List<CitacaoTextLeg> getCitacoesFeitas() {
+		return citacoesFeitas;
+	}
+
+	public void setCitacoesFeitas(List<CitacaoTextLeg> citacoesFeitas) {
+		this.citacoesFeitas = citacoesFeitas;
+	}
+
+	public List<CitacaoTextLeg> getCitacoesRecebidasTextLeg() {
+		return citacoesRecebidasTextLeg;
+	}
+
+	public void setCitacoesRecebidasTextLeg(
+			List<CitacaoTextLeg> citacoesRecebidasTextLeg) {
+		this.citacoesRecebidasTextLeg = citacoesRecebidasTextLeg;
 	}
 }

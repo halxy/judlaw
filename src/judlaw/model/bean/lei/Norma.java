@@ -63,16 +63,25 @@ public class Norma extends TextoLegal {
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
 	
 	/* --------- Referencias --------- */
+	/*
+	 * CITACOES
+	 */
+	//Feitas
 	@OneToMany(mappedBy="normaOrigem", cascade = CascadeType.ALL)
     @Column(name="citacoesfeitas_fk")
     @LazyCollection(LazyCollectionOption.FALSE)
 	private List<CitacaoTextLeg> citacoesFeitas;
 	
-	//Citacoes recebidas de documentos juridicos
+	//Recebidas
 	@OneToMany(mappedBy="normaDestino", cascade = CascadeType.ALL)
     @Column(name="citacoesrecebidasdocjud_fk")
     @LazyCollection(LazyCollectionOption.FALSE)
 	private List<CitacaoDocJud> citacoesRecebidasDocJud;
+	
+	@OneToMany(mappedBy="normaDestino", cascade = CascadeType.ALL)
+    @Column(name="citacoesrecebidastextleg_fk")
+    @LazyCollection(LazyCollectionOption.FALSE)
+	private List<CitacaoTextLeg> citacoesRecebidasTextLeg;
 	
 	/**
 	 * 
@@ -112,8 +121,10 @@ public class Norma extends TextoLegal {
 		this.dataPublicacao = dataPublicacao;
 		this.vigencia = vigencia;
 		this.elementosNorma = new ArrayList<ElementoNorma>();
+		//Referencias
 		this.citacoesFeitas = new ArrayList<CitacaoTextLeg>();
 		this.citacoesRecebidasDocJud = new ArrayList<CitacaoDocJud>();
+		this.citacoesRecebidasTextLeg = new ArrayList<CitacaoTextLeg>();
 	}
 
 
@@ -122,8 +133,10 @@ public class Norma extends TextoLegal {
 	 */
 	public Norma() {
 		this.elementosNorma = new ArrayList<ElementoNorma>();
+		//Referencias
 		this.citacoesFeitas = new ArrayList<CitacaoTextLeg>();
 		this.citacoesRecebidasDocJud = new ArrayList<CitacaoDocJud>();
+		this.citacoesRecebidasTextLeg = new ArrayList<CitacaoTextLeg>();
 	}
 
 	public Integer getId() {
@@ -221,5 +234,14 @@ public class Norma extends TextoLegal {
 	public void setCitacoesRecebidasDocJud(
 			List<CitacaoDocJud> citacoesRecebidasDocJud) {
 		this.citacoesRecebidasDocJud = citacoesRecebidasDocJud;
+	}
+
+	public List<CitacaoTextLeg> getCitacoesRecebidasTextLeg() {
+		return citacoesRecebidasTextLeg;
+	}
+
+	public void setCitacoesRecebidasTextLeg(
+			List<CitacaoTextLeg> citacoesRecebidasTextLeg) {
+		this.citacoesRecebidasTextLeg = citacoesRecebidasTextLeg;
 	}
 }
