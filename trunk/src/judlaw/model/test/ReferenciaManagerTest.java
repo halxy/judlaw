@@ -20,8 +20,6 @@ public class ReferenciaManagerTest {
 	public void setUp() {
 		/* ---------- Esvazia a lista de Referencias ----------*/
 		refManager.removeAlteracoes();
-		refManager.removeCitacoesDocJud();
-		refManager.removeCitacoesTextLeg();
 	}
 
 	/**
