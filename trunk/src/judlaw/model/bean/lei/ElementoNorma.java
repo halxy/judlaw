@@ -25,6 +25,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import judlaw.model.bean.ref.CitacaoDocJud;
+
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -57,6 +59,9 @@ public class ElementoNorma extends TextoLegal {
     @LazyCollection(LazyCollectionOption.FALSE)
 	private List<ElementoNorma> elementosNorma;
 	
+	/*
+	 * Pai do Elemento Norma
+	 */
 	//Quando o pai do ElementoNorma é outro ElementoNorma
 	@ManyToOne
 	@JoinColumn(name="elementonormapai_id", nullable = true)
@@ -66,6 +71,13 @@ public class ElementoNorma extends TextoLegal {
 	@ManyToOne
 	@JoinColumn(name="normapai_id", nullable = true)
 	private Norma normaPai;
+	
+	/* --------- Referencias --------- */
+	//Citacoes recebidas de documentos juridicos
+	@OneToMany(mappedBy="elementoNormaDestino", cascade = CascadeType.ALL)
+    @Column(name="citacoesrecebidasdocjud_fk")
+    @LazyCollection(LazyCollectionOption.FALSE)
+	private List<CitacaoDocJud> citacoesRecebidasDocJud;
 	
 	/**
 	 * 
@@ -85,6 +97,7 @@ public class ElementoNorma extends TextoLegal {
 		this.dataPublicacao = dataPublicacao;
 		this.vigencia = vigencia;
 		this.elementosNorma = new ArrayList<ElementoNorma>();
+		this.citacoesRecebidasDocJud = new ArrayList<CitacaoDocJud>();
 	}
 	
 	/**
@@ -111,6 +124,7 @@ public class ElementoNorma extends TextoLegal {
 	 */
 	public ElementoNorma() {
 		this.elementosNorma = new ArrayList<ElementoNorma>();
+		this.citacoesRecebidasDocJud = new ArrayList<CitacaoDocJud>();
 	}
 
 	public Integer getId() {
@@ -184,18 +198,13 @@ public class ElementoNorma extends TextoLegal {
 	public void setNormaPai(Norma normaPai) {
 		this.normaPai = normaPai;
 	}
-	
-//	/*
-//	 * Retorna o pai do elemento usando como parametro seu identificador unico
-//	 */
-//	private String getPaiPeloIdUnico() {
-//		String idUnico = getIdentificadorUnico();
-//		StringTokenizer tokenId = new StringTokenizer(idUnico, "_");
-//		String tokenAux = "";
-//		while( tokenId.hasMoreTokens() ) {
-//			tokenAux = tokenId.nextToken();
-//		}
-//		int posicaoId = idUnico.indexOf("_"+tokenAux);	
-//		return idUnico.substring(0, posicaoId);
-//	}
+
+	public List<CitacaoDocJud> getCitacoesRecebidasDocJud() {
+		return citacoesRecebidasDocJud;
+	}
+
+	public void setCitacoesRecebidasDocJud(
+			List<CitacaoDocJud> citacoesRecebidasDocJud) {
+		this.citacoesRecebidasDocJud = citacoesRecebidasDocJud;
+	}
 }
