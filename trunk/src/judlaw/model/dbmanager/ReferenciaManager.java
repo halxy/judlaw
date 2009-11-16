@@ -62,6 +62,11 @@ public class ReferenciaManager {
 	 * removeAlteracoes - por se tratar de um BD temporal, usar apenas em ocasiões especiais
 	 */
 	public void removeAlteracoes() {
+		for( Alteracao alt : getAlteracoes() ) {
+			alt.setNormaOrigem(null);
+			alt.setNormaDestino(null);
+			dbManager.save(alt);
+		}
 		dbManager.removeAll( new Alteracao() );
 	}
 	
