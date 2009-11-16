@@ -22,7 +22,7 @@ public class LawManagerTest {
 	@Before
 	public void setUp() {
 		/* ---------- Esvazia a lista de Normas e ElementosNorma ----------*/
-		ReferenciaManager.getInstance().removeAlteracoes();
+		ReferenciaManager.getInstance().removeReferencias();
 		lawManager.removeNormas();
 		lawManager.removeElementosNorma();
 	}
