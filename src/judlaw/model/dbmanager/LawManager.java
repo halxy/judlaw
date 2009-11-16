@@ -118,6 +118,11 @@ public class LawManager {
 		return dbManager.selectObjectsByField(new ElementoNorma(), atributo, valor);
 	}
 	
+	/**
+	 * Adiciona um ElementoNorma a uma norma
+	 * @param elementoNorma
+	 * @param norma
+	 */
 	public void adicionaElementoNorma(ElementoNorma elementoNorma, Norma norma) {
 		elementoNorma.setNormaPai(norma);
 		norma.getElementosNorma().add( elementoNorma );
