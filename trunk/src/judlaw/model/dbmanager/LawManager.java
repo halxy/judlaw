@@ -83,12 +83,7 @@ public class LawManager {
      * @param elementoNorma
      */
 	public void salvaElementoNorma(ElementoNorma elementoNorma) {
-		//Setando ElementosNorma
-    	List<ElementoNorma> elementosNorma = elementoNorma.getElementosNorma();
-    	for(ElementoNorma eleN : elementosNorma) {
-    		eleN.setElementoNormaPai(elementoNorma);
-    	}
-		dbManager.save(elementoNorma);
+		salvaElementoRecursivo(elementoNorma);
 	}
     
 	/**
