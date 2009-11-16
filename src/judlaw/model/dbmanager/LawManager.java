@@ -122,5 +122,6 @@ public class LawManager {
 		elementoNorma.setNormaPai(norma);
 		norma.getElementosNorma().add( elementoNorma );
 		dbManager.save(norma);
+		salvaElementoRecursivo(elementoNorma);
 	}
 }
