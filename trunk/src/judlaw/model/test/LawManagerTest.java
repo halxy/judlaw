@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import judlaw.model.bean.lei.ElementoNorma;
 import judlaw.model.bean.lei.Norma;
 import judlaw.model.dbmanager.LawManager;
+import judlaw.model.dbmanager.ReferenciaManager;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +22,7 @@ public class LawManagerTest {
 	@Before
 	public void setUp() {
 		/* ---------- Esvazia a lista de Normas e ElementosNorma ----------*/
+		ReferenciaManager.getInstance().removeAlteracoes();
 		lawManager.removeNormas();
 		lawManager.removeElementosNorma();
 	}
