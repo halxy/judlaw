@@ -23,6 +23,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import judlaw.model.bean.ref.CitacaoDocJud;
 import judlaw.model.bean.ref.CitacaoTextLeg;
 
 import org.hibernate.annotations.LazyCollection;
@@ -67,6 +68,12 @@ public class Norma extends TextoLegal {
     @LazyCollection(LazyCollectionOption.FALSE)
 	private List<CitacaoTextLeg> citacoesFeitas;
 	
+	//Citacoes recebidas de documentos juridicos
+	@OneToMany(mappedBy="normaDestino", cascade = CascadeType.ALL)
+    @Column(name="citacoesrecebidasdocjud_fk")
+    @LazyCollection(LazyCollectionOption.FALSE)
+	private List<CitacaoDocJud> citacoesRecebidasDocJud;
+	
 	/**
 	 * 
 	 * @param epigrafe
@@ -106,6 +113,7 @@ public class Norma extends TextoLegal {
 		this.vigencia = vigencia;
 		this.elementosNorma = new ArrayList<ElementoNorma>();
 		this.citacoesFeitas = new ArrayList<CitacaoTextLeg>();
+		this.citacoesRecebidasDocJud = new ArrayList<CitacaoDocJud>();
 	}
 
 
@@ -115,6 +123,7 @@ public class Norma extends TextoLegal {
 	public Norma() {
 		this.elementosNorma = new ArrayList<ElementoNorma>();
 		this.citacoesFeitas = new ArrayList<CitacaoTextLeg>();
+		this.citacoesRecebidasDocJud = new ArrayList<CitacaoDocJud>();
 	}
 
 	public Integer getId() {
@@ -203,5 +212,14 @@ public class Norma extends TextoLegal {
 
 	public void setCitacoesFeitas(List<CitacaoTextLeg> citacoesFeitas) {
 		this.citacoesFeitas = citacoesFeitas;
+	}
+
+	public List<CitacaoDocJud> getCitacoesRecebidasDocJud() {
+		return citacoesRecebidasDocJud;
+	}
+
+	public void setCitacoesRecebidasDocJud(
+			List<CitacaoDocJud> citacoesRecebidasDocJud) {
+		this.citacoesRecebidasDocJud = citacoesRecebidasDocJud;
 	}
 }
