@@ -23,6 +23,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import judlaw.model.bean.ref.Alteracao;
 import judlaw.model.bean.ref.CitacaoDocJud;
 import judlaw.model.bean.ref.CitacaoTextLeg;
 
@@ -83,6 +84,21 @@ public class Norma extends TextoLegal {
     @LazyCollection(LazyCollectionOption.FALSE)
 	private List<CitacaoTextLeg> citacoesRecebidasTextLeg;
 	
+	/*
+	 * ALTERACOES
+	 */
+	//Feitas
+	@OneToMany(mappedBy="normaOrigem", cascade = CascadeType.ALL)
+    @Column(name="alteracoesfeitas_fk")
+    @LazyCollection(LazyCollectionOption.FALSE)
+	private List<Alteracao> alteracoesFeitas;
+	
+	//Recebidas
+	@OneToMany(mappedBy="normaDestino", cascade = CascadeType.ALL)
+    @Column(name="alteracoesrecebidas_fk")
+    @LazyCollection(LazyCollectionOption.FALSE)
+	private List<Alteracao> alteracoesRecebidas;
+	
 	/**
 	 * 
 	 * @param epigrafe
@@ -125,6 +141,8 @@ public class Norma extends TextoLegal {
 		this.citacoesFeitas = new ArrayList<CitacaoTextLeg>();
 		this.citacoesRecebidasDocJud = new ArrayList<CitacaoDocJud>();
 		this.citacoesRecebidasTextLeg = new ArrayList<CitacaoTextLeg>();
+		this.alteracoesFeitas = new ArrayList<Alteracao>();
+		this.alteracoesRecebidas = new ArrayList<Alteracao>();
 	}
 
 
@@ -137,6 +155,8 @@ public class Norma extends TextoLegal {
 		this.citacoesFeitas = new ArrayList<CitacaoTextLeg>();
 		this.citacoesRecebidasDocJud = new ArrayList<CitacaoDocJud>();
 		this.citacoesRecebidasTextLeg = new ArrayList<CitacaoTextLeg>();
+		this.alteracoesFeitas = new ArrayList<Alteracao>();
+		this.alteracoesRecebidas = new ArrayList<Alteracao>();
 	}
 
 	public Integer getId() {
@@ -243,5 +263,21 @@ public class Norma extends TextoLegal {
 	public void setCitacoesRecebidasTextLeg(
 			List<CitacaoTextLeg> citacoesRecebidasTextLeg) {
 		this.citacoesRecebidasTextLeg = citacoesRecebidasTextLeg;
+	}
+
+	public List<Alteracao> getAlteracoesFeitas() {
+		return alteracoesFeitas;
+	}
+
+	public void setAlteracoesFeitas(List<Alteracao> alteracoesFeitas) {
+		this.alteracoesFeitas = alteracoesFeitas;
+	}
+
+	public List<Alteracao> getAlteracoesRecebidas() {
+		return alteracoesRecebidas;
+	}
+
+	public void setAlteracoesRecebidas(List<Alteracao> alteracoesRecebidas) {
+		this.alteracoesRecebidas = alteracoesRecebidas;
 	}
 }
