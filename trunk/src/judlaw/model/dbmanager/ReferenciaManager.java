@@ -14,6 +14,8 @@ import java.util.List;
 
 import judlaw.model.bean.lei.Norma;
 import judlaw.model.bean.ref.Alteracao;
+import judlaw.model.bean.ref.CitacaoDocJud;
+import judlaw.model.bean.ref.CitacaoTextLeg;
 
 
 /**
@@ -74,5 +76,21 @@ public class ReferenciaManager {
 	@SuppressWarnings("unchecked")
 	public List<Alteracao> selectAlteracaoPorAtributo(String atributo, String valor) {
 		return dbManager.selectObjectsByField(new Alteracao(), atributo, valor);
+	}
+	
+	/**
+	 * Remove todos os tipos de referencias
+	 */
+	public void removeReferencias() {
+//		for (Norma n: LawManager.getInstance().getNormas()){
+//			n.setAlteracoesFeitas(null);
+//			n.setAlteracoesRecebidas(null);
+//			n.setCitacoesFeitas(null);
+//			n.setCitacoesRecebidasDocJud(null);
+//			n.setCitacoesRecebidasTextLeg(null);
+//		}
+		dbManager.removeAll( new Alteracao() );
+		dbManager.removeAll( new CitacaoDocJud() );
+		dbManager.removeAll( new CitacaoTextLeg() );
 	}
 }
