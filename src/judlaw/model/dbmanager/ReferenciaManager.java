@@ -12,9 +12,8 @@ package judlaw.model.dbmanager;
 
 import java.util.List;
 
+import judlaw.model.bean.lei.Norma;
 import judlaw.model.bean.ref.Alteracao;
-import judlaw.model.bean.ref.CitacaoDocJud;
-import judlaw.model.bean.ref.CitacaoTextLeg;
 
 
 /**
@@ -45,8 +44,13 @@ public class ReferenciaManager {
     /**
      * 
      */
-    public void salvaAlteracao(Alteracao alteracao) {
-		dbManager.save(alteracao);
+    public void criaAlteracao(Norma normaOrigem, Norma normaDestino, String data, String tipo, String caracteristica){
+    	Alteracao alt = new Alteracao(normaOrigem, normaDestino, data, tipo, caracteristica);
+    	dbManager.save(alt);
+    	normaOrigem.getAlteracoesFeitas().add(alt);
+    	normaDestino.getAlteracoesRecebidas().add(alt);
+    	dbManager.save(normaOrigem);
+    	dbManager.save(normaDestino);
 	}
 	    
 	@SuppressWarnings("unchecked")
@@ -70,67 +74,5 @@ public class ReferenciaManager {
 	@SuppressWarnings("unchecked")
 	public List<Alteracao> selectAlteracaoPorAtributo(String atributo, String valor) {
 		return dbManager.selectObjectsByField(new Alteracao(), atributo, valor);
-	}
-	
-	/* ------------------------------------------------------------------ */
-    /* -------------------- OPERACOES CITACAODOCJUD --------------------- */
-    /* ------------------------------------------------------------------ */
-    
-    public void salvaCitacaoDocJud(CitacaoDocJud citacaoDocJud) {
-		dbManager.save(citacaoDocJud);
-	}
-	    
-	@SuppressWarnings("unchecked")
-	public List<CitacaoDocJud> getCitacoesDocJud() {
-		return dbManager.selectAll( new CitacaoDocJud() );
-	}
-	
-	/**
-	 * removeCitacoesDocJud - por se tratar de um BD temporal, usar apenas em ocasiões especiais
-	 */
-	public void removeCitacoesDocJud() {
-		dbManager.removeAll( new CitacaoDocJud() );
-	}
-	
-	/**
-	 * Recupera as CitacoesDocJud que atraves de valores dos seus atributos
-	 * @param atributo
-	 * @param valor
-	 * @return Lista com as CitacoesDocJud recuperadas
-	 */
-	@SuppressWarnings("unchecked")
-	public List<CitacaoDocJud> selectCitacaoDocJudPorAtributo(String atributo, String valor) {
-		return dbManager.selectObjectsByField(new CitacaoDocJud(), atributo, valor);
-	}
-	
-	/* ------------------------------------------------------------------ */
-    /* -------------------- OPERACOES CITACAOTEXTLEG --------------------- */
-    /* ------------------------------------------------------------------ */
-    
-	public void salvaCitacaoTextLeg(CitacaoTextLeg citacaoTextLeg) {
-		dbManager.save(citacaoTextLeg);
-	}
-	    
-	@SuppressWarnings("unchecked")
-	public List<CitacaoTextLeg> getCitacoesTextLeg() {
-		return dbManager.selectAll( new CitacaoTextLeg() );
-	}
-	
-	/**
-	 * removeCitacoesTextLeg - por se tratar de um BD temporal, usar apenas em ocasiões especiais
-	 */
-	public void removeCitacoesTextLeg() {
-		dbManager.removeAll( new CitacaoTextLeg() );
-	}
-	
-	/**
-	 * Recupera as CitacoesTextLeg que atraves de valores dos seus atributos
-	 * @param atributo
-	 * @param valor
-	 * @return Lista com as CitacoesTextLeg recuperadas
-	 */
-	@SuppressWarnings("unchecked")
-	public List<CitacaoTextLeg> selectCitacaoTextLegPorAtributo(String atributo, String valor) {
-		return dbManager.selectObjectsByField(new CitacaoTextLeg(), atributo, valor);
 	}
 }
