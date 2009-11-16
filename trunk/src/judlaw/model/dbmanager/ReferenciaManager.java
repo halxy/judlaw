@@ -68,7 +68,7 @@ public class ReferenciaManager {
 	 * @return Lista com as Alteracoes recuperadas
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Alteracao> recuperaAlteracaoPorAtributo(String atributo, String valor) {
+	public List<Alteracao> selectAlteracaoPorAtributo(String atributo, String valor) {
 		return dbManager.selectObjectsByField(new Alteracao(), atributo, valor);
 	}
 	
@@ -99,38 +99,38 @@ public class ReferenciaManager {
 	 * @return Lista com as CitacoesDocJud recuperadas
 	 */
 	@SuppressWarnings("unchecked")
-	public List<CitacaoDocJud> recuperaCitacaoDocJudPorAtributo(String atributo, String valor) {
+	public List<CitacaoDocJud> selectCitacaoDocJudPorAtributo(String atributo, String valor) {
 		return dbManager.selectObjectsByField(new CitacaoDocJud(), atributo, valor);
 	}
 	
 	/* ------------------------------------------------------------------ */
-    /* -------------------- OPERACOES CITACAODOCLEG --------------------- */
+    /* -------------------- OPERACOES CITACAOTEXTLEG --------------------- */
     /* ------------------------------------------------------------------ */
     
-	public void salvaCitacaoDocLeg(CitacaoTextLeg citacaoDocLeg) {
-		dbManager.save(citacaoDocLeg);
+	public void salvaCitacaoTextLeg(CitacaoTextLeg citacaoTextLeg) {
+		dbManager.save(citacaoTextLeg);
 	}
 	    
 	@SuppressWarnings("unchecked")
-	public List<CitacaoTextLeg> getCitacoesDocLeg() {
+	public List<CitacaoTextLeg> getCitacoesTextLeg() {
 		return dbManager.selectAll( new CitacaoTextLeg() );
 	}
 	
 	/**
-	 * removeCitacoesDocLeg - por se tratar de um BD temporal, usar apenas em ocasiões especiais
+	 * removeCitacoesTextLeg - por se tratar de um BD temporal, usar apenas em ocasiões especiais
 	 */
-	public void removeCitacoesDocLeg() {
+	public void removeCitacoesTextLeg() {
 		dbManager.removeAll( new CitacaoTextLeg() );
 	}
 	
 	/**
-	 * Recupera as CitacoesDocLeg que atraves de valores dos seus atributos
+	 * Recupera as CitacoesTextLeg que atraves de valores dos seus atributos
 	 * @param atributo
 	 * @param valor
-	 * @return Lista com as CitacoesDocLeg recuperadas
+	 * @return Lista com as CitacoesTextLeg recuperadas
 	 */
 	@SuppressWarnings("unchecked")
-	public List<CitacaoTextLeg> recuperaCitacaoDocLegPorAtributo(String atributo, String valor) {
+	public List<CitacaoTextLeg> selectCitacaoTextLegPorAtributo(String atributo, String valor) {
 		return dbManager.selectObjectsByField(new CitacaoTextLeg(), atributo, valor);
 	}
 }
