@@ -87,10 +87,17 @@ public class DocumentoJuridico {
 	private String dataPublicacao; // dd/MM/yyy
 	
 	/* --------- Referencias --------- */
+	// Citacoes feitas
 	@OneToMany(mappedBy="documentoJuridicoOrigem", cascade = CascadeType.ALL)
     @Column(name="citacoesfeitas_fk")
     @LazyCollection(LazyCollectionOption.FALSE)
 	private List<CitacaoDocJud> citacoesFeitas;
+	
+	//Citacoes recebidas de outros documentos juridicos
+	@OneToMany(mappedBy="documentoJuridicoDestino", cascade = CascadeType.ALL)
+    @Column(name="citacoesrecebidasdocjud_fk")
+    @LazyCollection(LazyCollectionOption.FALSE)
+	private List<CitacaoDocJud> citacoesRecebidasDocJud;
 	
 	/**
 	 * 
@@ -130,6 +137,7 @@ public class DocumentoJuridico {
 		this.votos = new ArrayList<Voto>();
 		this.partes = new ArrayList<Parte>();
 		this.citacoesFeitas = new ArrayList<CitacaoDocJud>();
+		this.citacoesRecebidasDocJud = new ArrayList<CitacaoDocJud>();
 	}
 	
 	public Integer getId() {
@@ -218,5 +226,14 @@ public class DocumentoJuridico {
 
 	public void setCitacoesFeitas(List<CitacaoDocJud> citacoesFeitas) {
 		this.citacoesFeitas = citacoesFeitas;
+	}
+
+	public List<CitacaoDocJud> getCitacoesRecebidasDocJud() {
+		return citacoesRecebidasDocJud;
+	}
+
+	public void setCitacoesRecebidasDocJud(
+			List<CitacaoDocJud> citacoesRecebidasDocJud) {
+		this.citacoesRecebidasDocJud = citacoesRecebidasDocJud;
 	}
 }
