@@ -67,9 +67,16 @@ public class ReferenciaManagerTest {
 		          null );
 		
 		// Atributos das normas
+		//NORMA1
 		assertEquals( lawManager.getNormas().get(0).getIdentificadorUnico(),
 					  norma1.getIdentificadorUnico());
+		assertEquals( lawManager.getNormas().get(0).getAlteracoesFeitas().get(0).getData(),
+				  	  "16/11/2009");
+		//NORMA2
 		assertEquals( lawManager.getNormas().get(1).getIdentificadorUnico(),
 				      norma2.getIdentificadorUnico());
+		assertEquals( lawManager.getNormas().get(1).getAlteracoesRecebidas().get(0).getData(),
+					  "16/11/2009");
+		
 	}
 }
