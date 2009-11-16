@@ -50,14 +50,14 @@ public class LawManager {
 	}
     
     public void removeNormas() {
-    	for (Norma n: LawManager.getInstance().getNormas()){
-			n.setAlteracoesFeitas(null);
-			n.setAlteracoesRecebidas(null);
-			n.setCitacoesFeitas(null);
-			n.setCitacoesRecebidasDocJud(null);
-			n.setCitacoesRecebidasTextLeg(null);
-			dbManager.save(n);
-		}
+//    	for (Norma n: LawManager.getInstance().getNormas()){
+//			n.setAlteracoesFeitas(null);
+//			n.setAlteracoesRecebidas(null);
+//			n.setCitacoesFeitas(null);
+//			n.setCitacoesRecebidasDocJud(null);
+//			n.setCitacoesRecebidasTextLeg(null);
+//			dbManager.save(n);
+//		}
 		dbManager.removeAll( new Norma() );
 	}
     
