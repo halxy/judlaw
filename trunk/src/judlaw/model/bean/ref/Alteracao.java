@@ -44,12 +44,12 @@ public class Alteracao extends Referencia {
 	 */
 	//Norma
 	@ManyToOne
-	@JoinColumn(name="origemnorma_id", nullable = true)
+	@JoinColumn(name="origemnorma_id")
 	private Norma normaOrigem;
 	
 	//Norma
 	@ManyToOne
-	@JoinColumn(name="origemelementonorma_id", nullable = true)
+	@JoinColumn(name="origemelementonorma_id")
 	private ElementoNorma elementoNormaOrigem;
 	
 	/*
@@ -57,12 +57,12 @@ public class Alteracao extends Referencia {
 	 */
 	//Quando o destino da alteracao eh uma norma
 	@ManyToOne
-	@JoinColumn(name="destinonorma_id", nullable = true)
+	@JoinColumn(name="destinonorma_id")
 	private Norma normaDestino;
 	
 	//Quando o destino da alteracao eh um elementoNorma
 	@ManyToOne
-	@JoinColumn(name="destinoelementonorma_id", nullable = true)
+	@JoinColumn(name="destinoelementonorma_id")
 	private ElementoNorma elementoNormaDestino;
 	
 	/**
