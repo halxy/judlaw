@@ -61,6 +61,11 @@ public class LawManager {
 	public List<Norma> getNormas(){
 		return dbManager.selectAll( new Norma() );
 	}
+    
+    @SuppressWarnings("unchecked")
+	public List selectNormaPorAtributo(String atributo, String valor) {
+		return dbManager.selectObjectsByField(new Norma(), atributo, valor);
+	}
 	
     /* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES ELEMENTO NORMA -------------------- */
@@ -109,7 +114,7 @@ public class LawManager {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List recuperaElementoPorAtributo(String atributo, String valor) {
+	public List selectElementoPorAtributo(String atributo, String valor) {
 		return dbManager.selectObjectsByField(new ElementoNorma(), atributo, valor);
 	}
 }
