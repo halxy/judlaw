@@ -132,6 +132,12 @@ public class ReferenciaManager {
 		return dbManager.selectAll( new CitacaoTextLeg() );
 	}
 	
+	/**
+	 * CitacaoTextLeg Norma -> Norma
+	 * @param normaOrigem
+	 * @param normaDestino
+	 * @param data
+	 */
 	public void criaTextLeg(Norma normaOrigem, Norma normaDestino, String data){
     	CitacaoTextLeg citacaoTextLeg = new CitacaoTextLeg(normaOrigem, normaDestino, data);
     	dbManager.save(citacaoTextLeg);
