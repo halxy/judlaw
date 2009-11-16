@@ -43,12 +43,12 @@ public class CitacaoTextLeg extends Referencia {
 	 */
 	//Norma
 	@ManyToOne
-	@JoinColumn(name="origemnorma_id")
+	@JoinColumn(name="origemnorma_id", nullable = true)
 	private Norma normaOrigem;
 	
 	//Norma
 	@ManyToOne
-	@JoinColumn(name="origemelementonorma_id")
+	@JoinColumn(name="origemelementonorma_id", nullable = true)
 	private ElementoNorma elementoNormaOrigem;
 	
 	/*
@@ -56,17 +56,17 @@ public class CitacaoTextLeg extends Referencia {
 	 */
 	//Quando o destino da citacao eh um documento juridico
 	@ManyToOne
-	@JoinColumn(name="destinodocjud_id")
+	@JoinColumn(name="destinodocjud_id", nullable = true)
 	private DocumentoJuridico documentoJuridicoDestino;
 	
 	//Quando o destino da citacao eh uma norma
 	@ManyToOne
-	@JoinColumn(name="destinonorma_id")
+	@JoinColumn(name="destinonorma_id", nullable = true)
 	private Norma normaDestino;
 	
 	//Quando o destino da citacao eh um elementoNorma
 	@ManyToOne
-	@JoinColumn(name="destinoelementonorma_id")
+	@JoinColumn(name="destinoelementonorma_id", nullable = true)
 	private ElementoNorma elementoNormaDestino;
 	
 	/**
