@@ -25,7 +25,7 @@ public class ReferenciaManagerTest {
 	@Before
 	public void setUp() {
 		/* ---------- Esvazia as listas envolvidas ----------*/
-		refManager.removeAlteracoes();
+		refManager.removeReferencias();
 		lawManager.removeNormas();
 		lawManager.removeElementosNorma();
 		docJudManager.removeDocumentosJuridicos();

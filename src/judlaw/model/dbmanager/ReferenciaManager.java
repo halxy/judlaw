@@ -14,6 +14,8 @@ import java.util.List;
 
 import judlaw.model.bean.lei.Norma;
 import judlaw.model.bean.ref.Alteracao;
+import judlaw.model.bean.ref.CitacaoDocJud;
+import judlaw.model.bean.ref.CitacaoTextLeg;
 
 
 /**
@@ -37,7 +39,41 @@ public class ReferenciaManager {
         	referenciaManager = new ReferenciaManager();
         return referenciaManager;
     }
-	    
+    
+	/**
+	 * Remove todas as referencias do Banco de Dados
+	 */
+    public void removeReferencias() {
+		//Alteracoes
+		for( Alteracao alt : getAlteracoes() ) {
+			alt.setNormaOrigem(null);
+			alt.setNormaDestino(null);
+			alt.setElementoNormaOrigem(null);
+			alt.setElementoNormaDestino(null);	
+			dbManager.save(alt);
+		}
+		dbManager.removeAll( new Alteracao() );
+		//CitacoesDocJud
+		for( CitacaoDocJud citDocJud : getCitacoesDocJud() ){
+			citDocJud.setDocumentoJuridicoOrigem(null);
+			citDocJud.setDocumentoJuridicoDestino(null);
+			citDocJud.setElementoNormaDestino(null);
+			citDocJud.setNormaDestino(null);
+			dbManager.save(citDocJud);
+		}
+		dbManager.removeAll( new CitacaoDocJud() );
+		//CitacoesTextLeg
+		for( CitacaoTextLeg citTextLeg : getCitacoesTextLeg() ){
+			citTextLeg.setDocumentoJuridicoDestino(null);
+			citTextLeg.setElementoNormaDestino(null);
+			citTextLeg.setNormaDestino(null);
+			citTextLeg.setElementoNormaOrigem(null);
+			citTextLeg.setNormaOrigem(null);
+			dbManager.save(citTextLeg);
+		}
+		dbManager.removeAll( new CitacaoTextLeg() );
+	}
+    
     /* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES ALTERACAO ------------------------- */
     /* ------------------------------------------------------------------ */
@@ -59,18 +95,6 @@ public class ReferenciaManager {
 	}
 	
 	/**
-	 * removeAlteracoes - por se tratar de um BD temporal, usar apenas em ocasiões especiais
-	 */
-	public void removeAlteracoes() {
-		for( Alteracao alt : getAlteracoes() ) {
-			alt.setNormaOrigem(null);
-			alt.setNormaDestino(null);
-			dbManager.save(alt);
-		}
-		dbManager.removeAll( new Alteracao() );
-	}
-	
-	/**
 	 * Recupera as Alteracoes que atraves de valores dos seus atributos
 	 * @param atributo
 	 * @param valor
@@ -79,5 +103,23 @@ public class ReferenciaManager {
 	@SuppressWarnings("unchecked")
 	public List<Alteracao> selectAlteracaoPorAtributo(String atributo, String valor) {
 		return dbManager.selectObjectsByField(new Alteracao(), atributo, valor);
+	}
+	
+	/* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES CITACAODOCJUD --------------------- */
+    /* ------------------------------------------------------------------ */
+	
+	@SuppressWarnings("unchecked")
+	public List<CitacaoDocJud> getCitacoesDocJud() {
+		return dbManager.selectAll( new CitacaoDocJud() );
+	}
+	
+	/* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES CITACAOTEXTLEG -------------------- */
+    /* ------------------------------------------------------------------ */
+	
+	@SuppressWarnings("unchecked")
+	public List<CitacaoTextLeg> getCitacoesTextLeg() {
+		return dbManager.selectAll( new CitacaoTextLeg() );
 	}
 }
