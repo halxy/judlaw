@@ -43,7 +43,7 @@ public class CitacaoDocJud extends Referencia {
 	 */
 	//A origem sempre eh um documento juridico
 	@ManyToOne
-	@JoinColumn(name="origem_id")
+	@JoinColumn(name="origemdocjud_id")
 	private DocumentoJuridico documentoJuridicoOrigem;
 	
 	/*

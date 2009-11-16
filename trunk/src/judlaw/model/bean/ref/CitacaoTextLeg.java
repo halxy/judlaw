@@ -20,6 +20,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import judlaw.model.bean.docjud.DocumentoJuridico;
+import judlaw.model.bean.lei.ElementoNorma;
 import judlaw.model.bean.lei.Norma;
 
 @Entity
@@ -33,22 +35,109 @@ public class CitacaoTextLeg extends Referencia {
 	private Integer id;
 
 	/* --------- Atributos --------- */
-	private String destino; // identificadorUnico do Documento que recebeu a referência
 	private String data; // data em que foi feita a referência
 	
+	/* --------- Referencias --------- */
+	/*
+	 * ORIGENS
+	 */
+	//Norma
 	@ManyToOne
-	@JoinColumn(name="origemNorma_id")
+	@JoinColumn(name="origemnorma_id")
 	private Norma normaOrigem;
+	
+	//Norma
+	@ManyToOne
+	@JoinColumn(name="origemelementonorma_id")
+	private ElementoNorma elementoNormaOrigem;
+	
+	/*
+	 * DESTINOS
+	 */
+	//Quando o destino da citacao eh um documento juridico
+	@ManyToOne
+	@JoinColumn(name="destinodocjud_id")
+	private DocumentoJuridico documentoJuridicoDestino;
+	
+	//Quando o destino da citacao eh uma norma
+	@ManyToOne
+	@JoinColumn(name="destinonorma_id")
+	private Norma normaDestino;
+	
+	//Quando o destino da citacao eh um elementoNorma
+	@ManyToOne
+	@JoinColumn(name="destinoelementonorma_id")
+	private ElementoNorma elementoNormaDestino;
 	
 	/**
 	 * 
 	 * @param normaOrigem
-	 * @param destino
+	 * @param normaDestino
 	 * @param data
 	 */
-	public CitacaoTextLeg(Norma normaOrigem, String destino, String data) {
+	public CitacaoTextLeg(Norma normaOrigem, Norma normaDestino, String data) {
 		this.normaOrigem = normaOrigem;
-		this.destino = destino;
+		this.normaDestino = normaDestino;
+		this.data = data;
+	}
+	
+	/**
+	 * 
+	 * @param normaOrigem
+	 * @param elementoNormaDestino
+	 * @param data
+	 */
+	public CitacaoTextLeg(Norma normaOrigem, ElementoNorma elementoNormaDestino, String data) {
+		this.normaOrigem = normaOrigem;
+		this.elementoNormaDestino = elementoNormaDestino;
+		this.data = data;
+	}
+	
+	/**
+	 * 
+	 * @param normaOrigem
+	 * @param documentoJuridicoDestino
+	 * @param data
+	 */
+	public CitacaoTextLeg(Norma normaOrigem, DocumentoJuridico documentoJuridicoDestino, String data) {
+		this.normaOrigem = normaOrigem;
+		this.documentoJuridicoDestino = documentoJuridicoDestino;
+		this.data = data;
+	}
+	
+	/**
+	 * 
+	 * @param elementoNormaOrigem
+	 * @param normaDestino
+	 * @param data
+	 */
+	public CitacaoTextLeg(ElementoNorma elementoNormaOrigem, Norma normaDestino, String data) {
+		this.elementoNormaOrigem = elementoNormaOrigem;
+		this.normaDestino = normaDestino;
+		this.data = data;
+	}
+	
+	/**
+	 * 
+	 * @param elementoNormaOrigem
+	 * @param elementoNormaDestino
+	 * @param data
+	 */
+	public CitacaoTextLeg(ElementoNorma elementoNormaOrigem, ElementoNorma elementoNormaDestino, String data) {
+		this.elementoNormaOrigem = elementoNormaOrigem;
+		this.elementoNormaDestino = elementoNormaDestino;
+		this.data = data;
+	}
+	
+	/**
+	 * 
+	 * @param elementoNormaOrigem
+	 * @param documentoJuridicoDestino
+	 * @param data
+	 */
+	public CitacaoTextLeg(ElementoNorma elementoNormaOrigem, DocumentoJuridico documentoJuridicoDestino, String data) {
+		this.elementoNormaOrigem = elementoNormaOrigem;
+		this.documentoJuridicoDestino = documentoJuridicoDestino;
 		this.data = data;
 	}
 
@@ -65,14 +154,6 @@ public class CitacaoTextLeg extends Referencia {
 		this.id = id;
 	}
 
-	public String getDestino() {
-		return destino;
-	}
-
-	public void setDestino(String destino) {
-		this.destino = destino;
-	}
-
 	public String getData() {
 		return data;
 	}
@@ -87,5 +168,38 @@ public class CitacaoTextLeg extends Referencia {
 
 	public void setNormaOrigem(Norma normaOrigem) {
 		this.normaOrigem = normaOrigem;
+	}
+
+	public ElementoNorma getElementoNormaOrigem() {
+		return elementoNormaOrigem;
+	}
+
+	public void setElementoNormaOrigem(ElementoNorma elementoNormaOrigem) {
+		this.elementoNormaOrigem = elementoNormaOrigem;
+	}
+
+	public DocumentoJuridico getDocumentoJuridicoDestino() {
+		return documentoJuridicoDestino;
+	}
+
+	public void setDocumentoJuridicoDestino(
+			DocumentoJuridico documentoJuridicoDestino) {
+		this.documentoJuridicoDestino = documentoJuridicoDestino;
+	}
+
+	public Norma getNormaDestino() {
+		return normaDestino;
+	}
+
+	public void setNormaDestino(Norma normaDestino) {
+		this.normaDestino = normaDestino;
+	}
+
+	public ElementoNorma getElementoNormaDestino() {
+		return elementoNormaDestino;
+	}
+
+	public void setElementoNormaDestino(ElementoNorma elementoNormaDestino) {
+		this.elementoNormaDestino = elementoNormaDestino;
 	}
 }
