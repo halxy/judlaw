@@ -26,8 +26,9 @@ public class ReferenciaManagerTest {
 	public void setUp() {
 		/* ---------- Esvazia as listas envolvidas ----------*/
 		lawManager.removeNormas();
+		lawManager.removeElementosNorma();
 		docJudManager.removeDocumentosJuridicos();
-		refManager.removeAlteracoes();
+		
 	}
 
 	/**
@@ -65,6 +66,9 @@ public class ReferenciaManagerTest {
 		          null );
 		
 		// Atributos das normas
-		
+		assertEquals( lawManager.getNormas().get(0).getIdentificadorUnico(),
+					  norma1.getIdentificadorUnico());
+		assertEquals( lawManager.getNormas().get(1).getIdentificadorUnico(),
+				      norma2.getIdentificadorUnico());
 	}
 }
