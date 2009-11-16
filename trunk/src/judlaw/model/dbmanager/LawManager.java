@@ -117,4 +117,10 @@ public class LawManager {
 	public List selectElementoPorAtributo(String atributo, String valor) {
 		return dbManager.selectObjectsByField(new ElementoNorma(), atributo, valor);
 	}
+	
+	public void adicionaElementoNorma(ElementoNorma elementoNorma, Norma norma) {
+		elementoNorma.setNormaPai(norma);
+		norma.getElementosNorma().add( elementoNorma );
+		dbManager.save(norma);
+	}
 }
