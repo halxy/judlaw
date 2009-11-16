@@ -80,6 +80,15 @@ public class ReferenciaManager {
     /**
      * 
      */
+    
+    /**
+	 * Alteracao Norma -> Norma
+	 * @param normaOrigem
+	 * @param normaDestino
+	 * @param data
+	 * @param tipo
+	 * @param caracteristica
+	 */
     public void criaAlteracao(Norma normaOrigem, Norma normaDestino, String data, String tipo, String caracteristica){
     	Alteracao alt = new Alteracao(normaOrigem, normaDestino, data, tipo, caracteristica);
     	dbManager.save(alt);
@@ -121,5 +130,14 @@ public class ReferenciaManager {
 	@SuppressWarnings("unchecked")
 	public List<CitacaoTextLeg> getCitacoesTextLeg() {
 		return dbManager.selectAll( new CitacaoTextLeg() );
+	}
+	
+	public void criaTextLeg(Norma normaOrigem, Norma normaDestino, String data){
+    	CitacaoTextLeg citacaoTextLeg = new CitacaoTextLeg(normaOrigem, normaDestino, data);
+    	dbManager.save(citacaoTextLeg);
+    	normaOrigem.getCitacoesFeitas().add( citacaoTextLeg );
+    	normaDestino.getCitacoesRecebidasTextLeg().add( citacaoTextLeg );
+    	dbManager.save(normaOrigem);
+    	dbManager.save(normaDestino);
 	}
 }
