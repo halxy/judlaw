@@ -61,7 +61,7 @@ public class LawManagerTest {
 		
 		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
 								"dataPublicacaoN1", "vigenciaN1");
-		
+		norma1.getElementosNorma().add(artigo1);
 		norma1.getElementosNorma().add(artigo2);
 		lawManager.salvaNorma(norma1);
 		
