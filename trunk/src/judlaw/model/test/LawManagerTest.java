@@ -393,7 +393,25 @@ public class LawManagerTest {
 		assertEquals(norma2.getIdentificadorUnico(), 
 					lawManager.getNormas().get(1).getIdentificadorUnico() );
 		/* ---------- Criando as referencias ----------*/
-//		
-//		ReferenciaManager.getInstance().criaCitacaoTextLeg(norma1, normaDestino, data);
+		
+		// Norma1 -> Norma2
+		ReferenciaManager.getInstance().criaCitacaoTextLeg(norma1, norma2, "18/11/2009");
+		// Artigo1 -> Norma2
+		ReferenciaManager.getInstance().criaCitacaoTextLeg(artigo1, norma2, "18/11/2009");
+		// Norma2 -> DJ1
+		ReferenciaManager.getInstance().criaCitacaoTextLeg(norma2, docJud1, "18/11/2009");
+		// Norma2 -> Artigo1
+		ReferenciaManager.getInstance().criaCitacaoTextLeg(norma2, artigo1, "18/11/2009");
+		//Verifica a cardinalidade das citacoesTextLeg
+		assertEquals( 4, ReferenciaManager.getInstance().getCitacoesTextLeg().size() );
+		
+		//Removendo Norma1
+		lawManager.removeNorma( lawManager.getNormas().get(0) );
+		//Verifica a cardinalidade das citacoesTextLeg
+		assertEquals( 1, ReferenciaManager.getInstance().getCitacoesTextLeg().size() );
+		//Removendo DocJud1
+		DocJudManager.getInstance().removeDocumentoJuridico( docJud1 );
+		//Verifica a cardinalidade das citacoesTextLeg
+		assertEquals( 0, ReferenciaManager.getInstance().getCitacoesTextLeg().size() );
 	}
 }
