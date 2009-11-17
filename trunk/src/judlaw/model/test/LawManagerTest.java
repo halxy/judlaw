@@ -169,7 +169,7 @@ public class LawManagerTest {
 		assertEquals(7, lawManager.getElementosNorma().size() );
 
 		/* ---------- Removendo o ElementoNorma ----------*/
-		lawManager.removeNormas();
+		lawManager.removeNorma( lawManager.getNormas().get(0) );
 		
 		/* ---------- Verifica novamente as cardinalidade das tabelas ----------*/
 		//Quantidade de normas

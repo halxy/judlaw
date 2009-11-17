@@ -49,6 +49,9 @@ public class LawManager {
     	}
 	}
     
+    /**
+     * Remove todas as normas
+     */
     public void removeNormas() {
 		dbManager.removeAll( new Norma() );
 	}
@@ -67,6 +70,14 @@ public class LawManager {
 		return dbManager.selectObjectsByField(new Norma(), atributo, valor);
 	}
 	
+    /**
+     * Remove uma norma do banco de dados
+     * @param norma
+     */
+    public void removeNorma(Norma norma) {
+    	dbManager.remove( norma ); 
+    }
+    
     /* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES ELEMENTO NORMA -------------------- */
     /* ------------------------------------------------------------------ */
