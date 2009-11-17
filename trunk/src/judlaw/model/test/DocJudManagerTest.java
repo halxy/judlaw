@@ -13,6 +13,7 @@ import judlaw.model.bean.docjud.Parte;
 import judlaw.model.bean.docjud.Relatorio;
 import judlaw.model.bean.docjud.Voto;
 import judlaw.model.dbmanager.DocJudManager;
+import judlaw.model.dbmanager.ReferenciaManager;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -27,6 +28,7 @@ public class DocJudManagerTest {
 	
 	@Before
 	public void setUp() {
+		ReferenciaManager.getInstance().removeReferencias();
 		/* ---------- Esvazia a lista de Documentos Juridicos ----------*/
 		docJudManager.removeDocumentosJuridicos();
 		docJudManager.removeCabecalhos();
@@ -685,5 +687,64 @@ public class DocJudManagerTest {
 		assertEquals( encerramentos.get(0).getLocal(), encerramento1.getLocal() );
 		assertEquals( encerramentos.get(0).getDocumentoJuridico().getIdentificadorUnico(), 
 					  docJud1.getIdentificadorUnico() );
+	}
+	
+	/**
+	 * Verifica se as referencias feitas a um documento juridico sao removidas quando ele eh removido
+	 */
+	@Test
+	public void testRemoveDocumentoReferencias() {
+		/* ---------- Verifica se a lista esta vazia ----------*/
+		assertEquals(0, docJudManager.getDocumentosJuridicos().size());
+		//DJ1
+		DocumentoJuridico docJud1 = new DocumentoJuridico();
+		docJud1.setIdentificadorUnico("idUnico1");
+		docJudManager.salvaDocumentoJuridico(docJud1);
+		//DJ2
+		DocumentoJuridico docJud2 = new DocumentoJuridico();
+		docJud2.setIdentificadorUnico("idUnico2");
+		docJudManager.salvaDocumentoJuridico(docJud2);
+		//Verifica a cardinalidade dos documentos
+		assertEquals( 2, docJudManager.getDocumentosJuridicos().size() );
+		
+		/* ---------- Criando as Referencias ----------*/
+		ReferenciaManager.getInstance().criaCitacaoDocJud(docJud1, docJud2, "16/11/2009");
+		ReferenciaManager.getInstance().criaCitacaoDocJud(docJud2, docJud1, "16/11/2009");
+		//Verifica a cardinalidade das citacoes
+		assertEquals( 2, ReferenciaManager.getInstance().getCitacoesDocJud().size() );
+		
+		/* ---------- Removendo docJud1 ----------*/
+		docJudManager.removeDocumentoJuridico( docJud1 );
+		//Verifica as cardinalidades
+		assertEquals( 1, docJudManager.getDocumentosJuridicos().size() );
+		//As citacoes tem que terem sido removidas
+		assertEquals( 0, ReferenciaManager.getInstance().getCitacoesDocJud().size() );
+		/* ---------- Adicionando novamente docJud1 ----------*/
+		DocumentoJuridico docJud3 = new DocumentoJuridico();
+		docJud3.setIdentificadorUnico("idUnico3");
+		docJudManager.salvaDocumentoJuridico(docJud3);
+		//Verifica os documentos
+		assertEquals( 2, docJudManager.getDocumentosJuridicos().size() );
+		assertEquals( docJud2.getIdentificadorUnico(), 
+					  docJudManager.getDocumentosJuridicos().get(0).getIdentificadorUnico() );
+		assertEquals( docJud3.getIdentificadorUnico(), 
+				  docJudManager.getDocumentosJuridicos().get(1).getIdentificadorUnico() );
+		
+		/* ---------- Criando as Referencias novamente ----------*/
+		ReferenciaManager.getInstance().criaCitacaoDocJud(docJudManager.getDocumentosJuridicos().get(1),
+														  docJudManager.getDocumentosJuridicos().get(0),
+														  "16/11/2009");
+		ReferenciaManager.getInstance().criaCitacaoDocJud(docJudManager.getDocumentosJuridicos().get(0),
+														  docJudManager.getDocumentosJuridicos().get(1),
+				  										  "16/11/2009");
+//		//Verifica a cardinalidade das citacoes
+		assertEquals( 2, ReferenciaManager.getInstance().getCitacoesDocJud().size() );
+//		
+//		/* ---------- Removendo docJud2 ----------*/
+		docJudManager.removeDocumentoJuridico( docJudManager.getDocumentosJuridicos().get(1) );
+		//Verifica as cardinalidades
+		assertEquals( 1, docJudManager.getDocumentosJuridicos().size() );
+		//As citacoes tem que terem sido removidas
+		assertEquals( 0, ReferenciaManager.getInstance().getCitacoesDocJud().size() );
 	}
 }
