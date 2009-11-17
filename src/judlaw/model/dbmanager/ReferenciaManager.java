@@ -191,6 +191,18 @@ public class ReferenciaManager {
 		return dbManager.selectObjectsByField(new Alteracao(), atributo, valor);
 	}
 	
+	/**
+	 * Altera uma Alteracao no banco de dados
+	 * @param newAlteracao
+	 * @param oldAlteracao
+	 */
+	public void alteraAlteracao(Alteracao newAlteracao, Alteracao oldAlteracao){
+		oldAlteracao.setData( newAlteracao.getData() );
+		oldAlteracao.setTipo( newAlteracao.getTipo() );
+		oldAlteracao.setCaracteristica( newAlteracao.getCaracteristica() );
+		dbManager.save( oldAlteracao );
+	}
+	
 	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES CITACAODOCJUD --------------------- */
     /* ------------------------------------------------------------------ */
@@ -268,6 +280,16 @@ public class ReferenciaManager {
     	}
     	dbManager.remove( citacaoDocJud );
     }
+	
+	/**
+	 * Altera uma citacaoDocJud
+	 * @param newCitacaoDJud
+	 * @param oldCitacaoDocJud
+	 */
+	public void alteraCitacaoDocJud(CitacaoDocJud newCitacaoDJud, CitacaoDocJud oldCitacaoDocJud){
+		oldCitacaoDocJud.setData( newCitacaoDJud.getData() );
+		dbManager.save( oldCitacaoDocJud ); 
+	}
 	
 	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES CITACAOTEXTLEG -------------------- */
@@ -393,4 +415,14 @@ public class ReferenciaManager {
     	}
     	dbManager.remove( citacaoTextLeg );
     }
+	
+	/**
+	 * Altera a data de uma citacaoTextLeg
+	 * @param newCitacaoTextLeg
+	 * @param oldCitacaoTextLeg
+	 */
+	public void alteraCitacaoTextLeg(CitacaoTextLeg newCitacaoTextLeg, CitacaoTextLeg oldCitacaoTextLeg) {
+		oldCitacaoTextLeg.setData( newCitacaoTextLeg.getData() );
+		dbManager.save( oldCitacaoTextLeg );
+	}
 }
