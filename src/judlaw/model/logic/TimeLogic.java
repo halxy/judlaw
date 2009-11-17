@@ -177,18 +177,20 @@ public class TimeLogic {
 					}
 			//Caso a citacao foi feita a uma norma
 			} else if ( citacao.getNormaDestino() != null ){
-//				if ( dataMaisAtual(citacao.getData(), 
-//						citacao.getDocumentoJuridicoDestino().getDataPublicacao(), 
-//						BARRA) < 0 ) { // <0 acontece quando a segunda data eh mais atual
-//						listaResultado.add( citacao );
-//					}
+				if ( comparaVigenciaComData(citacao.getNormaDestino().getVigencia(), 
+						                    Constantes.DELIMITADOR_VIGENCIA, 
+						                    citacao.getData(), 
+						                    Constantes.DELIMITADOR_DATA) < 0) { // <0 acontece quando a segunda data eh mais atual
+						listaResultado.add( citacao );
+					}
 			//Caso a citacao foi feita a um elementonorma
 			} else {
-//				if ( dataMaisAtual(citacao.getData(), 
-//				citacao.getDocumentoJuridicoDestino().getDataPublicacao(), 
-//				BARRA) < 0 ) { // <0 acontece quando a segunda data eh mais atual
-//				listaResultado.add( citacao );
-//			}
+				if ( comparaVigenciaComData(citacao.getElementoNormaDestino().getVigencia(), 
+	                    Constantes.DELIMITADOR_VIGENCIA, 
+	                    citacao.getData(), 
+	                    Constantes.DELIMITADOR_DATA) < 0) { // <0 acontece quando a segunda data eh mais atual
+						listaResultado.add( citacao );
+			}
 			}
 		}
 		return listaResultado;
