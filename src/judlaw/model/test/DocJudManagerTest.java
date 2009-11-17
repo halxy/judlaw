@@ -737,10 +737,10 @@ public class DocJudManagerTest {
 		ReferenciaManager.getInstance().criaCitacaoDocJud(docJudManager.getDocumentosJuridicos().get(0),
 														  docJudManager.getDocumentosJuridicos().get(1),
 				  										  "16/11/2009");
-//		//Verifica a cardinalidade das citacoes
+		//Verifica a cardinalidade das citacoes
 		assertEquals( 2, ReferenciaManager.getInstance().getCitacoesDocJud().size() );
-//		
-//		/* ---------- Removendo docJud2 ----------*/
+		
+		/* ---------- Removendo docJud2 ----------*/
 		docJudManager.removeDocumentoJuridico( docJudManager.getDocumentosJuridicos().get(1) );
 		//Verifica as cardinalidades
 		assertEquals( 1, docJudManager.getDocumentosJuridicos().size() );
