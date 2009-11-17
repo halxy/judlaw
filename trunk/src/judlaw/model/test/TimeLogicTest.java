@@ -82,6 +82,6 @@ public class TimeLogicTest {
 	 */
 	@Test
 	public void testInconsistenciasTemporaisCDJ(){
-		
+		//TODO
 	}
 }
