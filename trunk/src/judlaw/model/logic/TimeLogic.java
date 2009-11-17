@@ -94,9 +94,31 @@ public class TimeLogic {
 		return comparaDatas(fimVigencia, data, delimitadorData);
 	}
 	
-
-	public int comparaVigencias() {
-		return 0; //TODO
+	/**
+	 * Compara as vigencias e retorna qual a mais atual
+	 * @param vigencia1
+	 * @param vigencia2
+	 * @param delimitadorVigencias
+	 * @param delimitadorDatas
+	 * @return 1 se a Vigencia1 tiver uma data fim maior, 0 se as datas fim forem iguais e -1 caso
+	 * a data fim da Vigencia2 for maior.
+	 * @throws Exception Caso as datas dos parametros fimVigencia1 e fimVigencia2 estejam mal-formatadas
+	 */
+	public int comparaVigencias(String vigencia1, String vigencia2, 
+								String delimitadorVigencias, String delimitadorDatas) throws Exception {
+		/*
+		 * Modelo de vigencia esperada:
+		 * dd1/mm1/yyyy1-dd2/mm2/yyyy2
+		 */
+		//FimVigencia1
+		StringTokenizer tokenVigencia = new StringTokenizer(vigencia1, delimitadorVigencias);
+		tokenVigencia.nextToken(); // passando o primeiro token referente à data inicio da vigencia
+		String fimVigencia1 = tokenVigencia.nextToken();
+		//FimVigencia2
+		StringTokenizer tokenVigencia2 = new StringTokenizer(vigencia2, delimitadorVigencias);
+		tokenVigencia2.nextToken(); // passando o primeiro token referente à data inicio da vigencia
+		String fimVigencia2 = tokenVigencia2.nextToken();
+		return comparaDatas(fimVigencia1, fimVigencia2, delimitadorDatas);
 	}
 	
 	/* ------------------------------------------------------------------ */
