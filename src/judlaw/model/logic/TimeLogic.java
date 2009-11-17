@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 
 import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.bean.ref.CitacaoDocJud;
+import judlaw.model.util.Constantes;
 
 /**
  * Classe que manipula o tempo;
@@ -16,7 +17,6 @@ import judlaw.model.bean.ref.CitacaoDocJud;
 public class TimeLogic {
 
 	private static TimeLogic timeManager = null;
-	private static final String BARRA = "/";
 	
 	/**
 	 * 
@@ -172,7 +172,7 @@ public class TimeLogic {
 			if( citacao.getDocumentoJuridicoDestino() != null ) {
 				if ( comparaDatas(citacao.getData(), 
 						citacao.getDocumentoJuridicoDestino().getDataPublicacao(), 
-						BARRA) < 0 ) { // <0 acontece quando a segunda data eh mais atual
+						Constantes.DELIMITADOR_DATA) < 0 ) { // <0 acontece quando a segunda data eh mais atual
 						listaResultado.add( citacao );
 					}
 			//Caso a citacao foi feita a uma norma
