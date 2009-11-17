@@ -81,6 +81,14 @@ public class DocJudManager {
 		dbManager.removeAll( new DocumentoJuridico() );
 	}
 	
+	/**
+	 * Remove um DocumentoJuridico do Banco de Dados
+	 * @param documentoJuridico
+	 */
+	public void removeDocumentoJuridico(DocumentoJuridico documentoJuridico){
+		dbManager.remove(documentoJuridico);
+	}
+	
 	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES CABECALHO ------------------------- */
     /* ------------------------------------------------------------------ */
