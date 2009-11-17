@@ -94,6 +94,11 @@ public class TimeLogic {
 		return comparaDatas(fimVigencia, data, delimitadorData);
 	}
 	
+
+	public int comparaVigencias() {
+		return 0; //TODO
+	}
+	
 	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES CITACAODOCJUD --------------------- */
     /* ------------------------------------------------------------------ */
