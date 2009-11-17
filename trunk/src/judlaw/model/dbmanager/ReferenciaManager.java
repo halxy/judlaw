@@ -210,13 +210,13 @@ public class ReferenciaManager {
 	 * @param eleNormanormaDestino
 	 * @param data
 	 */
-	public void criaCitacaoTextLeg(Norma normaOrigem, ElementoNorma eleNormanormaDestino, String data){
-    	CitacaoTextLeg citacaoTextLeg = new CitacaoTextLeg(normaOrigem, eleNormanormaDestino, data);
+	public void criaCitacaoTextLeg(Norma normaOrigem, ElementoNorma elementoNormaDestino, String data){
+    	CitacaoTextLeg citacaoTextLeg = new CitacaoTextLeg(normaOrigem, elementoNormaDestino, data);
     	dbManager.save(citacaoTextLeg);
     	normaOrigem.getCitacoesFeitas().add( citacaoTextLeg );
-    	eleNormanormaDestino.getCitacoesRecebidasTextLeg().add( citacaoTextLeg );
+    	elementoNormaDestino.getCitacoesRecebidasTextLeg().add( citacaoTextLeg );
     	dbManager.save(normaOrigem);
-    	dbManager.save(eleNormanormaDestino);
+    	dbManager.save(elementoNormaDestino);
 	}
 	
 	/**
@@ -231,6 +231,51 @@ public class ReferenciaManager {
     	normaOrigem.getCitacoesFeitas().add( citacaoTextLeg );
     	documentoJuridicoDestino.getCitacoesRecebidasTextLeg().add( citacaoTextLeg );
     	dbManager.save(normaOrigem);
+    	dbManager.save(documentoJuridicoDestino);
+	}
+	
+	/**
+	 * CitacaoTextLeg ElementoNorma -> Norma
+	 * @param elementoNormaOrigem
+	 * @param normaDestino
+	 * @param data
+	 */
+	public void criaCitacaoTextLeg(ElementoNorma elementoNormaOrigem, Norma normaDestino, String data){
+    	CitacaoTextLeg citacaoTextLeg = new CitacaoTextLeg(elementoNormaOrigem, normaDestino, data);
+    	dbManager.save(citacaoTextLeg);
+    	elementoNormaOrigem.getCitacoesFeitas().add( citacaoTextLeg );
+    	normaDestino.getCitacoesRecebidasTextLeg().add( citacaoTextLeg );
+    	dbManager.save(elementoNormaOrigem);
+    	dbManager.save(normaDestino);
+	}
+	
+	/**
+	 * CitacaoTextLeg ElementoNorma -> ElementoNorma
+	 * @param elementoNormaOrigem
+	 * @param elementoNormaDestino
+	 * @param data
+	 */
+	public void criaCitacaoTextLeg(ElementoNorma elementoNormaOrigem, ElementoNorma elementoNormaDestino, String data){
+    	CitacaoTextLeg citacaoTextLeg = new CitacaoTextLeg(elementoNormaOrigem, elementoNormaDestino, data);
+    	dbManager.save(citacaoTextLeg);
+    	elementoNormaOrigem.getCitacoesFeitas().add( citacaoTextLeg );
+    	elementoNormaDestino.getCitacoesRecebidasTextLeg().add( citacaoTextLeg );
+    	dbManager.save(elementoNormaOrigem);
+    	dbManager.save(elementoNormaDestino);
+	}
+	
+	/**
+	 * CitacaoTextLeg ElementoNorma -> DocumentoJuridico
+	 * @param elementoNormaOrigem
+	 * @param documentoJuridicoDestino
+	 * @param data
+	 */
+	public void criaCitacaoTextLeg(ElementoNorma elementoNormaOrigem, DocumentoJuridico documentoJuridicoDestino, String data){
+    	CitacaoTextLeg citacaoTextLeg = new CitacaoTextLeg(elementoNormaOrigem, documentoJuridicoDestino, data);
+    	dbManager.save(citacaoTextLeg);
+    	elementoNormaOrigem.getCitacoesFeitas().add( citacaoTextLeg );
+    	documentoJuridicoDestino.getCitacoesRecebidasTextLeg().add( citacaoTextLeg );
+    	dbManager.save(elementoNormaOrigem);
     	dbManager.save(documentoJuridicoDestino);
 	}
 }
