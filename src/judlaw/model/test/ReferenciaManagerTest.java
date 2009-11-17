@@ -227,6 +227,9 @@ public class ReferenciaManagerTest {
 		
 		/*
 		 * Atributos das Normas, ElementosNormas e DocumentoJuridico
+		 * Por algum motivo obscuro, ao pegar a lista de normas e elementosnorma, eles nao vem na ordem
+		 * que foram inseridos, dai a diferenca da ordem que foi inserida para a ordem que 
+		 * estao sendo avaliados os atributos.
 		 */
 		//NORMA1
 		assertEquals( lawManager.getNormas().get(1).getIdentificadorUnico(),
@@ -244,14 +247,22 @@ public class ReferenciaManagerTest {
 		assertEquals( lawManager.getElementosNorma().get(1).getIdentificadorUnico(),
 					  artigo1.getIdentificadorUnico());
 		assertEquals( lawManager.getElementosNorma().get(1).getCitacoesFeitas().get(0).getData(),
-				  	  "18/11/2009");
+				  	  "19/11/2009");
 		assertEquals( lawManager.getElementosNorma().get(1).getCitacoesFeitas().get(1).getData(),
-	  	  			  "19/11/2009");
+	  	  			  "20/11/2009");
 		assertEquals( lawManager.getElementosNorma().get(1).getCitacoesFeitas().get(2).getData(),
-						"20/11/2009");
+						"21/11/2009");
+		//DOCUMENTOJURIDICO1
+		assertEquals( docJudManager.getDocumentosJuridicos().get(0).getIdentificadorUnico(),
+				  	docJud1.getIdentificadorUnico());
+		assertEquals( docJudManager.getDocumentosJuridicos().get(0).getCitacoesRecebidasTextLeg().get(0).getData(),
+			  	"18/11/2009");
+		assertEquals( docJudManager.getDocumentosJuridicos().get(0).getCitacoesRecebidasTextLeg().get(1).getData(),
+	  			"21/11/2009");
 	}
 	
 	 /* ------------------------------------------------------------------ */
     /* -------------------- TESTES CITACAODOCJUD ------------------------ */
     /* ------------------------------------------------------------------ */
+	//TODO
 }
