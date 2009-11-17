@@ -180,6 +180,54 @@ public class ReferenciaManager {
 		return dbManager.selectAll( new CitacaoDocJud() );
 	}
 	
+	/**
+	 * CitacaoDocJud DocJud -> DocJud
+	 * @param documentoJuridicoOrigem
+	 * @param documentoJuridicoDestino
+	 * @param data
+	 */
+	public void criaCitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, DocumentoJuridico documentoJuridicoDestino,
+			String data) {
+		CitacaoDocJud citacaoDocJud = new CitacaoDocJud(documentoJuridicoOrigem, documentoJuridicoDestino, data);
+		dbManager.save(citacaoDocJud);
+		documentoJuridicoOrigem.getCitacoesFeitas().add( citacaoDocJud );
+		documentoJuridicoDestino.getCitacoesRecebidasDocJud().add( citacaoDocJud );
+		dbManager.save(documentoJuridicoOrigem);
+		dbManager.save(documentoJuridicoDestino);
+	}
+	
+	/**
+	 * CitacaoDocJud DocJud -> Norma
+	 * @param documentoJuridicoOrigem
+	 * @param normaDestino
+	 * @param data
+	 */
+	public void criaCitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, Norma normaDestino,
+			String data) {
+		CitacaoDocJud citacaoDocJud = new CitacaoDocJud(documentoJuridicoOrigem, normaDestino, data);
+		dbManager.save(citacaoDocJud);
+		documentoJuridicoOrigem.getCitacoesFeitas().add( citacaoDocJud );
+		normaDestino.getCitacoesRecebidasDocJud().add( citacaoDocJud );
+		dbManager.save(documentoJuridicoOrigem);
+		dbManager.save(normaDestino);
+	}
+	
+	/**
+	 * CitacaoDocJud DocJud -> ElementoNorma
+	 * @param documentoJuridicoOrigem
+	 * @param elementoNormaDestino
+	 * @param data
+	 */
+	public void criaCitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, ElementoNorma elementoNormaDestino,
+			String data) {
+		CitacaoDocJud citacaoDocJud = new CitacaoDocJud(documentoJuridicoOrigem, elementoNormaDestino, data);
+		dbManager.save(citacaoDocJud);
+		documentoJuridicoOrigem.getCitacoesFeitas().add( citacaoDocJud );
+		elementoNormaDestino.getCitacoesRecebidasDocJud().add( citacaoDocJud );
+		dbManager.save(documentoJuridicoOrigem);
+		dbManager.save(elementoNormaDestino);
+	}
+	
 	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES CITACAOTEXTLEG -------------------- */
     /* ------------------------------------------------------------------ */

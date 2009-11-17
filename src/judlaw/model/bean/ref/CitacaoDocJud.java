@@ -65,9 +65,9 @@ public class CitacaoDocJud extends Referencia {
 	private ElementoNorma elementoNormaDestino;
 	
 	/**
-	 * Quando o destino eh um documento juridico
+	 * Quanto o destino eh outro documento juridico
 	 * @param documentoJuridicoOrigem
-	 * @param destino
+	 * @param documentoJuridicoDestino
 	 * @param data
 	 */
 	public CitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, DocumentoJuridico documentoJuridicoDestino,
