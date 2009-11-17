@@ -12,6 +12,7 @@ package judlaw.model.dbmanager;
 
 import java.util.List;
 
+import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.bean.lei.ElementoNorma;
 import judlaw.model.bean.lei.Norma;
 import judlaw.model.bean.ref.Alteracao;
@@ -201,5 +202,35 @@ public class ReferenciaManager {
     	normaDestino.getCitacoesRecebidasTextLeg().add( citacaoTextLeg );
     	dbManager.save(normaOrigem);
     	dbManager.save(normaDestino);
+	}
+	
+	/**
+	 * CitacaoTextLeg Norma -> ElementoNorma
+	 * @param normaOrigem
+	 * @param eleNormanormaDestino
+	 * @param data
+	 */
+	public void criaCitacaoTextLeg(Norma normaOrigem, ElementoNorma eleNormanormaDestino, String data){
+    	CitacaoTextLeg citacaoTextLeg = new CitacaoTextLeg(normaOrigem, eleNormanormaDestino, data);
+    	dbManager.save(citacaoTextLeg);
+    	normaOrigem.getCitacoesFeitas().add( citacaoTextLeg );
+    	eleNormanormaDestino.getCitacoesRecebidasTextLeg().add( citacaoTextLeg );
+    	dbManager.save(normaOrigem);
+    	dbManager.save(eleNormanormaDestino);
+	}
+	
+	/**
+	 * CitacaoTextLeg Norma -> DocumentoJuridico
+	 * @param normaOrigem
+	 * @param documentoJuridicoDestino
+	 * @param data
+	 */
+	public void criaCitacaoTextLeg(Norma normaOrigem, DocumentoJuridico documentoJuridicoDestino, String data){
+    	CitacaoTextLeg citacaoTextLeg = new CitacaoTextLeg(normaOrigem, documentoJuridicoDestino, data);
+    	dbManager.save(citacaoTextLeg);
+    	normaOrigem.getCitacoesFeitas().add( citacaoTextLeg );
+    	documentoJuridicoDestino.getCitacoesRecebidasTextLeg().add( citacaoTextLeg );
+    	dbManager.save(normaOrigem);
+    	dbManager.save(documentoJuridicoDestino);
 	}
 }
