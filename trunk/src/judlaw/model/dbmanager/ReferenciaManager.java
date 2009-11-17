@@ -247,6 +247,28 @@ public class ReferenciaManager {
 		dbManager.save(elementoNormaDestino);
 	}
 	
+	/**
+	 * Remove uma CitacaoDocJud do Banco de dados
+	 * @param citacaoDocJud
+	 */
+	public void removeCitacaoDocJud(CitacaoDocJud citacaoDocJud) {
+    	//Origem
+    	citacaoDocJud.getDocumentoJuridicoOrigem().getCitacoesFeitas().remove( citacaoDocJud );
+    	dbManager.save( citacaoDocJud.getDocumentoJuridicoOrigem() );
+    	//Destino
+    	if( citacaoDocJud.getDocumentoJuridicoDestino() != null ){
+    		citacaoDocJud.getDocumentoJuridicoDestino().getCitacoesRecebidasDocJud().remove( citacaoDocJud );
+    		dbManager.save( citacaoDocJud.getDocumentoJuridicoDestino() );
+    	} else if (citacaoDocJud.getNormaDestino() != null ){
+    		citacaoDocJud.getNormaDestino().getCitacoesRecebidasDocJud().remove( citacaoDocJud );
+    		dbManager.save( citacaoDocJud.getNormaDestino() );
+    	} else {
+    		citacaoDocJud.getElementoNormaDestino().getCitacoesRecebidasDocJud().remove( citacaoDocJud );
+    		dbManager.save( citacaoDocJud.getElementoNormaDestino() );
+    	}
+    	dbManager.remove( citacaoDocJud );
+    }
+	
 	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES CITACAOTEXTLEG -------------------- */
     /* ------------------------------------------------------------------ */
@@ -344,4 +366,31 @@ public class ReferenciaManager {
     	dbManager.save(elementoNormaOrigem);
     	dbManager.save(documentoJuridicoDestino);
 	}
+	
+	/**
+	 * Remove uma CitacaoTextLeg do Banco de dados
+	 * @param citacaoTextLeg
+	 */
+	public void removeCitacaoTextLeg(CitacaoTextLeg citacaoTextLeg) {
+		//Origem
+    	if( citacaoTextLeg.getNormaOrigem() != null ) {
+    		citacaoTextLeg.getNormaOrigem().getCitacoesFeitas().remove( citacaoTextLeg );
+    		dbManager.save( citacaoTextLeg.getNormaOrigem() );
+    	} else {
+    		citacaoTextLeg.getElementoNormaOrigem().getCitacoesFeitas().remove( citacaoTextLeg );
+    		dbManager.save( citacaoTextLeg.getElementoNormaOrigem() );
+    	}
+    	//Destino
+    	if( citacaoTextLeg.getNormaDestino() != null ){
+    		citacaoTextLeg.getNormaDestino().getCitacoesRecebidasTextLeg().remove( citacaoTextLeg );
+    		dbManager.save( citacaoTextLeg.getNormaDestino() );
+    	} else if ( citacaoTextLeg.getElementoNormaDestino() != null ){
+    		citacaoTextLeg.getElementoNormaDestino().getCitacoesRecebidasTextLeg().remove( citacaoTextLeg );
+    		dbManager.save( citacaoTextLeg.getElementoNormaDestino() );
+    	} else {
+    		citacaoTextLeg.getDocumentoJuridicoDestino().getCitacoesRecebidasTextLeg().remove( citacaoTextLeg );
+    		dbManager.save( citacaoTextLeg.getDocumentoJuridicoDestino() );
+    	}
+    	dbManager.remove( citacaoTextLeg );
+    }
 }
