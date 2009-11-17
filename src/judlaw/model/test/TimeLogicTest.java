@@ -26,14 +26,14 @@ public class TimeLogicTest {
 	}
 
 	/**
-	 * Test method for {@link judlaw.model.logic.TimeLogic#dataMaisAtual(java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for {@link judlaw.model.logic.TimeLogic#comparaDatas(java.lang.String, java.lang.String, java.lang.String)}.
 	 * @throws Exception 
 	 */
 	@Test
 	public void testDataMaisAtual() throws Exception {
-		assertEquals(1, tm.dataMaisAtual(data2, data1, "/"));
-		assertEquals(-1, tm.dataMaisAtual(data3, data4, "/"));
-		assertEquals(0, tm.dataMaisAtual(data4, data5, "/"));
+		assertEquals(1, tm.comparaDatas(data2, data1, "/"));
+		assertEquals(-1, tm.comparaDatas(data3, data4, "/"));
+		assertEquals(0, tm.comparaDatas(data4, data5, "/"));
 	}
 	
 	/**
