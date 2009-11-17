@@ -30,7 +30,7 @@ public class TimeLogicTest {
 	@Test
 	public void testDataMaisAtual() throws Exception {
 		assertEquals(1, tm.dataMaisAtual(data2, data1, "/"));
-		assertEquals(2, tm.dataMaisAtual(data3, data4, "/"));
+		assertEquals(-1, tm.dataMaisAtual(data3, data4, "/"));
 		assertEquals(0, tm.dataMaisAtual(data4, data5, "/"));
 	}
 }
