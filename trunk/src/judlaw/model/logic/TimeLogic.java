@@ -1,5 +1,6 @@
 package judlaw.model.logic;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
@@ -15,6 +16,7 @@ import judlaw.model.bean.ref.CitacaoDocJud;
 public class TimeLogic {
 
 	private static TimeLogic timeManager = null;
+	private static final String BARRA = "/";
 	
 	/**
 	 * 
@@ -32,7 +34,7 @@ public class TimeLogic {
 	 * @param data1 - Modelo: dd/MM/yyyy
 	 * @param data2 - Modelo: dd/MM/yyyy
 	 * @param delimitador - Pode ser "/", "-", etc;
-	 * @return 0 caso as datas sejam iguais, 1 caso a data1 seja mais atual e 2 caso a data2 seja mais atual.
+	 * @return 0 caso as datas sejam iguais, 1 caso a data1 seja mais atual e -1 caso a data2 seja mais atual.
 	 * @throws Exception 
 	 */
 	public int dataMaisAtual(String data1, String data2, String delimitador) throws Exception {
@@ -64,9 +66,32 @@ public class TimeLogic {
 		if (dataInt1 > dataInt2) {
 			return 1;
 		} else if (dataInt2 > dataInt1) {
-			return 2;
+			return -1;
 		}
 		return 0;
+	}
+	
+	/**
+	 * Compara uma vigencia com uma data para saber se o prazo da vigencia é mais atual que
+	 * a data
+	 * @param vigencia
+	 * @param delimitadorVigencia
+	 * @param data
+	 * @param delimitador
+	 * @return 0 ou 1 Caso a vigencia esteja valida em comparacao ao parametro data, -1 caso a vigencia
+	 * ja nao seja mais valida neste mesma data.
+	 * @throws Exception Caso as datas dos parametros fimVigencia e data estejam mal-formatadas
+	 */
+	public int comparaVigenciaComData(String vigencia, String delimitadorVigencia, 
+			                          String data, String delimitadorData) throws Exception {
+		/*
+		 * Modelo de vigencia esperada:
+		 * dd1/mm1/yyyy1-dd2/mm2/yyyy2
+		 */
+		StringTokenizer tokenVigencia = new StringTokenizer(vigencia, delimitadorVigencia);
+		tokenVigencia.nextToken(); // passando o primeiro token referente à data inicio da vigencia
+		String fimVigencia = tokenVigencia.nextToken();
+		return dataMaisAtual(fimVigencia, data, delimitadorData);
 	}
 	
 	/* ------------------------------------------------------------------ */
@@ -79,8 +104,7 @@ public class TimeLogic {
 	 * @return
 	 */
 	public List<CitacaoDocJud> inconsistenciaTempToDocJud(DocumentoJuridico docJud) {
-		
-		return null;
+		return null; //TODO
 	}
 	
 	/**
@@ -90,8 +114,7 @@ public class TimeLogic {
 	 * @return
 	 */
 	public List<CitacaoDocJud> inconsistenciaTempToNorma(DocumentoJuridico docJud) {
-		
-		return null;
+		return null; //TODO
 	}
 	
 	/**
@@ -101,7 +124,46 @@ public class TimeLogic {
 	 * @return
 	 */
 	public List<CitacaoDocJud> inconsistenciaTempToEleNorma(DocumentoJuridico docJud) {
-		
-		return null;
+		return null; //TODO
+	}
+	
+	/**
+	 * Retorna todas as inconsistenas de um documento juridico
+	 * @param docJud
+	 * @return
+	 * @throws Exception Excecao caso as datas estejam mal-formatadas
+	 */
+	public List<CitacaoDocJud> inconsistenciasTemporais(DocumentoJuridico docJud) throws Exception {
+		List<CitacaoDocJud> listaResultado = new ArrayList<CitacaoDocJud>();
+		List<CitacaoDocJud> citacoesFeitas = docJud.getCitacoesFeitas();
+		/*
+		 * Caso a data do DocumentoJuridico seja mais atual do que a referencia, é um indicativo
+		 * que esta é inconsistente temporalmente
+		 */
+		for( CitacaoDocJud citacao : citacoesFeitas ){
+			//Caso a citacao foi feita a um documento juridico
+			if( citacao.getDocumentoJuridicoDestino() != null ) {
+				if ( dataMaisAtual(citacao.getData(), 
+						citacao.getDocumentoJuridicoDestino().getDataPublicacao(), 
+						BARRA) < 0 ) { // <0 acontece quando a segunda data eh mais atual
+						listaResultado.add( citacao );
+					}
+			//Caso a citacao foi feita a uma norma
+			} else if ( citacao.getNormaDestino() != null ){
+//				if ( dataMaisAtual(citacao.getData(), 
+//						citacao.getDocumentoJuridicoDestino().getDataPublicacao(), 
+//						BARRA) < 0 ) { // <0 acontece quando a segunda data eh mais atual
+//						listaResultado.add( citacao );
+//					}
+			//Caso a citacao foi feita a um elementonorma
+			} else {
+//				if ( dataMaisAtual(citacao.getData(), 
+//				citacao.getDocumentoJuridicoDestino().getDataPublicacao(), 
+//				BARRA) < 0 ) { // <0 acontece quando a segunda data eh mais atual
+//				listaResultado.add( citacao );
+//			}
+			}
+		}
+		return listaResultado;
 	}
 }
