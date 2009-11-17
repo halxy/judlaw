@@ -179,6 +179,73 @@ public class LawManagerTest {
 	}
 	
 	/**
+	 * Testa se um elementoNorma esta sendo removida corretamente, incluindo seus ElementosNorma.
+	 */
+	@Test
+	public void testRemoveElementoNorma(){
+		/* ---------- Verifica se as listas estao vazias ----------*/
+		assertEquals( 0, lawManager.getNormas().size() );
+		assertEquals( 0, lawManager.getElementosNorma().size() );
+		
+		/* ---------- Elementos da Norma ----------*/
+		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
+														"dataPublicacaoArt1", "vigenciaArt1");
+		ElementoNorma paragrafo1 = new ElementoNorma("textoParagrafo1", "identificadorUnicoParagrafo1", "tipoParagrafo1", 
+				"dataPublicacaoParagrafo1", "vigenciaParagrafo1");
+		ElementoNorma inciso1 = new ElementoNorma("textoInciso1", "identificadorUnicoInciso1", "tipoInciso1", 
+				"dataPublicacaoInciso1", "vigenciaInciso1");
+		ElementoNorma inciso2 = new ElementoNorma("textoInciso2", "identificadorUnicoInciso2", "tipoInciso2", 
+				"dataPublicacaoInciso2", "vigenciaInciso2");
+		
+		paragrafo1.getElementosNorma().add(inciso1);
+		paragrafo1.getElementosNorma().add(inciso2);
+		artigo1.getElementosNorma().add(paragrafo1);
+		
+		ElementoNorma artigo2 = new ElementoNorma("textoArt2", "identificadorUnicoArt2", "tipoArt2", 
+				"dataPublicacaoArt2", "vigenciaArt2");
+		ElementoNorma paragrafo2 = new ElementoNorma("textoParagrafo2", "identificadorUnicoParagrafo2", "tipoParagrafo2", 
+				"dataPublicacaoParagrafo2", "vigenciaParagrafo2");
+		ElementoNorma paragrafo3 = new ElementoNorma("textoParagrafo3", "identificadorUnicoParagrafo3", "tipoParagrafo3", 
+				"dataPublicacaoParagrafo3", "vigenciaParagrafo3");
+		artigo2.getElementosNorma().add(paragrafo2);
+		artigo2.getElementosNorma().add(paragrafo3);
+		
+		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+								"dataPublicacaoN1", "vigenciaN1");
+		norma1.getElementosNorma().add(artigo1);
+		norma1.getElementosNorma().add(artigo2);
+		lawManager.salvaNorma(norma1);
+		
+		/*
+		 *                         Norma1
+		 *                         /    \
+		 *                       Art1   Art2
+		 *                       /      /  \
+		 *                      Par1  Par2  Par3
+		 *                     /   \
+		 *                  Inc1   Inc2 
+		 */
+		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
+		//Quantidade de normas
+		assertEquals(1, lawManager.getNormas().size() );
+		//Quantidade de ElementosNorma
+		assertEquals(7, lawManager.getElementosNorma().size() );
+
+		/* ---------- Removendo o ElementoNorma Artigo1 ----------*/
+		ElementoNorma artigo1BD = lawManager.getElementosNorma().get(0);
+		assertEquals(artigo1.getIdentificadorUnico(), artigo1BD.getIdentificadorUnico() );
+		lawManager.removeElementoNorma( artigo1BD );
+		
+		/* ---------- Verifica novamente as cardinalidade das tabelas ----------*/
+		//Quantidade de normas
+		assertEquals(1, lawManager.getNormas().size() );
+		//Quantidade de ElementosNorma da Norma
+		assertEquals(1, lawManager.getNormas().get(0).getElementosNorma().size() );
+		//Quantidade de ElementosNorma
+		assertEquals(3, lawManager.getElementosNorma().size() );	
+	}
+	
+	/**
 	 * Teste que verifica a alteracao de um ElementoNorma
 	 */
 	@Test

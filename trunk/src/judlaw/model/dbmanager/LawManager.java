@@ -119,6 +119,21 @@ public class LawManager {
 	}
 	
 	/**
+	 * Remove um ElementoNorma do banco de dados
+	 * @param elementoNorma
+	 */
+	public void removeElementoNorma(ElementoNorma elementoNorma) {
+		if(elementoNorma.getNormaPai() != null) { //Caso o pai do elemento seja uma Norma
+			elementoNorma.getNormaPai().getElementosNorma().remove( elementoNorma );
+			dbManager.save( elementoNorma.getNormaPai() );
+		} else { //Caso o pai do elemento seja um ElementoNorma
+			elementoNorma.getElementoNormaPai().getElementosNorma().remove( elementoNorma );
+			dbManager.save( elementoNorma.getElementoNormaPai() );
+		}
+		dbManager.remove( elementoNorma );
+	}
+	
+	/**
 	 * Recupera os objetos pelo atributo
 	 * @param atributo
 	 * @param valor
