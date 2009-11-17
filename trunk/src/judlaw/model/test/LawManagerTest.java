@@ -1,8 +1,10 @@
 package judlaw.model.test;
 
 import static org.junit.Assert.assertEquals;
+import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.bean.lei.ElementoNorma;
 import judlaw.model.bean.lei.Norma;
+import judlaw.model.dbmanager.DocJudManager;
 import judlaw.model.dbmanager.LawManager;
 import judlaw.model.dbmanager.ReferenciaManager;
 
@@ -275,10 +277,10 @@ public class LawManagerTest {
 		
 		/*
 		 *                         Norma1
-		 *                         /    \
-		 *                       Art1   Art2
-		 *                       /      /  \
-		 *                      Par1  Par2  Par3
+		 *                         /    
+		 *                       Art1   
+		 *                       /  
+		 *                      Par1  
 		 *                     /   \
 		 *                  Inc1   Inc2 
 		 */
@@ -331,5 +333,67 @@ public class LawManagerTest {
 				      artigo2.getIdentificadorUnico() );
 		assertEquals( normaBD.getElementosNorma().get(0).getElementosNorma().get(1).getElementoNormaPai().getIdentificadorUnico(), 
 					  artigo2.getIdentificadorUnico() );
+	}
+	
+	/**
+	 * Verifica se as citacoesTextLeg feitas a uma norma sao removidas quando ela eh removida
+	 */
+	@Test
+	public void testRemoveNormaCitacaoTextLeg() {
+		/* ---------- Verifica se as listas estao vazias ----------*/
+		assertEquals( 0, lawManager.getNormas().size() );
+		assertEquals( 0, lawManager.getElementosNorma().size() );
+		
+		/* ---------- Norma1 ----------*/
+		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
+														"dataPublicacaoArt1", "vigenciaArt1");
+		ElementoNorma paragrafo1 = new ElementoNorma("textoParagrafo1", "identificadorUnicoParagrafo1", "tipoParagrafo1", 
+				"dataPublicacaoParagrafo1", "vigenciaParagrafo1");
+		ElementoNorma inciso1 = new ElementoNorma("textoInciso1", "identificadorUnicoInciso1", "tipoInciso1", 
+				"dataPublicacaoInciso1", "vigenciaInciso1");
+		ElementoNorma inciso2 = new ElementoNorma("textoInciso2", "identificadorUnicoInciso2", "tipoInciso2", 
+				"dataPublicacaoInciso2", "vigenciaInciso2");
+		
+		paragrafo1.getElementosNorma().add(inciso1);
+		paragrafo1.getElementosNorma().add(inciso2);
+		artigo1.getElementosNorma().add(paragrafo1);
+		
+		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+								"dataPublicacaoN1", "vigenciaN1");
+		norma1.getElementosNorma().add(artigo1);
+		lawManager.salvaNorma(norma1);
+		
+		/* ---------- Norma2 ----------*/
+		Norma norma2 = new Norma("epigrafeN2", "ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
+				"dataPublicacaoN2", "vigenciaN2");
+		lawManager.salvaNorma(norma2);
+		
+		/* ---------- DocumentoJuridico ----------*/
+		DocumentoJuridico docJud1 = new DocumentoJuridico();
+		docJud1.setIdentificadorUnico("idUnico1");
+		DocJudManager.getInstance().salvaDocumentoJuridico(docJud1);
+		
+		/*
+		 *                         Norma1         Norma2     docJud1
+		 *                         /    
+		 *                       Art1   
+		 *                       /  
+		 *                      Par1  
+		 *                     /   \
+		 *                  Inc1   Inc2 
+		 */
+		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
+		//Quantidade de normas
+		assertEquals(2, lawManager.getNormas().size() );
+		//Quantidade de ElementosNorma
+		assertEquals(4, lawManager.getElementosNorma().size() );
+		/* ---------- Verifica os elementos adicionados ----------*/
+		assertEquals(norma1.getIdentificadorUnico(), 
+					lawManager.getNormas().get(0).getIdentificadorUnico() );
+		assertEquals(norma2.getIdentificadorUnico(), 
+					lawManager.getNormas().get(1).getIdentificadorUnico() );
+		/* ---------- Criando as referencias ----------*/
+//		
+//		ReferenciaManager.getInstance().criaCitacaoTextLeg(norma1, normaDestino, data);
 	}
 }
