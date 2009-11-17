@@ -148,6 +148,30 @@ public class ReferenciaManager {
 	}
 	
     /**
+     * Remove uma alteracao do banco de dados
+     * @param alteracao
+     */
+    public void removeAlteracao(Alteracao alteracao) {
+    	//Origem
+    	if( alteracao.getNormaOrigem() != null ) {
+    		alteracao.getNormaOrigem().getAlteracoesFeitas().remove( alteracao );
+    		dbManager.save( alteracao.getNormaOrigem() );
+    	} else {
+    		alteracao.getElementoNormaOrigem().getAlteracoesFeitas().remove( alteracao );
+    		dbManager.save( alteracao.getElementoNormaOrigem() );
+    	}
+    	//Destino
+    	if( alteracao.getNormaDestino() != null ) {
+    		alteracao.getNormaDestino().getAlteracoesRecebidas().remove( alteracao );
+    		dbManager.save( alteracao.getNormaDestino() );
+    	} else {
+    		alteracao.getElementoNormaDestino().getAlteracoesRecebidas().remove( alteracao );
+    		dbManager.save( alteracao.getElementoNormaDestino() );
+    	}
+    	dbManager.remove( alteracao );
+    }
+    	
+    /**
      * Retorna todas as alteracoes do banco de dados
      * @return
      */
