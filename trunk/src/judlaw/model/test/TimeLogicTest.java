@@ -11,7 +11,7 @@ import org.junit.Test;
  * @author Halley Freitas
  *
  */
-public class TimeManagerTest {
+public class TimeLogicTest {
 	TimeLogic tm = TimeLogic.getInstance();
 	String data1, data2, data3, data4, data5;
 	
