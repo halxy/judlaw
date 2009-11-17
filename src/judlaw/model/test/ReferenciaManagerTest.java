@@ -394,8 +394,8 @@ public class ReferenciaManagerTest {
 		//Norma1 -> Norma2  (N->N)
 		refManager.criaCitacaoTextLeg(norma1, norma2, "16/11/2009");
 		//Artigo1 -> Artigo2 (EN->EN)
-		refManager.criaCitacaoTextLeg(norma1, artigo2, "17/11/2009");
-		//Norma1 -> DocJud1 (N->DJ)
+		refManager.criaCitacaoTextLeg(artigo1, artigo2, "17/11/2009");
+		//Artigo1 -> DocJud1 (N->DJ)
 		refManager.criaCitacaoTextLeg(artigo1, docJud1, "18/11/2009");
 		
 		/* Verificando se os atributos foram persistidos corretamente */
@@ -407,15 +407,16 @@ public class ReferenciaManagerTest {
 		 * estao sendo avaliados os atributos.
 		 */
 		//Norma1
-		assertEquals(norma1.getIdentificadorUnico(), lawManager.getNormas().get(1).getIdentificadorUnico() );
-		assertEquals(2, lawManager.getNormas().get(1).getCitacoesFeitas().size() );
+		assertEquals(norma1.getIdentificadorUnico(), lawManager.getNormas().get(0).getIdentificadorUnico() );
+		assertEquals(1, lawManager.getNormas().get(0).getCitacoesFeitas().size() );
 		//Norma2
-		assertEquals(norma2.getIdentificadorUnico(), lawManager.getNormas().get(0).getIdentificadorUnico() );
-		assertEquals(1, lawManager.getNormas().get(0).getCitacoesRecebidasTextLeg().size() );
+		assertEquals(norma2.getIdentificadorUnico(), lawManager.getNormas().get(1).getIdentificadorUnico() );
+		assertEquals(1, lawManager.getNormas().get(1).getCitacoesRecebidasTextLeg().size() );
 		//Artigo1
 		assertEquals(artigo1.getIdentificadorUnico(), lawManager.getElementosNorma().get(1).getIdentificadorUnico() );
-		assertEquals(1, lawManager.getElementosNorma().get(1).getCitacoesFeitas().size() );
+		assertEquals(2, lawManager.getElementosNorma().get(1).getCitacoesFeitas().size() );
 		//Artigo2
+		assertEquals(artigo2.getIdentificadorUnico(), lawManager.getElementosNorma().get(0).getIdentificadorUnico() );
 		assertEquals(1, lawManager.getElementosNorma().get(0).getCitacoesRecebidasTextLeg().size() );
 		//DocJud1
 		assertEquals(1, docJudManager.getDocumentosJuridicos().get(0).getCitacoesRecebidasTextLeg().size() );
@@ -428,34 +429,73 @@ public class ReferenciaManagerTest {
 		 */
 		//Norma1 -> Norma2  (N->N)
 		assertEquals("16/11/2009", refManager.getCitacoesTextLeg().get(0).getData() );
-		//Norma1 -> DocJud1 (N->DJ)
-		assertEquals("17/11/2009", refManager.getCitacoesTextLeg().get(1).getData() );
 		//Artigo1 -> Artigo2 (EN->EN)
+		assertEquals("17/11/2009", refManager.getCitacoesTextLeg().get(1).getData() );
+		//Norma1 -> DocJud1 (N->DJ)
 		assertEquals("18/11/2009", refManager.getCitacoesTextLeg().get(2).getData() );
 		
 		
 		/* ---------- Removendo as alteracoes ----------*/
-//		//Norma1 -> Norma2  (N->N)
-//		refManager.removeAlteracao( refManager.getAlteracoes().get(0) );
-//		assertEquals(3, refManager.getAlteracoes().size() );
-//		assertEquals(1, lawManager.getNormas().get(0).getAlteracoesFeitas().size() ); //Norma1
-//		assertEquals(2, lawManager.getElementosNorma().get(0).getAlteracoesFeitas().size() ); //Artigo1
-//		assertEquals(1, lawManager.getNormas().get(1).getAlteracoesRecebidas().size() ); //Norma2
-//		assertEquals(2, lawManager.getElementosNorma().get(1).getAlteracoesRecebidas().size() ); //Artigo2
-//		//Artigo1 -> Norma2 (EN->N)
-//		refManager.removeAlteracao( refManager.getAlteracoes().get(0) );
-//		assertEquals(2, refManager.getAlteracoes().size() );
-//		assertEquals(1, lawManager.getNormas().get(0).getAlteracoesFeitas().size() ); //Norma1
-//		assertEquals(1, lawManager.getElementosNorma().get(0).getAlteracoesFeitas().size() ); //ElementoNorma1
-//		assertEquals(0, lawManager.getNormas().get(1).getAlteracoesRecebidas().size() ); //Norma2
-//		assertEquals(2, lawManager.getElementosNorma().get(1).getAlteracoesRecebidas().size() ); //Artigo2
-//		//Norma1 -> Artigo2 (N->EN)
-//		refManager.removeAlteracao( refManager.getAlteracoes().get(0) );
-//		assertEquals(1, refManager.getAlteracoes().size() );
-//		assertEquals(0, lawManager.getNormas().get(0).getAlteracoesFeitas().size() ); //Norma1
-//		assertEquals(1, lawManager.getElementosNorma().get(0).getAlteracoesFeitas().size() ); //ElementoNorma1
-//		assertEquals(0, lawManager.getNormas().get(1).getAlteracoesRecebidas().size() ); //Norma2
-//		assertEquals(1, lawManager.getElementosNorma().get(1).getAlteracoesRecebidas().size() ); //Artigo2
+		/*
+		 * Norma1 -> Norma2  (N->N)
+		 */
+		assertEquals("16/11/2009", refManager.getCitacoesTextLeg().get(0).getData() );
+		refManager.removeCitacaoTextLeg( refManager.getCitacoesTextLeg().get(0) );
+		assertEquals(2, refManager.getCitacoesTextLeg().size() );
+		//Norma1
+		assertEquals(norma1.getIdentificadorUnico(), lawManager.getNormas().get(0).getIdentificadorUnico() );
+		assertEquals(0, lawManager.getNormas().get(0).getCitacoesFeitas().size() );
+		//Norma2
+		assertEquals(norma2.getIdentificadorUnico(), lawManager.getNormas().get(1).getIdentificadorUnico() );
+		assertEquals(0, lawManager.getNormas().get(1).getCitacoesRecebidasTextLeg().size() );
+		//Artigo1
+		assertEquals(artigo1.getIdentificadorUnico(), lawManager.getElementosNorma().get(0).getIdentificadorUnico() );
+		assertEquals(2, lawManager.getElementosNorma().get(0).getCitacoesFeitas().size() );
+		//Artigo2
+		assertEquals(1, lawManager.getElementosNorma().get(1).getCitacoesRecebidasTextLeg().size() );
+		//DocJud1
+		assertEquals(1, docJudManager.getDocumentosJuridicos().get(0).getCitacoesRecebidasTextLeg().size() );
+		/*
+		 * Norma1 -> DocJud1 (N->DJ)
+		 */
+		assertEquals("18/11/2009", refManager.getCitacoesTextLeg().get(0).getData() );
+		refManager.removeCitacaoTextLeg( refManager.getCitacoesTextLeg().get(0) );
+		assertEquals(1, refManager.getCitacoesTextLeg().size() );
+		//Norma1
+		assertEquals(norma1.getIdentificadorUnico(), lawManager.getNormas().get(0).getIdentificadorUnico() );
+		assertEquals(0, lawManager.getNormas().get(0).getCitacoesFeitas().size() );
+		//Norma2
+		assertEquals(norma2.getIdentificadorUnico(), lawManager.getNormas().get(1).getIdentificadorUnico() );
+		assertEquals(0, lawManager.getNormas().get(1).getCitacoesRecebidasTextLeg().size() );
+		//Artigo1
+		assertEquals(artigo1.getIdentificadorUnico(), lawManager.getElementosNorma().get(1).getIdentificadorUnico() );
+		assertEquals(1, lawManager.getElementosNorma().get(1).getCitacoesFeitas().size() );
+		//Artigo2
+		assertEquals(artigo2.getIdentificadorUnico(), lawManager.getElementosNorma().get(0).getIdentificadorUnico() );
+		assertEquals(1, lawManager.getElementosNorma().get(0).getCitacoesRecebidasTextLeg().size() );
+		//DocJud1
+		assertEquals(0, docJudManager.getDocumentosJuridicos().get(0).getCitacoesRecebidasTextLeg().size() );
+
+		/*
+		 * Artigo1 -> Artigo2 (EN->EN)
+		 */
+		assertEquals("17/11/2009", refManager.getCitacoesTextLeg().get(0).getData() );
+		refManager.removeCitacaoTextLeg( refManager.getCitacoesTextLeg().get(0) );
+		assertEquals(0, refManager.getCitacoesTextLeg().size() );
+		//Norma1
+		assertEquals(norma1.getIdentificadorUnico(), lawManager.getNormas().get(0).getIdentificadorUnico() );
+		assertEquals(0, lawManager.getNormas().get(0).getCitacoesFeitas().size() );
+		//Norma2
+		assertEquals(norma2.getIdentificadorUnico(), lawManager.getNormas().get(1).getIdentificadorUnico() );
+		assertEquals(0, lawManager.getNormas().get(1).getCitacoesRecebidasTextLeg().size() );
+		//Artigo1
+		assertEquals(artigo1.getIdentificadorUnico(), lawManager.getElementosNorma().get(0).getIdentificadorUnico() );
+		assertEquals(0, lawManager.getElementosNorma().get(0).getCitacoesFeitas().size() );
+		//Artigo2
+		assertEquals(artigo2.getIdentificadorUnico(), lawManager.getElementosNorma().get(1).getIdentificadorUnico() );
+		assertEquals(0, lawManager.getElementosNorma().get(1).getCitacoesRecebidasTextLeg().size() );
+		//DocJud1
+		assertEquals(0, docJudManager.getDocumentosJuridicos().get(0).getCitacoesRecebidasTextLeg().size() );
 	}
 	
 	 /* ------------------------------------------------------------------ */
