@@ -78,11 +78,7 @@ public class ReferenciaManager {
     
     /* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES ALTERACAO ------------------------- */
-    /* ------------------------------------------------------------------ */
-    /**
-     * 
-     */
-    
+    /* ------------------------------------------------------------------ */ 
     /**
 	 * Alteracao Norma -> Norma
 	 * @param normaOrigem
@@ -174,7 +170,6 @@ public class ReferenciaManager {
 	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES CITACAODOCJUD --------------------- */
     /* ------------------------------------------------------------------ */
-	
 	@SuppressWarnings("unchecked")
 	public List<CitacaoDocJud> getCitacoesDocJud() {
 		return dbManager.selectAll( new CitacaoDocJud() );
@@ -231,7 +226,6 @@ public class ReferenciaManager {
 	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES CITACAOTEXTLEG -------------------- */
     /* ------------------------------------------------------------------ */
-	
 	@SuppressWarnings("unchecked")
 	public List<CitacaoTextLeg> getCitacoesTextLeg() {
 		return dbManager.selectAll( new CitacaoTextLeg() );
