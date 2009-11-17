@@ -101,7 +101,9 @@ public class ReferenciaManagerTest {
 		assertEquals( refManager.getAlteracoes().get(3).getElementoNormaDestino().getIdentificadorUnico(),
 		      	      artigo2.getIdentificadorUnico() );
 		
-		// Atributos das normas
+		/*
+		 * Atributos das Normas e ElementosNormas
+		 */
 		//NORMA1
 		assertEquals( lawManager.getNormas().get(0).getIdentificadorUnico(),
 					  norma1.getIdentificadorUnico());
@@ -223,7 +225,30 @@ public class ReferenciaManagerTest {
 		assertEquals( refManager.getCitacoesTextLeg().get(5).getDocumentoJuridicoDestino().getIdentificadorUnico(),
 			      docJud1.getIdentificadorUnico());
 		
-		// FALTA A ULTIMA PARTE -> VER NO METODO SALVAALTERACAO
+		/*
+		 * Atributos das Normas, ElementosNormas e DocumentoJuridico
+		 */
+		//NORMA1
+		assertEquals( lawManager.getNormas().get(1).getIdentificadorUnico(),
+					  norma1.getIdentificadorUnico());
+		assertEquals( lawManager.getNormas().get(1).getCitacoesFeitas().get(0).getData(),
+				  	  "16/11/2009");
+		assertEquals( lawManager.getNormas().get(1).getCitacoesRecebidasTextLeg().get(0).getData(),
+	  	  				"19/11/2009");
+		//NORMA2
+		assertEquals( lawManager.getNormas().get(0).getIdentificadorUnico(),
+				      norma2.getIdentificadorUnico());
+		assertEquals( lawManager.getNormas().get(0).getCitacoesRecebidasTextLeg().get(0).getData(),
+					  "16/11/2009");
+		//ELEMENTONORMA1
+		assertEquals( lawManager.getElementosNorma().get(1).getIdentificadorUnico(),
+					  artigo1.getIdentificadorUnico());
+		assertEquals( lawManager.getElementosNorma().get(1).getCitacoesFeitas().get(0).getData(),
+				  	  "18/11/2009");
+		assertEquals( lawManager.getElementosNorma().get(1).getCitacoesFeitas().get(1).getData(),
+	  	  			  "19/11/2009");
+		assertEquals( lawManager.getElementosNorma().get(1).getCitacoesFeitas().get(2).getData(),
+						"20/11/2009");
 	}
 	
 	 /* ------------------------------------------------------------------ */
