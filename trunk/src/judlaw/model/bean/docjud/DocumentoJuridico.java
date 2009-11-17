@@ -28,6 +28,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import judlaw.model.bean.ref.CitacaoDocJud;
+import judlaw.model.bean.ref.CitacaoTextLeg;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -99,6 +100,12 @@ public class DocumentoJuridico {
     @LazyCollection(LazyCollectionOption.FALSE)
 	private List<CitacaoDocJud> citacoesRecebidasDocJud;
 	
+	//Citacoes recebidas de normas/elementosNorma
+	@OneToMany(mappedBy="documentoJuridicoDestino", cascade = CascadeType.ALL)
+    @Column(name="citacoesrecebidastextleg_fk")
+    @LazyCollection(LazyCollectionOption.FALSE)
+	private List<CitacaoTextLeg> citacoesRecebidasTextLeg;
+	
 	/**
 	 * 
 	 * @param cabecalho
@@ -138,6 +145,7 @@ public class DocumentoJuridico {
 		this.partes = new ArrayList<Parte>();
 		this.citacoesFeitas = new ArrayList<CitacaoDocJud>();
 		this.citacoesRecebidasDocJud = new ArrayList<CitacaoDocJud>();
+		this.citacoesRecebidasTextLeg = new ArrayList<CitacaoTextLeg>();
 	}
 	
 	public Integer getId() {
@@ -235,5 +243,14 @@ public class DocumentoJuridico {
 	public void setCitacoesRecebidasDocJud(
 			List<CitacaoDocJud> citacoesRecebidasDocJud) {
 		this.citacoesRecebidasDocJud = citacoesRecebidasDocJud;
+	}
+
+	public List<CitacaoTextLeg> getCitacoesRecebidasTextLeg() {
+		return citacoesRecebidasTextLeg;
+	}
+
+	public void setCitacoesRecebidasTextLeg(
+			List<CitacaoTextLeg> citacoesRecebidasTextLeg) {
+		this.citacoesRecebidasTextLeg = citacoesRecebidasTextLeg;
 	}
 }
