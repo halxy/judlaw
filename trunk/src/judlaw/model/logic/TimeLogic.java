@@ -155,12 +155,12 @@ public class TimeLogic {
 	}
 	
 	/**
-	 * Retorna todas as inconsistenas de um documento juridico
+	 * Retorna todas citacoes que possuem inconsistencias temporais
 	 * @param docJud
 	 * @return
 	 * @throws Exception Excecao caso as datas estejam mal-formatadas
 	 */
-	public List<CitacaoDocJud> inconsistenciasTemporais(DocumentoJuridico docJud) throws Exception {
+	public List<CitacaoDocJud> inconsistenciasTemporaisCDJ(DocumentoJuridico docJud) throws Exception {
 		List<CitacaoDocJud> listaResultado = new ArrayList<CitacaoDocJud>();
 		List<CitacaoDocJud> citacoesFeitas = docJud.getCitacoesFeitas();
 		/*
@@ -190,7 +190,7 @@ public class TimeLogic {
 	                    citacao.getData(), 
 	                    Constantes.DELIMITADOR_DATA) < 0) { // <0 acontece quando a segunda data eh mais atual
 						listaResultado.add( citacao );
-			}
+				}
 			}
 		}
 		return listaResultado;
