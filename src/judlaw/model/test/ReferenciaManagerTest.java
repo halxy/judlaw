@@ -264,5 +264,66 @@ public class ReferenciaManagerTest {
 	 /* ------------------------------------------------------------------ */
     /* -------------------- TESTES CITACAODOCJUD ------------------------ */
     /* ------------------------------------------------------------------ */
-	//TODO
+	@Test
+	public void testSalvaCitacaoDocJud(){
+		/*
+		 *           Norma1               
+		 *             |                   
+		 *        ElementoNorma1      
+		 */
+		/* Criando e persistindo a norma e o elementoNorma*/
+		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+				"dataPublicacaoN1", "vigenciaN1");
+		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
+				"dataPublicacaoArt1", "vigenciaArt1");
+		norma1.getElementosNorma().add(artigo1);
+		lawManager.salvaNorma(norma1);
+		
+		/* Criando e persistindo o documento juridico */
+		DocumentoJuridico docJud1 = new DocumentoJuridico();
+		docJud1.setIdentificadorUnico("idUnico1");
+		DocumentoJuridico docJud2 = new DocumentoJuridico();
+		docJud2.setIdentificadorUnico("idUnico2");
+		docJudManager.salvaDocumentoJuridico(docJud1);
+		docJudManager.salvaDocumentoJuridico(docJud2);
+		
+		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
+		assertEquals(1, lawManager.getNormas().size() );
+		assertEquals(1, lawManager.getElementosNorma().size() );
+		assertEquals(2, docJudManager.getDocumentosJuridicos().size() );
+		
+		/* Criando as CitacoesDocJud */
+		//DocJud1 -> DocJud2  (DJ->DJ)
+		refManager.criaCitacaoDocJud(docJud1, docJud2, "16/11/2009");
+		//DocJud1 -> Norma1 (DJ->N)
+		refManager.criaCitacaoDocJud(docJud1, norma1, "17/11/2009");
+		//DocJud1 -> Artigo1 (DJ->EN)
+		refManager.criaCitacaoDocJud(docJud1, artigo1, "18/11/2009");
+		
+		/* Verificando se os atributos foram persistidos corretamente */
+		//Quantidade de alteracoes
+		assertEquals(3, refManager.getCitacoesDocJud().size() );
+		
+		/*
+		 * Atributos das Referencias
+		 */
+		
+		//DocJud1 -> DocJud2  (DJ->DJ)
+		assertEquals( refManager.getCitacoesDocJud().get(0).getDocumentoJuridicoOrigem().getIdentificadorUnico(),
+				  	  docJud1.getIdentificadorUnico());
+		assertEquals( refManager.getCitacoesDocJud().get(0).getDocumentoJuridicoDestino().getIdentificadorUnico(),
+			  	  	  docJud2.getIdentificadorUnico());
+		
+		//DocJud1 -> Norma1 (DJ->N)
+		assertEquals( refManager.getCitacoesDocJud().get(1).getDocumentoJuridicoOrigem().getIdentificadorUnico(),
+			  	  docJud1.getIdentificadorUnico());
+		assertEquals( refManager.getCitacoesDocJud().get(1).getNormaDestino().getIdentificadorUnico(),
+			      norma1.getIdentificadorUnico());
+		
+		//DocJud1 -> Artigo1 (DJ->EN)
+		assertEquals( refManager.getCitacoesDocJud().get(2).getDocumentoJuridicoOrigem().getIdentificadorUnico(),
+			  	  docJud1.getIdentificadorUnico());
+		assertEquals( refManager.getCitacoesDocJud().get(2).getElementoNormaDestino().getIdentificadorUnico(),
+			      artigo1.getIdentificadorUnico());
+	}
 }
