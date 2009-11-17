@@ -14,6 +14,7 @@ import org.junit.Test;
 public class TimeLogicTest {
 	TimeLogic tm = TimeLogic.getInstance();
 	String data1, data2, data3, data4, data5;
+	String vigencia1;
 	
 	@Before public void setUp(){
 		data1 = "12/10/2009";
@@ -21,6 +22,7 @@ public class TimeLogicTest {
 		data3 = "13/10/2009";
 		data4 = "13/11/2009";
 		data5 = "13/11/2009";
+		vigencia1 = "12/10/2009-13/10/2009";
 	}
 
 	/**
@@ -32,5 +34,20 @@ public class TimeLogicTest {
 		assertEquals(1, tm.dataMaisAtual(data2, data1, "/"));
 		assertEquals(-1, tm.dataMaisAtual(data3, data4, "/"));
 		assertEquals(0, tm.dataMaisAtual(data4, data5, "/"));
+	}
+	
+	/**
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public void comparaVigenciaComData() throws Exception {
+		// Vigencia dentro do prazo de validade
+		assertEquals(1, tm.comparaVigenciaComData(vigencia1, "-", data1, "/") );
+		assertEquals(0, tm.comparaVigenciaComData(vigencia1, "-", data3, "/") );
+		// Vigencia expirada
+		assertEquals(-1, tm.comparaVigenciaComData(vigencia1, "-", data2, "/") );
+		assertEquals(-1, tm.comparaVigenciaComData(vigencia1, "-", data4, "/") );
+		assertEquals(-1, tm.comparaVigenciaComData(vigencia1, "-", data5, "/") );
 	}
 }
