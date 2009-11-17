@@ -31,7 +31,10 @@ public class ReferenciaManagerTest {
 		docJudManager.removeDocumentosJuridicos();
 		
 	}
-
+	 /* ------------------------------------------------------------------ */
+    /* -------------------- TESTE ALTERACAO ------------------------------ */
+    /* ------------------------------------------------------------------ */
+	
 	/**
 	 * Testa se as alteracoes estao sendo salvas corretamente
 	 */
@@ -79,6 +82,9 @@ public class ReferenciaManagerTest {
 					  "16/11/2009");
 	}
 	
+	 /* ------------------------------------------------------------------ */
+    /* -------------------- TESTES CITACAOTEXTLEG ------------------------ */
+    /* ------------------------------------------------------------------ */
 	/**
 	 * Testa se as citacoesTextLeg estao sendo salvas corretamente
 	 */
@@ -125,4 +131,8 @@ public class ReferenciaManagerTest {
 		assertEquals( lawManager.getNormas().get(1).getCitacoesRecebidasTextLeg().get(0).getData(),
 					  "16/11/2009");
 	}
+	
+	 /* ------------------------------------------------------------------ */
+    /* -------------------- TESTES CITACAODOCJUD ------------------------ */
+    /* ------------------------------------------------------------------ */
 }
