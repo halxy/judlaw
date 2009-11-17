@@ -489,6 +489,15 @@ public class DocJudManagerTest {
 				  	  docJud1.getEncerramento().getDocumentoJuridico().getIdentificadorUnico() );
 		assertEquals( docJudManager.getEncerramentos().get(0).getDocumentoJuridico().getIdentificadorUnico(),
 					  docJudBD.getIdentificadorUnico() );
+		
+//		//Removendo o documento juridico
+//		docJudManager.removeDocumentoJuridico(docJudBD);
+//		//Verifica a cardinalidade das listas
+//		assertEquals( 0, docJudManager.getDocumentosJuridicos().size() );
+//		assertEquals( 0, docJudManager.getCabecalhos().size() );
+//		assertEquals( 0, docJudManager.getEmentas().size() );
+//		assertEquals( 0, docJudManager.getRelatorios().size() );
+//		assertEquals( 0, docJudManager.getEncerramentos().size() );
 	}
 	
 	/**
