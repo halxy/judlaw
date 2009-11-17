@@ -37,7 +37,7 @@ public class TimeLogic {
 	 * @return 0 caso as datas sejam iguais, 1 caso a data1 seja mais atual e -1 caso a data2 seja mais atual.
 	 * @throws Exception 
 	 */
-	public int dataMaisAtual(String data1, String data2, String delimitador) throws Exception {
+	public int comparaDatas(String data1, String data2, String delimitador) throws Exception {
 		// Manipulando a primeira data
 		StringTokenizer token1 = new StringTokenizer(data1, delimitador);
 		String dia1, mes1, ano1;
@@ -91,7 +91,7 @@ public class TimeLogic {
 		StringTokenizer tokenVigencia = new StringTokenizer(vigencia, delimitadorVigencia);
 		tokenVigencia.nextToken(); // passando o primeiro token referente à data inicio da vigencia
 		String fimVigencia = tokenVigencia.nextToken();
-		return dataMaisAtual(fimVigencia, data, delimitadorData);
+		return comparaDatas(fimVigencia, data, delimitadorData);
 	}
 	
 	/* ------------------------------------------------------------------ */
@@ -143,7 +143,7 @@ public class TimeLogic {
 		for( CitacaoDocJud citacao : citacoesFeitas ){
 			//Caso a citacao foi feita a um documento juridico
 			if( citacao.getDocumentoJuridicoDestino() != null ) {
-				if ( dataMaisAtual(citacao.getData(), 
+				if ( comparaDatas(citacao.getData(), 
 						citacao.getDocumentoJuridicoDestino().getDataPublicacao(), 
 						BARRA) < 0 ) { // <0 acontece quando a segunda data eh mais atual
 						listaResultado.add( citacao );
