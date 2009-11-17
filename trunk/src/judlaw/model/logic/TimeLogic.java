@@ -1,7 +1,11 @@
 package judlaw.model.logic;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
+
+import judlaw.model.bean.docjud.DocumentoJuridico;
+import judlaw.model.bean.ref.CitacaoDocJud;
 
 /**
  * Classe que manipula o tempo;
@@ -63,5 +67,41 @@ public class TimeLogic {
 			return 2;
 		}
 		return 0;
+	}
+	
+	/* ------------------------------------------------------------------ */
+    /* -------------------- OPERACOES CITACAODOCJUD --------------------- */
+    /* ------------------------------------------------------------------ */
+	/**
+	 * Retorna as inconsistencias temporais de citacoes feitas pelo documento juridico
+	 * a outros documentos juridicos
+	 * @param docJud
+	 * @return
+	 */
+	public List<CitacaoDocJud> inconsistenciaTempToDocJud(DocumentoJuridico docJud) {
+		
+		return null;
+	}
+	
+	/**
+	 * Retorna as inconsistencias temporais de citacoes feitas pelo documento juridico
+	 * a normas
+	 * @param docJud
+	 * @return
+	 */
+	public List<CitacaoDocJud> inconsistenciaTempToNorma(DocumentoJuridico docJud) {
+		
+		return null;
+	}
+	
+	/**
+	 * Retorna as inconsistencias temporais de citacoes feitas pelo documento juridico
+	 * a ElementosNorma
+	 * @param docJud
+	 * @return
+	 */
+	public List<CitacaoDocJud> inconsistenciaTempToEleNorma(DocumentoJuridico docJud) {
+		
+		return null;
 	}
 }
