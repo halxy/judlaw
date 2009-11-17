@@ -420,22 +420,8 @@ public class ReferenciaManagerTest {
 		assertEquals(1, lawManager.getElementosNorma().get(0).getCitacoesRecebidasTextLeg().size() );
 		//DocJud1
 		assertEquals(1, docJudManager.getDocumentosJuridicos().get(0).getCitacoesRecebidasTextLeg().size() );
-		
-		/* ---------- Verificando as citacoes ----------*/
-		/*
-		 * Por algum motivo obscuro, ao pegar a lista elementos, eles nao vem na ordem
-		 * que foram inseridos, dai a diferenca da ordem que foi inserida para a ordem que 
-		 * estao sendo avaliados os atributos.
-		 */
-		//Norma1 -> Norma2  (N->N)
-		assertEquals("16/11/2009", refManager.getCitacoesTextLeg().get(0).getData() );
-		//Artigo1 -> Artigo2 (EN->EN)
-		assertEquals("17/11/2009", refManager.getCitacoesTextLeg().get(1).getData() );
-		//Norma1 -> DocJud1 (N->DJ)
-		assertEquals("18/11/2009", refManager.getCitacoesTextLeg().get(2).getData() );
-		
-		
-		/* ---------- Removendo as alteracoes ----------*/
+				
+		/* ---------- Removendo as citacoes ----------*/
 		/*
 		 * Norma1 -> Norma2  (N->N)
 		 */
