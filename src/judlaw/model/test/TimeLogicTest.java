@@ -64,7 +64,7 @@ public class TimeLogicTest {
 	 * Compara vigencias
 	 * @throws Exception
 	 */
-	public void comparaVigencias() throws Exception {
+	public void testComparaVigencias() throws Exception {
 		// Vigencias com fins iguais
 		assertEquals(0, tm.comparaVigencias(vigencia1, vigencia2, 
 											Constantes.DELIMITADOR_VIGENCIA, Constantes.DELIMITADOR_DATA) );
@@ -74,5 +74,14 @@ public class TimeLogicTest {
 		// Vigencia2 com datafim maior que Vigencia1
 		assertEquals(-1, tm.comparaVigencias(vigencia1, vigencia3, 
 				Constantes.DELIMITADOR_VIGENCIA, Constantes.DELIMITADOR_DATA) );
+	}
+	
+	/**
+	 * Testa se as inconsistencias temporais das citacoes feitas por documentos juridicos
+	 * estao sendo detectadas corretamente
+	 */
+	@Test
+	public void testInconsistenciasTemporaisCDJ(){
+		
 	}
 }
