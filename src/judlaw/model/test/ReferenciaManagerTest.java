@@ -4,6 +4,7 @@
 package judlaw.model.test;
 
 import static org.junit.Assert.assertEquals;
+import judlaw.model.bean.lei.ElementoNorma;
 import judlaw.model.bean.lei.Norma;
 import judlaw.model.dbmanager.DocJudManager;
 import judlaw.model.dbmanager.LawManager;
@@ -36,38 +37,68 @@ public class ReferenciaManagerTest {
     /* ------------------------------------------------------------------ */
 	
 	/**
-	 * Testa se as alteracoes estao sendo salvas corretamente
+	 * Teste de persistencia de alteracoes
 	 */
 	@Test
-	public void testSalvaAlteracao(){
-		/* Criando e persistindo as normas */
+	public void testSalvaNorma(){
+		/*
+		 *           Norma1               Norma2
+		 *             |                    |
+		 *        ElementoNorma1      ElementoNorma2
+		 */
+		/* Criando e persistindo as normas e elementosNorma*/
 		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
 				"dataPublicacaoN1", "vigenciaN1");
+		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
+				"dataPublicacaoArt1", "vigenciaArt1");
+		norma1.getElementosNorma().add(artigo1);
 		
 		Norma norma2 = new Norma("epigrafeN2", "ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
 				"dataPublicacaoN2", "vigenciaN2");
+		ElementoNorma artigo2 = new ElementoNorma("textoArt2", "identificadorUnicoArt2", "tipoArt2", 
+				"dataPublicacaoArt2", "vigenciaArt2");
+		norma2.getElementosNorma().add(artigo2);
 		
 		lawManager.salvaNorma(norma1);
 		lawManager.salvaNorma(norma2);
-		//Quantidade de normas
+		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
 		assertEquals(2, lawManager.getNormas().size() );
+		assertEquals(2, lawManager.getElementosNorma().size() );
 		
-		/* Criando uma ALTERACAO */
+		/* Criando as Alteracoes */
+		//Norma1 -> Norma2  (N->N)
 		refManager.criaAlteracao(norma1, norma2, "16/11/2009", "inclusao", "");
+		//Norma1 -> Artigo2 (N->EN)
+		refManager.criaAlteracao(norma1, artigo2, "17/11/2009", "inclusao", "");
+		//Artigo1 -> Norma2 (EN->N)
+		refManager.criaAlteracao(artigo1, norma2, "18/11/2009", "inclusao", "");
+		//Artigo1 -> Artigo2 (EN->EN)
+		refManager.criaAlteracao(artigo1, artigo2, "19/11/2009", "inclusao", "");
 		
 		/* Verificando se os atributos foram persistidos corretamente */
 		//Quantidade de alteracoes
-		assertEquals(1, refManager.getAlteracoes().size() );
-		
-		// Atributos da Referencia
+		assertEquals(4, refManager.getAlteracoes().size() );		
+		// Atributos das Referencias
+		//Norma1 -> Norma2  (N->N)
 		assertEquals( refManager.getAlteracoes().get(0).getNormaOrigem().getIdentificadorUnico(),
 				      norma1.getIdentificadorUnico() );
 		assertEquals( refManager.getAlteracoes().get(0).getNormaDestino().getIdentificadorUnico(),
 			      	  norma2.getIdentificadorUnico() );
-		assertEquals( refManager.getAlteracoes().get(0).getElementoNormaOrigem(),
-			          null );
-		assertEquals( refManager.getAlteracoes().get(0).getElementoNormaDestino(),
-		              null );
+		//Artigo1 -> Norma2 (EN->N)
+		assertEquals( refManager.getAlteracoes().get(1).getElementoNormaOrigem().getIdentificadorUnico(),
+			      	  artigo1.getIdentificadorUnico() );
+		assertEquals( refManager.getAlteracoes().get(1).getNormaDestino().getIdentificadorUnico(),
+		      	      norma2.getIdentificadorUnico() );
+		//Norma1 -> Artigo2 (N->EN)
+		assertEquals( refManager.getAlteracoes().get(2).getNormaOrigem().getIdentificadorUnico(),
+			      	  norma1.getIdentificadorUnico() );
+		assertEquals( refManager.getAlteracoes().get(2).getElementoNormaDestino().getIdentificadorUnico(),
+		      	      artigo2.getIdentificadorUnico() );
+		//Artigo1 -> Artigo2 (EN->EN)
+		assertEquals( refManager.getAlteracoes().get(3).getElementoNormaOrigem().getIdentificadorUnico(),
+			      	  artigo1.getIdentificadorUnico() );
+		assertEquals( refManager.getAlteracoes().get(3).getElementoNormaDestino().getIdentificadorUnico(),
+		      	      artigo2.getIdentificadorUnico() );
 		
 		// Atributos das normas
 		//NORMA1
@@ -80,6 +111,15 @@ public class ReferenciaManagerTest {
 				      norma2.getIdentificadorUnico());
 		assertEquals( lawManager.getNormas().get(1).getAlteracoesRecebidas().get(0).getData(),
 					  "16/11/2009");
+		assertEquals( lawManager.getNormas().get(1).getAlteracoesRecebidas().get(1).getData(),
+		  			  "18/11/2009");
+		//ELEMENTONORMA1
+		assertEquals( lawManager.getElementosNorma().get(0).getIdentificadorUnico(),
+					  artigo1.getIdentificadorUnico());
+		assertEquals( lawManager.getElementosNorma().get(0).getAlteracoesFeitas().get(0).getData(),
+				  	  "18/11/2009");
+		assertEquals( lawManager.getElementosNorma().get(0).getAlteracoesFeitas().get(1).getData(),
+	  	  			  "19/11/2009");
 	}
 	
 	 /* ------------------------------------------------------------------ */
