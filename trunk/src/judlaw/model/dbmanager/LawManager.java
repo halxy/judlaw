@@ -9,8 +9,8 @@ package judlaw.model.dbmanager;
 
 import java.util.List;
 
-import judlaw.model.bean.lei.ElementoNorma;
-import judlaw.model.bean.lei.Norma;
+import judlaw.model.bean.law.ElementoNorma;
+import judlaw.model.bean.law.Norma;
 
 
 /**
