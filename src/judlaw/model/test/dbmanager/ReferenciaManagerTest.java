@@ -530,11 +530,11 @@ public class ReferenciaManagerTest {
 		
 		/* Criando as CitacoesDocJud */
 		//DocJud1 -> DocJud2  (DJ->DJ)
-		citacaoDocJudManager.criaCitacaoDocJud(docJud1, docJud2, "16/11/2009");
+		citacaoDocJudManager.criaCitacaoDocJud(docJud1, docJud2);
 		//DocJud1 -> Norma1 (DJ->N)
-		citacaoDocJudManager.criaCitacaoDocJud(docJud1, norma1, "17/11/2009");
+		citacaoDocJudManager.criaCitacaoDocJud(docJud1, norma1);
 		//DocJud1 -> Artigo1 (DJ->EN)
-		citacaoDocJudManager.criaCitacaoDocJud(docJud1, artigo1, "18/11/2009");
+		citacaoDocJudManager.criaCitacaoDocJud(docJud1, artigo1);
 		
 		/* Verificando se os atributos foram persistidos corretamente */
 		//Quantidade de alteracoes
@@ -584,6 +584,7 @@ public class ReferenciaManagerTest {
 		/* Criando e persistindo o documento juridico */
 		DocumentoJuridico docJud1 = new DocumentoJuridico();
 		docJud1.setIdentificadorUnico("idUnico1");
+		docJud1.setDataExpedicao("16/11/2009");
 		DocumentoJuridico docJud2 = new DocumentoJuridico();
 		docJud2.setIdentificadorUnico("idUnico2");
 		docJudManager.salvaDocumentoJuridico(docJud1);
@@ -595,11 +596,11 @@ public class ReferenciaManagerTest {
 		
 		/* Criando as CitacoesDocJud */
 		//DocJud1 -> DocJud2 (DJ->DJ)
-		citacaoDocJudManager.criaCitacaoDocJud(docJud1, docJud2, "16/11/2009");
+		citacaoDocJudManager.criaCitacaoDocJud(docJud1, docJud2);
 		//DocJud1 -> Norma1 (DJ->N)
-		citacaoDocJudManager.criaCitacaoDocJud(docJud1, norma1, "17/11/2009");
+		citacaoDocJudManager.criaCitacaoDocJud(docJud1, norma1);
 		//DocJud1 -> Artigo1 (DJ->EN)
-		citacaoDocJudManager.criaCitacaoDocJud(docJud1, artigo1, "18/11/2009");
+		citacaoDocJudManager.criaCitacaoDocJud(docJud1, artigo1);
 		
 		/* Verificando se os atributos foram persistidos corretamente */
 		//Quantidade de citacoesDocJud
@@ -626,7 +627,6 @@ public class ReferenciaManagerTest {
 		/*
 		 * DocJud1 -> DocJud2 (DJ->DJ)
 		 */
-		assertEquals("16/11/2009", citacaoDocJudManager.getCitacoesDocJud().get(0).getData() );
 		citacaoDocJudManager.removeCitacaoDocJud( citacaoDocJudManager.getCitacoesDocJud().get(0) );
 		assertEquals(2, citacaoDocJudManager.getCitacoesDocJud().size() );
 		//Norma1
@@ -644,7 +644,6 @@ public class ReferenciaManagerTest {
 		/*
 		 * DocJud1 -> Norma1 (DJ->N)
 		 */
-		assertEquals("17/11/2009", citacaoDocJudManager.getCitacoesDocJud().get(0).getData() );
 		citacaoDocJudManager.removeCitacaoDocJud( citacaoDocJudManager.getCitacoesDocJud().get(0) );
 		assertEquals(1, citacaoDocJudManager.getCitacoesDocJud().size() );
 		//Norma1
@@ -663,7 +662,6 @@ public class ReferenciaManagerTest {
 		/*
 		 * DocJud1 -> Artigo1 (DJ->EN)
 		 */
-		assertEquals("18/11/2009", citacaoDocJudManager.getCitacoesDocJud().get(0).getData() );
 		citacaoDocJudManager.removeCitacaoDocJud( citacaoDocJudManager.getCitacoesDocJud().get(0) );
 		assertEquals(0, citacaoDocJudManager.getCitacoesDocJud().size() );
 		//Norma1
