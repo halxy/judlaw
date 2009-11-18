@@ -5,7 +5,7 @@
  * Sistema JudLaw
  * Mestrando: Halley Freitas	
  */
-package judlaw.model.test;
+package judlaw.model.test.dbmanager;
 
 import static org.junit.Assert.assertEquals;
 import judlaw.model.bean.docjud.DocumentoJuridico;
