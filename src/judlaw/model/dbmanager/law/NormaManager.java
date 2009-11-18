@@ -15,7 +15,7 @@ import judlaw.model.dbmanager.DBManager;
 
 
 /**
- * Classe LawManager - responsável por gerenciar as operacoes no banco de dados das normas e elementosNorma 
+ * Classe NormaManager - responsável por gerenciar as operacoes no banco de dados das normas 
  * @author Halley Freitas
  *
  */
@@ -25,7 +25,7 @@ public class NormaManager {
 	private DBManager dbManager = DBManager.getInstance();	
 	
    /**
-    * Retorna uma instancia da classe LawManager
+    * Retorna uma instancia da classe NormaManager
     * @return
     */
     public static NormaManager getInstance(){
