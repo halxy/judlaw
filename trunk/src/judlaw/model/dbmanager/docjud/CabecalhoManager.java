@@ -1,3 +1,10 @@
+/* 
+ * Universidade Federal de Campina Grande
+ * Centro de Engenharia Eletrica e Informatica
+ * Programa de Pos-Graduacao em Ciencia da Computacao
+ * Sistema JudLaw
+ * Mestrando: Halley Freitas	
+ */
 package judlaw.model.dbmanager.docjud;
 
 import java.util.List;
@@ -6,6 +13,11 @@ import judlaw.model.bean.docjud.Cabecalho;
 import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.dbmanager.DBManager;
 
+/**
+ * Classe CabecalhoManager - define as operacoes no BD dos Cabecalhos
+ * @author Halley Freitas
+ *
+ */
 public class CabecalhoManager {
 
 	private static CabecalhoManager cabecalhoManager = null;
