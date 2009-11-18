@@ -31,7 +31,7 @@ public class DocJudManager {
 	
 	
    /**
-    * Retorna uma instancia da classe LawManager
+    * Retorna uma instancia da classe DocJudManager
     * @return
     */
     public static DocJudManager getInstance(){
@@ -39,10 +39,6 @@ public class DocJudManager {
         	docjudManager = new DocJudManager();
         return docjudManager;
     }
-    
-    /* ------------------------------------------------------------------ */
-    /* -------------------- OPERACOES DOCUMENTOJURIDICO ----------------- */
-    /* ------------------------------------------------------------------ */
     /**
      * 
      * @param documentoJuridico
@@ -95,104 +91,6 @@ public class DocJudManager {
 	 */
 	public void removeDocumentoJuridico(DocumentoJuridico documentoJuridico){
 		dbManager.remove(documentoJuridico);
-	}
-	
-	/* ------------------------------------------------------------------ */
-    /* -------------------- OPERACOES CABECALHO ------------------------- */
-    /* ------------------------------------------------------------------ */
-	/**
-	 * 
-	 */
-	@SuppressWarnings("unchecked")
-	public List<Cabecalho> getCabecalhos() {
-		return dbManager.selectAll( new Cabecalho() );
-	}
-	
-	public void removeCabecalhos() {
-		dbManager.removeAll( new Cabecalho() );
-	}
-	
-	/**
-	 * Altera um cabecalho que ja esta inserido no Banco de Dados
-	 * @param cabecalho
-	 * @param docJud
-	 */
-	public void alteraCabecalhoBD(Cabecalho cabecalho, DocumentoJuridico docJud) {
-		Cabecalho cabecalhoBD = docJud.getCabecalho();
-		if(cabecalhoBD == null) {
-			cabecalhoBD = new Cabecalho();
-		}
-		cabecalhoBD.setCodRegistro( cabecalho.getCodRegistro() );
-		cabecalhoBD.setOrgaoJulgador( cabecalho.getOrgaoJulgador() );
-		cabecalhoBD.setTribunal( cabecalho.getTribunal() );
-		cabecalhoBD.setDocumentoJuridico(docJud);
-		dbManager.save(cabecalhoBD);
-		docJud.setCabecalho(cabecalhoBD);
-		dbManager.save(docJud);
-	}
-	
-	/**
-	 * Remove o cabecalho de um documentoJuridico
-	 * @param docJud
-	 */
-	public void removeCabecalho(DocumentoJuridico docJud) {
-		Cabecalho cabecalho = docJud.getCabecalho();
-		docJud.setCabecalho( null );
-		dbManager.save(docJud);
-		dbManager.remove(cabecalho);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Cabecalho> selectCabecalhoPorAtributo(String atributo, String valor) {
-		return dbManager.selectObjectsByField(new Cabecalho(), atributo, valor);
-	}
-	 
-	/* ------------------------------------------------------------------ */
-    /* -------------------- OPERACOES EMENTA ---------------------------- */
-    /* ------------------------------------------------------------------ */
-	/**
-	 * 
-	 */
-	@SuppressWarnings("unchecked")
-	public List<Ementa> getEmentas() {
-		return dbManager.selectAll( new Ementa() );
-	}
-	
-	public void removeEmentas() {
-		dbManager.removeAll( new Ementa() );
-	}
-	
-	/**
-	 * Remove ementa
-	 * @param docJud
-	 */
-	public void removeEmenta(DocumentoJuridico docJud) {
-		Ementa ementa = docJud.getEmenta();
-		docJud.setEmenta(null);
-		dbManager.save(docJud);
-		dbManager.remove(ementa);
-	}
-	
-	/**
-	 * Altera uma ementa que ja esta inserida no Banco de Dados
-	 * @param ementa
-	 * @param docJud
-	 */
-	public void alteraEmentaBD(Ementa ementa, DocumentoJuridico docJud) {
-		Ementa ementaBD = docJud.getEmenta();
-		if(ementaBD == null) {
-			ementaBD = new Ementa();
-		}
-		ementaBD.setTexto( ementa.getTexto() );
-		ementaBD.setDocumentoJuridico(docJud);
-		dbManager.save(ementaBD);
-		docJud.setEmenta(ementaBD);
-		dbManager.save(docJud);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Ementa> selectEmentaPorAtributo(String atributo, String valor) {
-		return dbManager.selectObjectsByField(new Ementa(), atributo, valor);
 	}
 	
 	/* ------------------------------------------------------------------ */
