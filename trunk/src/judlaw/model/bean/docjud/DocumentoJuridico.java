@@ -82,7 +82,7 @@ public class DocumentoJuridico {
 	/* --------- Atributos ----------- */
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
 	private String tipo; // tipos de Documentos Juridicos e Documentos Legais
-	private String dataPublicacao; // dd/MM/yyy
+	private String dataExpedicao; // dd/MM/yyy
 	
 	/* --------- Referencias --------- */
 	// Citacoes feitas
@@ -127,7 +127,7 @@ public class DocumentoJuridico {
 		this.partes = partes;
 		this.identificadorUnico = identificadorUnico;
 		this.tipo = tipo;
-		this.dataPublicacao = dataPublicacao;
+		this.dataExpedicao = dataPublicacao;
 	}
 
 	/**
@@ -217,12 +217,12 @@ public class DocumentoJuridico {
 		this.tipo = tipo;
 	}
 
-	public String getDataPublicacao() {
-		return dataPublicacao;
+	public String getDataExpedicao() {
+		return dataExpedicao;
 	}
 
-	public void setDataPublicacao(String dataPublicacao) {
-		this.dataPublicacao = dataPublicacao;
+	public void setDataExpedicao(String dataExpedicao) {
+		this.dataExpedicao = dataExpedicao;
 	}
 
 	public List<CitacaoDocJud> getCitacoesFeitas() {
