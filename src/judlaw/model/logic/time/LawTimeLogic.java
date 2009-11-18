@@ -5,7 +5,7 @@
  * Sistema JudLaw
  * Mestrando: Halley Freitas	
  */
-package judlaw.model.logic;
+package judlaw.model.logic.time;
 
 /**
  * Classe DocJudTimeLogic - define a logica temporal das normas e elementosNorma
