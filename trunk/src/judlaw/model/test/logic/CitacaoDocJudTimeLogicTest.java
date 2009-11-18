@@ -16,7 +16,7 @@ import judlaw.model.dbmanager.law.ElementoNormaManager;
 import judlaw.model.dbmanager.law.NormaManager;
 import judlaw.model.dbmanager.ref.CitacaoDocJudManager;
 import judlaw.model.dbmanager.ref.ReferenciaManager;
-import judlaw.model.logic.time.DocJudTimeLogic;
+import judlaw.model.logic.time.CitacaoDocJudTimeLogic;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -26,12 +26,12 @@ import org.junit.Test;
  * @author Halley Freitas
  *
  */
-public class DocJudTimeLogicTest {
+public class CitacaoDocJudTimeLogicTest {
 	
 	private NormaManager normaManager = NormaManager.getInstance();
 	private ElementoNormaManager elementoNormaManager = ElementoNormaManager.getInstance();
 	private DocJudManager docJudManager = DocJudManager.getInstance();
-	private DocJudTimeLogic docJudTimeLogic = DocJudTimeLogic.getInstance();
+	private CitacaoDocJudTimeLogic citacaoDocJudTimeLogic = CitacaoDocJudTimeLogic.getInstance();
 	private CitacaoDocJudManager citacaoDocJudManager = CitacaoDocJudManager.getInstance();
 	
 	@Before
@@ -126,12 +126,12 @@ public class DocJudTimeLogicTest {
 				      docJudManager.getDocumentosJuridicos().get(0).getIdentificadorUnico() );
 		DocumentoJuridico docJud1BD = docJudManager.getDocumentosJuridicos().get(0);
 		//Norma2 e Inciso2
-		assertEquals( 2, docJudTimeLogic.inconsistenciaTemporalSimples(docJud1BD).size());
+		assertEquals( 2, citacaoDocJudTimeLogic.inconsistenciaTemporalSimples(docJud1BD).size());
 		assertEquals( norma2.getIdentificadorUnico(), 
-				      docJudTimeLogic.inconsistenciaTemporalSimples(docJud1BD).get(0).
+				      citacaoDocJudTimeLogic.inconsistenciaTemporalSimples(docJud1BD).get(0).
 				                                             getNormaDestino().getIdentificadorUnico());
 		assertEquals( inciso2.getIdentificadorUnico(), 
-			      docJudTimeLogic.inconsistenciaTemporalSimples(docJud1BD).get(1).
+			      citacaoDocJudTimeLogic.inconsistenciaTemporalSimples(docJud1BD).get(1).
 			                                             getElementoNormaDestino().getIdentificadorUnico());
 	}
 }
