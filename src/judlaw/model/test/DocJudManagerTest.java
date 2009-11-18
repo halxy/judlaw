@@ -32,7 +32,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Classe DocJudManagerTest - testes das operacoes da classe DocJudManager
+ * Classe DocJudManagerTest - testes das operacoes no BD dos documentos juridicos e de seus elementos
  * @author Halley Freitas
  *
  */
