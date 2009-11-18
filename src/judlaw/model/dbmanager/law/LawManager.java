@@ -5,12 +5,13 @@
  * Sistema JudLaw
  * Mestrando: Halley Freitas	
  */
-package judlaw.model.dbmanager;
+package judlaw.model.dbmanager.law;
 
 import java.util.List;
 
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
+import judlaw.model.dbmanager.DBManager;
 
 
 /**
