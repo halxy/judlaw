@@ -19,8 +19,8 @@ import judlaw.model.bean.docjud.Encerramento;
 import judlaw.model.bean.docjud.Parte;
 import judlaw.model.bean.docjud.Relatorio;
 import judlaw.model.bean.docjud.Voto;
-import judlaw.model.dbmanager.DocJudManager;
 import judlaw.model.dbmanager.ReferenciaManager;
+import judlaw.model.dbmanager.docjud.DocJudManager;
 
 import org.junit.Before;
 import org.junit.Test;

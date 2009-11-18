@@ -11,9 +11,9 @@ import static org.junit.Assert.assertEquals;
 import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.bean.lei.ElementoNorma;
 import judlaw.model.bean.lei.Norma;
-import judlaw.model.dbmanager.DocJudManager;
 import judlaw.model.dbmanager.LawManager;
 import judlaw.model.dbmanager.ReferenciaManager;
+import judlaw.model.dbmanager.docjud.DocJudManager;
 
 import org.junit.Before;
 import org.junit.Test;
