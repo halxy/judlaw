@@ -1,3 +1,10 @@
+/* 
+ * Universidade Federal de Campina Grande
+ * Centro de Engenharia Eletrica e Informatica
+ * Programa de Pos-Graduacao em Ciencia da Computacao
+ * Sistema JudLaw
+ * Mestrando: Halley Freitas	
+ */
 package judlaw.model.dbmanager.docjud;
 
 import java.util.List;
@@ -6,6 +13,11 @@ import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.bean.docjud.Ementa;
 import judlaw.model.dbmanager.DBManager;
 
+/**
+ * Classe EmentaManager - define as operacoes no BD das Ementas
+ * @author Halley Freitas
+ *
+ */
 public class EmentaManager {
 
 	private static EmentaManager ementaManager = null;
