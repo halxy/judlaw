@@ -15,7 +15,7 @@ import judlaw.model.bean.ref.CitacaoDocJud;
 import judlaw.model.util.Constantes;
 
 /**
- * Classe CitacaoDocJudTimeLogic - define a logica temporal das CitacoesDocJud
+ * Classe CitacaoDocJudTimeLogic - define a logica temporal das citacoes de documentos juridicos
  * @author Halley Freitas
  *
  */

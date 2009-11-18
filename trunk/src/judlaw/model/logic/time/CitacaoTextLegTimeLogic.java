@@ -8,10 +8,10 @@
 package judlaw.model.logic.time;
 
 /**
- * Classe DocJudTimeLogic - define a logica temporal das normas e elementosNorma
+ * Classe CitacaoTextLegTimeLogic - define a logica temporal das citacoes de textos legais
  * @author Halley Freitas
  *
  */
-public class LawTimeLogic {
+public class CitacaoTextLegTimeLogic {
 
 }
