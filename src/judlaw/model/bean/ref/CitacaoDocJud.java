@@ -70,47 +70,33 @@ public class CitacaoDocJud extends Referencia {
 	 * Quanto o destino eh outro documento juridico
 	 * @param documentoJuridicoOrigem
 	 * @param documentoJuridicoDestino
-	 * @param data
 	 */
-	public CitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, DocumentoJuridico documentoJuridicoDestino,
-			String data) {
+	public CitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, DocumentoJuridico documentoJuridicoDestino) {
 		this.documentoJuridicoOrigem = documentoJuridicoOrigem;
 		this.documentoJuridicoDestino = documentoJuridicoDestino;
-		this.data = data;
+		this.data = documentoJuridicoOrigem.getDataExpedicao();
 	}
 	
 	/**
 	 * Quando o destino eh uma Norma
 	 * @param documentoJuridicoOrigem
 	 * @param normaDestino
-	 * @param data
 	 */
-	public CitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, Norma normaDestino,
-			String data) {
+	public CitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, Norma normaDestino) {
 		this.documentoJuridicoOrigem = documentoJuridicoOrigem;
 		this.normaDestino = normaDestino;
-		this.data = data;
+		this.data = documentoJuridicoOrigem.getDataExpedicao();
 	}
 	
 	/**
 	 * Quando o destino eh um ElementoNorma
 	 * @param documentoJuridicoOrigem
 	 * @param elementoNormaDestino
-	 * @param data
 	 */
-	public CitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, ElementoNorma elementoNormaDestino,
-			String data) {
+	public CitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, ElementoNorma elementoNormaDestino) {
 		this.documentoJuridicoOrigem = documentoJuridicoOrigem;
 		this.elementoNormaDestino = elementoNormaDestino;
-		this.data = data;
-	}
-
-	/**
-	 * 
-	 * @param data
-	 */
-	public CitacaoDocJud(String data){
-		this.data = data;
+		this.data = documentoJuridicoOrigem.getDataExpedicao();
 	}
 
 	/**
