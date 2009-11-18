@@ -8,32 +8,31 @@
 package judlaw.model.test.logic;
 
 import static org.junit.Assert.assertEquals;
-import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
 import judlaw.model.dbmanager.docjud.DocJudManager;
 import judlaw.model.dbmanager.law.ElementoNormaManager;
 import judlaw.model.dbmanager.law.NormaManager;
-import judlaw.model.dbmanager.ref.CitacaoDocJudManager;
+import judlaw.model.dbmanager.ref.CitacaoTextLegManager;
 import judlaw.model.dbmanager.ref.ReferenciaManager;
-import judlaw.model.logic.time.CitacaoDocJudTimeLogic;
+import judlaw.model.logic.time.CitacaoTextLegTimeLogic;
 
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Classe CitacaoDocJudTimeLogicTest - testes que verificam a consistencia temporal das citacoes
- * feitas por documentos juridicos
+ * Classe CitacaoTextLegTimeLogicTest - testes que verificam a consistencia temporal das citacoes
+ * feitas por textos legais
  * @author Halley Freitas
  *
  */
-public class CitacaoDocJudTimeLogicTest {
+public class CitacaoTextLegTimeLogicTest {
 	
 	private NormaManager normaManager = NormaManager.getInstance();
 	private ElementoNormaManager elementoNormaManager = ElementoNormaManager.getInstance();
 	private DocJudManager docJudManager = DocJudManager.getInstance();
-	private CitacaoDocJudTimeLogic citacaoDocJudTimeLogic = CitacaoDocJudTimeLogic.getInstance();
-	private CitacaoDocJudManager citacaoDocJudManager = CitacaoDocJudManager.getInstance();
+	private CitacaoTextLegManager citacaoTLManager = CitacaoTextLegManager.getInstance();
+	private CitacaoTextLegTimeLogic citacaoTLTimeLogic = CitacaoTextLegTimeLogic.getInstance();
 	
 	@Before
 	public void setUp() throws Exception {
@@ -44,16 +43,7 @@ public class CitacaoDocJudTimeLogicTest {
 	}
 
 	@Test
-	/**
-	 * Test method for {@link judlaw.model.logic.time.DocJudTimeLogic#inconsistenciaTemporalSimples(DocumentoJuridico docJud)}.
-	 */
 	public void testInconsistenciaTemporalSimples() throws Exception {
-		/* ---------- Documento Juridico ----------*/
-		DocumentoJuridico docJud1 = new DocumentoJuridico();
-		docJud1.setIdentificadorUnico("idUnico1");
-		docJud1.setDataExpedicao("10/10/2011");
-		docJudManager.salvaDocumentoJuridico(docJud1);
-		
 		/* ---------- Norma e ElementosNorma ----------*/
 		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
 														"dataPublicacaoArt1", "vigenciaArt1");
@@ -97,42 +87,42 @@ public class CitacaoDocJudTimeLogicTest {
 		 *                  Inc1   Inc2 
 		 */
 		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
-		assertEquals( 1, docJudManager.getDocumentosJuridicos().size() );
 		assertEquals( 2, normaManager.getNormas().size() );
 		assertEquals( 7, elementoNormaManager.getElementosNorma().size() );
 		/*
 		 *   Elementos envolvidos nas citacoes e suas vigencias.
 		 *   As citacoes foram feitas no mesmo documento, em 10/10/2011
-		 *   Norma1: 10/10/2010-10/10/2012 (OK)
 		 *   Norma2: 10/10/2010-09/10/2011 (Vigencia expirada)
 		 *   Par1: 10/10/2010-10/10/2011 (Vigora ate o dia da citacao)
 		 *   Inc2: 10/10/2010-10/09/2011 (Vigencia expirada)
 		 */
-		/* Criando as CitacoesDocJud */
-		//DocJud1 -> Norma1
-		citacaoDocJudManager.criaCitacaoDocJud(docJud1, norma1);
-		//DocJud1 -> Norma2 
-		citacaoDocJudManager.criaCitacaoDocJud(docJud1, norma2);
-		//DocJud1 -> Paragrafo1
-		citacaoDocJudManager.criaCitacaoDocJud(docJud1, paragrafo1);
-		//DocJud1 -> Inciso2
-		citacaoDocJudManager.criaCitacaoDocJud(docJud1, inciso2);
+		/* Criando as CitacoesTextLeg */
+		//Norma1 -> Norma2
+		citacaoTLManager.criaCitacaoTextLeg(norma1, norma2, "10/10/2011");
+		//Norma1 -> Par1
+		citacaoTLManager.criaCitacaoTextLeg(norma1, paragrafo1, "10/10/2011");
+		//Norma1 -> Inc2
+		citacaoTLManager.criaCitacaoTextLeg(norma1, inciso2, "10/10/2011");
 		
 		/* Verificando se os atributos foram persistidos corretamente */
 		//Quantidade de citacoes
-		assertEquals(4, citacaoDocJudManager.getCitacoesDocJud().size() );
+		assertEquals(3, citacaoTLManager.getCitacoesTextLeg().size() );
 		
 		/* Verificando se as inconsistencias foram detectadas corretamente */
-		assertEquals( docJud1.getIdentificadorUnico(), 
-				      docJudManager.getDocumentosJuridicos().get(0).getIdentificadorUnico() );
-		DocumentoJuridico docJud1BD = docJudManager.getDocumentosJuridicos().get(0);
+		assertEquals( norma1.getIdentificadorUnico(), 
+				      citacaoTLManager.getCitacoesTextLeg().get(0).getNormaOrigem().getIdentificadorUnico() );
+		assertEquals( norma1.getIdentificadorUnico(), 
+			      	  citacaoTLManager.getCitacoesTextLeg().get(1).getNormaOrigem().getIdentificadorUnico() );
+		assertEquals( norma1.getIdentificadorUnico(), 
+			          citacaoTLManager.getCitacoesTextLeg().get(2).getNormaOrigem().getIdentificadorUnico() );
+		Norma norma1BD = citacaoTLManager.getCitacoesTextLeg().get(0).getNormaOrigem();
 		//Norma2 e Inciso2
-		assertEquals( 2, citacaoDocJudTimeLogic.inconsistenciaTemporalSimples(docJud1BD).size());
+		assertEquals( 2, citacaoTLTimeLogic.inconsistenciaTemporalSimples(norma1BD).size());
 		assertEquals( norma2.getIdentificadorUnico(), 
-				      citacaoDocJudTimeLogic.inconsistenciaTemporalSimples(docJud1BD).get(0).
+				citacaoTLTimeLogic.inconsistenciaTemporalSimples(norma1BD).get(0).
 				                                             getNormaDestino().getIdentificadorUnico());
 		assertEquals( inciso2.getIdentificadorUnico(), 
-			      citacaoDocJudTimeLogic.inconsistenciaTemporalSimples(docJud1BD).get(1).
+				citacaoTLTimeLogic.inconsistenciaTemporalSimples(norma1BD).get(1).
 			                                             getElementoNormaDestino().getIdentificadorUnico());
 	}
 }
