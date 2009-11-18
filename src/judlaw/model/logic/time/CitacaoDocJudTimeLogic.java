@@ -19,22 +19,22 @@ import judlaw.model.util.Constantes;
  * @author Halley Freitas
  *
  */
-public class DocJudTimeLogic extends TimeLogic {
+public class CitacaoDocJudTimeLogic extends TimeLogic {
 	
 	//Lista de Excecoes a serem utilizadas na busca complexa por inconsistencias temporais
 	private List<Exception> inconsistenciasTemporais = new ArrayList<Exception>();
 	
-	private static DocJudTimeLogic docJudTimeLogic = null;
+	private static CitacaoDocJudTimeLogic citacaoDocJudTimeLogic = null;
 	
 	/**
 	 * Singleton
 	 * @return
 	 */
-	public static DocJudTimeLogic getInstance() {
-		if (docJudTimeLogic == null) {
-			docJudTimeLogic = new DocJudTimeLogic();
+	public static CitacaoDocJudTimeLogic getInstance() {
+		if (citacaoDocJudTimeLogic == null) {
+			citacaoDocJudTimeLogic = new CitacaoDocJudTimeLogic();
 		}
-		return docJudTimeLogic;
+		return citacaoDocJudTimeLogic;
 	}
 	
 	public List<Exception> getInconsistenciasTemporais() {
