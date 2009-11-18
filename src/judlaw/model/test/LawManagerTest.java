@@ -12,21 +12,21 @@ import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
 import judlaw.model.dbmanager.docjud.DocJudManager;
-import judlaw.model.dbmanager.law.LawManager;
+import judlaw.model.dbmanager.law.NormaManager;
 import judlaw.model.dbmanager.ref.ReferenciaManager;
 
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Classe LawManagerTest - testes das operacoes da classe LawManager
+ * Classe LawManagerTest - testes das operacoes no BD das normas e elementosNorma
  * @author Halley Freitas
  *
  */
 public class LawManagerTest {
 
 	// DBManager
-	private LawManager lawManager = LawManager.getInstance();
+	private NormaManager lawManager = NormaManager.getInstance();
 	
 	@Before
 	public void setUp() {

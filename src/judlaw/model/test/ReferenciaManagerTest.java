@@ -12,7 +12,7 @@ import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
 import judlaw.model.dbmanager.docjud.DocJudManager;
-import judlaw.model.dbmanager.law.LawManager;
+import judlaw.model.dbmanager.law.NormaManager;
 import judlaw.model.dbmanager.ref.ReferenciaManager;
 
 import org.junit.Before;
@@ -26,7 +26,7 @@ import org.junit.Test;
 public class ReferenciaManagerTest {
 	
 	ReferenciaManager refManager = ReferenciaManager.getInstance();
-	LawManager lawManager = LawManager.getInstance();
+	NormaManager lawManager = NormaManager.getInstance();
 	DocJudManager docJudManager = DocJudManager.getInstance();
 	
 	@Before
