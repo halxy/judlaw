@@ -549,4 +549,121 @@ public class ReferenciaManagerTest {
 		assertEquals( refManager.getCitacoesDocJud().get(2).getElementoNormaDestino().getIdentificadorUnico(),
 			      artigo1.getIdentificadorUnico());
 	}
+	
+	/**
+	 * Testa se a CitacaoDocJud esta sendo removida corretamente
+	 */
+	@Test
+	public void testRemoveCitacaoDocJud(){
+		/*
+		 *           Norma1               Norma2
+		 *             |                    |
+		 *        ElementoNorma1      ElementoNorma2
+		 */
+		/* Criando e persistindo as normas e elementosNorma*/
+		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+				"dataPublicacaoN1", "vigenciaN1");
+		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
+				"dataPublicacaoArt1", "vigenciaArt1");
+		norma1.getElementosNorma().add(artigo1);
+		lawManager.salvaNorma(norma1);
+		
+		/* Criando e persistindo o documento juridico */
+		DocumentoJuridico docJud1 = new DocumentoJuridico();
+		docJud1.setIdentificadorUnico("idUnico1");
+		DocumentoJuridico docJud2 = new DocumentoJuridico();
+		docJud2.setIdentificadorUnico("idUnico2");
+		docJudManager.salvaDocumentoJuridico(docJud1);
+		docJudManager.salvaDocumentoJuridico(docJud2);
+		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
+		assertEquals(1, lawManager.getNormas().size() );
+		assertEquals(1, lawManager.getElementosNorma().size() );
+		assertEquals(2, docJudManager.getDocumentosJuridicos().size() );
+		
+		/* Criando as CitacoesDocJud */
+		//DocJud1 -> DocJud2 (DJ->DJ)
+		refManager.criaCitacaoDocJud(docJud1, docJud2, "16/11/2009");
+		//DocJud1 -> Norma1 (DJ->N)
+		refManager.criaCitacaoDocJud(docJud1, norma1, "17/11/2009");
+		//DocJud1 -> Artigo1 (DJ->EN)
+		refManager.criaCitacaoDocJud(docJud1, artigo1, "18/11/2009");
+		
+		/* Verificando se os atributos foram persistidos corretamente */
+		//Quantidade de citacoesDocJud
+		assertEquals(3, refManager.getCitacoesDocJud().size() );
+		/*
+		 * Por algum motivo obscuro, ao pegar a lista elementos, eles nao vem na ordem
+		 * que foram inseridos, dai a diferenca da ordem que foi inserida para a ordem que 
+		 * estao sendo avaliados os atributos.
+		 */
+		//Norma1
+		assertEquals(norma1.getIdentificadorUnico(), lawManager.getNormas().get(0).getIdentificadorUnico() );
+		assertEquals(1, lawManager.getNormas().get(0).getCitacoesRecebidasDocJud().size() );
+		//Artigo1
+		assertEquals(artigo1.getIdentificadorUnico(), lawManager.getElementosNorma().get(0).getIdentificadorUnico() );
+		assertEquals(1, lawManager.getElementosNorma().get(0).getCitacoesRecebidasDocJud().size() );
+		//DocJud1
+		assertEquals(docJud1.getIdentificadorUnico(), docJudManager.getDocumentosJuridicos().get(1).getIdentificadorUnico() );
+		assertEquals(3, docJudManager.getDocumentosJuridicos().get(1).getCitacoesFeitas().size() );
+		//DocJud2
+		assertEquals(docJud2.getIdentificadorUnico(), docJudManager.getDocumentosJuridicos().get(0).getIdentificadorUnico() );
+		assertEquals(1, docJudManager.getDocumentosJuridicos().get(0).getCitacoesRecebidasDocJud().size() );
+				
+		/* ---------- Removendo as citacoes ----------*/
+		/*
+		 * DocJud1 -> DocJud2 (DJ->DJ)
+		 */
+		assertEquals("16/11/2009", refManager.getCitacoesDocJud().get(0).getData() );
+		refManager.removeCitacaoDocJud( refManager.getCitacoesDocJud().get(0) );
+		assertEquals(2, refManager.getCitacoesDocJud().size() );
+		//Norma1
+		assertEquals(norma1.getIdentificadorUnico(), lawManager.getNormas().get(0).getIdentificadorUnico() );
+		assertEquals(1, lawManager.getNormas().get(0).getCitacoesRecebidasDocJud().size() );
+		//Artigo1
+		assertEquals(artigo1.getIdentificadorUnico(), lawManager.getElementosNorma().get(0).getIdentificadorUnico() );
+		assertEquals(1, lawManager.getElementosNorma().get(0).getCitacoesRecebidasDocJud().size() );
+		//DocJud1
+		assertEquals(docJud1.getIdentificadorUnico(), docJudManager.getDocumentosJuridicos().get(0).getIdentificadorUnico() );
+		assertEquals(2, docJudManager.getDocumentosJuridicos().get(0).getCitacoesFeitas().size() );
+		//DocJud2
+		assertEquals(docJud2.getIdentificadorUnico(), docJudManager.getDocumentosJuridicos().get(1).getIdentificadorUnico() );
+		assertEquals(0, docJudManager.getDocumentosJuridicos().get(1).getCitacoesRecebidasDocJud().size() );
+		/*
+		 * DocJud1 -> Norma1 (DJ->N)
+		 */
+		assertEquals("17/11/2009", refManager.getCitacoesDocJud().get(0).getData() );
+		refManager.removeCitacaoDocJud( refManager.getCitacoesDocJud().get(0) );
+		assertEquals(1, refManager.getCitacoesDocJud().size() );
+		//Norma1
+		assertEquals(norma1.getIdentificadorUnico(), lawManager.getNormas().get(0).getIdentificadorUnico() );
+		assertEquals(0, lawManager.getNormas().get(0).getCitacoesRecebidasDocJud().size() );
+		//Artigo1
+		assertEquals(artigo1.getIdentificadorUnico(), lawManager.getElementosNorma().get(0).getIdentificadorUnico() );
+		assertEquals(1, lawManager.getElementosNorma().get(0).getCitacoesRecebidasDocJud().size() );
+		//DocJud1
+		assertEquals(docJud1.getIdentificadorUnico(), docJudManager.getDocumentosJuridicos().get(1).getIdentificadorUnico() );
+		assertEquals(1, docJudManager.getDocumentosJuridicos().get(1).getCitacoesFeitas().size() );
+		//DocJud2
+		assertEquals(docJud2.getIdentificadorUnico(), docJudManager.getDocumentosJuridicos().get(0).getIdentificadorUnico() );
+		assertEquals(0, docJudManager.getDocumentosJuridicos().get(0).getCitacoesRecebidasDocJud().size() );
+
+		/*
+		 * DocJud1 -> Artigo1 (DJ->EN)
+		 */
+		assertEquals("18/11/2009", refManager.getCitacoesDocJud().get(0).getData() );
+		refManager.removeCitacaoDocJud( refManager.getCitacoesDocJud().get(0) );
+		assertEquals(0, refManager.getCitacoesDocJud().size() );
+		//Norma1
+		assertEquals(norma1.getIdentificadorUnico(), lawManager.getNormas().get(0).getIdentificadorUnico() );
+		assertEquals(0, lawManager.getNormas().get(0).getCitacoesRecebidasDocJud().size() );
+		//Artigo1
+		assertEquals(artigo1.getIdentificadorUnico(), lawManager.getElementosNorma().get(0).getIdentificadorUnico() );
+		assertEquals(0, lawManager.getElementosNorma().get(0).getCitacoesRecebidasDocJud().size() );
+		//DocJud1
+		assertEquals(docJud1.getIdentificadorUnico(), docJudManager.getDocumentosJuridicos().get(1).getIdentificadorUnico() );
+		assertEquals(0, docJudManager.getDocumentosJuridicos().get(1).getCitacoesFeitas().size() );
+		//DocJud2
+		assertEquals(docJud2.getIdentificadorUnico(), docJudManager.getDocumentosJuridicos().get(0).getIdentificadorUnico() );
+		assertEquals(0, docJudManager.getDocumentosJuridicos().get(0).getCitacoesRecebidasDocJud().size() );
+	}
 }
