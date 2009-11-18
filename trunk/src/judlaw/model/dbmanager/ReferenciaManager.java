@@ -18,7 +18,7 @@ import judlaw.model.bean.ref.CitacaoTextLeg;
 
 
 /**
- * Classe ReferenciaManager - Gerencia a manipulacao dos objetos do tipo Referencia: 
+ * Classe ReferenciaManager - responsável por gerenciar as operacoes no banco de dados das referencias: 
  * Alteracao, CitacaoDocJud e CitacaoDocLeg;
  * @author Halley Freitas
  *

@@ -17,7 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * 
+ * Classe Relatorio
  * @author Halley Freitas
  *
  */

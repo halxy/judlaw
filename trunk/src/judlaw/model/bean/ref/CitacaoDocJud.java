@@ -21,6 +21,11 @@ import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.bean.lei.ElementoNorma;
 import judlaw.model.bean.lei.Norma;
 
+/**
+ * Classe CitacaoDocJud - representa as citacoes feitas por documentos juridicos
+ * @author Halley Freitas
+ *
+ */
 @Entity
 @Table(name = "citacaodocjud")
 @SequenceGenerator(name = "citacaodocjud_seq", sequenceName = "citacaodocjud_seq", initialValue = 1, allocationSize = 1)

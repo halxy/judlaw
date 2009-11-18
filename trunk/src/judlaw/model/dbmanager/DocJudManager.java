@@ -19,7 +19,7 @@ import judlaw.model.bean.docjud.Voto;
 
 
 /**
- * Classe responsável por gerenciar o módulo dos documentos jurídicos
+ * Classe DocJudManager - responsável por gerenciar as operacoes no banco de dados dos documentos jurídicos 
  * @author Halley Freitas
  *
  */

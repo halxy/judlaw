@@ -7,6 +7,11 @@
  */
 package judlaw.model.util;
 
+/**
+ * Classe Constantes - contem as contantes utilizadas pelo sistema
+ * @author Halley Freitas
+ *
+ */
 public class Constantes {
 
 	// Estrutura dos dispositivos legais

@@ -53,7 +53,8 @@ public class ElementoNorma extends TextoLegal {
 	private String tipo; // tipo do textoLegal
 	private String dataPublicacao; // dd/MM/yyy
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
-		
+	
+	//ElementoNorma que compoem o elementoNorma
 	@OneToMany(mappedBy="elementoNormaPai", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
 	private List<ElementoNorma> elementosNorma;
@@ -66,7 +67,7 @@ public class ElementoNorma extends TextoLegal {
 	@JoinColumn(name="elementonormapai_id", nullable = true)
 	private ElementoNorma elementoNormaPai;
 	
-	//Quando o pai do ElementoNorma é outro ElementoNorma
+	//Quando o pai do ElementoNorma é uma Norma
 	@ManyToOne
 	@JoinColumn(name="normapai_id", nullable = true)
 	private Norma normaPai;

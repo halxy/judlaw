@@ -20,6 +20,11 @@ import javax.persistence.Table;
 import judlaw.model.bean.lei.ElementoNorma;
 import judlaw.model.bean.lei.Norma;
 
+/**
+ * Classe Alteracao - representa as alteracoes feitas por normas e elementosNorma
+ * @author Halley Freitas
+ *
+ */
 @Entity
 @Table(name = "alteracao")
 @SequenceGenerator(name = "alteracao_seq", sequenceName = "alteracao_seq", initialValue = 1, allocationSize = 1)

@@ -19,7 +19,7 @@ import javax.persistence.Table;
 
 
 /**
- * 
+ * Classe Voto
  * @author halley
  *
  */

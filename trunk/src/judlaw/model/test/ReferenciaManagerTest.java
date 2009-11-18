@@ -19,7 +19,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author halley
+ * Classe ReferenciaManagerTest - testes das operacoes da classe ReferenciaManager
+ * @author Halley Freitas
  *
  */
 public class ReferenciaManagerTest {

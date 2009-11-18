@@ -21,6 +21,11 @@ import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.bean.lei.ElementoNorma;
 import judlaw.model.bean.lei.Norma;
 
+/**
+ * Classe CitacaoTextLeg - representa as citacoes feitas por normas e elementosNorma
+ * @author Halley Freitas
+ *
+ */
 @Entity
 @Table(name = "citacaotextleg")
 @SequenceGenerator(name = "citacaotextleg_seq", sequenceName = "citacaotextleg_seq", initialValue = 1, allocationSize = 1)

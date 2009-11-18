@@ -31,8 +31,8 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 /**
- * 
- * @author halley
+ * Classe DocumentoJuridico - representa os documentos juridicos
+ * @author Halley Freitas
  *
  */
 @Entity
@@ -79,7 +79,7 @@ public class DocumentoJuridico {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Parte> partes; // relator, partes, etc.
 	
-	/* --------- Atributos --------- */
+	/* --------- Atributos ----------- */
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
 	private String tipo; // tipos de Documentos Juridicos e Documentos Legais
 	private String dataPublicacao; // dd/MM/yyy
