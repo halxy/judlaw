@@ -15,6 +15,11 @@ import judlaw.model.bean.law.Norma;
 import judlaw.model.bean.ref.CitacaoDocJud;
 import judlaw.model.dbmanager.DBManager;
 
+/**
+ * Classe CitacaoDocJudManager - responsável por gerenciar as operacoes no banco de dados das citacoesDocJud
+ * @author Halley Freitas
+ *
+ */
 public class CitacaoDocJudManager {
 	
 	private static CitacaoDocJudManager citacaoDocJudManager = null;

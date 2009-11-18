@@ -15,6 +15,11 @@ import judlaw.model.bean.law.Norma;
 import judlaw.model.bean.ref.CitacaoTextLeg;
 import judlaw.model.dbmanager.DBManager;
 
+/**
+ * Classe CitacaoTextLegManager - responsável por gerenciar as operacoes no banco de dados das citacoesTextLeg 
+ * @author Halley Freitas
+ *
+ */
 public class CitacaoTextLegManager {
 
 	private static CitacaoTextLegManager citacaoTextLegManager = null;
