@@ -19,18 +19,18 @@ import judlaw.model.dbmanager.DBManager;
  * @author Halley Freitas
  *
  */
-public class LawManager {
+public class NormaManager {
 	
-	private static LawManager lawManager = null;
+	private static NormaManager lawManager = null;
 	private DBManager dbManager = DBManager.getInstance();	
 	
    /**
     * Retorna uma instancia da classe LawManager
     * @return
     */
-    public static LawManager getInstance(){
+    public static NormaManager getInstance(){
         if(lawManager == null)
-        	lawManager = new LawManager();
+        	lawManager = new NormaManager();
         return lawManager;
     }
     
