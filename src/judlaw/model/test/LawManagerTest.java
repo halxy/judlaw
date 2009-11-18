@@ -14,6 +14,8 @@ import judlaw.model.bean.law.Norma;
 import judlaw.model.dbmanager.docjud.DocJudManager;
 import judlaw.model.dbmanager.law.ElementoNormaManager;
 import judlaw.model.dbmanager.law.NormaManager;
+import judlaw.model.dbmanager.ref.AlteracaoManager;
+import judlaw.model.dbmanager.ref.CitacaoTextLegManager;
 import judlaw.model.dbmanager.ref.ReferenciaManager;
 
 import org.junit.Before;
@@ -414,24 +416,24 @@ public class LawManagerTest {
 		/* ---------- Criando as referencias ----------*/
 		
 		// Norma1 -> Norma2
-		ReferenciaManager.getInstance().criaCitacaoTextLeg(norma1, norma2, "18/11/2009");
+		CitacaoTextLegManager.getInstance().criaCitacaoTextLeg(norma1, norma2, "18/11/2009");
 		// Artigo1 -> Norma2
-		ReferenciaManager.getInstance().criaCitacaoTextLeg(artigo1, norma2, "18/11/2009");
+		CitacaoTextLegManager.getInstance().criaCitacaoTextLeg(artigo1, norma2, "18/11/2009");
 		// Norma2 -> DJ1
-		ReferenciaManager.getInstance().criaCitacaoTextLeg(norma2, docJud1, "18/11/2009");
+		CitacaoTextLegManager.getInstance().criaCitacaoTextLeg(norma2, docJud1, "18/11/2009");
 		// Norma2 -> Artigo1
-		ReferenciaManager.getInstance().criaCitacaoTextLeg(norma2, artigo1, "18/11/2009");
+		CitacaoTextLegManager.getInstance().criaCitacaoTextLeg(norma2, artigo1, "18/11/2009");
 		//Verifica a cardinalidade das citacoesTextLeg
-		assertEquals( 4, ReferenciaManager.getInstance().getCitacoesTextLeg().size() );
+		assertEquals( 4, CitacaoTextLegManager.getInstance().getCitacoesTextLeg().size() );
 		
 		//Removendo Norma1
 		normaManager.removeNorma( normaManager.getNormas().get(0) );
 		//Verifica a cardinalidade das citacoesTextLeg
-		assertEquals( 1, ReferenciaManager.getInstance().getCitacoesTextLeg().size() );
+		assertEquals( 1, CitacaoTextLegManager.getInstance().getCitacoesTextLeg().size() );
 		//Removendo DocJud1
 		DocJudManager.getInstance().removeDocumentoJuridico( docJud1 );
 		//Verifica a cardinalidade das citacoesTextLeg
-		assertEquals( 0, ReferenciaManager.getInstance().getCitacoesTextLeg().size() );
+		assertEquals( 0, CitacaoTextLegManager.getInstance().getCitacoesTextLeg().size() );
 	}
 	
 	/**
@@ -489,17 +491,17 @@ public class LawManagerTest {
 		/* ---------- Criando as referencias ----------*/
 		
 		// Norma1 -> Norma2
-		ReferenciaManager.getInstance().criaAlteracao(norma1, norma2, "18/11/2009", "", "");
+		AlteracaoManager.getInstance().criaAlteracao(norma1, norma2, "18/11/2009", "", "");
 		// Artigo1 -> Norma2
-		ReferenciaManager.getInstance().criaAlteracao(artigo1, norma2, "18/11/2009", "", "");
+		AlteracaoManager.getInstance().criaAlteracao(artigo1, norma2, "18/11/2009", "", "");
 		// Norma2 -> Artigo1
-		ReferenciaManager.getInstance().criaAlteracao(norma2, artigo1, "18/11/2009", "", "");
+		AlteracaoManager.getInstance().criaAlteracao(norma2, artigo1, "18/11/2009", "", "");
 		//Verifica a cardinalidade das citacoesTextLeg
-		assertEquals( 3, ReferenciaManager.getInstance().getAlteracoes().size() );
+		assertEquals( 3, AlteracaoManager.getInstance().getAlteracoes().size() );
 		
 		//Removendo Norma1
 		normaManager.removeNorma( normaManager.getNormas().get(0) );
 		//Verifica a cardinalidade das citacoesTextLeg
-		assertEquals( 0, ReferenciaManager.getInstance().getCitacoesTextLeg().size() );
+		assertEquals( 0, AlteracaoManager.getInstance().getAlteracoes().size() );
 	}
 }

@@ -26,6 +26,7 @@ import judlaw.model.dbmanager.docjud.EncerramentoManager;
 import judlaw.model.dbmanager.docjud.ParteManager;
 import judlaw.model.dbmanager.docjud.RelatorioManager;
 import judlaw.model.dbmanager.docjud.VotoManager;
+import judlaw.model.dbmanager.ref.CitacaoDocJudManager;
 import judlaw.model.dbmanager.ref.ReferenciaManager;
 
 import org.junit.Before;
@@ -729,17 +730,17 @@ public class DocJudManagerTest {
 		assertEquals( 2, docJudManager.getDocumentosJuridicos().size() );
 		
 		/* ---------- Criando as Referencias ----------*/
-		ReferenciaManager.getInstance().criaCitacaoDocJud(docJud1, docJud2, "16/11/2009");
-		ReferenciaManager.getInstance().criaCitacaoDocJud(docJud2, docJud1, "16/11/2009");
+		CitacaoDocJudManager.getInstance().criaCitacaoDocJud(docJud1, docJud2, "16/11/2009");
+		CitacaoDocJudManager.getInstance().criaCitacaoDocJud(docJud2, docJud1, "16/11/2009");
 		//Verifica a cardinalidade das citacoes
-		assertEquals( 2, ReferenciaManager.getInstance().getCitacoesDocJud().size() );
+		assertEquals( 2, CitacaoDocJudManager.getInstance().getCitacoesDocJud().size() );
 		
 		/* ---------- Removendo docJud1 ----------*/
 		docJudManager.removeDocumentoJuridico( docJud1 );
 		//Verifica as cardinalidades
 		assertEquals( 1, docJudManager.getDocumentosJuridicos().size() );
 		//As citacoes tem que terem sido removidas
-		assertEquals( 0, ReferenciaManager.getInstance().getCitacoesDocJud().size() );
+		assertEquals( 0, CitacaoDocJudManager.getInstance().getCitacoesDocJud().size() );
 		/* ---------- Adicionando novamente docJud1 ----------*/
 		DocumentoJuridico docJud3 = new DocumentoJuridico();
 		docJud3.setIdentificadorUnico("idUnico3");
@@ -752,20 +753,20 @@ public class DocJudManagerTest {
 				  docJudManager.getDocumentosJuridicos().get(1).getIdentificadorUnico() );
 		
 		/* ---------- Criando as Referencias novamente ----------*/
-		ReferenciaManager.getInstance().criaCitacaoDocJud(docJudManager.getDocumentosJuridicos().get(1),
+		CitacaoDocJudManager.getInstance().criaCitacaoDocJud(docJudManager.getDocumentosJuridicos().get(1),
 														  docJudManager.getDocumentosJuridicos().get(0),
 														  "16/11/2009");
-		ReferenciaManager.getInstance().criaCitacaoDocJud(docJudManager.getDocumentosJuridicos().get(0),
+		CitacaoDocJudManager.getInstance().criaCitacaoDocJud(docJudManager.getDocumentosJuridicos().get(0),
 														  docJudManager.getDocumentosJuridicos().get(1),
 				  										  "16/11/2009");
 		//Verifica a cardinalidade das citacoes
-		assertEquals( 2, ReferenciaManager.getInstance().getCitacoesDocJud().size() );
+		assertEquals( 2, CitacaoDocJudManager.getInstance().getCitacoesDocJud().size() );
 		
 		/* ---------- Removendo docJud2 ----------*/
 		docJudManager.removeDocumentoJuridico( docJudManager.getDocumentosJuridicos().get(1) );
 		//Verifica as cardinalidades
 		assertEquals( 1, docJudManager.getDocumentosJuridicos().size() );
 		//As citacoes tem que terem sido removidas
-		assertEquals( 0, ReferenciaManager.getInstance().getCitacoesDocJud().size() );
+		assertEquals( 0, CitacaoDocJudManager.getInstance().getCitacoesDocJud().size() );
 	}
 }
