@@ -40,13 +40,13 @@ import org.junit.Test;
  */
 public class DocJudManagerTest {
 	
-	DocJudManager docJudManager = DocJudManager.getInstance();
-	CabecalhoManager cabecalhoManager = CabecalhoManager.getInstance();
-	EmentaManager ementaManager = EmentaManager.getInstance();
-	EncerramentoManager encerramentoManager = EncerramentoManager.getInstance();
-	ParteManager parteManager = ParteManager.getInstance();
-	RelatorioManager relatorioManager = RelatorioManager.getInstance();
-	VotoManager votoManager = VotoManager.getInstance();
+	private DocJudManager docJudManager = DocJudManager.getInstance();
+	private CabecalhoManager cabecalhoManager = CabecalhoManager.getInstance();
+	private EmentaManager ementaManager = EmentaManager.getInstance();
+	private EncerramentoManager encerramentoManager = EncerramentoManager.getInstance();
+	private ParteManager parteManager = ParteManager.getInstance();
+	private RelatorioManager relatorioManager = RelatorioManager.getInstance();
+	private VotoManager votoManager = VotoManager.getInstance();
 	
 	@Before
 	public void setUp() {
