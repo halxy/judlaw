@@ -142,55 +142,6 @@ public class DocJudManager {
 	}
 	
 	/* ------------------------------------------------------------------ */
-    /* -------------------- OPERACOES ENCERRAMENTO ---------------------- */
-    /* ------------------------------------------------------------------ */
-	/**
-	 * 
-	 */
-	@SuppressWarnings("unchecked")
-	public List<Encerramento> getEncerramentos() {
-		return dbManager.selectAll( new Encerramento() );
-	}
-	
-	public void removeEncerramentos() {
-		dbManager.removeAll( new Encerramento() );
-	}
-	
-	/**
-	 * Remove encerramento
-	 * @param docJud
-	 */
-	public void removeEncerramento(DocumentoJuridico docJud) {
-		Encerramento encerramento = docJud.getEncerramento();
-		docJud.setEncerramento(null);
-		dbManager.save(docJud);
-		dbManager.remove(encerramento);
-	}
-	
-	/**
-	 * Altera um encerramento que ja esta inserido no Banco de Dados
-	 * @param encerramento
-	 * @param docJud
-	 */
-	public void alteraEncerramentoBD(Encerramento encerramento, DocumentoJuridico docJud) {
-		Encerramento encerramentoBD = docJud.getEncerramento();
-		if(encerramentoBD == null) {
-			encerramentoBD = new Encerramento();
-		}
-		encerramentoBD.setDecisao( encerramento.getDecisao() );
-		encerramento.setLocal( encerramento.getLocal() );
-		encerramentoBD.setDocumentoJuridico(docJud);
-		dbManager.save(encerramentoBD);
-		docJud.setEncerramento(encerramentoBD);
-		dbManager.save(docJud);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Encerramento> selectEncerramentoPorAtributo(String atributo, String valor) {
-		return dbManager.selectObjectsByField(new Encerramento(), atributo, valor);
-	}
-	
-	/* ------------------------------------------------------------------ */
     /* -------------------- OPERACOES VOTO ------------------------------ */
     /* ------------------------------------------------------------------ */
 	/**
@@ -229,47 +180,5 @@ public class DocJudManager {
 	@SuppressWarnings("unchecked")
 	public List<Voto> selectVotoPorAtributo(String atributo, String valor) {
 		return dbManager.selectObjectsByField(new Voto(), atributo, valor);
-	}
-	
-	/* ------------------------------------------------------------------ */
-    /* -------------------- OPERACOES Partes ---------------------------- */
-    /* ------------------------------------------------------------------ */
-	/**
-	 * 
-	 */
-	@SuppressWarnings("unchecked")
-	public List<Parte> getPartes() {
-		return dbManager.selectAll( new Parte() );
-	}
-	
-	public void removePartes() {
-		dbManager.removeAll( new Parte() );
-	}
-	
-	public void adicionaParte(Parte parte, DocumentoJuridico docJud) {
-		List<Parte> partes = docJud.getPartes();
-		partes.add(parte);
-		dbManager.save( docJud );
-		parte.getDocumentosJuridicos().add(docJud);
-		dbManager.save(parte);
-	}
-	
-	public void removeParte(Parte parte, DocumentoJuridico docJud) {
-		List<Parte> partes = docJud.getPartes();
-		partes.remove( parte );
-		dbManager.save( docJud ); 
-		dbManager.remove( parte );
-	}
-	
-	public void alteraParteBD(Parte parteLista, Parte newParte, DocumentoJuridico docJud) {
-		List<Parte> partes = docJud.getPartes();
-		partes.get( partes.indexOf(parteLista) ).setNome( newParte.getNome() );
-		partes.get( partes.indexOf(parteLista) ).setTitulo( newParte.getTitulo() );
-		dbManager.save( docJud ); 
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Parte> selectPartePorAtributo(String atributo, String valor) {
-		return dbManager.selectObjectsByField(new Parte(), atributo, valor);
 	}
 }
