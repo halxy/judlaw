@@ -5,7 +5,7 @@
  * Sistema JudLaw
  * Mestrando: Halley Freitas	
  */
-package judlaw.model.logic;
+package judlaw.model.logic.time;
 
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
