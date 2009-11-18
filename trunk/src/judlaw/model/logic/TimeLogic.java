@@ -20,7 +20,7 @@ public class TimeLogic {
 	private static TimeLogic timeLogic = null;
 	
 	/**
-	 * 
+	 * Singleton
 	 * @return
 	 */
 	public static TimeLogic getInstance() {
