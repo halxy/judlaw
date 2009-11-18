@@ -44,11 +44,9 @@ public class CitacaoDocJudManager {
 	 * CitacaoDocJud DocJud -> DocJud
 	 * @param documentoJuridicoOrigem
 	 * @param documentoJuridicoDestino
-	 * @param data
 	 */
-	public void criaCitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, DocumentoJuridico documentoJuridicoDestino,
-			String data) {
-		CitacaoDocJud citacaoDocJud = new CitacaoDocJud(documentoJuridicoOrigem, documentoJuridicoDestino, data);
+	public void criaCitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, DocumentoJuridico documentoJuridicoDestino) {
+		CitacaoDocJud citacaoDocJud = new CitacaoDocJud(documentoJuridicoOrigem, documentoJuridicoDestino);
 		dbManager.save(citacaoDocJud);
 		documentoJuridicoOrigem.getCitacoesFeitas().add( citacaoDocJud );
 		documentoJuridicoDestino.getCitacoesRecebidasDocJud().add( citacaoDocJud );
@@ -60,11 +58,9 @@ public class CitacaoDocJudManager {
 	 * CitacaoDocJud DocJud -> Norma
 	 * @param documentoJuridicoOrigem
 	 * @param normaDestino
-	 * @param data
 	 */
-	public void criaCitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, Norma normaDestino,
-			String data) {
-		CitacaoDocJud citacaoDocJud = new CitacaoDocJud(documentoJuridicoOrigem, normaDestino, data);
+	public void criaCitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, Norma normaDestino) {
+		CitacaoDocJud citacaoDocJud = new CitacaoDocJud(documentoJuridicoOrigem, normaDestino);
 		dbManager.save(citacaoDocJud);
 		documentoJuridicoOrigem.getCitacoesFeitas().add( citacaoDocJud );
 		normaDestino.getCitacoesRecebidasDocJud().add( citacaoDocJud );
@@ -76,11 +72,9 @@ public class CitacaoDocJudManager {
 	 * CitacaoDocJud DocJud -> ElementoNorma
 	 * @param documentoJuridicoOrigem
 	 * @param elementoNormaDestino
-	 * @param data
 	 */
-	public void criaCitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, ElementoNorma elementoNormaDestino,
-			String data) {
-		CitacaoDocJud citacaoDocJud = new CitacaoDocJud(documentoJuridicoOrigem, elementoNormaDestino, data);
+	public void criaCitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, ElementoNorma elementoNormaDestino) {
+		CitacaoDocJud citacaoDocJud = new CitacaoDocJud(documentoJuridicoOrigem, elementoNormaDestino);
 		dbManager.save(citacaoDocJud);
 		documentoJuridicoOrigem.getCitacoesFeitas().add( citacaoDocJud );
 		elementoNormaDestino.getCitacoesRecebidasDocJud().add( citacaoDocJud );
