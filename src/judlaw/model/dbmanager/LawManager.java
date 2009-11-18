@@ -1,3 +1,10 @@
+/* 
+ * Universidade Federal de Campina Grande
+ * Centro de Engenharia Eletrica e Informatica
+ * Programa de Pos-Graduacao em Ciencia da Computacao
+ * Sistema JudLaw
+ * Mestrando: Halley Freitas	
+ */
 package judlaw.model.dbmanager;
 
 import java.util.List;
@@ -14,9 +21,7 @@ import judlaw.model.bean.lei.Norma;
 public class LawManager {
 	
 	private static LawManager lawManager = null;
-	private DBManager dbManager = DBManager.getInstance();
-//	private TimeManager timeManager = TimeManager.getInstance();
-	
+	private DBManager dbManager = DBManager.getInstance();	
 	
    /**
     * Retorna uma instancia da classe LawManager
