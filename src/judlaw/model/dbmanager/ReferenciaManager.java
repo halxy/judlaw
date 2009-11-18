@@ -10,8 +10,8 @@ package judlaw.model.dbmanager;
 import java.util.List;
 
 import judlaw.model.bean.docjud.DocumentoJuridico;
-import judlaw.model.bean.lei.ElementoNorma;
-import judlaw.model.bean.lei.Norma;
+import judlaw.model.bean.law.ElementoNorma;
+import judlaw.model.bean.law.Norma;
 import judlaw.model.bean.ref.Alteracao;
 import judlaw.model.bean.ref.CitacaoDocJud;
 import judlaw.model.bean.ref.CitacaoTextLeg;
