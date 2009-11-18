@@ -19,7 +19,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Classe de Testes para a classe LawManager
+ * Classe LawManagerTest - testes das operacoes da classe LawManager
  * @author Halley Freitas
  *
  */

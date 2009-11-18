@@ -15,7 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Classe para testes da Classe TimeManager
+ * Classe TimeLogicTest - testes das operacoes da classe TimeLogic
  * @author Halley Freitas
  *
  */

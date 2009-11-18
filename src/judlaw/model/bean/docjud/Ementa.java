@@ -18,7 +18,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * 
+ * Classe Ementa
  * @author Halley Freitas
  *
  */

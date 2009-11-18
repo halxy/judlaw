@@ -26,7 +26,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Classe para testes da Classe TimeManager
+ * Classe DocJudManagerTest - testes das operacoes da classe DocJudManager
  * @author Halley Freitas
  *
  */

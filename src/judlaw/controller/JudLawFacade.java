@@ -9,7 +9,11 @@ package judlaw.controller;
 
 import judlaw.model.dbmanager.LawManager;
 
-
+/**
+ * Facade JudLawFacade - facade do sistema
+ * @author Halley Freitas
+ *
+ */
 public class JudLawFacade {
 	
 	private static JudLawFacade facade = null;

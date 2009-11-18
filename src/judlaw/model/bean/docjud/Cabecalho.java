@@ -18,7 +18,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * 
+ * Classe Cabecalho - parte do DocumentoJuridico
  * @author Halley Freitas
  *
  */
@@ -32,11 +32,12 @@ public class Cabecalho {
 	@Column(name="cabecalho_id")
 	private Integer id;
 	
+	//Atributos
 	private String tribunal; // STF, STJ, TJRS, etc.
 	private String codRegistro; // ver Certidao de Julgamento STJ
 	private String orgaoJulgador; // Pleno, Primeira Turma, etc.
 	
-	//Documento Juridico
+	//Mapeamento um para um
 	@OneToOne(mappedBy = "cabecalho")
 	@JoinColumn(name="documentojuridico_id")
 	private DocumentoJuridico documentoJuridico;

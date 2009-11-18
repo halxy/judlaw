@@ -7,6 +7,11 @@
  */
 package judlaw.model.logic;
 
+/**
+ * Classe DocJudTimeLogic - define a logica temporal das normas e elementosNorma
+ * @author Halley Freitas
+ *
+ */
 public class LawTimeLogic {
 
 }

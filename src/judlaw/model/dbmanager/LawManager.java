@@ -14,7 +14,7 @@ import judlaw.model.bean.lei.Norma;
 
 
 /**
- * Classe responsável por gerenciar o módulo das leis
+ * Classe LawManager - responsável por gerenciar as operacoes no banco de dados das normas e elementosNorma 
  * @author Halley Freitas
  *
  */

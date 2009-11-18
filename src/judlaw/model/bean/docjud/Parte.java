@@ -24,7 +24,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 
 /**
- * Define o comportamento das partes (relator, acusador, etc.);
+ * Classe Parte - Define o comportamento das partes (relator, acusador, etc.);
  * @author Halley Freitas
  *
  */
@@ -38,9 +38,11 @@ public class Parte {
 	@Column(name="parte_id")
 	private Integer id;
 	
+	//Atributos
 	private String titulo;
 	private String nome;
 	
+	//Mapeamento m-n com documentoJuridico
 	@ManyToMany(mappedBy="partes")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<DocumentoJuridico> documentosJuridicos;

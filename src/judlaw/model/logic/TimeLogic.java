@@ -17,7 +17,7 @@ import judlaw.model.bean.ref.CitacaoDocJud;
 import judlaw.model.util.Constantes;
 
 /**
- * Classe que manipula o tempo;
+ * Classe TimeLogic - define a logica temporal geral do sistema
  * @author Halley Freitas
  *
  */

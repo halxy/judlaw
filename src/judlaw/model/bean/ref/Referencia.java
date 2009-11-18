@@ -9,7 +9,7 @@ package judlaw.model.bean.ref;
 
 
 /**
- * 
+ * Classe Referencia - representa uma referencia de forma generica
  * @author Halley Freitas
  *
  */

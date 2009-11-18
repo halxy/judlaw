@@ -7,6 +7,11 @@
  */
 package judlaw.model.logic;
 
+/**
+ * Classe DocJudTimeLogic - define a logica temporal dos documentos juridicos
+ * @author Halley Freitas
+ *
+ */
 public class DocJudTimeLogic {
 
 }

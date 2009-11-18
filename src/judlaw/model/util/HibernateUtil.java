@@ -13,7 +13,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.AnnotationConfiguration;
 
 /**
- * 
+ * Classe HibernateUtil - define como as operacoes do banco de dados devem ser realizadas usando o hibernate
  * @author Halley Freitas
  *
  */
