@@ -337,8 +337,8 @@ public class LawManagerTest {
 		assertEquals( artigo2.getIdentificadorUnico(),
 					  normaBD.getElementosNorma().get(1).getIdentificadorUnico());
 		//Relacao Bidirecional
-		assertEquals( normaBD.getElementosNorma().get(0).getNormaPai().getIdentificadorUnico(),
-					  norma1.getIdentificadorUnico() );
+		assertEquals( norma1.getIdentificadorUnico(),	
+					  normaBD.getElementosNorma().get(1).getNormaPai().getIdentificadorUnico() );
 		
 		//PARAGRAFO2 e PARAGRAFO3
 		assertEquals( normaBD.getElementosNorma().get(1).getElementosNorma().get(0).getTexto(), 
