@@ -7,6 +7,10 @@
  */
 package judlaw.model.bean.law;
 
+import java.util.List;
+
+import judlaw.model.bean.ref.CitacaoTextLeg;
+
 
 
 /**
@@ -20,6 +24,8 @@ public abstract class TextoLegal {
 	private String tipo; // tipo do textoLegal
 	private String dataPublicacao; // dd/MM/yyy
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
+	
+	private List<CitacaoTextLeg> citacoesFeitas;
 	
 	public String getIdentificadorUnico() {
 		return identificadorUnico;
@@ -50,5 +56,11 @@ public abstract class TextoLegal {
 	
 	public void setVigencia(String vigencia) {
 		this.vigencia = vigencia;
+	}
+	public List<CitacaoTextLeg> getCitacoesFeitas() {
+		return citacoesFeitas;
+	}
+	public void setCitacoesFeitas(List<CitacaoTextLeg> citacoesFeitas) {
+		this.citacoesFeitas = citacoesFeitas;
 	}
 }
