@@ -15,13 +15,13 @@ import judlaw.model.bean.ref.CitacaoDocJud;
 import judlaw.model.util.Constantes;
 
 /**
- * Classe DocJudTimeLogic - define a logica temporal dos documentos juridicos
+ * Classe CitacaoDocJudTimeLogic - define a logica temporal das CitacoesDocJud
  * @author Halley Freitas
  *
  */
 public class CitacaoDocJudTimeLogic extends TimeLogic {
 	
-	//Lista de Excecoes a serem utilizadas na busca complexa por inconsistencias temporais
+	//Lista de Excecoes a serem utilizadas na busca refinada por inconsistencias temporais
 	private List<Exception> inconsistenciasTemporais = new ArrayList<Exception>();
 	
 	private static CitacaoDocJudTimeLogic citacaoDocJudTimeLogic = null;
@@ -82,5 +82,14 @@ public class CitacaoDocJudTimeLogic extends TimeLogic {
 			}
 		}
 		return listaResultado;
+	}
+	
+	/**
+	 * 
+	 * @param docJud
+	 * @return
+	 */
+	public List<CitacaoDocJud> inconsistenciaTemporalRefinada(DocumentoJuridico docJud) {
+		return null; //TODO
 	}
 }
