@@ -5,10 +5,10 @@
  * Sistema JudLaw
  * Mestrando: Halley Freitas	
  */
-package judlaw.model.test;
+package judlaw.model.test.logic;
 
 import static org.junit.Assert.assertEquals;
-import judlaw.model.logic.TimeLogic;
+import judlaw.model.logic.time.TimeLogic;
 import judlaw.model.util.Constantes;
 
 import org.junit.Before;
@@ -37,7 +37,7 @@ public class TimeLogicTest {
 	}
 
 	/**
-	 * Test method for {@link judlaw.model.logic.TimeLogic#comparaDatas(java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for {@link judlaw.model.logic.time.TimeLogic#comparaDatas(java.lang.String, java.lang.String, java.lang.String)}.
 	 * @throws Exception 
 	 */
 	@Test
