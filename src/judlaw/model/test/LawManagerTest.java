@@ -9,8 +9,8 @@ package judlaw.model.test;
 
 import static org.junit.Assert.assertEquals;
 import judlaw.model.bean.docjud.DocumentoJuridico;
-import judlaw.model.bean.lei.ElementoNorma;
-import judlaw.model.bean.lei.Norma;
+import judlaw.model.bean.law.ElementoNorma;
+import judlaw.model.bean.law.Norma;
 import judlaw.model.dbmanager.LawManager;
 import judlaw.model.dbmanager.ReferenciaManager;
 import judlaw.model.dbmanager.docjud.DocJudManager;
