@@ -5,7 +5,7 @@
  * Sistema JudLaw
  * Mestrando: Halley Freitas	
  */
-package judlaw.model.dbmanager;
+package judlaw.model.dbmanager.ref;
 
 import java.util.List;
 
@@ -15,6 +15,7 @@ import judlaw.model.bean.law.Norma;
 import judlaw.model.bean.ref.Alteracao;
 import judlaw.model.bean.ref.CitacaoDocJud;
 import judlaw.model.bean.ref.CitacaoTextLeg;
+import judlaw.model.dbmanager.DBManager;
 
 
 /**
