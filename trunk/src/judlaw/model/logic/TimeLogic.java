@@ -7,14 +7,8 @@
  */
 package judlaw.model.logic;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
-
-import judlaw.model.bean.docjud.DocumentoJuridico;
-import judlaw.model.bean.ref.CitacaoDocJud;
-import judlaw.model.util.Constantes;
 
 /**
  * Classe TimeLogic - define a logica temporal geral do sistema
@@ -23,17 +17,17 @@ import judlaw.model.util.Constantes;
  */
 public class TimeLogic {
 
-	private static TimeLogic timeManager = null;
+	private static TimeLogic timeLogic = null;
 	
 	/**
 	 * 
 	 * @return
 	 */
 	public static TimeLogic getInstance() {
-		if (timeManager == null) {
-			timeManager = new TimeLogic();
+		if (timeLogic == null) {
+			timeLogic = new TimeLogic();
 		}
-		return timeManager;
+		return timeLogic;
 	}
 	
 	/**
@@ -126,80 +120,5 @@ public class TimeLogic {
 		tokenVigencia2.nextToken(); // passando o primeiro token referente à data inicio da vigencia
 		String fimVigencia2 = tokenVigencia2.nextToken();
 		return comparaDatas(fimVigencia1, fimVigencia2, delimitadorDatas);
-	}
-	
-	/* ------------------------------------------------------------------ */
-    /* -------------------- OPERACOES CITACAODOCJUD --------------------- */
-    /* ------------------------------------------------------------------ */
-	/**
-	 * Retorna as inconsistencias temporais de citacoes feitas pelo documento juridico
-	 * a outros documentos juridicos
-	 * @param docJud
-	 * @return
-	 */
-	public List<CitacaoDocJud> inconsistenciaTempToDocJud(DocumentoJuridico docJud) {
-		return null; //TODO
-	}
-	
-	/**
-	 * Retorna as inconsistencias temporais de citacoes feitas pelo documento juridico
-	 * a normas
-	 * @param docJud
-	 * @return
-	 */
-	public List<CitacaoDocJud> inconsistenciaTempToNorma(DocumentoJuridico docJud) {
-		return null; //TODO
-	}
-	
-	/**
-	 * Retorna as inconsistencias temporais de citacoes feitas pelo documento juridico
-	 * a ElementosNorma
-	 * @param docJud
-	 * @return
-	 */
-	public List<CitacaoDocJud> inconsistenciaTempToEleNorma(DocumentoJuridico docJud) {
-		return null; //TODO
-	}
-	
-	/**
-	 * Retorna todas citacoes que possuem inconsistencias temporais
-	 * @param docJud
-	 * @return
-	 * @throws Exception Excecao caso as datas estejam mal-formatadas
-	 */
-	public List<CitacaoDocJud> inconsistenciasTemporaisCDJ(DocumentoJuridico docJud) throws Exception {
-		List<CitacaoDocJud> listaResultado = new ArrayList<CitacaoDocJud>();
-		List<CitacaoDocJud> citacoesFeitas = docJud.getCitacoesFeitas();
-		/*
-		 * Caso a data do DocumentoJuridico seja mais atual do que a referencia, é um indicativo
-		 * que esta é inconsistente temporalmente
-		 */
-		for( CitacaoDocJud citacao : citacoesFeitas ){
-			//Caso a citacao foi feita a um documento juridico
-			if( citacao.getDocumentoJuridicoDestino() != null ) {
-				if ( comparaDatas(citacao.getData(), 
-						citacao.getDocumentoJuridicoDestino().getDataPublicacao(), 
-						Constantes.DELIMITADOR_DATA) < 0 ) { // <0 acontece quando a segunda data eh mais atual
-						listaResultado.add( citacao );
-					}
-			//Caso a citacao foi feita a uma norma
-			} else if ( citacao.getNormaDestino() != null ){
-				if ( comparaVigenciaComData(citacao.getNormaDestino().getVigencia(), 
-						                    Constantes.DELIMITADOR_VIGENCIA, 
-						                    citacao.getData(), 
-						                    Constantes.DELIMITADOR_DATA) < 0) { // <0 acontece quando a segunda data eh mais atual
-						listaResultado.add( citacao );
-					}
-			//Caso a citacao foi feita a um elementonorma
-			} else {
-				if ( comparaVigenciaComData(citacao.getElementoNormaDestino().getVigencia(), 
-	                    Constantes.DELIMITADOR_VIGENCIA, 
-	                    citacao.getData(), 
-	                    Constantes.DELIMITADOR_DATA) < 0) { // <0 acontece quando a segunda data eh mais atual
-						listaResultado.add( citacao );
-				}
-			}
-		}
-		return listaResultado;
 	}
 }
