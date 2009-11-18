@@ -14,6 +14,11 @@ import judlaw.model.bean.law.Norma;
 import judlaw.model.bean.ref.Alteracao;
 import judlaw.model.dbmanager.DBManager;
 
+/**
+ * Classe AlteracaoManager - responsável por gerenciar as operacoes no banco de dados das alteracoes 
+ * @author Halley Freitas
+ *
+ */
 public class AlteracaoManager {
 
 	private static AlteracaoManager alteracaoManager = null;
