@@ -17,8 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import judlaw.model.bean.lei.ElementoNorma;
-import judlaw.model.bean.lei.Norma;
+import judlaw.model.bean.law.ElementoNorma;
+import judlaw.model.bean.law.Norma;
 
 /**
  * Classe Alteracao - representa as alteracoes feitas por normas e elementosNorma
