@@ -18,8 +18,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import judlaw.model.bean.docjud.DocumentoJuridico;
-import judlaw.model.bean.lei.ElementoNorma;
-import judlaw.model.bean.lei.Norma;
+import judlaw.model.bean.law.ElementoNorma;
+import judlaw.model.bean.law.Norma;
 
 /**
  * Classe CitacaoTextLeg - representa as citacoes feitas por normas e elementosNorma
