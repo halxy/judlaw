@@ -12,6 +12,7 @@ import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
 import judlaw.model.dbmanager.docjud.DocJudManager;
+import judlaw.model.dbmanager.law.ElementoNormaManager;
 import judlaw.model.dbmanager.law.NormaManager;
 import judlaw.model.dbmanager.ref.ReferenciaManager;
 
@@ -26,15 +27,15 @@ import org.junit.Test;
  */
 public class LawManagerTest {
 
-	// DBManager
-	private NormaManager lawManager = NormaManager.getInstance();
+	private NormaManager normaManager = NormaManager.getInstance();
+	private ElementoNormaManager elementoNormaManager = ElementoNormaManager.getInstance();
 	
 	@Before
 	public void setUp() {
 		/* ---------- Esvazia a lista de Normas e ElementosNorma ----------*/
 		ReferenciaManager.getInstance().removeReferencias();
-		lawManager.removeNormas();
-		lawManager.removeElementosNorma();
+		normaManager.removeNormas();
+		elementoNormaManager.removeElementosNorma();
 	}
 	
 	/**
@@ -43,8 +44,8 @@ public class LawManagerTest {
 	@Test
 	public void testSalvaNorma(){
 		/* ---------- Verifica se as listas estao vazias ----------*/
-		assertEquals( 0, lawManager.getNormas().size() );
-		assertEquals( 0, lawManager.getElementosNorma().size() );
+		assertEquals( 0, normaManager.getNormas().size() );
+		assertEquals( 0, elementoNormaManager.getElementosNorma().size() );
 		
 		/* ---------- Elementos da Norma ----------*/
 		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
@@ -73,7 +74,7 @@ public class LawManagerTest {
 								"dataPublicacaoN1", "vigenciaN1");
 		norma1.getElementosNorma().add(artigo1);
 		norma1.getElementosNorma().add(artigo2);
-		lawManager.salvaNorma(norma1);
+		normaManager.salvaNorma(norma1);
 		
 		/*
 		 *                         Norma1
@@ -86,22 +87,22 @@ public class LawManagerTest {
 		 */
 		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
 		//Quantidade de normas
-		assertEquals(1, lawManager.getNormas().size() );
+		assertEquals(1, normaManager.getNormas().size() );
 		//Quantidade de ElementosNorma da Norma
-		assertEquals(2, lawManager.getNormas().get(0).getElementosNorma().size() );
+		assertEquals(2, normaManager.getNormas().get(0).getElementosNorma().size() );
 		//Quantidade de ElementosNorma
-		assertEquals(7, lawManager.getElementosNorma().size() );
+		assertEquals(7, elementoNormaManager.getElementosNorma().size() );
 		//Quantidade filhos de Par1
-		assertEquals(2, lawManager.getNormas().get(0).getElementosNorma().get(0)
+		assertEquals(2, normaManager.getNormas().get(0).getElementosNorma().get(0)
 													  .getElementosNorma().get(0)
 													  .getElementosNorma().size());
 		
 		//Quantidade filhos de Art2
-		assertEquals(2, lawManager.getNormas().get(0).getElementosNorma().get(1)
+		assertEquals(2, normaManager.getNormas().get(0).getElementosNorma().get(1)
 													  .getElementosNorma().size()); 
 		
 		/* ---------- Verifica se os atributos e elementos foram persistidos corretamente ----------*/
-		Norma normaBD = lawManager.getNormas().get(0);
+		Norma normaBD = normaManager.getNormas().get(0);
 
 		//Atributo identificadorUnico
 		assertEquals( normaBD.getIdentificadorUnico(), norma1.getIdentificadorUnico() );
@@ -131,8 +132,8 @@ public class LawManagerTest {
 	@Test
 	public void testRemoveNorma(){
 		/* ---------- Verifica se as listas estao vazias ----------*/
-		assertEquals( 0, lawManager.getNormas().size() );
-		assertEquals( 0, lawManager.getElementosNorma().size() );
+		assertEquals( 0, normaManager.getNormas().size() );
+		assertEquals( 0, elementoNormaManager.getElementosNorma().size() );
 		
 		/* ---------- Elementos da Norma ----------*/
 		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
@@ -161,7 +162,7 @@ public class LawManagerTest {
 								"dataPublicacaoN1", "vigenciaN1");
 		norma1.getElementosNorma().add(artigo1);
 		norma1.getElementosNorma().add(artigo2);
-		lawManager.salvaNorma(norma1);
+		normaManager.salvaNorma(norma1);
 		
 		/*
 		 *                         Norma1
@@ -174,18 +175,18 @@ public class LawManagerTest {
 		 */
 		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
 		//Quantidade de normas
-		assertEquals(1, lawManager.getNormas().size() );
+		assertEquals(1, normaManager.getNormas().size() );
 		//Quantidade de ElementosNorma
-		assertEquals(7, lawManager.getElementosNorma().size() );
+		assertEquals(7, elementoNormaManager.getElementosNorma().size() );
 
 		/* ---------- Removendo o ElementoNorma ----------*/
-		lawManager.removeNorma( lawManager.getNormas().get(0) );
+		normaManager.removeNorma( normaManager.getNormas().get(0) );
 		
 		/* ---------- Verifica novamente as cardinalidade das tabelas ----------*/
 		//Quantidade de normas
-		assertEquals(0, lawManager.getNormas().size() );
+		assertEquals(0, normaManager.getNormas().size() );
 		//Quantidade de ElementosNorma
-		assertEquals(0, lawManager.getElementosNorma().size() );
+		assertEquals(0, elementoNormaManager.getElementosNorma().size() );
 	}
 	
 	/**
@@ -194,8 +195,8 @@ public class LawManagerTest {
 	@Test
 	public void testRemoveElementoNorma(){
 		/* ---------- Verifica se as listas estao vazias ----------*/
-		assertEquals( 0, lawManager.getNormas().size() );
-		assertEquals( 0, lawManager.getElementosNorma().size() );
+		assertEquals( 0, normaManager.getNormas().size() );
+		assertEquals( 0, elementoNormaManager.getElementosNorma().size() );
 		
 		/* ---------- Elementos da Norma ----------*/
 		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
@@ -224,7 +225,7 @@ public class LawManagerTest {
 								"dataPublicacaoN1", "vigenciaN1");
 		norma1.getElementosNorma().add(artigo1);
 		norma1.getElementosNorma().add(artigo2);
-		lawManager.salvaNorma(norma1);
+		normaManager.salvaNorma(norma1);
 		
 		/*
 		 *                         Norma1
@@ -237,22 +238,22 @@ public class LawManagerTest {
 		 */
 		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
 		//Quantidade de normas
-		assertEquals(1, lawManager.getNormas().size() );
+		assertEquals(1, normaManager.getNormas().size() );
 		//Quantidade de ElementosNorma
-		assertEquals(7, lawManager.getElementosNorma().size() );
+		assertEquals(7, elementoNormaManager.getElementosNorma().size() );
 
 		/* ---------- Removendo o ElementoNorma Artigo1 ----------*/
-		ElementoNorma artigo1BD = lawManager.getElementosNorma().get(0);
+		ElementoNorma artigo1BD = elementoNormaManager.getElementosNorma().get(0);
 		assertEquals(artigo1.getIdentificadorUnico(), artigo1BD.getIdentificadorUnico() );
-		lawManager.removeElementoNorma( artigo1BD );
+		elementoNormaManager.removeElementoNorma( artigo1BD );
 		
 		/* ---------- Verifica novamente as cardinalidade das tabelas ----------*/
 		//Quantidade de normas
-		assertEquals(1, lawManager.getNormas().size() );
+		assertEquals(1, normaManager.getNormas().size() );
 		//Quantidade de ElementosNorma da Norma
-		assertEquals(1, lawManager.getNormas().get(0).getElementosNorma().size() );
+		assertEquals(1, normaManager.getNormas().get(0).getElementosNorma().size() );
 		//Quantidade de ElementosNorma
-		assertEquals(3, lawManager.getElementosNorma().size() );	
+		assertEquals(3, elementoNormaManager.getElementosNorma().size() );	
 	}
 	
 	/**
@@ -261,8 +262,8 @@ public class LawManagerTest {
 	@Test
 	public void testAlteraElementoNorma() {
 		/* ---------- Verifica se as listas estao vazias ----------*/
-		assertEquals( 0, lawManager.getNormas().size() );
-		assertEquals( 0, lawManager.getElementosNorma().size() );
+		assertEquals( 0, normaManager.getNormas().size() );
+		assertEquals( 0, elementoNormaManager.getElementosNorma().size() );
 		
 		/* ---------- Elementos da Norma ----------*/
 		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
@@ -281,7 +282,7 @@ public class LawManagerTest {
 		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
 								"dataPublicacaoN1", "vigenciaN1");
 		norma1.getElementosNorma().add(artigo1);
-		lawManager.salvaNorma(norma1);
+		normaManager.salvaNorma(norma1);
 		
 		/*
 		 *                         Norma1
@@ -294,9 +295,9 @@ public class LawManagerTest {
 		 */
 		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
 		//Quantidade de normas
-		assertEquals(1, lawManager.getNormas().size() );
+		assertEquals(1, normaManager.getNormas().size() );
 		//Quantidade de ElementosNorma
-		assertEquals(4, lawManager.getElementosNorma().size() );
+		assertEquals(4, elementoNormaManager.getElementosNorma().size() );
 		
 		/* ---------- Adicionando um ElementoNorma ----------*/
 		ElementoNorma artigo2 = new ElementoNorma("textoArt2", "identificadorUnicoArt2", "tipoArt2", 
@@ -308,7 +309,7 @@ public class LawManagerTest {
 		artigo2.getElementosNorma().add(paragrafo2);
 		artigo2.getElementosNorma().add(paragrafo3);
 		
-		lawManager.adicionaElementoNorma(artigo2, lawManager.getNormas().get(0));
+		elementoNormaManager.adicionaElementoNorma(artigo2, normaManager.getNormas().get(0));
 		
 		/*
 		 *                         Norma1
@@ -322,13 +323,13 @@ public class LawManagerTest {
 		
 		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
 		//Quantidade de normas
-		assertEquals(1, lawManager.getNormas().size() );
+		assertEquals(1, normaManager.getNormas().size() );
 		//Quantidade de ElementosNorma
-		assertEquals(7, lawManager.getElementosNorma().size() );
-		assertEquals(2, lawManager.getNormas().get(0).getElementosNorma().size());
+		assertEquals(7, elementoNormaManager.getElementosNorma().size() );
+		assertEquals(2, normaManager.getNormas().get(0).getElementosNorma().size());
 		
 		/* ---------- Verifica se os atributos e elementos foram persistidos corretamente ----------*/
-		Norma normaBD = lawManager.getNormas().get(0);
+		Norma normaBD = normaManager.getNormas().get(0);
 		
 		//ARTIGO2
 		/*
@@ -359,8 +360,8 @@ public class LawManagerTest {
 	@Test
 	public void testRemoveNormaCitacaoTextLeg() {
 		/* ---------- Verifica se as listas estao vazias ----------*/
-		assertEquals( 0, lawManager.getNormas().size() );
-		assertEquals( 0, lawManager.getElementosNorma().size() );
+		assertEquals( 0, normaManager.getNormas().size() );
+		assertEquals( 0, elementoNormaManager.getElementosNorma().size() );
 		
 		/* ---------- Norma1 ----------*/
 		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
@@ -379,12 +380,12 @@ public class LawManagerTest {
 		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
 								"dataPublicacaoN1", "vigenciaN1");
 		norma1.getElementosNorma().add(artigo1);
-		lawManager.salvaNorma(norma1);
+		normaManager.salvaNorma(norma1);
 		
 		/* ---------- Norma2 ----------*/
 		Norma norma2 = new Norma("epigrafeN2", "ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
 				"dataPublicacaoN2", "vigenciaN2");
-		lawManager.salvaNorma(norma2);
+		normaManager.salvaNorma(norma2);
 		
 		/* ---------- DocumentoJuridico ----------*/
 		DocumentoJuridico docJud1 = new DocumentoJuridico();
@@ -402,14 +403,14 @@ public class LawManagerTest {
 		 */
 		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
 		//Quantidade de normas
-		assertEquals(2, lawManager.getNormas().size() );
+		assertEquals(2, normaManager.getNormas().size() );
 		//Quantidade de ElementosNorma
-		assertEquals(4, lawManager.getElementosNorma().size() );
+		assertEquals(4, elementoNormaManager.getElementosNorma().size() );
 		/* ---------- Verifica os elementos adicionados ----------*/
 		assertEquals(norma1.getIdentificadorUnico(), 
-					lawManager.getNormas().get(0).getIdentificadorUnico() );
+					normaManager.getNormas().get(0).getIdentificadorUnico() );
 		assertEquals(norma2.getIdentificadorUnico(), 
-					lawManager.getNormas().get(1).getIdentificadorUnico() );
+					normaManager.getNormas().get(1).getIdentificadorUnico() );
 		/* ---------- Criando as referencias ----------*/
 		
 		// Norma1 -> Norma2
@@ -424,7 +425,7 @@ public class LawManagerTest {
 		assertEquals( 4, ReferenciaManager.getInstance().getCitacoesTextLeg().size() );
 		
 		//Removendo Norma1
-		lawManager.removeNorma( lawManager.getNormas().get(0) );
+		normaManager.removeNorma( normaManager.getNormas().get(0) );
 		//Verifica a cardinalidade das citacoesTextLeg
 		assertEquals( 1, ReferenciaManager.getInstance().getCitacoesTextLeg().size() );
 		//Removendo DocJud1
@@ -439,8 +440,8 @@ public class LawManagerTest {
 	@Test
 	public void testRemoveNormaAlteracao() {
 		/* ---------- Verifica se as listas estao vazias ----------*/
-		assertEquals( 0, lawManager.getNormas().size() );
-		assertEquals( 0, lawManager.getElementosNorma().size() );
+		assertEquals( 0, normaManager.getNormas().size() );
+		assertEquals( 0, elementoNormaManager.getElementosNorma().size() );
 		
 		/* ---------- Norma1 ----------*/
 		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
@@ -459,12 +460,12 @@ public class LawManagerTest {
 		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
 								"dataPublicacaoN1", "vigenciaN1");
 		norma1.getElementosNorma().add(artigo1);
-		lawManager.salvaNorma(norma1);
+		normaManager.salvaNorma(norma1);
 		
 		/* ---------- Norma2 ----------*/
 		Norma norma2 = new Norma("epigrafeN2", "ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
 				"dataPublicacaoN2", "vigenciaN2");
-		lawManager.salvaNorma(norma2);
+		normaManager.salvaNorma(norma2);
 		
 		/*
 		 *                         Norma1         Norma2    
@@ -477,14 +478,14 @@ public class LawManagerTest {
 		 */
 		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
 		//Quantidade de normas
-		assertEquals(2, lawManager.getNormas().size() );
+		assertEquals(2, normaManager.getNormas().size() );
 		//Quantidade de ElementosNorma
-		assertEquals(4, lawManager.getElementosNorma().size() );
+		assertEquals(4, elementoNormaManager.getElementosNorma().size() );
 		/* ---------- Verifica os elementos adicionados ----------*/
 		assertEquals(norma1.getIdentificadorUnico(), 
-					lawManager.getNormas().get(0).getIdentificadorUnico() );
+					normaManager.getNormas().get(0).getIdentificadorUnico() );
 		assertEquals(norma2.getIdentificadorUnico(), 
-					lawManager.getNormas().get(1).getIdentificadorUnico() );
+					normaManager.getNormas().get(1).getIdentificadorUnico() );
 		/* ---------- Criando as referencias ----------*/
 		
 		// Norma1 -> Norma2
@@ -497,7 +498,7 @@ public class LawManagerTest {
 		assertEquals( 3, ReferenciaManager.getInstance().getAlteracoes().size() );
 		
 		//Removendo Norma1
-		lawManager.removeNorma( lawManager.getNormas().get(0) );
+		normaManager.removeNorma( normaManager.getNormas().get(0) );
 		//Verifica a cardinalidade das citacoesTextLeg
 		assertEquals( 0, ReferenciaManager.getInstance().getCitacoesTextLeg().size() );
 	}
