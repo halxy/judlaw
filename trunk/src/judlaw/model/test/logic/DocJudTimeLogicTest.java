@@ -7,8 +7,6 @@
  */
 package judlaw.model.test.logic;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,8 +22,11 @@ public class DocJudTimeLogicTest {
 	}
 
 	@Test
+	/**
+	 * Test method for {@link judlaw.model.logic.time.DocJudTimeLogic#inconsistenciaTemporalSimples(DocumentoJuridico docJud)}.
+	 */
 	public void testInconsistenciaTemporalSimples() {
-		fail("Not yet implemented");
+		
 	}
 
 }
