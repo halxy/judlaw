@@ -82,13 +82,4 @@ public class TimeLogicTest {
 		assertEquals(-1, tm.comparaVigencias(vigencia1, vigencia3, 
 				Constantes.DELIMITADOR_VIGENCIA, Constantes.DELIMITADOR_DATA) );
 	}
-	
-	/**
-	 * Testa se as inconsistencias temporais das citacoes feitas por documentos juridicos
-	 * estao sendo detectadas corretamente
-	 */
-	@Test
-	public void testInconsistenciasTemporaisCDJ(){
-		//TODO
-	}
 }
