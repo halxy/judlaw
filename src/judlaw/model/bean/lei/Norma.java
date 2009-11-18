@@ -96,18 +96,6 @@ public class Norma extends TextoLegal {
     @LazyCollection(LazyCollectionOption.FALSE)
 	private List<Alteracao> alteracoesRecebidas;
 	
-	/**
-	 * 
-	 * @param epigrafe
-	 * @param ementa
-	 * @param autoria
-	 * @param local
-	 * @param elementosNorma
-	 * @param identificadorUnico
-	 * @param tipo
-	 * @param dataPublicacao
-	 * @param vigencia
-	 */
 	public Norma(String epigrafe, String ementa, String autoria, String local,
 			List<ElementoNorma> elementosNorma, String identificadorUnico,
 			String tipo, String dataPublicacao, String vigencia) {
