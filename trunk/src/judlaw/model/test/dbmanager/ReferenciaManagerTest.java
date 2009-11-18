@@ -541,7 +541,7 @@ public class ReferenciaManagerTest {
 		assertEquals(3, citacaoDocJudManager.getCitacoesDocJud().size() );
 		
 		/*
-		 * Atributos das Referencias
+		 * Atributos das Citacoes
 		 */
 		
 		//DocJud1 -> DocJud2  (DJ->DJ)
