@@ -33,6 +33,7 @@ import org.junit.Test;
 
 /**
  * Classe DocJudManagerTest - testes das operacoes no BD dos documentos juridicos e de seus elementos
+ * pacote dbmanager.docjud
  * @author Halley Freitas
  *
  */

@@ -20,6 +20,7 @@ import org.junit.Test;
 
 /**
  * Classe LawManagerTest - testes das operacoes no BD das normas e elementosNorma
+ * pacote dbmanager.law
  * @author Halley Freitas
  *
  */
