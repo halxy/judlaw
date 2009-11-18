@@ -721,17 +721,19 @@ public class DocJudManagerTest {
 		//DJ1
 		DocumentoJuridico docJud1 = new DocumentoJuridico();
 		docJud1.setIdentificadorUnico("idUnico1");
+		docJud1.setDataExpedicao("16/11/2009");
 		docJudManager.salvaDocumentoJuridico(docJud1);
 		//DJ2
 		DocumentoJuridico docJud2 = new DocumentoJuridico();
 		docJud2.setIdentificadorUnico("idUnico2");
+		docJud2.setDataExpedicao("16/11/2009");
 		docJudManager.salvaDocumentoJuridico(docJud2);
 		//Verifica a cardinalidade dos documentos
 		assertEquals( 2, docJudManager.getDocumentosJuridicos().size() );
 		
 		/* ---------- Criando as Referencias ----------*/
-		CitacaoDocJudManager.getInstance().criaCitacaoDocJud(docJud1, docJud2, "16/11/2009");
-		CitacaoDocJudManager.getInstance().criaCitacaoDocJud(docJud2, docJud1, "16/11/2009");
+		CitacaoDocJudManager.getInstance().criaCitacaoDocJud(docJud1, docJud2);
+		CitacaoDocJudManager.getInstance().criaCitacaoDocJud(docJud2, docJud1);
 		//Verifica a cardinalidade das citacoes
 		assertEquals( 2, CitacaoDocJudManager.getInstance().getCitacoesDocJud().size() );
 		
@@ -744,6 +746,7 @@ public class DocJudManagerTest {
 		/* ---------- Adicionando novamente docJud1 ----------*/
 		DocumentoJuridico docJud3 = new DocumentoJuridico();
 		docJud3.setIdentificadorUnico("idUnico3");
+		docJud3.setDataExpedicao("16/11/2009");
 		docJudManager.salvaDocumentoJuridico(docJud3);
 		//Verifica os documentos
 		assertEquals( 2, docJudManager.getDocumentosJuridicos().size() );
@@ -754,11 +757,9 @@ public class DocJudManagerTest {
 		
 		/* ---------- Criando as Referencias novamente ----------*/
 		CitacaoDocJudManager.getInstance().criaCitacaoDocJud(docJudManager.getDocumentosJuridicos().get(1),
-														  docJudManager.getDocumentosJuridicos().get(0),
-														  "16/11/2009");
+														  docJudManager.getDocumentosJuridicos().get(0));
 		CitacaoDocJudManager.getInstance().criaCitacaoDocJud(docJudManager.getDocumentosJuridicos().get(0),
-														  docJudManager.getDocumentosJuridicos().get(1),
-				  										  "16/11/2009");
+														  docJudManager.getDocumentosJuridicos().get(1));
 		//Verifica a cardinalidade das citacoes
 		assertEquals( 2, CitacaoDocJudManager.getInstance().getCitacoesDocJud().size() );
 		
