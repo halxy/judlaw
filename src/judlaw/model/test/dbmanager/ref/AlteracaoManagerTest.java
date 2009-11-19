@@ -10,6 +10,7 @@ package judlaw.model.test.dbmanager.ref;
 import static org.junit.Assert.assertEquals;
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
+import judlaw.model.bean.ref.Alteracao;
 import judlaw.model.dbmanager.docjud.DocJudManager;
 import judlaw.model.dbmanager.law.ElementoNormaManager;
 import judlaw.model.dbmanager.law.NormaManager;
@@ -228,6 +229,9 @@ public class AlteracaoManagerTest {
 		assertEquals(0, elementoNormaManager.getElementosNorma().get(1).getAlteracoesRecebidas().size() ); //Artigo2
 	}
 	
+	/**
+	 * Teste que verifica se uma revogacao esta sendo feita corretamente
+	 */
 	@Test
 	public void testCriaAlteracaoRevogacao(){
 		/* ---------- Verifica se as listas estao vazias ----------*/
@@ -363,5 +367,69 @@ public class AlteracaoManagerTest {
 		
 		/* ---------- Verifica a cardinalidade ----------*/
 		assertEquals(4, alteracaoManager.getAlteracoes().size() );
+	}
+	
+	/**
+	 * Testa criar uma alteracao do tipo inclusao
+	 */
+	@Test
+	public void testCriaAlteracaoInclusao(){
+		/* ---------- Verifica se as listas estao vazias ----------*/
+		assertEquals( 0, normaManager.getNormas().size() );
+		assertEquals( 0, elementoNormaManager.getElementosNorma().size() );
+		assertEquals( 0, alteracaoManager.getAlteracoes().size() );
+		
+		/* ---------- Criando Norma1 e Norma2 ----------*/
+		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+				"dataPublicacaoN1", "10/10/2010-99/99/9999");
+		normaManager.salvaNorma(norma1);
+		Norma norma2 = new Norma("epigrafeN2", "ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
+				"dataPublicacaoN2", "10/10/2010-99/99/9999");
+		normaManager.salvaNorma( norma2 );
+				
+		/*
+		 * SITUACAO ANTES
+		 * 
+		 *  Norma1                  Norma2
+		 */
+		/* ---------- Incluindo os elementos ----------*/
+		//Norma2 INCLUI EM Norma1 -> Artigo1
+		/*
+		 *                         Norma1                  Norma2
+		 *                         /    
+		 *                       Art1
+		 *                       /      
+		 *                      Par1              
+		 */
+		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
+				"dataPublicacaoArt1", "10/10/2010-99/99/9999");
+		ElementoNorma paragrafo1 = new ElementoNorma("textoParagrafo1", "identificadorUnicoParagrafo1", "tipoParagrafo1", 
+				"dataPublicacaoParagrafo1", "10/10/2010-99/99/9999");
+		artigo1.getElementosNorma().add(paragrafo1);
+		alteracaoManager.criaAlteracaoInclusao(norma2, norma1, artigo1, "11/11/2011");
+		/* ---------- Verificando a corretude da inclusao ----------*/
+		Norma norma1BD = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", norma1.getIdentificadorUnico()).get(0);
+		Alteracao alteracaoBD = alteracaoManager.getAlteracoes().get(0);
+		ElementoNorma artigo1BD = norma1BD.getElementosNorma().get(0);
+		ElementoNorma paragrafo1BD = artigo1BD.getElementosNorma().get(0);
+		//Cardinalidades
+		assertEquals( 1, alteracaoManager.getAlteracoes().size() );
+		assertEquals( 2, normaManager.getNormas().size() );
+		assertEquals( 1, norma1BD.getElementosNorma().size() );
+		assertEquals( 1, artigo1BD.getElementosNorma().size() );
+		//Atributos
+		//Artigo1BD
+		assertEquals(artigo1BD.getIdentificadorUnico(), artigo1.getIdentificadorUnico());
+		assertEquals(artigo1BD.getNormaPai().getIdentificadorUnico(), norma1.getIdentificadorUnico());
+		assertEquals(artigo1BD.getDataPublicacao(), alteracaoBD.getData());
+		//Paragrafo1BD
+		assertEquals(paragrafo1BD.getIdentificadorUnico(), paragrafo1.getIdentificadorUnico());
+		assertEquals(paragrafo1BD.getElementoNormaPai().getIdentificadorUnico(), artigo1.getIdentificadorUnico());
+		assertEquals(paragrafo1BD.getDataPublicacao(), alteracaoBD.getData());
+		//Inclusao
+		assertEquals(alteracaoBD.getNormaOrigem().getIdentificadorUnico(),
+					 norma2.getIdentificadorUnico());
+		assertEquals(alteracaoBD.getElementoNormaDestino().getIdentificadorUnico(),
+				     artigo1.getIdentificadorUnico());	
 	}
 }

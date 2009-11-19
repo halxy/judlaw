@@ -204,6 +204,19 @@ public class AlteracaoManager {
     /*
      * Apenas sao incluidos elementosNorma, tanto em normas quanto em outros elementosNorma
      */
+    /*
+     * Revoga todos os elementos de uma norma e seus filhos
+     */
+	private void setaDataPublicacaoRecursiva(ElementoNorma elementoNorma, String dataPublicacao) {
+		elementoNorma.setDataPublicacao( dataPublicacao );
+		List<ElementoNorma> filhos = elementoNorma.getElementosNorma();
+		for(ElementoNorma filho : filhos) {
+			filho.setDataPublicacao( dataPublicacao );
+			dbManager.save(filho);
+			revogaElementosNormaRecursivo(filho, dataPublicacao);
+		}
+	}
+	
     /**
      * A alteracaoInclusao inclue um novo elemento em uma norma/Elemento, e a entrada na tabela de Alteracoes
      * eh configurada pelo relacionamento entre a origem e o novo elemento.
@@ -213,33 +226,33 @@ public class AlteracaoManager {
      * @param dataInclusao
      * @param caracteristica
      */
-    public void criaAlteracaoInclusao(Norma normaOrigem, Norma normaDestino, ElementoNorma novoElemento, String dataInclusao, String caracteristica){
+    public void criaAlteracaoInclusao(Norma normaOrigem, Norma normaDestino, ElementoNorma novoElemento, String dataInclusao){
     	//A data de publicacao do elemento sera a data em que ele foi incluido
-    	novoElemento.setDataPublicacao( dataInclusao );
+    	setaDataPublicacaoRecursiva(novoElemento, dataInclusao);
     	ElementoNormaManager.getInstance().adicionaElementoNorma(novoElemento, normaDestino);
     	Alteracao alteracao = new Alteracao(normaOrigem, novoElemento, dataInclusao, Constantes.INCLUSAO, Constantes.NEUTRA);
     	dbManager.save( alteracao );
     }
     
-    public void criaAlteracaoInclusao(Norma normaOrigem, ElementoNorma elementoNormaDestino, ElementoNorma novoElemento, String dataInclusao, String caracteristica){
+    public void criaAlteracaoInclusao(Norma normaOrigem, ElementoNorma elementoNormaDestino, ElementoNorma novoElemento, String dataInclusao){
     	//A data de publicacao do elemento sera a data em que ele foi incluido
-    	novoElemento.setDataPublicacao( dataInclusao );
+    	setaDataPublicacaoRecursiva(novoElemento, dataInclusao);
     	ElementoNormaManager.getInstance().adicionaElementoNorma(novoElemento, elementoNormaDestino);
     	Alteracao alteracao = new Alteracao(normaOrigem, novoElemento, dataInclusao, Constantes.INCLUSAO, Constantes.NEUTRA);
     	dbManager.save( alteracao );
     }
     
-    public void criaAlteracaoInclusao(ElementoNorma elementoNormaOrigem, Norma normaDestino, ElementoNorma novoElemento, String dataInclusao, String caracteristica){
+    public void criaAlteracaoInclusao(ElementoNorma elementoNormaOrigem, Norma normaDestino, ElementoNorma novoElemento, String dataInclusao){
     	//A data de publicacao do elemento sera a data em que ele foi incluido
-    	novoElemento.setDataPublicacao( dataInclusao );
+    	setaDataPublicacaoRecursiva(novoElemento, dataInclusao);
     	ElementoNormaManager.getInstance().adicionaElementoNorma(novoElemento, normaDestino);
     	Alteracao alteracao = new Alteracao(elementoNormaOrigem, novoElemento, dataInclusao, Constantes.INCLUSAO, Constantes.NEUTRA);
     	dbManager.save( alteracao );
     }
     
-    public void criaAlteracaoInclusao(ElementoNorma elementoNormaOrigem, ElementoNorma elementoNormaDestino, ElementoNorma novoElemento, String dataInclusao, String caracteristica){
+    public void criaAlteracaoInclusao(ElementoNorma elementoNormaOrigem, ElementoNorma elementoNormaDestino, ElementoNorma novoElemento, String dataInclusao){
     	//A data de publicacao do elemento sera a data em que ele foi incluido
-    	novoElemento.setDataPublicacao( dataInclusao );
+    	setaDataPublicacaoRecursiva(novoElemento, dataInclusao);
     	ElementoNormaManager.getInstance().adicionaElementoNorma(novoElemento, elementoNormaDestino);
     	Alteracao alteracao = new Alteracao(elementoNormaOrigem, novoElemento, dataInclusao, Constantes.INCLUSAO, Constantes.NEUTRA);
     	dbManager.save( alteracao );
