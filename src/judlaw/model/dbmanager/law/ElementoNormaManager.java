@@ -37,12 +37,12 @@ public class ElementoNormaManager {
      * Salva um elementoNorma e todos seus nos filhos recursivamente
      * @param elementoNorma
      */
-    public void salvaElementoRecursivo(ElementoNorma elementoNorma) {
+    public void salvaFilhosElementoRecursivo(ElementoNorma elementoNorma) {
     	List<ElementoNorma> filhos = elementoNorma.getElementosNorma();
 		for(ElementoNorma filho : filhos) {
 			filho.setElementoNormaPai(elementoNorma);			
 			dbManager.save(filho);
-			salvaElementoRecursivo(filho);
+			salvaFilhosElementoRecursivo(filho);
 		}
     }
     
@@ -51,7 +51,7 @@ public class ElementoNormaManager {
      * @param elementoNorma
      */
 	public void salvaElementoNorma(ElementoNorma elementoNorma) {
-		salvaElementoRecursivo(elementoNorma);
+		salvaFilhosElementoRecursivo(elementoNorma);
 	}
     
 	/**
@@ -105,6 +105,6 @@ public class ElementoNormaManager {
 		elementoNorma.setNormaPai(norma);
 		norma.getElementosNorma().add( elementoNorma );
 		dbManager.save(norma);
-		salvaElementoRecursivo(elementoNorma);
+		salvaFilhosElementoRecursivo(elementoNorma);
 	}
 }
