@@ -99,12 +99,24 @@ public class ElementoNormaManager {
 	/**
 	 * Adiciona um ElementoNorma a uma norma
 	 * @param elementoNorma
-	 * @param norma
+	 * @param normaPai
 	 */
-	public void adicionaElementoNorma(ElementoNorma elementoNorma, Norma norma) {
-		elementoNorma.setNormaPai(norma);
-		norma.getElementosNorma().add( elementoNorma );
-		dbManager.save(norma);
+	public void adicionaElementoNorma(ElementoNorma elementoNorma, Norma normaPai) {
+		elementoNorma.setNormaPai(normaPai);
+		normaPai.getElementosNorma().add( elementoNorma );
+		dbManager.save(normaPai);
+		salvaFilhosElementoRecursivo(elementoNorma);
+	}
+	
+	/**
+	 * 
+	 * @param elementoNorma
+	 * @param elementoNormaPai
+	 */
+	public void adicionaElementoNorma(ElementoNorma elementoNorma, ElementoNorma elementoNormaPai) {
+		elementoNorma.setElementoNormaPai( elementoNormaPai );
+		elementoNormaPai.getElementosNorma().add( elementoNorma );
+		dbManager.save( elementoNormaPai );
 		salvaFilhosElementoRecursivo(elementoNorma);
 	}
 }
