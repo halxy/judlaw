@@ -393,7 +393,7 @@ public class AlteracaoManagerTest {
 		 *  Norma1                  Norma2
 		 */
 		/* ---------- Incluindo os elementos ----------*/
-		//Norma2 INCLUI EM Norma1 -> Artigo1
+		//Norma2 INCLUI EM Norma1 O Artigo1
 		/*
 		 *                         Norma1                  Norma2
 		 *                         /    
@@ -406,6 +406,7 @@ public class AlteracaoManagerTest {
 		ElementoNorma paragrafo1 = new ElementoNorma("textoParagrafo1", "identificadorUnicoParagrafo1", "tipoParagrafo1", 
 				"dataPublicacaoParagrafo1", "10/10/2010-99/99/9999");
 		artigo1.getElementosNorma().add(paragrafo1);
+		//Alteracao
 		alteracaoManager.criaAlteracaoInclusao(norma2, norma1, artigo1, "11/11/2011");
 		/* ---------- Verificando a corretude da inclusao ----------*/
 		Norma norma1BD = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", norma1.getIdentificadorUnico()).get(0);
@@ -426,10 +427,39 @@ public class AlteracaoManagerTest {
 		assertEquals(paragrafo1BD.getIdentificadorUnico(), paragrafo1.getIdentificadorUnico());
 		assertEquals(paragrafo1BD.getElementoNormaPai().getIdentificadorUnico(), artigo1.getIdentificadorUnico());
 		assertEquals(paragrafo1BD.getDataPublicacao(), alteracaoBD.getData());
-		//Inclusao
+		//AlteracaoBD
 		assertEquals(alteracaoBD.getNormaOrigem().getIdentificadorUnico(),
 					 norma2.getIdentificadorUnico());
 		assertEquals(alteracaoBD.getElementoNormaDestino().getIdentificadorUnico(),
 				     artigo1.getIdentificadorUnico());	
+		
+		//Artigo1 INCLUI EM Norma2 O Artigo2
+		/*
+		 *                         Norma1                  Norma2
+		 *                         /                        /
+		 *                       Art1                      Art2
+		 *                       /      
+		 *                      Par1              
+		 */
+		ElementoNorma artigo2 = new ElementoNorma("textoArt2", "identificadorUnicoArt2", "tipoArt2", 
+				"dataPublicacaoArt2", "10/10/2010-99/99/9999");
+		alteracaoManager.criaAlteracaoInclusao(artigo1, norma2, artigo2, "11/11/2012");
+		/* ---------- Verificando a corretude da inclusao ----------*/
+		Norma norma2BD = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", norma2.getIdentificadorUnico()).get(0);
+		Alteracao alteracaoBD2 = alteracaoManager.getAlteracoes().get(1);
+		ElementoNorma artigo2BD = norma2BD.getElementosNorma().get(0);
+		//Cardinalidades
+		assertEquals( 2, alteracaoManager.getAlteracoes().size() );
+		assertEquals( 2, normaManager.getNormas().size() );
+		assertEquals( 1, norma2BD.getElementosNorma().size() );
+		//Artigo2BD
+		assertEquals(artigo2BD.getIdentificadorUnico(), artigo2.getIdentificadorUnico());
+		assertEquals(artigo2BD.getNormaPai().getIdentificadorUnico(), norma2.getIdentificadorUnico());
+		assertEquals(artigo2BD.getDataPublicacao(), alteracaoBD2.getData());
+		//AlteracaoBD2
+		assertEquals(alteracaoBD2.getElementoNormaOrigem().getIdentificadorUnico(),
+					 artigo1.getIdentificadorUnico());
+		assertEquals(alteracaoBD2.getElementoNormaDestino().getIdentificadorUnico(),
+				     artigo2.getIdentificadorUnico());	
 	}
 }
