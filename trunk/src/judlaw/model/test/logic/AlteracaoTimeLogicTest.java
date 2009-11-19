@@ -98,11 +98,11 @@ public class AlteracaoTimeLogicTest {
 		 */
 		/* Criando as Alteracoes */
 		//Norma1 -> Norma2
-		alteracaoManager.criaAlteracao(norma1, norma2, "10/10/2011", "", "");
+		alteracaoManager.criaAlteracaoSimples(norma1, norma2, "10/10/2011", "", "");
 		//Norma1 -> Par1
-		alteracaoManager.criaAlteracao(norma1, paragrafo1, "10/10/2011", "", "");
+		alteracaoManager.criaAlteracaoSimples(norma1, paragrafo1, "10/10/2011", "", "");
 		//Norma1 -> Inc2
-		alteracaoManager.criaAlteracao(norma1, inciso2, "10/10/2011", "", "");
+		alteracaoManager.criaAlteracaoSimples(norma1, inciso2, "10/10/2011", "", "");
 		
 		/* Verificando se os atributos foram persistidos corretamente */
 		//Quantidade de citacoes

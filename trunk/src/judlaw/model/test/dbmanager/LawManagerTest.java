@@ -491,11 +491,11 @@ public class LawManagerTest {
 		/* ---------- Criando as referencias ----------*/
 		
 		// Norma1 -> Norma2
-		AlteracaoManager.getInstance().criaAlteracao(norma1, norma2, "18/11/2009", "", "");
+		AlteracaoManager.getInstance().criaAlteracaoSimples(norma1, norma2, "18/11/2009", "", "");
 		// Artigo1 -> Norma2
-		AlteracaoManager.getInstance().criaAlteracao(artigo1, norma2, "18/11/2009", "", "");
+		AlteracaoManager.getInstance().criaAlteracaoSimples(artigo1, norma2, "18/11/2009", "", "");
 		// Norma2 -> Artigo1
-		AlteracaoManager.getInstance().criaAlteracao(norma2, artigo1, "18/11/2009", "", "");
+		AlteracaoManager.getInstance().criaAlteracaoSimples(norma2, artigo1, "18/11/2009", "", "");
 		//Verifica a cardinalidade das citacoesTextLeg
 		assertEquals( 3, AlteracaoManager.getInstance().getAlteracoes().size() );
 		
