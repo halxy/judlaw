@@ -451,6 +451,7 @@ public class AlteracaoManagerTest {
 		//Cardinalidades
 		assertEquals( 2, alteracaoManager.getAlteracoes().size() );
 		assertEquals( 2, normaManager.getNormas().size() );
+		assertEquals( 3, elementoNormaManager.getElementosNorma().size() );
 		assertEquals( 1, norma2BD.getElementosNorma().size() );
 		//Artigo2BD
 		assertEquals(artigo2BD.getIdentificadorUnico(), artigo2.getIdentificadorUnico());
