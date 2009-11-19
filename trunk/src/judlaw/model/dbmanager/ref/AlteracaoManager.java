@@ -112,7 +112,8 @@ public class AlteracaoManager {
      * ALTERACOES COMPLEXAS: sao aquelas que modificam o banco de dados, atualizando o banco de dados temporal,
      * alem de criar uma entrada na tabela de alteracoes
      */  
-    //REVOGACAO
+    
+    /* --------------- REVOGACAO --------------- */
     /*
      * Revoga todos os elementos de uma norma e seus filhos
      */
@@ -196,6 +197,21 @@ public class AlteracaoManager {
     		revogaElementosNormaRecursivo(eleNorma, vigenciaExpirada);
     	}
     	dbManager.save(elementoNormaDestino);
+    }
+    
+    /* --------------- INCLUSAO --------------- */
+    /*
+     * Apenas sao incluidos elementosNorma, tanto em normas quanto em outros elementosNorma
+     */
+    /**
+     * Inclu
+     * @param normaOrigem
+     * @param normaDestino
+     * @param dataRevogacao
+     * @param caracteristica
+     */
+    public void criaAlteracaoInclusao(Norma normaOrigem, Norma normaDestino, String dataRevogacao, String caracteristica){
+    	//TODO
     }
     
 	/**
