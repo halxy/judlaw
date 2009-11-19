@@ -245,6 +245,11 @@ public class AlteracaoManager {
     	dbManager.save( alteracao );
     }
     
+    /* --------------- MODIFICACAO --------------- */
+    public void criaAlteracaoModificacao(){
+    	
+    }
+    
 	/**
      * Remove uma alteracao do banco de dados
      * @param alteracao
