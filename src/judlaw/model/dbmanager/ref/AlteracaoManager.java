@@ -13,6 +13,8 @@ import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
 import judlaw.model.bean.ref.Alteracao;
 import judlaw.model.dbmanager.DBManager;
+import judlaw.model.logic.time.TimeLogic;
+import judlaw.model.util.Constantes;
 
 /**
  * Classe AlteracaoManager - responsável por gerenciar as operacoes no banco de dados das alteracoes 
@@ -106,6 +108,23 @@ public class AlteracaoManager {
     	dbManager.save(elementoNormaDestino);
 	}
 	
+    /*
+     * ALTERACOES COMPLEXAS: sao aquelas que modificam o banco de dados, atualizando o banco de dados temporal,
+     * alem de criar uma entrada na tabela de alteracoes
+     */
+    
+    //REVOGACAO
+    public void criaAlteracaoRevogacao(Norma normaOrigem, Norma normaDestino, String data, String caracteristica){
+    	Alteracao alt = new Alteracao(normaOrigem, normaDestino, data, Constantes.REVOGACAO, caracteristica);
+    	dbManager.save(alt);
+    	normaOrigem.getAlteracoesFeitas().add(alt);
+    	dbManager.save(normaOrigem);
+    	
+    	//Setando a nova vigencia da normaDestino
+    	normaDestino.getAlteracoesRecebidas().add(alt);
+    	normaDestino.setVigencia( TimeLogic.getInstance().novaDataFimVigencia(normaDestino.getVigencia(), data) );
+    	dbManager.save(normaDestino);
+	}
     /**
      * Remove uma alteracao do banco de dados
      * @param alteracao
