@@ -49,7 +49,7 @@ public class NormaManager {
     	
     	//Persistindo os nós filhos
     	for(ElementoNorma eleN : elementosNorma) {
-    		ElementoNormaManager.getInstance().salvaElementoRecursivo(eleN);
+    		ElementoNormaManager.getInstance().salvaFilhosElementoRecursivo(eleN);
     	}
 	}
     
