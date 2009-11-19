@@ -227,4 +227,140 @@ public class AlteracaoManagerTest {
 		assertEquals(0, normaManager.getNormas().get(1).getAlteracoesRecebidas().size() ); //Norma2
 		assertEquals(0, elementoNormaManager.getElementosNorma().get(1).getAlteracoesRecebidas().size() ); //Artigo2
 	}
+	
+	@Test
+	public void testCriaAlteracaoRevogacao(){
+		/* ---------- Verifica se as listas estao vazias ----------*/
+		assertEquals( 0, normaManager.getNormas().size() );
+		assertEquals( 0, elementoNormaManager.getElementosNorma().size() );
+		
+		/* ---------- Norma1 e seus elementos ----------*/
+		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
+														"dataPublicacaoArt1", "10/10/2010-99/99/9999");
+		ElementoNorma paragrafo1 = new ElementoNorma("textoParagrafo1", "identificadorUnicoParagrafo1", "tipoParagrafo1", 
+				"dataPublicacaoParagrafo1", "10/10/2010-99/99/9999");
+		ElementoNorma inciso1 = new ElementoNorma("textoInciso1", "identificadorUnicoInciso1", "tipoInciso1", 
+				"dataPublicacaoInciso1", "10/10/2010-99/99/9999");
+		ElementoNorma inciso2 = new ElementoNorma("textoInciso2", "identificadorUnicoInciso2", "tipoInciso2", 
+				"dataPublicacaoInciso2", "10/10/2010-99/99/9999");
+		
+		paragrafo1.getElementosNorma().add(inciso1);
+		paragrafo1.getElementosNorma().add(inciso2);
+		artigo1.getElementosNorma().add(paragrafo1);
+		
+		ElementoNorma artigo2 = new ElementoNorma("textoArt2", "identificadorUnicoArt2", "tipoArt2", 
+				"dataPublicacaoArt2", "10/10/2010-99/99/9999");
+		ElementoNorma paragrafo2 = new ElementoNorma("textoParagrafo2", "identificadorUnicoParagrafo2", "tipoParagrafo2", 
+				"dataPublicacaoParagrafo2", "10/10/2010-99/99/9999");
+		ElementoNorma paragrafo3 = new ElementoNorma("textoParagrafo3", "identificadorUnicoParagrafo3", "tipoParagrafo3", 
+				"dataPublicacaoParagrafo3", "10/10/2010-99/99/9999");
+		artigo2.getElementosNorma().add(paragrafo2);
+		artigo2.getElementosNorma().add(paragrafo3);
+		
+		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+								"dataPublicacaoN1", "10/10/2010-99/99/9999");
+		norma1.getElementosNorma().add(artigo1);
+		norma1.getElementosNorma().add(artigo2);
+		normaManager.salvaNorma(norma1);
+		
+		/* ---------- Norma2 e seus elementos ----------*/
+		ElementoNorma artigo3 = new ElementoNorma("textoArt3", "identificadorUnicoArt3", "tipoArt3", 
+				"dataPublicacaoArt3", "10/10/2010-99/99/9999");
+		ElementoNorma artigo4 = new ElementoNorma("textoArt4", "identificadorUnicoArt4", "tipoArt4", 
+				"dataPublicacaoArt4", "10/10/2010-99/99/9999");
+		Norma norma2 = new Norma("epigrafeN2", "ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
+				"dataPublicacaoN2", "10/10/2010-99/99/9999");
+		norma2.getElementosNorma().add( artigo3 );
+		norma2.getElementosNorma().add( artigo4 );
+		normaManager.salvaNorma( norma2 );
+		
+		/*
+		 *                         Norma1                  Norma2
+		 *                         /    \                  /    \
+		 *                       Art1   Art2             Art3  Art4
+		 *                       /      /  \
+		 *                      Par1  Par2  Par3
+		 *                     /   \
+		 *                  Inc1   Inc2 
+		 */
+		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
+		//Quantidade de normas
+		assertEquals(2, normaManager.getNormas().size() );
+		//Quantidade de ElementosNorma
+		assertEquals(9, elementoNormaManager.getElementosNorma().size() );
+		
+		/* ---------- Verifica as vigencias antes ----------*/
+		//Norma1
+		assertEquals(norma1.getIdentificadorUnico(), 
+					 normaManager.getNormas().get(0).getIdentificadorUnico());
+		assertEquals("10/10/2010-99/99/9999", 
+				 	 normaManager.getNormas().get(0).getVigencia());
+		//Norma2
+		assertEquals(norma2.getIdentificadorUnico(), 
+				 normaManager.getNormas().get(1).getIdentificadorUnico());
+		assertEquals("10/10/2010-99/99/9999", 
+			 	 normaManager.getNormas().get(1).getVigencia());
+		//Artigo1
+		assertEquals(artigo1.getIdentificadorUnico(), 
+				 elementoNormaManager.getElementosNorma().get(0).getIdentificadorUnico());
+		assertEquals("10/10/2010-99/99/9999", 
+				elementoNormaManager.getElementosNorma().get(0).getVigencia());
+		//Artigo3
+		assertEquals(artigo3.getIdentificadorUnico(), 
+				 elementoNormaManager.getElementosNorma().get(7).getIdentificadorUnico());
+		assertEquals("10/10/2010-99/99/9999", 
+				elementoNormaManager.getElementosNorma().get(7).getVigencia());
+		//Inciso2
+		assertEquals(inciso2.getIdentificadorUnico(), 
+				 elementoNormaManager.getElementosNorma().get(4).getIdentificadorUnico());
+		assertEquals("10/10/2010-99/99/9999", 
+				elementoNormaManager.getElementosNorma().get(4).getVigencia());
+		
+		/*
+		 * Criando as alteracoes complexas
+		 * As vigencias das normas e dos elementos eh 10/10/2010-99/99/9999, enquanto a data
+		 * da revogacao foi 10/10/2011. Sendo assim, eh esperado que as novas vigencias sejam
+		 * 10/10/2010-10/10/2011
+		 */
+		//Norma1 Revoga Norma2;
+		alteracaoManager.criaAlteracaoRevogacao(norma1, norma2, "10/10/2011", "");
+		/* ---------- Verifica as vigencias depois das alteracoes ----------*/
+		//Norma2
+		assertEquals(norma2.getIdentificadorUnico(), 
+				 normaManager.getNormas().get(1).getIdentificadorUnico());
+		assertEquals("10/10/2010-10/10/2011", 
+			 	 normaManager.getNormas().get(1).getVigencia());
+		//Artigo3
+		assertEquals(artigo3.getIdentificadorUnico(), 
+				 elementoNormaManager.getElementosNorma().get(7).getIdentificadorUnico());
+		assertEquals("10/10/2010-10/10/2011", 
+				elementoNormaManager.getElementosNorma().get(7).getVigencia());
+		
+		//Norma1 Revoga Inciso2;
+		alteracaoManager.criaAlteracaoRevogacao(norma1, inciso2, "10/10/2011", "");
+		//Paragrafo2 Revoga Paragrafo3;
+		alteracaoManager.criaAlteracaoRevogacao(paragrafo2, paragrafo3, "10/10/2011", "");
+		//Paragrafo2 Revoga Norma1;
+		alteracaoManager.criaAlteracaoRevogacao(paragrafo2, norma1, "10/10/2011", "");
+		
+		/* ---------- Verifica se as alteracoes foram feitas corretamente ----------*/
+		assertEquals(4, alteracaoManager.getAlteracoes().size() );
+		
+		/* ---------- Verifica as vigencias depois das alteracoes ----------*/
+		//Norma1
+		assertEquals(norma1.getIdentificadorUnico(), 
+					 normaManager.getNormas().get(0).getIdentificadorUnico());
+		assertEquals("10/10/2010-10/10/2011", 
+				 	 normaManager.getNormas().get(0).getVigencia());
+		//Artigo1
+		assertEquals(artigo1.getIdentificadorUnico(), 
+				 elementoNormaManager.getElementosNorma().get(0).getIdentificadorUnico());
+		assertEquals("10/10/2010-10/10/2011", 
+				elementoNormaManager.getElementosNorma().get(0).getVigencia());
+		//Inciso2
+		assertEquals(inciso2.getIdentificadorUnico(), 
+				 elementoNormaManager.getElementosNorma().get(4).getIdentificadorUnico());
+		assertEquals("10/10/2010-10/10/2011", 
+				elementoNormaManager.getElementosNorma().get(4).getVigencia());
+	}
 }
