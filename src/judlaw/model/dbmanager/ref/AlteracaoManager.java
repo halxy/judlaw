@@ -112,6 +112,17 @@ public class AlteracaoManager {
      * ALTERACOES COMPLEXAS: sao aquelas que modificam o banco de dados, atualizando o banco de dados temporal,
      * alem de criar uma entrada na tabela de alteracoes
      */
+    private void setaAtributos(Norma newNorma, Norma normaDestino) {
+//		newNorma.setEpigrafe( normaDestino.getEpigrafe() );
+//		newNorma.setEmenta(ementa);
+//		newNorma.setAutoria(autoria);
+//		newNorma.setLocal(local);
+//		newNorma.setIdentificadorUnico(identificadorUnico);
+//		newNorma.setTipo(tipo);
+//		newNorma.setDataPublicacao(dataPublicacao);
+//		newNorma.setVigencia(vigencia);
+//		newNorma.setElementosNorma(elementosNorma);
+	}
     
     //REVOGACAO
     public void criaAlteracaoRevogacao(Norma normaOrigem, Norma normaDestino, String data, String caracteristica){
@@ -124,8 +135,14 @@ public class AlteracaoManager {
     	normaDestino.getAlteracoesRecebidas().add(alt);
     	normaDestino.setVigencia( TimeLogic.getInstance().novaDataFimVigencia(normaDestino.getVigencia(), data) );
     	dbManager.save(normaDestino);
-	}
-    /**
+    	
+    	//Cria uma nova entrada na tabela de Normas
+    	Norma newNorma = new Norma();
+    	setaAtributos(newNorma, normaDestino);
+    	dbManager.save(newNorma);
+	}    
+
+	/**
      * Remove uma alteracao do banco de dados
      * @param alteracao
      */
