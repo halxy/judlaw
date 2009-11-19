@@ -126,8 +126,8 @@ public class AlteracaoManager {
 	}
 	
 	/**
-	 * Cria uma alteracao e modifica a normaDestino juntamente com seus elementosNorma no que diz respeito
-	 * a vigencia, jah que esta foi revogada
+	 * Cria uma alteracao e modifica o destino juntamente com seus elementosNorma no que diz respeito
+	 * a vigencia, jah que esta foi revogada.
 	 * @param normaOrigem
 	 * @param normaDestino
 	 * @param data
@@ -148,7 +148,55 @@ public class AlteracaoManager {
     	}
     	dbManager.save(normaDestino);
     }
+    
+    public void criaAlteracaoRevogacao(Norma normaOrigem, ElementoNorma elementoNormaDestino, String data, String caracteristica){
+    	Alteracao alt = new Alteracao(normaOrigem, elementoNormaDestino, data, Constantes.REVOGACAO, caracteristica);
+    	dbManager.save(alt);
+    	normaOrigem.getAlteracoesFeitas().add(alt);
+    	dbManager.save(normaOrigem);
+    	//Setando a nova vigencia do elementoNormaDestino
+    	elementoNormaDestino.getAlteracoesRecebidas().add(alt);
+    	String vigenciaExpirada = TimeLogic.getInstance().novaDataFimVigencia(elementoNormaDestino.getVigencia(), data);
+    	elementoNormaDestino.setVigencia( vigenciaExpirada );
+    	//Setando a vigencia expirada para os elementosNorma filhos
+    	for(ElementoNorma eleNorma : elementoNormaDestino.getElementosNorma()) {
+    		revogaElementosNormaRecursivo(eleNorma, vigenciaExpirada);
+    	}
+    	dbManager.save(elementoNormaDestino);
+    }
 
+    public void criaAlteracaoRevogacao(ElementoNorma elementoNormaOrigem, Norma normaDestino, String data, String caracteristica){
+    	Alteracao alt = new Alteracao(elementoNormaOrigem, normaDestino, data, Constantes.REVOGACAO, caracteristica);
+    	dbManager.save(alt);
+    	elementoNormaOrigem.getAlteracoesFeitas().add(alt);
+    	dbManager.save(elementoNormaOrigem);
+    	//Setando a nova vigencia da normaDestino
+    	normaDestino.getAlteracoesRecebidas().add(alt);
+    	String vigenciaExpirada = TimeLogic.getInstance().novaDataFimVigencia(normaDestino.getVigencia(), data);
+    	normaDestino.setVigencia( vigenciaExpirada );
+    	//Setando a vigencia expirada para os elementosNorma filhos
+    	for(ElementoNorma eleNorma : normaDestino.getElementosNorma()) {
+    		revogaElementosNormaRecursivo(eleNorma, vigenciaExpirada);
+    	}
+    	dbManager.save(normaDestino);
+    }
+    
+    public void criaAlteracaoRevogacao(ElementoNorma elementoNormaOrigem, ElementoNorma elementoNormaDestino, String data, String caracteristica){
+    	Alteracao alt = new Alteracao(elementoNormaOrigem, elementoNormaDestino, data, Constantes.REVOGACAO, caracteristica);
+    	dbManager.save(alt);
+    	elementoNormaOrigem.getAlteracoesFeitas().add(alt);
+    	dbManager.save(elementoNormaOrigem);
+    	//Setando a nova vigencia do elementoNormaDestino
+    	elementoNormaDestino.getAlteracoesRecebidas().add(alt);
+    	String vigenciaExpirada = TimeLogic.getInstance().novaDataFimVigencia(elementoNormaDestino.getVigencia(), data);
+    	elementoNormaDestino.setVigencia( vigenciaExpirada );
+    	//Setando a vigencia expirada para os elementosNorma filhos
+    	for(ElementoNorma eleNorma : elementoNormaDestino.getElementosNorma()) {
+    		revogaElementosNormaRecursivo(eleNorma, vigenciaExpirada);
+    	}
+    	dbManager.save(elementoNormaDestino);
+    }
+    
 	/**
      * Remove uma alteracao do banco de dados
      * @param alteracao
