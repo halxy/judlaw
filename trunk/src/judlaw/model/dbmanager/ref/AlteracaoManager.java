@@ -138,7 +138,6 @@ public class AlteracaoManager {
     	dbManager.save(alt);
     	normaOrigem.getAlteracoesFeitas().add(alt);
     	dbManager.save(normaOrigem);
-    	
     	//Setando a nova vigencia da normaDestino
     	normaDestino.getAlteracoesRecebidas().add(alt);
     	String vigenciaExpirada = TimeLogic.getInstance().novaDataFimVigencia(normaDestino.getVigencia(), data);
