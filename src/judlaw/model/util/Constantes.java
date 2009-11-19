@@ -35,6 +35,7 @@ public class Constantes {
 	// Caracteristicas de Alteracao (Referencia)
 	public static final String MAIS_RESTRITIVA = "Mais-restritiva";
 	public static final String MENOS_RESTRITIVA = "Menos-restritiva";
+	public static final String NEUTRA = "Neutra";
 	
 	// Delimitadores
 	public static final String DELIMITADOR_DATA = "/";
