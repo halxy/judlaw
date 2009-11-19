@@ -210,7 +210,7 @@ public class AlteracaoManager {
      * @param dataRevogacao
      * @param caracteristica
      */
-    public void criaAlteracaoInclusao(Norma normaOrigem, Norma normaDestino, String dataRevogacao, String caracteristica){
+    public void criaAlteracaoInclusao(Norma normaOrigem, Norma normaDestino, ElementoNorma novoElemento, String dataRevogacao, String caracteristica){
     	//TODO
     }
     
