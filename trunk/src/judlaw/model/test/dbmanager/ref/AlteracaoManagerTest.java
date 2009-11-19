@@ -291,30 +291,29 @@ public class AlteracaoManagerTest {
 		
 		/* ---------- Verifica as vigencias antes ----------*/
 		//Norma1
+		Norma norma1BD = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", norma1.getIdentificadorUnico()).get(0);
 		assertEquals(norma1.getIdentificadorUnico(), 
-					 normaManager.getNormas().get(0).getIdentificadorUnico());
-		assertEquals("10/10/2010-99/99/9999", 
-				 	 normaManager.getNormas().get(0).getVigencia());
+					 norma1BD.getIdentificadorUnico());
+		assertEquals("10/10/2010-99/99/9999", norma1BD.getVigencia());
 		//Norma2
-		assertEquals(norma2.getIdentificadorUnico(), 
-				 normaManager.getNormas().get(1).getIdentificadorUnico());
-		assertEquals("10/10/2010-99/99/9999", 
-			 	 normaManager.getNormas().get(1).getVigencia());
+		Norma norma2BD = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", norma2.getIdentificadorUnico()).get(0);
+		assertEquals(norma2.getIdentificadorUnico(), norma2BD.getIdentificadorUnico());
+		assertEquals("10/10/2010-99/99/9999", norma2BD.getVigencia());
 		//Artigo1
-		assertEquals(artigo1.getIdentificadorUnico(), 
-				 elementoNormaManager.getElementosNorma().get(0).getIdentificadorUnico());
-		assertEquals("10/10/2010-99/99/9999", 
-				elementoNormaManager.getElementosNorma().get(0).getVigencia());
+		ElementoNorma artigo1BD = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo
+		                                          ("identificadorUnico", artigo1.getIdentificadorUnico()).get(0);
+		assertEquals(artigo1.getIdentificadorUnico(), artigo1BD.getIdentificadorUnico());
+		assertEquals("10/10/2010-99/99/9999", artigo1BD.getVigencia());
 		//Artigo3
-		assertEquals(artigo3.getIdentificadorUnico(), 
-				 elementoNormaManager.getElementosNorma().get(7).getIdentificadorUnico());
-		assertEquals("10/10/2010-99/99/9999", 
-				elementoNormaManager.getElementosNorma().get(7).getVigencia());
+		ElementoNorma artigo3BD = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo
+		                                          ("identificadorUnico", artigo3.getIdentificadorUnico()).get(0);
+		assertEquals(artigo3.getIdentificadorUnico(), artigo3BD.getIdentificadorUnico());
+		assertEquals("10/10/2010-99/99/9999", artigo3BD.getVigencia());
 		//Inciso2
-		assertEquals(inciso2.getIdentificadorUnico(), 
-				 elementoNormaManager.getElementosNorma().get(4).getIdentificadorUnico());
-		assertEquals("10/10/2010-99/99/9999", 
-				elementoNormaManager.getElementosNorma().get(4).getVigencia());
+		ElementoNorma inciso2BD = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo
+		                                          ("identificadorUnico", inciso2.getIdentificadorUnico()).get(0);
+		assertEquals(inciso2.getIdentificadorUnico(), inciso2BD.getIdentificadorUnico());
+		assertEquals("10/10/2010-99/99/9999", inciso2BD.getVigencia());
 		
 		/*
 		 * Criando as alteracoes complexas
@@ -322,45 +321,47 @@ public class AlteracaoManagerTest {
 		 * da revogacao foi 10/10/2011. Sendo assim, eh esperado que as novas vigencias sejam
 		 * 10/10/2010-10/10/2011
 		 */
-		//Norma1 Revoga Norma2;
+		//NORMA1 Revoga NORMA2;
 		alteracaoManager.criaAlteracaoRevogacao(norma1, norma2, "10/10/2011", "");
 		/* ---------- Verifica as vigencias depois das alteracoes ----------*/
 		//Norma2
-		assertEquals(norma2.getIdentificadorUnico(), 
-				 normaManager.getNormas().get(1).getIdentificadorUnico());
-		assertEquals("10/10/2010-10/10/2011", 
-			 	 normaManager.getNormas().get(1).getVigencia());
+		norma2BD = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", norma2.getIdentificadorUnico()).get(0);
+		assertEquals("10/10/2010-10/10/2011", norma2BD.getVigencia());
 		//Artigo3
-		assertEquals(artigo3.getIdentificadorUnico(), 
-				 elementoNormaManager.getElementosNorma().get(7).getIdentificadorUnico());
-		assertEquals("10/10/2010-10/10/2011", 
-				elementoNormaManager.getElementosNorma().get(7).getVigencia());
+		artigo3BD = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo
+        ("identificadorUnico", artigo3.getIdentificadorUnico()).get(0);
+		assertEquals("10/10/2010-10/10/2011", artigo3BD.getVigencia());
 		
-		//Norma1 Revoga Inciso2;
+		//NORMA1 Revoga INCISO2;
 		alteracaoManager.criaAlteracaoRevogacao(norma1, inciso2, "10/10/2011", "");
-		//Paragrafo2 Revoga Paragrafo3;
-		alteracaoManager.criaAlteracaoRevogacao(paragrafo2, paragrafo3, "10/10/2011", "");
-		//Paragrafo2 Revoga Norma1;
-		alteracaoManager.criaAlteracaoRevogacao(paragrafo2, norma1, "10/10/2011", "");
-		
-		/* ---------- Verifica se as alteracoes foram feitas corretamente ----------*/
-		assertEquals(4, alteracaoManager.getAlteracoes().size() );
-		
 		/* ---------- Verifica as vigencias depois das alteracoes ----------*/
+		inciso2BD = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo
+        								("identificadorUnico", inciso2.getIdentificadorUnico()).get(0);
+		assertEquals("10/10/2010-10/10/2011", inciso2BD.getVigencia());
+		
+		//PARAGRAFO2 Revoga PARAGRAFO3;
+		alteracaoManager.criaAlteracaoRevogacao(paragrafo2, paragrafo3, "10/10/2011", "");
+		/* ---------- Verifica as vigencias depois das alteracoes ----------*/
+		ElementoNorma paragrafo3BD = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo
+												("identificadorUnico", paragrafo3.getIdentificadorUnico()).get(0);
+		assertEquals("10/10/2010-10/10/2011", paragrafo3BD.getVigencia());
+		
+		//PARAGRAFO2 Revoga NORMA1;
+		alteracaoManager.criaAlteracaoRevogacao(paragrafo2, norma1, "10/10/2011", "");
+		/* ---------- Verifica se as alteracoes foram feitas corretamente ----------*/
 		//Norma1
-		assertEquals(norma1.getIdentificadorUnico(), 
-					 normaManager.getNormas().get(0).getIdentificadorUnico());
-		assertEquals("10/10/2010-10/10/2011", 
-				 	 normaManager.getNormas().get(0).getVigencia());
+		norma1BD = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", norma1.getIdentificadorUnico()).get(0);
+		assertEquals("10/10/2010-10/10/2011", norma1BD.getVigencia());
 		//Artigo1
-		assertEquals(artigo1.getIdentificadorUnico(), 
-				 elementoNormaManager.getElementosNorma().get(0).getIdentificadorUnico());
-		assertEquals("10/10/2010-10/10/2011", 
-				elementoNormaManager.getElementosNorma().get(0).getVigencia());
-		//Inciso2
-		assertEquals(inciso2.getIdentificadorUnico(), 
-				 elementoNormaManager.getElementosNorma().get(4).getIdentificadorUnico());
-		assertEquals("10/10/2010-10/10/2011", 
-				elementoNormaManager.getElementosNorma().get(4).getVigencia());
+		artigo1BD = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo
+									("identificadorUnico", artigo1.getIdentificadorUnico()).get(0);
+		assertEquals("10/10/2010-10/10/2011", artigo1BD.getVigencia());
+		//Inciso1
+		ElementoNorma inciso1BD = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo
+								   ("identificadorUnico", inciso1.getIdentificadorUnico()).get(0);
+		assertEquals("10/10/2010-10/10/2011", inciso1BD.getVigencia());
+		
+		/* ---------- Verifica a cardinalidade ----------*/
+		assertEquals(4, alteracaoManager.getAlteracoes().size() );
 	}
 }
