@@ -9,6 +9,7 @@ package judlaw.model.bean.law;
 
 import java.util.List;
 
+import judlaw.model.bean.ref.Alteracao;
 import judlaw.model.bean.ref.CitacaoTextLeg;
 
 
@@ -26,6 +27,7 @@ public abstract class TextoLegal {
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
 	
 	private List<CitacaoTextLeg> citacoesFeitas;
+	private List<Alteracao> alteracoesFeitas;
 	
 	public String getIdentificadorUnico() {
 		return identificadorUnico;
@@ -62,5 +64,11 @@ public abstract class TextoLegal {
 	}
 	public void setCitacoesFeitas(List<CitacaoTextLeg> citacoesFeitas) {
 		this.citacoesFeitas = citacoesFeitas;
+	}
+	public List<Alteracao> getAlteracoesFeitas() {
+		return alteracoesFeitas;
+	}
+	public void setAlteracoesFeitas(List<Alteracao> alteracoesFeitas) {
+		this.alteracoesFeitas = alteracoesFeitas;
 	}
 }
