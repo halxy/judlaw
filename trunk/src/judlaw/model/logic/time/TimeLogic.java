@@ -10,6 +10,8 @@ package judlaw.model.logic.time;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
+import judlaw.model.util.Constantes;
+
 /**
  * Classe TimeLogic - define a logica temporal geral do sistema
  * @author Halley Freitas
@@ -120,5 +122,17 @@ public class TimeLogic {
 		tokenVigencia2.nextToken(); // passando o primeiro token referente à data inicio da vigencia
 		String fimVigencia2 = tokenVigencia2.nextToken();
 		return comparaDatas(fimVigencia1, fimVigencia2, delimitadorDatas);
+	}
+	
+	/**
+	 * A dataFim da vigencia passada como parametro eh modificada para uma nova data
+	 * @param vigencia
+	 * @param novaDataFim
+	 * @return
+	 */
+	public String novaDataFimVigencia(String vigencia, String novaDataFim) {
+		StringTokenizer tokenVigencia = new StringTokenizer(vigencia, Constantes.DELIMITADOR_VIGENCIA);
+		String dataInicio = tokenVigencia.nextToken();
+		return dataInicio +"-"+ novaDataFim;
 	}
 }

@@ -76,6 +76,7 @@ public class TimeLogicTest {
 	 * Compara vigencias
 	 * @throws Exception
 	 */
+	@Test
 	public void testComparaVigencias() throws Exception {
 		// Vigencias com fins iguais
 		assertEquals(0, tm.comparaVigencias("12/10/2009-12/10/2010", "13/10/2009-12/10/2010", 
@@ -86,5 +87,13 @@ public class TimeLogicTest {
 		// Vigencia2 com datafim maior que Vigencia1
 		assertEquals(-1, tm.comparaVigencias("12/10/2009-11/10/2010", "12/10/2009-12/10/2010", 
 				Constantes.DELIMITADOR_VIGENCIA, Constantes.DELIMITADOR_DATA) );
+	}
+	
+	/**
+	 * Testa se uma nova dataFim esta sendo colocada corretamente.
+	 */
+	@Test
+	public void testnovaDataFimVigencia(){
+		assertEquals("10/10/2009-10/10/2010", tm.novaDataFimVigencia("10/10/2009-11/11/2011", "10/10/2010") );
 	}
 }
