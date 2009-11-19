@@ -34,6 +34,10 @@ public class AlteracaoManager {
         return alteracaoManager;
     }
     
+    /*
+     * ALTERACOES SIMPLES: sao aquelas que não modificam o banco de dados, apenas incluem uma nova entrada
+     * na tabela de alteracoes com as informacoes do relacionamento
+     */
     /**
 	 * Alteracao Norma -> Norma
 	 * @param normaOrigem
@@ -42,7 +46,7 @@ public class AlteracaoManager {
 	 * @param tipo
 	 * @param caracteristica
 	 */
-    public void criaAlteracao(Norma normaOrigem, Norma normaDestino, String data, String tipo, String caracteristica){
+    public void criaAlteracaoSimples(Norma normaOrigem, Norma normaDestino, String data, String tipo, String caracteristica){
     	Alteracao alt = new Alteracao(normaOrigem, normaDestino, data, tipo, caracteristica);
     	dbManager.save(alt);
     	normaOrigem.getAlteracoesFeitas().add(alt);
@@ -59,7 +63,7 @@ public class AlteracaoManager {
      * @param tipo
      * @param caracteristica
      */
-    public void criaAlteracao(Norma normaOrigem, ElementoNorma elementoNormaDestino, String data, String tipo, String caracteristica){
+    public void criaAlteracaoSimples(Norma normaOrigem, ElementoNorma elementoNormaDestino, String data, String tipo, String caracteristica){
     	Alteracao alt = new Alteracao(normaOrigem, elementoNormaDestino, data, tipo, caracteristica);
     	dbManager.save(alt);
     	normaOrigem.getAlteracoesFeitas().add(alt);
@@ -76,7 +80,7 @@ public class AlteracaoManager {
      * @param tipo
      * @param caracteristica
      */
-    public void criaAlteracao(ElementoNorma elementoNormaOrigem, Norma normaDestino, String data, String tipo, String caracteristica){
+    public void criaAlteracaoSimples(ElementoNorma elementoNormaOrigem, Norma normaDestino, String data, String tipo, String caracteristica){
     	Alteracao alt = new Alteracao(elementoNormaOrigem, normaDestino, data, tipo, caracteristica);
     	dbManager.save(alt);
     	elementoNormaOrigem.getAlteracoesFeitas().add(alt);
@@ -93,7 +97,7 @@ public class AlteracaoManager {
      * @param tipo
      * @param caracteristica
      */
-    public void criaAlteracao(ElementoNorma elementoNormaOrigem, ElementoNorma elementoNormaDestino, String data, String tipo, String caracteristica){
+    public void criaAlteracaoSimples(ElementoNorma elementoNormaOrigem, ElementoNorma elementoNormaDestino, String data, String tipo, String caracteristica){
     	Alteracao alt = new Alteracao(elementoNormaOrigem, elementoNormaDestino, data, tipo, caracteristica);
     	dbManager.save(alt);
     	elementoNormaOrigem.getAlteracoesFeitas().add(alt);

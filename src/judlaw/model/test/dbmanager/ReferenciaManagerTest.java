@@ -81,13 +81,13 @@ public class ReferenciaManagerTest {
 		
 		/* Criando as Alteracoes */
 		//Norma1 -> Norma2  (N->N)
-		alteracaoManager.criaAlteracao(norma1, norma2, "16/11/2009", "inclusao", "");
+		alteracaoManager.criaAlteracaoSimples(norma1, norma2, "16/11/2009", "inclusao", "");
 		//Norma1 -> Artigo2 (N->EN)
-		alteracaoManager.criaAlteracao(norma1, artigo2, "17/11/2009", "inclusao", "");
+		alteracaoManager.criaAlteracaoSimples(norma1, artigo2, "17/11/2009", "inclusao", "");
 		//Artigo1 -> Norma2 (EN->N)
-		alteracaoManager.criaAlteracao(artigo1, norma2, "18/11/2009", "inclusao", "");
+		alteracaoManager.criaAlteracaoSimples(artigo1, norma2, "18/11/2009", "inclusao", "");
 		//Artigo1 -> Artigo2 (EN->EN)
-		alteracaoManager.criaAlteracao(artigo1, artigo2, "19/11/2009", "inclusao", "");
+		alteracaoManager.criaAlteracaoSimples(artigo1, artigo2, "19/11/2009", "inclusao", "");
 		
 		/* Verificando se os atributos foram persistidos corretamente */
 		//Quantidade de alteracoes
@@ -168,13 +168,13 @@ public class ReferenciaManagerTest {
 		
 		/* Criando as Alteracoes */
 		//Norma1 -> Norma2  (N->N)
-		alteracaoManager.criaAlteracao(norma1, norma2, "16/11/2009", "inclusao", "");
+		alteracaoManager.criaAlteracaoSimples(norma1, norma2, "16/11/2009", "inclusao", "");
 		//Norma1 -> Artigo2 (N->EN)
-		alteracaoManager.criaAlteracao(norma1, artigo2, "17/11/2009", "inclusao", "");
+		alteracaoManager.criaAlteracaoSimples(norma1, artigo2, "17/11/2009", "inclusao", "");
 		//Artigo1 -> Norma2 (EN->N)
-		alteracaoManager.criaAlteracao(artigo1, norma2, "18/11/2009", "inclusao", "");
+		alteracaoManager.criaAlteracaoSimples(artigo1, norma2, "18/11/2009", "inclusao", "");
 		//Artigo1 -> Artigo2 (EN->EN)
-		alteracaoManager.criaAlteracao(artigo1, artigo2, "19/11/2009", "inclusao", "");
+		alteracaoManager.criaAlteracaoSimples(artigo1, artigo2, "19/11/2009", "inclusao", "");
 		
 		/* Verificando se os atributos foram persistidos corretamente */
 		//Quantidade de alteracoes
