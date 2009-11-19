@@ -13,6 +13,7 @@ import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
 import judlaw.model.bean.ref.Alteracao;
 import judlaw.model.dbmanager.DBManager;
+import judlaw.model.dbmanager.law.ElementoNormaManager;
 import judlaw.model.logic.time.TimeLogic;
 import judlaw.model.util.Constantes;
 
@@ -204,14 +205,44 @@ public class AlteracaoManager {
      * Apenas sao incluidos elementosNorma, tanto em normas quanto em outros elementosNorma
      */
     /**
-     * Inclu
+     * A alteracaoInclusao inclue um novo elemento em uma norma/Elemento, e a entrada na tabela de Alteracoes
+     * eh configurada pelo relacionamento entre a origem e o novo elemento.
      * @param normaOrigem
      * @param normaDestino
-     * @param dataRevogacao
+     * @param novoElemento
+     * @param dataInclusao
      * @param caracteristica
      */
-    public void criaAlteracaoInclusao(Norma normaOrigem, Norma normaDestino, ElementoNorma novoElemento, String dataRevogacao, String caracteristica){
-    	//TODO
+    public void criaAlteracaoInclusao(Norma normaOrigem, Norma normaDestino, ElementoNorma novoElemento, String dataInclusao, String caracteristica){
+    	//A data de publicacao do elemento sera a data em que ele foi incluido
+    	novoElemento.setDataPublicacao( dataInclusao );
+    	ElementoNormaManager.getInstance().adicionaElementoNorma(novoElemento, normaDestino);
+    	Alteracao alteracao = new Alteracao(normaOrigem, novoElemento, dataInclusao, Constantes.INCLUSAO, Constantes.NEUTRA);
+    	dbManager.save( alteracao );
+    }
+    
+    public void criaAlteracaoInclusao(Norma normaOrigem, ElementoNorma elementoNormaDestino, ElementoNorma novoElemento, String dataInclusao, String caracteristica){
+    	//A data de publicacao do elemento sera a data em que ele foi incluido
+    	novoElemento.setDataPublicacao( dataInclusao );
+    	ElementoNormaManager.getInstance().adicionaElementoNorma(novoElemento, elementoNormaDestino);
+    	Alteracao alteracao = new Alteracao(normaOrigem, novoElemento, dataInclusao, Constantes.INCLUSAO, Constantes.NEUTRA);
+    	dbManager.save( alteracao );
+    }
+    
+    public void criaAlteracaoInclusao(ElementoNorma elementoNormaOrigem, Norma normaDestino, ElementoNorma novoElemento, String dataInclusao, String caracteristica){
+    	//A data de publicacao do elemento sera a data em que ele foi incluido
+    	novoElemento.setDataPublicacao( dataInclusao );
+    	ElementoNormaManager.getInstance().adicionaElementoNorma(novoElemento, normaDestino);
+    	Alteracao alteracao = new Alteracao(elementoNormaOrigem, novoElemento, dataInclusao, Constantes.INCLUSAO, Constantes.NEUTRA);
+    	dbManager.save( alteracao );
+    }
+    
+    public void criaAlteracaoInclusao(ElementoNorma elementoNormaOrigem, ElementoNorma elementoNormaDestino, ElementoNorma novoElemento, String dataInclusao, String caracteristica){
+    	//A data de publicacao do elemento sera a data em que ele foi incluido
+    	novoElemento.setDataPublicacao( dataInclusao );
+    	ElementoNormaManager.getInstance().adicionaElementoNorma(novoElemento, elementoNormaDestino);
+    	Alteracao alteracao = new Alteracao(elementoNormaOrigem, novoElemento, dataInclusao, Constantes.INCLUSAO, Constantes.NEUTRA);
+    	dbManager.save( alteracao );
     }
     
 	/**
