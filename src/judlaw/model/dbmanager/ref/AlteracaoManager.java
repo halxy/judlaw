@@ -111,20 +111,28 @@ public class AlteracaoManager {
     /*
      * ALTERACOES COMPLEXAS: sao aquelas que modificam o banco de dados, atualizando o banco de dados temporal,
      * alem de criar uma entrada na tabela de alteracoes
-     */
-    private void setaAtributos(Norma newNorma, Norma normaDestino) {
-//		newNorma.setEpigrafe( normaDestino.getEpigrafe() );
-//		newNorma.setEmenta(ementa);
-//		newNorma.setAutoria(autoria);
-//		newNorma.setLocal(local);
-//		newNorma.setIdentificadorUnico(identificadorUnico);
-//		newNorma.setTipo(tipo);
-//		newNorma.setDataPublicacao(dataPublicacao);
-//		newNorma.setVigencia(vigencia);
-//		newNorma.setElementosNorma(elementosNorma);
-	}
-    
+     */  
     //REVOGACAO
+    /*
+     * Revoga todos os elementos de uma norma e seus filhos
+     */
+	private void revogaElementosNormaRecursivo(ElementoNorma elementoNorma, String vigenciaExpirada) {
+		List<ElementoNorma> filhos = elementoNorma.getElementosNorma();
+		for(ElementoNorma filho : filhos) {
+			filho.setVigencia( vigenciaExpirada );			
+			dbManager.save(filho);
+			revogaElementosNormaRecursivo(filho, vigenciaExpirada);
+		}
+	}
+	
+	/**
+	 * Cria uma alteracao e modifica a normaDestino juntamente com seus elementosNorma no que diz respeito
+	 * a vigencia, jah que esta foi revogada
+	 * @param normaOrigem
+	 * @param normaDestino
+	 * @param data
+	 * @param caracteristica
+	 */
     public void criaAlteracaoRevogacao(Norma normaOrigem, Norma normaDestino, String data, String caracteristica){
     	Alteracao alt = new Alteracao(normaOrigem, normaDestino, data, Constantes.REVOGACAO, caracteristica);
     	dbManager.save(alt);
@@ -133,14 +141,14 @@ public class AlteracaoManager {
     	
     	//Setando a nova vigencia da normaDestino
     	normaDestino.getAlteracoesRecebidas().add(alt);
-    	normaDestino.setVigencia( TimeLogic.getInstance().novaDataFimVigencia(normaDestino.getVigencia(), data) );
+    	String vigenciaExpirada = TimeLogic.getInstance().novaDataFimVigencia(normaDestino.getVigencia(), data);
+    	normaDestino.setVigencia( vigenciaExpirada );
+    	//Setando a vigencia expirada para os elementosNorma filhos
+    	for(ElementoNorma eleNorma : normaDestino.getElementosNorma()) {
+    		revogaElementosNormaRecursivo(eleNorma, vigenciaExpirada);
+    	}
     	dbManager.save(normaDestino);
-    	
-    	//Cria uma nova entrada na tabela de Normas
-    	Norma newNorma = new Norma();
-    	setaAtributos(newNorma, normaDestino);
-    	dbManager.save(newNorma);
-	}    
+    }
 
 	/**
      * Remove uma alteracao do banco de dados
