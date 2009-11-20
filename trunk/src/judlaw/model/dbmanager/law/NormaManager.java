@@ -114,6 +114,7 @@ public class NormaManager {
     	novaNorma.setIdentificadorUnico( norma.getIdentificadorUnico() );
     	novaNorma.setTipo( norma.getTipo() );
     	novaNorma.setDataPublicacao( norma.getDataPublicacao() );
-    	novaNorma.setVigencia( norma.getVigencia() );	
+    	novaNorma.setVigencia( norma.getVigencia() );
+    	novaNorma.setElementosNorma( norma.getElementosNorma() );
     }
 }

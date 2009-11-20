@@ -143,6 +143,16 @@ public class ElementoNormaManager {
 	 * @param novoElementoNorma
 	 */
 	public void setParametrosElementoNorma(ElementoNorma elementoNormaModificado, ElementoNorma novoElementoNorma){
-		// TODO Auto-generated method stub
+		novoElementoNorma.setTexto( elementoNormaModificado.getTexto() );
+		novoElementoNorma.setIdentificadorUnico( elementoNormaModificado.getIdentificadorUnico() );
+		novoElementoNorma.setTipo( elementoNormaModificado.getTipo() );
+		novoElementoNorma.setDataPublicacao( elementoNormaModificado.getDataPublicacao() );
+		novoElementoNorma.setVigencia( elementoNormaModificado.getVigencia() );
+		novoElementoNorma.setElementosNorma( elementoNormaModificado.getElementosNorma() );
+		if( elementoNormaModificado.getNormasPai().size() > 0 ){
+			novoElementoNorma.setNormasPai( elementoNormaModificado.getNormasPai() );
+		} else {
+			novoElementoNorma.setElementosNormaPai( elementoNormaModificado.getElementosNormaPai() );
+		}
 	}
 }
