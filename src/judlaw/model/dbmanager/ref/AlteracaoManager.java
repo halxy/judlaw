@@ -261,7 +261,7 @@ public class AlteracaoManager {
     
     /* --------------- MODIFICACAO --------------- */
     /**
-     *     
+     * É criada uma alteracaoModificacao, tendo como Destino a norma que sofreu a modificacao   
      * @param normaOrigem - A norma modificadora
      * @param normaDestino - A norma que sofreu a modificacao
      * @param normaModificada - A nova norma apos a modificacao
