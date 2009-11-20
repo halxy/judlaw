@@ -17,7 +17,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -54,23 +55,51 @@ public class ElementoNorma extends TextoLegal {
 	private String dataPublicacao; // dd/MM/yyy
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
 	
-	//ElementoNorma que compoem o elementoNorma
-	@OneToMany(mappedBy="elementoNormaPai", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
-	private List<ElementoNorma> elementosNorma;
+	/*
+	 * O relacionamento é de M-N porque quando o ElementoNorma pai de um ElementoNorma eh modificado
+	 * (sofre uma AlteracaoModificacao), entao por ser um BD Temporal, eh criada uma nova 
+	 * entrada na tabela de elementosNorma com uma dataPublicacao diferente, sendo assim, o ElementoNorma
+	 * tem uma lista de ElementosNormaPai, mas na verdade sao varias versoes de uma mesmo ElementoNorma
+	 */
+	@ManyToMany(mappedBy="elementosNorma")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<ElementoNorma> elementosNormaPai;
 	
 	/*
-	 * Pai do Elemento Norma
+	 * O relacionamento é de M-N porque quando a norma pai de um ElementoNorma eh modificado
+	 * (sofre uma AlteracaoModificacao), entao por ser um BD Temporal, eh criada uma nova 
+	 * entrada na tabela de normas com uma dataPublicacao diferente, sendo assim, o ElementoNorma
+	 * tem uma lista de NormasPai, mas na verdade sao varias versoes de uma mesma Norma
 	 */
-	//Quando o pai do ElementoNorma é outro ElementoNorma
-	@ManyToOne
-	@JoinColumn(name="elementonormapai_id", nullable = true)
-	private ElementoNorma elementoNormaPai;
+	@ManyToMany(mappedBy="elementosNorma")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<Norma> normasPai;
 	
-	//Quando o pai do ElementoNorma é uma Norma
-	@ManyToOne
-	@JoinColumn(name="normapai_id", nullable = true)
-	private Norma normaPai;
+//	/*
+//	 * Pai do Elemento Norma
+//	 */
+//	//Quando o pai do ElementoNorma é outro ElementoNorma
+//	@ManyToOne
+//	@JoinColumn(name="elementonormapai_id", nullable = true)
+//	private ElementoNorma elementoNormaPai;
+//	
+//	//Quando o pai do ElementoNorma é uma Norma
+//	@ManyToOne
+//	@JoinColumn(name="normapai_id", nullable = true)
+//	private Norma normaPai;
+	
+	//ElementoNorma que compoem o elementoNorma
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "ElementosNormaPaiElementoNorma",
+			joinColumns = {
+				@JoinColumn(name="elementoNormaPai_id")           
+    		},
+    		inverseJoinColumns = {
+				@JoinColumn(name="elementoNorma_id")
+    		}
+	)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<ElementoNorma> elementosNorma;
 	
 	/* --------- Referencias --------- */
 	/*
@@ -126,6 +155,8 @@ public class ElementoNorma extends TextoLegal {
 		this.dataPublicacao = dataPublicacao;
 		this.vigencia = vigencia;
 		this.elementosNorma = new ArrayList<ElementoNorma>();
+		this.elementosNormaPai = new ArrayList<ElementoNorma>();
+		this.normasPai = new ArrayList<Norma>();
 		//Referencias
 		this.citacoesFeitas = new ArrayList<CitacaoTextLeg>();
 		this.citacoesRecebidasDocJud = new ArrayList<CitacaoDocJud>();
@@ -164,6 +195,8 @@ public class ElementoNorma extends TextoLegal {
 		this.citacoesRecebidasTextLeg = new ArrayList<CitacaoTextLeg>();
 		this.alteracoesFeitas = new ArrayList<Alteracao>();
 		this.alteracoesRecebidas = new ArrayList<Alteracao>();
+		this.elementosNormaPai = new ArrayList<ElementoNorma>();
+		this.normasPai = new ArrayList<Norma>();
 	}
 
 	public Integer getId() {
@@ -222,20 +255,20 @@ public class ElementoNorma extends TextoLegal {
 		this.vigencia = vigencia;
 	}
 
-	public ElementoNorma getElementoNormaPai() {
-		return elementoNormaPai;
+	public List<ElementoNorma> getElementosNormaPai() {
+		return elementosNormaPai;
 	}
 
-	public void setElementoNormaPai(ElementoNorma elementoNormaPai) {
-		this.elementoNormaPai = elementoNormaPai;
+	public void setElementosNormaPai(List<ElementoNorma> elementosNormaPai) {
+		this.elementosNormaPai = elementosNormaPai;
 	}
 
-	public Norma getNormaPai() {
-		return normaPai;
+	public List<Norma> getNormasPai() {
+		return normasPai;
 	}
 
-	public void setNormaPai(Norma normaPai) {
-		this.normaPai = normaPai;
+	public void setNormasPai(List<Norma> normasPai) {
+		this.normasPai = normasPai;
 	}
 
 	public List<CitacaoDocJud> getCitacoesRecebidasDocJud() {
