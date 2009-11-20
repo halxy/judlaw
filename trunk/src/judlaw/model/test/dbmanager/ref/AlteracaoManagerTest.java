@@ -392,6 +392,7 @@ public class AlteracaoManagerTest {
 		 * 
 		 *  Norma1                  Norma2
 		 */
+		
 		/* ---------- Incluindo os elementos ----------*/
 		//Norma2 INCLUI EM Norma1 O Artigo1
 		/*
@@ -401,12 +402,13 @@ public class AlteracaoManagerTest {
 		 *                       /      
 		 *                      Par1              
 		 */
+		
+		//Alteracao
 		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
 				"dataPublicacaoArt1", "10/10/2010-99/99/9999");
 		ElementoNorma paragrafo1 = new ElementoNorma("textoParagrafo1", "identificadorUnicoParagrafo1", "tipoParagrafo1", 
 				"dataPublicacaoParagrafo1", "10/10/2010-99/99/9999");
 		artigo1.getElementosNorma().add(paragrafo1);
-		//Alteracao
 		alteracaoManager.criaAlteracaoInclusao(norma2, norma1, artigo1, "11/11/2011");
 		/* ---------- Verificando a corretude da inclusao ----------*/
 		Norma norma1BD = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", norma1.getIdentificadorUnico()).get(0);
@@ -469,6 +471,37 @@ public class AlteracaoManagerTest {
 	 */
 	@Test
 	public void testCriaAlteracaoModificacao(){
+		/* ---------- Verifica se as listas estao vazias ----------*/
+		assertEquals( 0, normaManager.getNormas().size() );
+		assertEquals( 0, elementoNormaManager.getElementosNorma().size() );
+		assertEquals( 0, alteracaoManager.getAlteracoes().size() );
+		
+		/* ---------- Criando Norma1, Artigo1, Paragrafo1 e Norma2 ----------*/
+		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+				"dataPublicacaoN1", "10/10/2010-99/99/9999");
+		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
+				"dataPublicacaoArt1", "10/10/2010-99/99/9999");
+		ElementoNorma paragrafo1 = new ElementoNorma("textoParagrafo1", "identificadorUnicoParagrafo1", "tipoParagrafo1", 
+				"dataPublicacaoParagrafo1", "10/10/2010-99/99/9999");
+		artigo1.getElementosNorma().add(paragrafo1);
+		norma1.getElementosNorma().add( artigo1 );
+		normaManager.salvaNorma(norma1);
+		Norma norma2 = new Norma("epigrafeN2", "ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
+				"dataPublicacaoN2", "10/10/2010-99/99/9999");
+		normaManager.salvaNorma( norma2 );
+		/*
+		 *                         Norma1                  Norma2
+		 *                         /                      
+		 *                       Art1                      
+		 *                       /      
+		 *                      Par1              
+		 */
+		
+		/* ---------- Cardinalidades ----------*/
+		assertEquals( 2, normaManager.getNormas().size() );
+		assertEquals( 2, elementoNormaManager.getElementosNorma().size() );
+		assertEquals( 0, alteracaoManager.getAlteracoes().size() );
+		
 		// Testar se o numero de elementosNorma continua o mesmo
 		// Testar se os filhos da novaNorma possuem agora dois pais
 	}
