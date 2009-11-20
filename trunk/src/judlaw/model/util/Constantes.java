@@ -29,7 +29,7 @@ public class Constantes {
 	
 	// Tipos de Alteracao (Referencia)
 	public static final String INCLUSAO = "Inclusão";
-	public static final String ALTERACAO = "Alteração";
+	public static final String MODIFICACAO = "Modificação";
 	public static final String REVOGACAO = "Revogação";
 	
 	// Caracteristicas de Alteracao (Referencia)
