@@ -421,11 +421,11 @@ public class AlteracaoManagerTest {
 		//Atributos
 		//Artigo1BD
 		assertEquals(artigo1BD.getIdentificadorUnico(), artigo1.getIdentificadorUnico());
-		assertEquals(artigo1BD.getNormaPai().getIdentificadorUnico(), norma1.getIdentificadorUnico());
+		assertEquals(artigo1BD.getNormasPai().get(0).getIdentificadorUnico(), norma1.getIdentificadorUnico());
 		assertEquals(artigo1BD.getDataPublicacao(), alteracaoBD.getData());
 		//Paragrafo1BD
 		assertEquals(paragrafo1BD.getIdentificadorUnico(), paragrafo1.getIdentificadorUnico());
-		assertEquals(paragrafo1BD.getElementoNormaPai().getIdentificadorUnico(), artigo1.getIdentificadorUnico());
+		assertEquals(paragrafo1BD.getElementosNormaPai().get(0).getIdentificadorUnico(), artigo1.getIdentificadorUnico());
 		assertEquals(paragrafo1BD.getDataPublicacao(), alteracaoBD.getData());
 		//AlteracaoBD
 		assertEquals(alteracaoBD.getNormaOrigem().getIdentificadorUnico(),
@@ -455,7 +455,7 @@ public class AlteracaoManagerTest {
 		assertEquals( 1, norma2BD.getElementosNorma().size() );
 		//Artigo2BD
 		assertEquals(artigo2BD.getIdentificadorUnico(), artigo2.getIdentificadorUnico());
-		assertEquals(artigo2BD.getNormaPai().getIdentificadorUnico(), norma2.getIdentificadorUnico());
+		assertEquals(artigo2BD.getNormasPai().get(0).getIdentificadorUnico(), norma2.getIdentificadorUnico());
 		assertEquals(artigo2BD.getDataPublicacao(), alteracaoBD2.getData());
 		//AlteracaoBD2
 		assertEquals(alteracaoBD2.getElementoNormaOrigem().getIdentificadorUnico(),

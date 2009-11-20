@@ -113,8 +113,8 @@ public class LawManagerTest {
 		assertEquals( normaBD.getElementosNorma().get(0).getIdentificadorUnico(), 
 					  norma1.getElementosNorma().get(0).getIdentificadorUnico() );
 		//Relacao Bidirecional
-		assertEquals( normaBD.getElementosNorma().get(0).getNormaPai().getIdentificadorUnico(), 
-					  norma1.getElementosNorma().get(0).getNormaPai().getIdentificadorUnico() );
+		assertEquals( normaBD.getElementosNorma().get(0).getNormasPai().get(0).getIdentificadorUnico(), 
+					  norma1.getElementosNorma().get(0).getNormasPai().get(0).getIdentificadorUnico() );
 		
 		//INCISO1 e INCISO2
 		assertEquals( normaBD.getElementosNorma().get(0).getElementosNorma().get(0).getElementosNorma().get(0).getTexto(), 
@@ -122,10 +122,10 @@ public class LawManagerTest {
 		assertEquals( normaBD.getElementosNorma().get(0).getElementosNorma().get(0).getElementosNorma().get(1).getTexto(), 
 				      norma1.getElementosNorma().get(0).getElementosNorma().get(0).getElementosNorma().get(1).getTexto() );
 		//Relacao Bidirecional
-		assertEquals( normaBD.getElementosNorma().get(0).getElementosNorma().get(0).getElementosNorma().get(0).getElementoNormaPai().getIdentificadorUnico(), 
-				      norma1.getElementosNorma().get(0).getElementosNorma().get(0).getElementosNorma().get(0).getElementoNormaPai().getIdentificadorUnico() );
-		assertEquals( normaBD.getElementosNorma().get(0).getElementosNorma().get(0).getElementosNorma().get(1).getElementoNormaPai().getIdentificadorUnico(), 
-					  norma1.getElementosNorma().get(0).getElementosNorma().get(0).getElementosNorma().get(1).getElementoNormaPai().getIdentificadorUnico() );
+		assertEquals( normaBD.getElementosNorma().get(0).getElementosNorma().get(0).getElementosNorma().get(0).getElementosNormaPai().get(0).getIdentificadorUnico(), 
+				      norma1.getElementosNorma().get(0).getElementosNorma().get(0).getElementosNorma().get(0).getElementosNormaPai().get(0).getIdentificadorUnico() );
+		assertEquals( normaBD.getElementosNorma().get(0).getElementosNorma().get(0).getElementosNorma().get(1).getElementosNormaPai().get(0).getIdentificadorUnico(), 
+					  norma1.getElementosNorma().get(0).getElementosNorma().get(0).getElementosNorma().get(1).getElementosNormaPai().get(0).getIdentificadorUnico() );
 	}
 	
 	/**
@@ -342,7 +342,7 @@ public class LawManagerTest {
 					  normaBD.getElementosNorma().get(1).getIdentificadorUnico());
 		//Relacao Bidirecional
 		assertEquals( norma1.getIdentificadorUnico(),	
-					  normaBD.getElementosNorma().get(1).getNormaPai().getIdentificadorUnico() );
+					  normaBD.getElementosNorma().get(1).getNormasPai().get(0).getIdentificadorUnico() );
 		
 		//PARAGRAFO2 e PARAGRAFO3
 		assertEquals( normaBD.getElementosNorma().get(1).getElementosNorma().get(0).getTexto(), 
@@ -350,9 +350,9 @@ public class LawManagerTest {
 		assertEquals( normaBD.getElementosNorma().get(1).getElementosNorma().get(1).getTexto(), 
 				      paragrafo3.getTexto() );
 		//Relacao Bidirecional
-		assertEquals( normaBD.getElementosNorma().get(1).getElementosNorma().get(0).getElementoNormaPai().getIdentificadorUnico(), 
+		assertEquals( normaBD.getElementosNorma().get(1).getElementosNorma().get(0).getElementosNormaPai().get(0).getIdentificadorUnico(), 
 				      artigo2.getIdentificadorUnico() );
-		assertEquals( normaBD.getElementosNorma().get(1).getElementosNorma().get(1).getElementoNormaPai().getIdentificadorUnico(), 
+		assertEquals( normaBD.getElementosNorma().get(1).getElementosNorma().get(1).getElementosNormaPai().get(0).getIdentificadorUnico(), 
 					  artigo2.getIdentificadorUnico() );
 	}
 	
