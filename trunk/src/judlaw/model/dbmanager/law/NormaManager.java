@@ -55,6 +55,21 @@ public class NormaManager {
 	}
     
     /**
+     * Salva a nova versao de uma norma
+     * @param norma
+     */
+    public void salvaNormaAlterada(Norma norma) {
+		//Setando ElementosNorma
+    	List<ElementoNorma> elementosNorma = norma.getElementosNorma(); // 1o nivel - elementosNorma filhos da Norma
+    	for(ElementoNorma eleN : elementosNorma) {
+//    		eleN.setNormaPai(norma);
+    		eleN.getNormasPai().add( norma );
+    	}
+		//Persistindo
+    	dbManager.save(norma);
+	}
+    
+    /**
      * Remove todas as normas
      */
     public void removeNormas() {
@@ -81,5 +96,12 @@ public class NormaManager {
      */
     public void removeNorma(Norma norma) {
     	dbManager.remove( norma ); 
+    }
+    
+    /*
+     * Replica os atributos de uma norma em outra
+     */
+    public void setParametrosNorma(Norma norma, Norma novaNorma) {
+//    	novaNorma.set
     }
 }
