@@ -16,6 +16,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -50,10 +53,23 @@ public class Norma extends TextoLegal {
 	// Parte Final
 	private String local;
 	
-	@OneToMany(mappedBy="normaPai", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
+	//Norma é o Mapping Owner.
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "normasPaiElementoNorma",
+			joinColumns = {
+				@JoinColumn(name="normaPai_id")           
+    		},
+    		inverseJoinColumns = {
+				@JoinColumn(name="elementoNorma_id")
+    		}
+	)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<ElementoNorma> elementosNorma;
 	
+//	@OneToMany(mappedBy="normaPai", cascade = CascadeType.ALL)
+//    @LazyCollection(LazyCollectionOption.FALSE)
+//	private List<ElementoNorma> elementosNorma;
+
 	/* --------- Atributos --------- */
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
 	private String tipo; // tipo do textoLegal
