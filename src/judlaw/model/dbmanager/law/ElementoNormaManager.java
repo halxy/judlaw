@@ -133,4 +133,16 @@ public class ElementoNormaManager {
 		dbManager.save( elementoNormaPai );
 		salvaFilhosElementoRecursivo(elementoNorma);
 	}
+
+	/**
+     * Replica os atributos de um elementoNorma em outro
+     * Obs: as referencias nao sao replicadas, pois entende-se que so percentem a um momento temporal
+     * do banco de dados, entao um elementonorma modificado naquele momento temporal nao recebe as referencias
+     * da versao antiga
+	 * @param elementoNormaModificado
+	 * @param novoElementoNorma
+	 */
+	public void setParametrosElementoNorma(ElementoNorma elementoNormaModificado, ElementoNorma novoElementoNorma){
+		// TODO Auto-generated method stub
+	}
 }
