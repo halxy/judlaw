@@ -463,4 +463,13 @@ public class AlteracaoManagerTest {
 		assertEquals(alteracaoBD2.getElementoNormaDestino().getIdentificadorUnico(),
 				     artigo2.getIdentificadorUnico());	
 	}
+	
+	/**
+	 * Testa se as alteracoes do tipo modificacao estao sendo feitas do moddo correto.
+	 */
+	@Test
+	public void testCriaAlteracaoModificacao(){
+		// Testar se o numero de elementosNorma continua o mesmo
+		// Testar se os filhos da novaNorma possuem agora dois pais
+	}
 }

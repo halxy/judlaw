@@ -14,6 +14,7 @@ import judlaw.model.bean.law.Norma;
 import judlaw.model.bean.ref.Alteracao;
 import judlaw.model.dbmanager.DBManager;
 import judlaw.model.dbmanager.law.ElementoNormaManager;
+import judlaw.model.dbmanager.law.NormaManager;
 import judlaw.model.logic.time.TimeLogic;
 import judlaw.model.util.Constantes;
 
@@ -259,8 +260,21 @@ public class AlteracaoManager {
     }
     
     /* --------------- MODIFICACAO --------------- */
-    public void criaAlteracaoModificacao(){
-    	
+    /**
+     *     
+     * @param normaOrigem - A norma modificadora
+     * @param normaDestino - A norma que sofreu a modificacao
+     * @param normaModificada - A nova norma apos a modificacao
+     * @param dataModificacao
+     * @param caracteristica
+     */
+    public void criaAlteracaoModificacao(Norma normaOrigem, Norma normaDestino, Norma normaModificada, 
+    		                             String dataModificacao, String caracteristica){
+    	Norma novaNorma = new Norma();
+    	NormaManager.getInstance().setParametrosNorma(normaModificada, novaNorma); //FAZER
+    	NormaManager.getInstance().salvaNormaAlterada( novaNorma );
+    	Alteracao alteracao = new Alteracao(normaOrigem, normaDestino, dataModificacao, Constantes.MODIFICACAO, Constantes.NEUTRA);
+    	dbManager.save( alteracao );
     }
     
 	/**
