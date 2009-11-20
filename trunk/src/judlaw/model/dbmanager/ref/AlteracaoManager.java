@@ -272,6 +272,7 @@ public class AlteracaoManager {
     		                             String dataModificacao, String caracteristica){
     	Norma novaNorma = new Norma();
     	NormaManager.getInstance().setParametrosNorma(normaModificada, novaNorma); //FAZER
+    	novaNorma.setDataPublicacao( dataModificacao );
     	NormaManager.getInstance().salvaNormaAlterada( novaNorma );
     	Alteracao alteracao = new Alteracao(normaOrigem, normaDestino, dataModificacao, Constantes.MODIFICACAO, Constantes.NEUTRA);
     	dbManager.save( alteracao );
