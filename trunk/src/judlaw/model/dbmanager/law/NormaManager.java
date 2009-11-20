@@ -98,11 +98,13 @@ public class NormaManager {
     	dbManager.remove( norma ); 
     }
     
-    /*
+    /**
      * Replica os atributos de uma norma em outra.
      * Obs: as referencias nao sao replicadas, pois entende-se que so percentem a um momento temporal
      * do banco de dados, entao uma norma modificada naquele momento temporal nao recebe as referencias
      * da versao antiga
+     * @param norma
+     * @param novaNorma
      */
     public void setParametrosNorma(Norma norma, Norma novaNorma) {
     	novaNorma.setEpigrafe( norma.getEpigrafe() );

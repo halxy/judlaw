@@ -271,12 +271,22 @@ public class AlteracaoManager {
     public void criaAlteracaoModificacao(Norma normaOrigem, Norma normaDestino, Norma normaModificada, 
     		                             String dataModificacao, String caracteristica){
     	Norma novaNorma = new Norma();
-    	NormaManager.getInstance().setParametrosNorma(normaModificada, novaNorma); //FAZER
+    	NormaManager.getInstance().setParametrosNorma(normaModificada, novaNorma);
     	novaNorma.setDataPublicacao( dataModificacao );
     	NormaManager.getInstance().salvaNormaAlterada( novaNorma );
-    	Alteracao alteracao = new Alteracao(normaOrigem, normaDestino, dataModificacao, Constantes.MODIFICACAO, Constantes.NEUTRA);
+    	Alteracao alteracao = new Alteracao(normaOrigem, normaDestino, dataModificacao, Constantes.MODIFICACAO, caracteristica);
     	dbManager.save( alteracao );
     }
+    
+    public void criaAlteracaoModificacao(Norma normaOrigem, ElementoNorma elementoNormaDestino, ElementoNorma elementoNormaModificado, 
+            String dataModificacao, String caracteristica){
+	ElementoNorma novoElementoNorma = new ElementoNorma();
+	ElementoNormaManager.getInstance().setParametrosElementoNorma(elementoNormaModificado, novoElementoNorma);
+	novoElementoNorma.setDataPublicacao( dataModificacao );
+//	NormaManager.getInstance().salvaNormaAlterada( novaNorma );
+	Alteracao alteracao = new Alteracao(normaOrigem, elementoNormaDestino, dataModificacao, Constantes.MODIFICACAO, caracteristica);
+	dbManager.save( alteracao );
+}
     
 	/**
      * Remove uma alteracao do banco de dados
