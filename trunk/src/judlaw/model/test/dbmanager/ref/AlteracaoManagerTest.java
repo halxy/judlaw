@@ -16,6 +16,7 @@ import judlaw.model.dbmanager.law.ElementoNormaManager;
 import judlaw.model.dbmanager.law.NormaManager;
 import judlaw.model.dbmanager.ref.AlteracaoManager;
 import judlaw.model.dbmanager.ref.ReferenciaManager;
+import judlaw.model.util.Constantes;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -403,7 +404,7 @@ public class AlteracaoManagerTest {
 		 *                      Par1              
 		 */
 		
-		//Alteracao
+		/* ---------- AlteracaoInclusao ----------*/
 		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
 				"dataPublicacaoArt1", "10/10/2010-99/99/9999");
 		ElementoNorma paragrafo1 = new ElementoNorma("textoParagrafo1", "identificadorUnicoParagrafo1", "tipoParagrafo1", 
@@ -502,7 +503,35 @@ public class AlteracaoManagerTest {
 		assertEquals( 2, elementoNormaManager.getElementosNorma().size() );
 		assertEquals( 0, alteracaoManager.getAlteracoes().size() );
 		
-		// Testar se o numero de elementosNorma continua o mesmo
+		/* ---------- Criando uma nova modificada ----------*/
+		Norma norma1Aux = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", 
+				                                                      norma1.getIdentificadorUnico()).get(0);
+		norma1Aux.setEmenta("novaEmentaN1"); // Modificando a ementa
+		/* ---------- AlteracaoModificacao ----------*/
+		alteracaoManager.criaAlteracaoModificacao(norma2, norma1, norma1Aux, "20/11/2011", Constantes.MAIS_RESTRITIVA);
+		
+		/* ---------- Cardinalidades ----------*/
+		assertEquals( 3, normaManager.getNormas().size() );
+		assertEquals( 2, elementoNormaManager.getElementosNorma().size() );
+		assertEquals( 1, alteracaoManager.getAlteracoes().size() );
+		
+		/* ---------- Verificando os atributos da nova Norma----------*/
+		Alteracao alteracaoModificacaoBD = alteracaoManager.getAlteracoes().get(0);
+		assertEquals( 2, normaManager.selectNormaPorAtributo("identificadorUnico",norma1.getIdentificadorUnico()).size());
+		Norma norma1BDAux = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", 
+									norma1.getIdentificadorUnico()).get(1);
+		//Atributos
+		assertEquals( norma1BDAux.getDataPublicacao(), alteracaoModificacaoBD.getData());
+		assertEquals( "novaEmentaN1", norma1BDAux.getEmenta());
+		//Filhos
+		//Artigo1
+		assertEquals( 1, norma1BDAux.getElementosNorma().size());
+		ElementoNorma artigo1BD = (ElementoNorma) norma1BDAux.getElementosNorma().get(0);
+		assertEquals( artigo1BD.getIdentificadorUnico(), artigo1.getIdentificadorUnico() );
+		assertEquals( 2, artigo1BD.getNormasPai().size() );
+		assertEquals( 1, artigo1BD.getElementosNorma().size() );
+		//Inciso1
+		
 		// Testar se os filhos da novaNorma possuem agora dois pais
 	}
 }
