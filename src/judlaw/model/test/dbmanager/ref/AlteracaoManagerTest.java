@@ -507,7 +507,9 @@ public class AlteracaoManagerTest {
 		Norma norma1Aux = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", 
 				                                                      norma1.getIdentificadorUnico()).get(0);
 		norma1Aux.setEmenta("novaEmentaN1"); // Modificando a ementa
-		/* ---------- AlteracaoModificacao ----------*/
+		/* 
+		 * AlteracaoModificacao1 = Norma2 modifica Norma1
+		 */
 		alteracaoManager.criaAlteracaoModificacao(norma2, norma1, norma1Aux, "20/11/2011", Constantes.MAIS_RESTRITIVA);
 		
 		/* ---------- Cardinalidades ----------*/
@@ -525,13 +527,19 @@ public class AlteracaoManagerTest {
 		assertEquals( "novaEmentaN1", norma1BDAux.getEmenta());
 		//Filhos
 		//Artigo1
-		assertEquals( 1, norma1BDAux.getElementosNorma().size());
+		assertEquals( 1, norma1BDAux.getElementosNorma().size() );
 		ElementoNorma artigo1BD = (ElementoNorma) norma1BDAux.getElementosNorma().get(0);
 		assertEquals( artigo1BD.getIdentificadorUnico(), artigo1.getIdentificadorUnico() );
 		assertEquals( 2, artigo1BD.getNormasPai().size() );
 		assertEquals( 1, artigo1BD.getElementosNorma().size() );
-		//Inciso1
+		//Paragrafo1
+		assertEquals( 1, artigo1BD.getElementosNorma().size() );
+		ElementoNorma paragrafo1BD = (ElementoNorma) artigo1BD.getElementosNorma().get(0);
+		assertEquals( paragrafo1BD.getIdentificadorUnico(), paragrafo1.getIdentificadorUnico() );
+		assertEquals( 1, paragrafo1BD.getElementosNormaPai().size() );
 		
-		// Testar se os filhos da novaNorma possuem agora dois pais
+		/* 
+		 * AlteracaoModificacao2 = Norma2 modifica Artigo1
+		 */
 	}
 }
