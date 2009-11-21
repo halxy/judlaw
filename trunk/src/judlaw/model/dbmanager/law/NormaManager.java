@@ -64,6 +64,7 @@ public class NormaManager {
     	for(ElementoNorma eleN : elementosNorma) {
 //    		eleN.setNormaPai(norma);
     		eleN.getNormasPai().add( norma );
+    		dbManager.save( eleN );
     	}
 		//Persistindo
     	dbManager.save(norma);
@@ -115,6 +116,8 @@ public class NormaManager {
     	novaNorma.setTipo( norma.getTipo() );
     	novaNorma.setDataPublicacao( norma.getDataPublicacao() );
     	novaNorma.setVigencia( norma.getVigencia() );
-    	novaNorma.setElementosNorma( norma.getElementosNorma() );
+    	for(ElementoNorma eleN : norma.getElementosNorma() ) {
+    		novaNorma.getElementosNorma().add( eleN );
+    	}
     }
 }
