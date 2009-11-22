@@ -68,8 +68,23 @@ public class ElementoNormaManager {
      * Remove todos os elementosNorma
      */
 	public void removeElementosNorma() {
-		dbManager.removeAll(new ElementoNorma());
+//		for ( ElementoNorma eleNorma : getElementosNorma() ) {
+//			removePais(eleNorma);
+//			dbManager.save( eleNorma );
+//		}
+		dbManager.removeAll( new ElementoNorma() );
 	}
+	
+//	/*
+//	 * Remove os pais de um ElementoNorma
+//	 */
+//	private void removePais(ElementoNorma elementoNorma) {
+//		if( elementoNorma.getNormasPai().size() > 0) {
+//			elementoNorma.getNormasPai().clear();
+//		} else {
+//			elementoNorma.getElementosNormaPai().clear();
+//		}
+//	}
 	
 	/**
 	 * Remove um ElementoNorma do banco de dados

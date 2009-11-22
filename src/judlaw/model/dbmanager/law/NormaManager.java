@@ -7,7 +7,6 @@
  */
 package judlaw.model.dbmanager.law;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import judlaw.model.bean.law.ElementoNorma;
@@ -75,15 +74,12 @@ public class NormaManager {
      * Remove todas as normas
      */
     public void removeNormas() {
-    	for( Norma norma : getNormas() ) {
-    		for (ElementoNorma eleNorma : norma.getElementosNorma() ) {
-    			eleNorma.setNormasPai( new ArrayList<Norma>() );
-    			dbManager.save( eleNorma );
-    		}
-    		norma.setElementosNorma( new ArrayList<ElementoNorma>() );
+    	for ( Norma norma : getNormas() ) {
+    		norma.getElementosNorma().clear();
     		dbManager.save( norma );
     	}
 		dbManager.removeAll( new Norma() );
+//		dbManager.removeAll( new Norma() );
 	}
     
     /**
