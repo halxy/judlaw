@@ -542,5 +542,28 @@ public class AlteracaoManagerTest {
 		/* 
 		 * AlteracaoModificacao2 = Norma2 modifica Artigo1
 		 */
+		ElementoNorma artigo1Aux = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo("identificadorUnico", 
+                																		artigo1.getIdentificadorUnico()).get(0);
+		artigo1Aux.setTexto("textoArt1Aux"); // Modificando o texto
+		alteracaoManager.criaAlteracaoModificacao(norma2, artigo1, artigo1Aux, "20/11/2011", Constantes.MAIS_RESTRITIVA);
+		/* ---------- Cardinalidades ----------*/
+		assertEquals( 3, normaManager.getNormas().size() );
+		assertEquals( 3, elementoNormaManager.getElementosNorma().size() );
+		assertEquals( 2, alteracaoManager.getAlteracoes().size() );
+		
+		/* ---------- Verificando os atributos do novo Elemento----------*/
+		Alteracao alteracaoModificacaoBD2 = alteracaoManager.getAlteracoes().get(1);
+		assertEquals( 2, elementoNormaManager.selectElementoPorAtributo("identificadorUnico", artigo1.getIdentificadorUnico()).size());
+		ElementoNorma artigo1BDAux = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo("identificadorUnico", 
+									artigo1.getIdentificadorUnico()).get(1);
+		//Atributos
+		assertEquals( artigo1BDAux.getDataPublicacao(), alteracaoModificacaoBD2.getData());
+		assertEquals( "textoArt1Aux", artigo1BDAux.getTexto());
+		//Filhos
+		//Paragrafo1
+//		assertEquals( 1, artigo1BDAux.getElementosNorma().size() );
+//		ElementoNorma paragrafo1BDAux = (ElementoNorma) artigo1BDAux.getElementosNorma().get(0);
+//		assertEquals( paragrafo1BDAux.getIdentificadorUnico(), paragrafo1.getIdentificadorUnico() );
+//		assertEquals( 2, paragrafo1BDAux.getElementosNormaPai().size() );
 	}
 }
