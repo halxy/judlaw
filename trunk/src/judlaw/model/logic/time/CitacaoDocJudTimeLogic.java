@@ -21,9 +21,6 @@ import judlaw.model.util.Constantes;
  */
 public class CitacaoDocJudTimeLogic extends TimeLogic {
 	
-	//Lista de Excecoes a serem utilizadas na busca refinada por inconsistencias temporais
-	private List<Exception> inconsistenciasTemporais = new ArrayList<Exception>();
-	
 	private static CitacaoDocJudTimeLogic citacaoDocJudTimeLogic = null;
 	
 	/**
@@ -35,14 +32,6 @@ public class CitacaoDocJudTimeLogic extends TimeLogic {
 			citacaoDocJudTimeLogic = new CitacaoDocJudTimeLogic();
 		}
 		return citacaoDocJudTimeLogic;
-	}
-	
-	public List<Exception> getInconsistenciasTemporais() {
-		return inconsistenciasTemporais;
-	}
-
-	public void setInconsistenciasTemporais(List<Exception> inconsistenciasTemporais) {
-		this.inconsistenciasTemporais = inconsistenciasTemporais;
 	}
 	
 	/**
