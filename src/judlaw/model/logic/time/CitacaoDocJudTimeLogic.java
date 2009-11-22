@@ -33,7 +33,7 @@ public class CitacaoDocJudTimeLogic extends TimeLogic {
 		}
 		return citacaoDocJudTimeLogic;
 	}
-	
+
 	/**
 	 * Dado um documentoJuridico, retorna as citacoes temporalmente inconsistentes feitas por ele.
 	 * @param docJud
