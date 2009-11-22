@@ -283,6 +283,11 @@ public class AlteracaoManager {
 		ElementoNorma novoElementoNorma = new ElementoNorma();
 		ElementoNormaManager.getInstance().setParametrosElementoNorma(elementoNormaModificado, novoElementoNorma);
 		novoElementoNorma.setDataPublicacao( dataModificacao );
+		//Pais
+		for( Norma normaPai : elementoNormaModificado.getNormasPai() ){
+			normaPai.getElementosNorma().add( novoElementoNorma );
+			dbManager.save( normaPai );
+		}
 		ElementoNormaManager.getInstance().salvaElementoAlterado( novoElementoNorma );
 		Alteracao alteracao = new Alteracao(normaOrigem, elementoNormaDestino, dataModificacao, Constantes.MODIFICACAO, caracteristica);
 		dbManager.save( alteracao );
