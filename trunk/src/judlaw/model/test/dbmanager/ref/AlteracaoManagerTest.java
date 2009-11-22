@@ -38,8 +38,8 @@ public class AlteracaoManagerTest {
 	public void setUp() {
 		/* ---------- Esvazia as listas envolvidas ----------*/
 		refManager.removeReferencias();
-		normaManager.removeNormas();
-		elementoNormaManager.removeElementosNorma();
+		normaManager.removeLaw();
+//		elementoNormaManager.removeElementosNorma();
 		docJudManager.removeDocumentosJuridicos();	
 	}
 	

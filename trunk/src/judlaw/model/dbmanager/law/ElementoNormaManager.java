@@ -48,6 +48,29 @@ public class ElementoNormaManager {
     }
     
     /**
+     * Remove os filhos do elementoNormaRecursivamente
+     * @param elementoNorma
+     */
+    public void removePaisRecursivo( ElementoNorma elementoNorma ) {
+		List<ElementoNorma> filhos = elementoNorma.getElementosNorma();
+		for(ElementoNorma filho : filhos) {
+//    			filho.setElementoNormaPai(elementoNorma);
+			removePais(filho);
+			filho.getElementosNorma().clear();
+			dbManager.save(filho);
+			salvaFilhosElementoRecursivo(filho);
+		}
+    }
+    
+    public void removePais(ElementoNorma elementoNorma) {
+		if( elementoNorma.getNormasPai().size() > 0) {
+			elementoNorma.getNormasPai().clear();
+		} else {
+			elementoNorma.getElementosNormaPai().clear();
+		}
+	}
+    
+    /**
      * Persiste um elementoNorma na base de dados
      * @param elementoNorma
      */
@@ -68,23 +91,8 @@ public class ElementoNormaManager {
      * Remove todos os elementosNorma
      */
 	public void removeElementosNorma() {
-//		for ( ElementoNorma eleNorma : getElementosNorma() ) {
-//			removePais(eleNorma);
-//			dbManager.save( eleNorma );
-//		}
 		dbManager.removeAll( new ElementoNorma() );
 	}
-	
-//	/*
-//	 * Remove os pais de um ElementoNorma
-//	 */
-//	private void removePais(ElementoNorma elementoNorma) {
-//		if( elementoNorma.getNormasPai().size() > 0) {
-//			elementoNorma.getNormasPai().clear();
-//		} else {
-//			elementoNorma.getElementosNormaPai().clear();
-//		}
-//	}
 	
 	/**
 	 * Remove um ElementoNorma do banco de dados

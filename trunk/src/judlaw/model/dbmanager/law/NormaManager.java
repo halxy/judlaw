@@ -83,6 +83,24 @@ public class NormaManager {
 	}
     
     /**
+     * Remove normas e elementosNorma
+     */
+    public void removeLaw() {
+    	for ( Norma norma : getNormas() ) {
+    		for( ElementoNorma eleN : norma.getElementosNorma() ) {
+    			ElementoNormaManager.getInstance().removePais( eleN );
+    			ElementoNormaManager.getInstance().removePaisRecursivo( eleN );
+    			eleN.getElementosNorma().clear();
+    			dbManager.save( eleN );
+    		}
+    		norma.getElementosNorma().clear();
+    		dbManager.save( norma );
+    	}
+		dbManager.removeAll( new Norma() );
+		dbManager.removeAll( new ElementoNorma() );
+    }
+    
+    /**
      * Retorna todos as normas
      * @return
      */

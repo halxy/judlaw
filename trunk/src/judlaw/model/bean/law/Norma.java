@@ -57,10 +57,10 @@ public class Norma extends TextoLegal {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "normasPaiElementoNorma",
 			joinColumns = {
-				@JoinColumn(name="normaPai_id")           
+				@JoinColumn(name="normaPai_id", nullable = true)           
     		},
     		inverseJoinColumns = {
-				@JoinColumn(name="elementoNorma_id")
+				@JoinColumn(name="elementoNorma_id", nullable = true)
     		}
 	)
 	@LazyCollection(LazyCollectionOption.FALSE)

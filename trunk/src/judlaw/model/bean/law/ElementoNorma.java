@@ -92,10 +92,10 @@ public class ElementoNorma extends TextoLegal {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "ElementosNormaPaiElementoNorma",
 			joinColumns = {
-				@JoinColumn(name="elementoNormaPai_id")           
+				@JoinColumn(name="elementoNormaPai_id", nullable = true)           
     		},
     		inverseJoinColumns = {
-				@JoinColumn(name="elementoNorma_id")
+				@JoinColumn(name="elementoNorma_id", nullable = true)
     		}
 	)
 	@LazyCollection(LazyCollectionOption.FALSE)
