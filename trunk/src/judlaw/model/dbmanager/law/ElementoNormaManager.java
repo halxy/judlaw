@@ -40,35 +40,12 @@ public class ElementoNormaManager {
     public void salvaFilhosElementoRecursivo(ElementoNorma elementoNorma) {
     	List<ElementoNorma> filhos = elementoNorma.getElementosNorma();
 		for(ElementoNorma filho : filhos) {
-//			filho.setElementoNormaPai(elementoNorma);
 			filho.getElementosNormaPai().add( elementoNorma );
 			dbManager.save(filho);
 			salvaFilhosElementoRecursivo(filho);
 		}
     }
-    
-    /**
-     * Remove os filhos do elementoNormaRecursivamente
-     * @param elementoNorma
-     */
-    public void removePaisRecursivo( ElementoNorma elementoNorma ) {
-		List<ElementoNorma> filhos = elementoNorma.getElementosNorma();
-		for(ElementoNorma filho : filhos) {
-			removePais(filho);
-			filho.getElementosNorma().clear();
-			dbManager.save(filho);
-			salvaFilhosElementoRecursivo(filho);
-		}
-    }
-    
-    public void removePais(ElementoNorma elementoNorma) {
-		if( elementoNorma.getNormasPai().size() > 0) {
-			elementoNorma.getNormasPai().clear();
-		} else {
-			elementoNorma.getElementosNormaPai().clear();
-		}
-	}
-    
+      
     /**
      * Persiste um elementoNorma na base de dados
      * @param elementoNorma
@@ -91,13 +68,6 @@ public class ElementoNormaManager {
 	 * @param elementoNorma
 	 */
 	public void removeElementoNorma(ElementoNorma elementoNorma) {
-//		if(elementoNorma.getNormaPai() != null) { //Caso o pai do elemento seja uma Norma
-//			elementoNorma.getNormaPai().getElementosNorma().remove( elementoNorma );
-//			dbManager.save( elementoNorma.getNormaPai() );
-//		} else { //Caso o pai do elemento seja um ElementoNorma
-//			elementoNorma.getElementoNormaPai().getElementosNorma().remove( elementoNorma );
-//			dbManager.save( elementoNorma.getElementoNormaPai() );
-//		}
 		if(elementoNorma.getNormasPai().size() > 0) { //Caso o pai do elemento seja uma Norma
 			for( Norma normaPai : elementoNorma.getNormasPai() ) {
 				normaPai.getElementosNorma().remove( elementoNorma );
@@ -129,7 +99,6 @@ public class ElementoNormaManager {
 	 * @param normaPai
 	 */
 	public void adicionaElementoNorma(ElementoNorma elementoNorma, Norma normaPai) {
-//		elementoNorma.setNormaPai(normaPai);
 		elementoNorma.getNormasPai().add( normaPai );
 		normaPai.getElementosNorma().add( elementoNorma );
 		dbManager.save(normaPai);
@@ -142,7 +111,6 @@ public class ElementoNormaManager {
 	 * @param elementoNormaPai
 	 */
 	public void adicionaElementoNorma(ElementoNorma elementoNorma, ElementoNorma elementoNormaPai) {
-//		elementoNorma.setElementoNormaPai( elementoNormaPai );
 		elementoNorma.getElementosNormaPai().add( elementoNormaPai );
 		elementoNormaPai.getElementosNorma().add( elementoNorma );
 		dbManager.save( elementoNormaPai );
