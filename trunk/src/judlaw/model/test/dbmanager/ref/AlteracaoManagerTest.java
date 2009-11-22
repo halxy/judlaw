@@ -42,6 +42,7 @@ public class AlteracaoManagerTest {
 		elementoNormaManager.removeElementosNorma();
 		docJudManager.removeDocumentosJuridicos();	
 	}
+	
 	 /* ------------------------------------------------------------------ */
     /* -------------------- TESTE ALTERACAO ------------------------------ */
     /* ------------------------------------------------------------------ */
