@@ -75,16 +75,17 @@ public class NormaManager {
      */
     public void removeLaw() {
     	for ( Norma norma : getNormas() ) {
-    		for( ElementoNorma eleN : norma.getElementosNorma() ) {
-    			ElementoNormaManager.getInstance().removePais( eleN );
-    			ElementoNormaManager.getInstance().removePaisRecursivo( eleN );
-    			eleN.getElementosNorma().clear();
-    			dbManager.save( eleN );
-    		}
     		norma.getElementosNorma().clear();
     		dbManager.save( norma );
     	}
 		dbManager.removeAll( new Norma() );
+		
+		for ( ElementoNorma eleNorma: ElementoNormaManager.getInstance().getElementosNorma()){
+			if(eleNorma.getElementosNorma().size()>0) {
+				eleNorma.getElementosNorma().clear();
+				dbManager.save( eleNorma );
+			}
+		}
 		dbManager.removeAll( new ElementoNorma() );
     }
     
