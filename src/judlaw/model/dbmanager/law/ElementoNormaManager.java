@@ -163,11 +163,14 @@ public class ElementoNormaManager {
 		novoElementoNorma.setTipo( elementoNormaModificado.getTipo() );
 		novoElementoNorma.setDataPublicacao( elementoNormaModificado.getDataPublicacao() );
 		novoElementoNorma.setVigencia( elementoNormaModificado.getVigencia() );
+		//ElementosNorma
 		novoElementoNorma.setElementosNorma( elementoNormaModificado.getElementosNorma() );
+		//Pais
 		if( elementoNormaModificado.getNormasPai().size() > 0 ){
 			novoElementoNorma.setNormasPai( elementoNormaModificado.getNormasPai() );
 		} else {
 			novoElementoNorma.setElementosNormaPai( elementoNormaModificado.getElementosNormaPai() );
 		}
+		
 	}
 }
