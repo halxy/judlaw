@@ -10,6 +10,8 @@ package judlaw.model.logic.time;
 import java.util.ArrayList;
 import java.util.List;
 
+import judlaw.model.bean.law.ElementoNorma;
+import judlaw.model.bean.law.Norma;
 import judlaw.model.bean.law.TextoLegal;
 import judlaw.model.bean.ref.Alteracao;
 import judlaw.model.util.Constantes;
@@ -53,6 +55,18 @@ public class AlteracaoTimeLogic extends TimeLogic {
 						                     									que a dataFim da vigencia. */
 					listaResultado.add( alteracao );
 				}
+				/*
+				 * Verificando os filhos: caso eles tenham uma data de publicacao mais recente que 
+				 * a data de publicacao da norma, sao adicionados na lista
+				 */
+				for( ElementoNorma eleNorma : alteracao.getNormaDestino().getElementosNorma() ) {
+					if( comparaDatas(eleNorma.getDataPublicacao(), 
+									 alteracao.getNormaDestino().getDataPublicacao(), 
+									 Constantes.DELIMITADOR_DATA) > 0) {
+						getElementosNormaFilhosAtualizados().add( eleNorma );
+						getElementosAtualizadosString().add("O elemento "+eleNorma.getIdentificadorUnico()+" possui uma data de publicacao mais atual: "+eleNorma.getDataPublicacao());
+					}
+				}
 			//Caso a alteracao foi feita a um elementonorma
 			} else if ( alteracao.getElementoNormaDestino() != null ){
 				if ( comparaVigenciaComData(alteracao.getElementoNormaDestino().getVigencia(), 
@@ -61,6 +75,40 @@ public class AlteracaoTimeLogic extends TimeLogic {
 	                    					Constantes.DELIMITADOR_DATA) < 0 ) { /* Caso for < 0, a data da ref eh mais atual
 																				 que a dataFim da vigencia. */
 					listaResultado.add( alteracao );
+				}
+				/*
+				 * Verificando os pais
+				 */
+				if( alteracao.getElementoNormaDestino().getNormasPai().size() > 0 ) {
+					for( Norma normaPai : alteracao.getElementoNormaDestino().getNormasPai() ) {
+						if( comparaDatas(normaPai.getDataPublicacao(), 
+								 		 alteracao.getElementoNormaDestino().getDataPublicacao(), 
+								 		 Constantes.DELIMITADOR_DATA) > 0) {
+							getNormasPaiAtualizados().add( normaPai );
+							getElementosAtualizadosString().add("O elemento "+normaPai.getIdentificadorUnico()+" possui uma data de publicacao mais atual: "+normaPai.getDataPublicacao());
+						}
+					}
+				} else {
+					for( ElementoNorma eleNormaPai : alteracao.getElementoNormaDestino().getElementosNormaPai() ) {
+						if( comparaDatas(eleNormaPai.getDataPublicacao(), 
+								 		 alteracao.getElementoNormaDestino().getDataPublicacao(), 
+								 		 Constantes.DELIMITADOR_DATA) > 0) {
+							getElementosNormaPaiAtualizados().add( eleNormaPai );
+							getElementosAtualizadosString().add("O elemento "+eleNormaPai.getIdentificadorUnico()+" possui uma data de publicacao mais atual: "+eleNormaPai.getDataPublicacao());
+						}
+					}
+				}
+				
+				/*
+				 * Verificando os filhos
+				 */
+				for( ElementoNorma eleNorma : alteracao.getElementoNormaDestino().getElementosNorma() ) {
+					if( comparaDatas(eleNorma.getDataPublicacao(), 
+									 alteracao.getElementoNormaDestino().getDataPublicacao(), 
+									 Constantes.DELIMITADOR_DATA) > 0) {
+						getElementosNormaFilhosAtualizados().add( eleNorma );
+						getElementosAtualizadosString().add("O elemento "+eleNorma.getIdentificadorUnico()+" possui uma data de publicacao mais atual: "+eleNorma.getDataPublicacao());
+					}
 				}
 			}
 		}
