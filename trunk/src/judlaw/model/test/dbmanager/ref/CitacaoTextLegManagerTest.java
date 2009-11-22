@@ -37,8 +37,7 @@ public class CitacaoTextLegManagerTest {
 	public void setUp() {
 		/* ---------- Esvazia as listas envolvidas ----------*/
 		refManager.removeReferencias();
-		normaManager.removeNormas();
-		elementoNormaManager.removeElementosNorma();
+		normaManager.removeLaw();
 		docJudManager.removeDocumentosJuridicos();	
 	}
 	/**

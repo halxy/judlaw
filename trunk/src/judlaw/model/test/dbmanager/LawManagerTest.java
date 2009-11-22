@@ -36,8 +36,7 @@ public class LawManagerTest {
 	public void setUp() {
 		/* ---------- Esvazia a lista de Normas e ElementosNorma ----------*/
 		ReferenciaManager.getInstance().removeReferencias();
-		normaManager.removeNormas();
-		elementoNormaManager.removeElementosNorma();
+		normaManager.removeLaw();
 	}
 	
 	/**
