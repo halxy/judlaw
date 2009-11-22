@@ -69,18 +69,19 @@ public class NormaManager {
 	}
        
     /**
-     * Remove todas as normas e elementosNorma
+     * Remove todas as normas e elementosNorma.
+     * Obs: eh necessario remover primeiro os elementosFilhos para depois remover o objeto em si.
      */
     public void removeLaw() {
-    	for ( Norma norma : getNormas() ) {
-    		norma.getElementosNorma().clear();
+    	for ( Norma norma : getNormas() ){
+    		norma.getElementosNorma().clear(); //remove os filhos primeiro
     		dbManager.save( norma );
     	}
 		dbManager.removeAll( new Norma() );
 		
 		for ( ElementoNorma eleNorma: ElementoNormaManager.getInstance().getElementosNorma()){
 			if(eleNorma.getElementosNorma().size()>0) {
-				eleNorma.getElementosNorma().clear();
+				eleNorma.getElementosNorma().clear(); //remove os filhos primero
 				dbManager.save( eleNorma );
 			}
 		}
