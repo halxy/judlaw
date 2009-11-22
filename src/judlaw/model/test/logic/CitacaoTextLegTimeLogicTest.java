@@ -116,12 +116,12 @@ public class CitacaoTextLegTimeLogicTest {
 			          citacaoTLManager.getCitacoesTextLeg().get(2).getNormaOrigem().getIdentificadorUnico() );
 		Norma norma1BD = citacaoTLManager.getCitacoesTextLeg().get(0).getNormaOrigem();
 		//Norma2 e Inciso2
-		assertEquals( 2, citacaoTLTimeLogic.inconsistenciaTemporalSimples(norma1BD).size());
+		assertEquals( 2, citacaoTLTimeLogic.inconsistenciaTemporal(norma1BD).size());
 		assertEquals( norma2.getIdentificadorUnico(), 
-				citacaoTLTimeLogic.inconsistenciaTemporalSimples(norma1BD).get(0).
+				citacaoTLTimeLogic.inconsistenciaTemporal(norma1BD).get(0).
 				                                             getNormaDestino().getIdentificadorUnico());
 		assertEquals( inciso2.getIdentificadorUnico(), 
-				citacaoTLTimeLogic.inconsistenciaTemporalSimples(norma1BD).get(1).
+				citacaoTLTimeLogic.inconsistenciaTemporal(norma1BD).get(1).
 			                                             getElementoNormaDestino().getIdentificadorUnico());
 	}
 }

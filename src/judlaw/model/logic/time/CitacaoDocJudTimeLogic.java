@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import judlaw.model.bean.docjud.DocumentoJuridico;
+import judlaw.model.bean.law.ElementoNorma;
+import judlaw.model.bean.law.Norma;
 import judlaw.model.bean.ref.CitacaoDocJud;
 import judlaw.model.util.Constantes;
 
@@ -33,14 +35,23 @@ public class CitacaoDocJudTimeLogic extends TimeLogic {
 		}
 		return citacaoDocJudTimeLogic;
 	}
-
+	
+	/*
+	 * Inicializa as listas a serem utilizadas na refinacao da inconsistencia temporal
+	 */
+	private void inicializaListas() {
+		setNormasPaiAtualizados( new ArrayList<Norma>() );
+		setElementosNormaPaiAtualizados( new ArrayList<ElementoNorma>() );
+		setElementosNormaFilhosAtualizados( new ArrayList<ElementoNorma>() );
+	}
 	/**
 	 * Dado um documentoJuridico, retorna as citacoes temporalmente inconsistentes feitas por ele.
 	 * @param docJud
 	 * @return Citacoes temporalmente inconsistentes feitas por ele.
 	 * @throws Exception
 	 */
-	public List<CitacaoDocJud> inconsistenciaTemporalSimples(DocumentoJuridico docJud) throws Exception {
+	public List<CitacaoDocJud> inconsistenciaTemporal(DocumentoJuridico docJud) throws Exception {
+		inicializaListas();
 		List<CitacaoDocJud> listaResultado = new ArrayList<CitacaoDocJud>();
 		List<CitacaoDocJud> citacoesFeitas = docJud.getCitacoesFeitas();
 		/*
@@ -71,14 +82,5 @@ public class CitacaoDocJudTimeLogic extends TimeLogic {
 			}
 		}
 		return listaResultado;
-	}
-	
-	/**
-	 * 
-	 * @param docJud
-	 * @return
-	 */
-	public List<CitacaoDocJud> inconsistenciaTemporalRefinada(DocumentoJuridico docJud) {
-		return null; //TODO
 	}
 }
