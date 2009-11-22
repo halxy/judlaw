@@ -53,6 +53,17 @@ public class ElementoNormaManager {
 	public void salvaElementoNorma(ElementoNorma elementoNorma) {
 		salvaFilhosElementoRecursivo(elementoNorma);
 	}
+	
+	public void salvaElementoAlterado(ElementoNorma elementoNorma) {
+		//Setando ElementosNorma
+    	List<ElementoNorma> elementosNorma = elementoNorma.getElementosNorma();
+    	for(ElementoNorma eleN : elementosNorma) {
+    		eleN.getElementosNormaPai().add( elementoNorma );
+    		dbManager.save( eleN );
+    	}
+		//Persistindo
+    	dbManager.save(elementoNorma);
+	}
     
 	/**
      * Retorna todos os elementos norma
@@ -132,7 +143,9 @@ public class ElementoNormaManager {
 		novoElementoNorma.setDataPublicacao( elementoNormaModificado.getDataPublicacao() );
 		novoElementoNorma.setVigencia( elementoNormaModificado.getVigencia() );
 		//ElementosNorma
-		novoElementoNorma.setElementosNorma( elementoNormaModificado.getElementosNorma() );
+		for(ElementoNorma eleN : elementoNormaModificado.getElementosNorma() ) {
+			novoElementoNorma.getElementosNorma().add( eleN );
+    	}
 		//Pais
 		if( elementoNormaModificado.getNormasPai().size() > 0 ){
 			novoElementoNorma.setNormasPai( elementoNormaModificado.getNormasPai() );
