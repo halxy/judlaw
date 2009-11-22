@@ -618,7 +618,7 @@ public class AlteracaoManagerTest {
 			System.out.println(eleN.getTexto());
 			System.out.println(eleN.getNormasPai().get(0).getIdentificadorUnico());
 		}
-//		assertEquals( 2, norma1BD.getElementosNorma().size() );
+		assertEquals( 2, norma1BD.getElementosNorma().size() );
 		assertEquals( 1, alteracaoManager.getAlteracoes().size() );
 	}
 }
