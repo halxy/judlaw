@@ -42,7 +42,6 @@ public class NormaManager {
 		//Setando ElementosNorma
     	List<ElementoNorma> elementosNorma = norma.getElementosNorma(); // 1o nivel - elementosNorma filhos da Norma
     	for(ElementoNorma eleN : elementosNorma) {
-//    		eleN.setNormaPai(norma);
     		eleN.getNormasPai().add( norma );
     	}
 		//Persistindo
@@ -62,7 +61,6 @@ public class NormaManager {
 		//Setando ElementosNorma
     	List<ElementoNorma> elementosNorma = norma.getElementosNorma(); // 1o nivel - elementosNorma filhos da Norma
     	for(ElementoNorma eleN : elementosNorma) {
-//    		eleN.setNormaPai(norma);
     		eleN.getNormasPai().add( norma );
     		dbManager.save( eleN );
     	}
@@ -71,7 +69,7 @@ public class NormaManager {
 	}
        
     /**
-     * Remove todos os elementos
+     * Remove todas as normas e elementosNorma
      */
     public void removeLaw() {
     	for ( Norma norma : getNormas() ) {
