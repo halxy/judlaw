@@ -83,7 +83,7 @@ public class NormaManager {
 	}
     
     /**
-     * Remove normas e elementosNorma
+     * Remove todos os elementos
      */
     public void removeLaw() {
     	for ( Norma norma : getNormas() ) {

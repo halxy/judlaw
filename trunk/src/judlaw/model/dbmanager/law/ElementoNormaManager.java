@@ -54,7 +54,6 @@ public class ElementoNormaManager {
     public void removePaisRecursivo( ElementoNorma elementoNorma ) {
 		List<ElementoNorma> filhos = elementoNorma.getElementosNorma();
 		for(ElementoNorma filho : filhos) {
-//    			filho.setElementoNormaPai(elementoNorma);
 			removePais(filho);
 			filho.getElementosNorma().clear();
 			dbManager.save(filho);
