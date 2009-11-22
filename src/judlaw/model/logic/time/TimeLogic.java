@@ -7,9 +7,13 @@
  */
 package judlaw.model.logic.time;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
+import judlaw.model.bean.law.ElementoNorma;
+import judlaw.model.bean.law.Norma;
 import judlaw.model.util.Constantes;
 
 /**
@@ -20,6 +24,10 @@ import judlaw.model.util.Constantes;
 public class TimeLogic {
 
 	private static TimeLogic timeLogic = null;
+	private List<Norma> normasPaiAtualizados = new ArrayList<Norma>();
+	private List<ElementoNorma> elementosNormaPaiAtualizados = new ArrayList<ElementoNorma>();
+	private List<ElementoNorma> elementosNormaFilhosAtualizados = new ArrayList<ElementoNorma>();
+	private List<String> elementosAtualizadosString;
 	
 	/**
 	 * Singleton
@@ -134,5 +142,40 @@ public class TimeLogic {
 		StringTokenizer tokenVigencia = new StringTokenizer(vigencia, Constantes.DELIMITADOR_VIGENCIA);
 		String dataInicio = tokenVigencia.nextToken();
 		return dataInicio +"-"+ novaDataFim;
+	}
+
+	public List<Norma> getNormasPaiAtualizados() {
+		return normasPaiAtualizados;
+	}
+
+	public void setNormasPaiAtualizados(List<Norma> normasPaiAtualizados) {
+		this.normasPaiAtualizados = normasPaiAtualizados;
+	}
+
+	public List<ElementoNorma> getElementosNormaPaiAtualizados() {
+		return elementosNormaPaiAtualizados;
+	}
+
+	public void setElementosNormaPaiAtualizados(
+			List<ElementoNorma> elementosNormaPaiAtualizados) {
+		this.elementosNormaPaiAtualizados = elementosNormaPaiAtualizados;
+	}
+
+	public List<ElementoNorma> getElementosNormaFilhosAtualizados() {
+		return elementosNormaFilhosAtualizados;
+	}
+
+	public void setElementosNormaFilhosAtualizados(
+			List<ElementoNorma> elementosNormaFilhosAtualizados) {
+		this.elementosNormaFilhosAtualizados = elementosNormaFilhosAtualizados;
+	}
+
+	public List<String> getElementosAtualizadosString() {
+		return elementosAtualizadosString;
+	}
+
+	public void setElementosAtualizadosString(
+			List<String> elementosAtualizadosString) {
+		this.elementosAtualizadosString = elementosAtualizadosString;
 	}
 }
