@@ -54,15 +54,25 @@ public class ElementoNormaManager {
 		salvaFilhosElementoRecursivo(elementoNorma);
 	}
 	
-	public void salvaElementoAlterado(ElementoNorma elementoNorma) {
+	public void salvaElementoAlterado(ElementoNorma elementoNorma) {    	
+		if ( elementoNorma.getNormasPai().size() > 0) { //Caso o pai seja uma norma
+			for ( Norma normaPai : elementoNorma.getNormasPai() ) { 
+				normaPai.getElementosNorma().add( elementoNorma );
+				dbManager.save( normaPai );
+			}
+		} else { //Caso o pai seja um elementoNorma
+			for ( ElementoNorma elementoNormaPai : elementoNorma.getElementosNormaPai() ) { 
+	    		elementoNormaPai.getElementosNorma().add( elementoNorma );
+	    		dbManager.save( elementoNormaPai );
+			}
+		}
+		
 		//Setando ElementosNorma
     	List<ElementoNorma> elementosNorma = elementoNorma.getElementosNorma();
     	for(ElementoNorma eleN : elementosNorma) {
     		eleN.getElementosNormaPai().add( elementoNorma );
     		dbManager.save( eleN );
     	}
-		//Persistindo
-    	dbManager.save(elementoNorma);
 	}
     
 	/**
