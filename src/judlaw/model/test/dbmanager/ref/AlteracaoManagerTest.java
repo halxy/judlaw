@@ -595,7 +595,6 @@ public class AlteracaoManagerTest {
 		 *                           
 		 *                                   
 		 */
-		
 		/* ---------- Cardinalidades ----------*/
 		assertEquals( 2, normaManager.getNormas().size() );
 		assertEquals( 1, elementoNormaManager.getElementosNorma().size() );
@@ -619,6 +618,72 @@ public class AlteracaoManagerTest {
 		
 		/* ---------- Removendo ----------*/
 		NormaManager.getInstance().removeNorma( norma1BD );
+		
+		/* ---------- Cardinalidades ----------*/
+		assertEquals( 1, normaManager.getNormas().size() );
+		assertEquals( 0, elementoNormaManager.getElementosNorma().size() );
+		assertEquals( 0, alteracaoManager.getAlteracoes().size() );
+	}
+	
+	/**
+	 * Testa remover um elementoNorma apos seu filho ser modificado
+	 */
+	@Test
+	public void testRemoveElementoNormaAposAlteracaoModificacao(){
+		/* ---------- Verifica se as listas estao vazias ----------*/
+		assertEquals( 0, normaManager.getNormas().size() );
+		assertEquals( 0, elementoNormaManager.getElementosNorma().size() );
+		assertEquals( 0, alteracaoManager.getAlteracoes().size() );
+		
+		/* ---------- Verifica se as listas estao vazias ----------*/
+		assertEquals( 0, normaManager.getNormas().size() );
+		assertEquals( 0, elementoNormaManager.getElementosNorma().size() );
+		assertEquals( 0, alteracaoManager.getAlteracoes().size() );
+		
+		/* ---------- Criando Norma1, Artigo1 e Paragrafo1 ----------*/
+		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+				"dataPublicacaoN1", "10/10/2010-99/99/9999");
+		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
+				"dataPublicacaoArt1", "10/10/2010-99/99/9999");
+		ElementoNorma paragrafo1 = new ElementoNorma("textoParagrafo1", "identificadorUnicoParagrafo1", "tipoParagrafo1", 
+				"dataPublicacaoParagrafo1", "10/10/2010-99/99/9999");
+		artigo1.getElementosNorma().add(paragrafo1);
+		norma1.getElementosNorma().add( artigo1 );
+		normaManager.salvaNorma(norma1);
+		
+		/* ---------- Cardinalidades ----------*/
+		assertEquals( 1, normaManager.getNormas().size() );
+		assertEquals( 2, elementoNormaManager.getElementosNorma().size() );
+		assertEquals( 0, alteracaoManager.getAlteracoes().size() );
+		
+		/*
+		 *                         Norma1             
+		 *                         /                      
+		 *                       Art1                      
+		 *                       /
+		 *                      Par1             
+		 */
+		/* 
+		 * AlteracaoModificacao1 = Norma1 modifica Paragrafo1
+		 */
+		ElementoNorma paragrafo1Aux = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo("identificadorUnico", 
+				paragrafo1.getIdentificadorUnico()).get(0);
+		paragrafo1Aux.setTexto("textoPar1Aux"); // Modificando o texto
+		alteracaoManager.criaAlteracaoModificacao(norma1, paragrafo1, paragrafo1Aux, "20/11/2011", Constantes.MAIS_RESTRITIVA);
+		
+		/* ---------- Cardinalidades ----------*/
+		Norma norma1BD = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", 
+																		norma1.getIdentificadorUnico()).get(0);
+		ElementoNorma artigo1BD = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo("identificadorUnico", 
+																	artigo1.getIdentificadorUnico()).get(0);
+		assertEquals( 1, normaManager.getNormas().size() );
+		assertEquals( 3, elementoNormaManager.getElementosNorma().size() );
+		assertEquals( 1, norma1BD.getElementosNorma().size() );
+		assertEquals( 2, artigo1BD.getElementosNorma().size() );
+		assertEquals( 1, alteracaoManager.getAlteracoes().size() );
+		
+		/* ---------- Removendo ----------*/
+		ElementoNormaManager.getInstance().removeElementoNorma(artigo1BD);
 		
 		/* ---------- Cardinalidades ----------*/
 		assertEquals( 1, normaManager.getNormas().size() );
