@@ -126,12 +126,12 @@ public class CitacaoDocJudTimeLogicTest {
 				      docJudManager.getDocumentosJuridicos().get(0).getIdentificadorUnico() );
 		DocumentoJuridico docJud1BD = docJudManager.getDocumentosJuridicos().get(0);
 		//Norma2 e Inciso2
-		assertEquals( 2, citacaoDocJudTimeLogic.inconsistenciaTemporalSimples(docJud1BD).size());
+		assertEquals( 2, citacaoDocJudTimeLogic.inconsistenciaTemporal(docJud1BD).size());
 		assertEquals( norma2.getIdentificadorUnico(), 
-				      citacaoDocJudTimeLogic.inconsistenciaTemporalSimples(docJud1BD).get(0).
+				      citacaoDocJudTimeLogic.inconsistenciaTemporal(docJud1BD).get(0).
 				                                             getNormaDestino().getIdentificadorUnico());
 		assertEquals( inciso2.getIdentificadorUnico(), 
-			      citacaoDocJudTimeLogic.inconsistenciaTemporalSimples(docJud1BD).get(1).
+			      citacaoDocJudTimeLogic.inconsistenciaTemporal(docJud1BD).get(1).
 			                                             getElementoNormaDestino().getIdentificadorUnico());
 	}
 }

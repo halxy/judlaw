@@ -34,7 +34,7 @@ public class AlteracaoTimeLogic extends TimeLogic {
 		return alteracaoTimeLogic;
 	}
 	
-	public List<Alteracao> inconsistenciaTemporalSimples(TextoLegal textoLegal) throws Exception {
+	public List<Alteracao> inconsistenciaTemporal(TextoLegal textoLegal) throws Exception {
 		List<Alteracao> listaResultado = new ArrayList<Alteracao>();
 		List<Alteracao> alteracoesFeitas = textoLegal.getAlteracoesFeitas();
 		/*

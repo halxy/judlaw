@@ -41,7 +41,7 @@ public class CitacaoTextLegTimeLogic extends TimeLogic {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<CitacaoTextLeg> inconsistenciaTemporalSimples(TextoLegal textoLegal) throws Exception {
+	public List<CitacaoTextLeg> inconsistenciaTemporal(TextoLegal textoLegal) throws Exception {
 		List<CitacaoTextLeg> listaResultado = new ArrayList<CitacaoTextLeg>();
 		List<CitacaoTextLeg> citacoesFeitas = textoLegal.getCitacoesFeitas();
 		/*

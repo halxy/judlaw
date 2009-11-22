@@ -116,12 +116,12 @@ public class AlteracaoTimeLogicTest {
 			          alteracaoManager.getAlteracoes().get(2).getNormaOrigem().getIdentificadorUnico() );
 		Norma norma1BD = alteracaoManager.getAlteracoes().get(0).getNormaOrigem();
 		//Norma2 e Inciso2
-		assertEquals( 2, alteracaoTimeLogic.inconsistenciaTemporalSimples(norma1BD).size());
+		assertEquals( 2, alteracaoTimeLogic.inconsistenciaTemporal(norma1BD).size());
 		assertEquals( norma2.getIdentificadorUnico(), 
-				alteracaoTimeLogic.inconsistenciaTemporalSimples(norma1BD).get(0).
+				alteracaoTimeLogic.inconsistenciaTemporal(norma1BD).get(0).
 				                                             getNormaDestino().getIdentificadorUnico());
 		assertEquals( inciso2.getIdentificadorUnico(), 
-				alteracaoTimeLogic.inconsistenciaTemporalSimples(norma1BD).get(1).
+				alteracaoTimeLogic.inconsistenciaTemporal(norma1BD).get(1).
 			                                             getElementoNormaDestino().getIdentificadorUnico());
 	}
 }
