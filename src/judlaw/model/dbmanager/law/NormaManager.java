@@ -69,19 +69,7 @@ public class NormaManager {
 		//Persistindo
     	dbManager.save(norma);
 	}
-    
-    /**
-     * Remove todas as normas
-     */
-    public void removeNormas() {
-    	for ( Norma norma : getNormas() ) {
-    		norma.getElementosNorma().clear();
-    		dbManager.save( norma );
-    	}
-		dbManager.removeAll( new Norma() );
-//		dbManager.removeAll( new Norma() );
-	}
-    
+       
     /**
      * Remove todos os elementos
      */

@@ -37,8 +37,7 @@ public class AlteracaoTimeLogicTest {
 	@Before
 	public void setUp() throws Exception {
 		ReferenciaManager.getInstance().removeReferencias();
-		normaManager.removeNormas();
-		elementoNormaManager.removeElementosNorma();
+		normaManager.removeLaw();
 		docJudManager.removeDocumentosJuridicos();
 	}
 

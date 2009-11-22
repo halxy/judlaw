@@ -86,13 +86,6 @@ public class ElementoNormaManager {
 		return dbManager.selectAll(new ElementoNorma());
 	}
     
-    /**
-     * Remove todos os elementosNorma
-     */
-	public void removeElementosNorma() {
-		dbManager.removeAll( new ElementoNorma() );
-	}
-	
 	/**
 	 * Remove um ElementoNorma do banco de dados
 	 * @param elementoNorma
