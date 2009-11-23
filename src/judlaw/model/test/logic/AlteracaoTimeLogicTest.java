@@ -74,8 +74,8 @@ public class AlteracaoTimeLogicTest {
 		
 		Norma norma2 = new Norma("epigrafeN2", "ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
 				"10/10/2010", "10/10/2010-09/10/2011");
-		ElementoNorma artigo3 = new ElementoNorma("textoArt2", "identificadorUnicoArt2", "tipoArt2", 
-				"11/10/2010", "vigenciaArt2");
+		ElementoNorma artigo3 = new ElementoNorma("textoArt3", "identificadorUnicoArt3", "tipoArt3", 
+				"11/10/2010", "vigenciaArt3");
 		norma2.getElementosNorma().add( artigo3 );
 		normaManager.salvaNorma(norma2);
 		
@@ -132,5 +132,6 @@ public class AlteracaoTimeLogicTest {
 		//3) O pai de inciso2 tambem eh mais atual += 1;
 		assertEquals(2, AlteracaoTimeLogic.getInstance().getElementosNormaFilhosAtualizados().size() );
 		assertEquals(2, AlteracaoTimeLogic.getInstance().getElementosNormaPaiAtualizados().size() );
+		System.out.println( AlteracaoTimeLogic.getInstance().getElementosAtualizadosString() );
 	}
 }
