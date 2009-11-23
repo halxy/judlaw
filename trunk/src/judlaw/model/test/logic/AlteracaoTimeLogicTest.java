@@ -130,6 +130,7 @@ public class AlteracaoTimeLogicTest {
 		//1) O pai e filho de paragrafo1 tem datas mais atuais += 2;
 		//2) Norma2 tem o artigo3 que eh mais atual += 1;
 		//3) O pai de inciso2 tambem eh mais atual += 1;
-		assertEquals(4, AlteracaoTimeLogic.getInstance().getElementosNormaFilhosAtualizados().size() );
+		assertEquals(2, AlteracaoTimeLogic.getInstance().getElementosNormaFilhosAtualizados().size() );
+		assertEquals(2, AlteracaoTimeLogic.getInstance().getElementosNormaPaiAtualizados().size() );
 	}
 }
