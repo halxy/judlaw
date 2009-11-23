@@ -44,6 +44,7 @@ public class CitacaoTextLegTimeLogic extends TimeLogic {
 		setNormasPaiAtualizados( new ArrayList<Norma>() );
 		setElementosNormaPaiAtualizados( new ArrayList<ElementoNorma>() );
 		setElementosNormaFilhosAtualizados( new ArrayList<ElementoNorma>() );
+		setElementosAtualizadosString( new ArrayList<String>() );
 	}
 	
 	/**
