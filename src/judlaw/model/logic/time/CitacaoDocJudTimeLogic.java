@@ -44,6 +44,7 @@ public class CitacaoDocJudTimeLogic extends TimeLogic {
 		setElementosNormaPaiAtualizados( new ArrayList<ElementoNorma>() );
 		setElementosNormaFilhosAtualizados( new ArrayList<ElementoNorma>() );
 	}
+	
 	/**
 	 * Dado um documentoJuridico, retorna as citacoes temporalmente inconsistentes feitas por ele.
 	 * @param docJud
@@ -70,6 +71,18 @@ public class CitacaoDocJudTimeLogic extends TimeLogic {
 						                     									que a dataFim da vigencia. */
 					listaResultado.add( citacao );
 				}
+				/*
+				 * Verificando os filhos: caso eles tenham uma data de publicacao mais recente que 
+				 * a data de publicacao da norma, sao adicionados na lista
+				 */
+				for( ElementoNorma eleNorma : citacao.getNormaDestino().getElementosNorma() ) {
+					if( comparaDatas(eleNorma.getDataPublicacao(), 
+									 citacao.getNormaDestino().getDataPublicacao(), 
+									 Constantes.DELIMITADOR_DATA) > 0) {
+						getElementosNormaFilhosAtualizados().add( eleNorma );
+						getElementosAtualizadosString().add("O elemento "+eleNorma.getIdentificadorUnico()+" possui uma data de publicacao mais atual: "+eleNorma.getDataPublicacao());
+					}
+				}
 			//Caso a citacao foi feita a um elementonorma
 			} else if ( citacao.getElementoNormaDestino() != null ){
 				if ( comparaVigenciaComData(citacao.getElementoNormaDestino().getVigencia(), 
@@ -78,6 +91,40 @@ public class CitacaoDocJudTimeLogic extends TimeLogic {
 	                    					Constantes.DELIMITADOR_DATA) < 0 ) { /* Caso for < 0, a data da ref eh mais atual
 																				 que a dataFim da vigencia. */
 					listaResultado.add( citacao );
+				}
+				/*
+				 * Verificando os pais
+				 */
+				if( citacao.getElementoNormaDestino().getNormasPai().size() > 0 ) {
+					for( Norma normaPai : citacao.getElementoNormaDestino().getNormasPai() ) {
+						if( comparaDatas(normaPai.getDataPublicacao(), 
+										 citacao.getElementoNormaDestino().getDataPublicacao(), 
+								 		 Constantes.DELIMITADOR_DATA) > 0) {
+							getNormasPaiAtualizados().add( normaPai );
+							getElementosAtualizadosString().add("O elemento "+normaPai.getIdentificadorUnico()+" possui uma data de publicacao mais atual: "+normaPai.getDataPublicacao());
+						}
+					}
+				} else {
+					for( ElementoNorma eleNormaPai : citacao.getElementoNormaDestino().getElementosNormaPai() ) {
+						if( comparaDatas(eleNormaPai.getDataPublicacao(), 
+										 citacao.getElementoNormaDestino().getDataPublicacao(), 
+								 		 Constantes.DELIMITADOR_DATA) > 0) {
+							getElementosNormaPaiAtualizados().add( eleNormaPai );
+							getElementosAtualizadosString().add("O elemento "+eleNormaPai.getIdentificadorUnico()+" possui uma data de publicacao mais atual: "+eleNormaPai.getDataPublicacao());
+						}
+					}
+				}
+				
+				/*
+				 * Verificando os filhos
+				 */
+				for( ElementoNorma eleNorma : citacao.getElementoNormaDestino().getElementosNorma() ) {
+					if( comparaDatas(eleNorma.getDataPublicacao(), 
+									 citacao.getElementoNormaDestino().getDataPublicacao(), 
+									 Constantes.DELIMITADOR_DATA) > 0) {
+						getElementosNormaFilhosAtualizados().add( eleNorma );
+						getElementosAtualizadosString().add("O elemento "+eleNorma.getIdentificadorUnico()+" possui uma data de publicacao mais atual: "+eleNorma.getDataPublicacao());
+					}
 				}
 			}
 		}
