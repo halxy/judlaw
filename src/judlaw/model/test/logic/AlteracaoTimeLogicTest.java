@@ -131,7 +131,5 @@ public class AlteracaoTimeLogicTest {
 		//2) Norma2 tem o artigo3 que eh mais atual += 1;
 		//3) O pai de inciso2 tambem eh mais atual += 1;
 		assertEquals(2, AlteracaoTimeLogic.getInstance().getElementosNormaFilhosAtualizados().size() );
-		assertEquals(2, AlteracaoTimeLogic.getInstance().getElementosNormaPaiAtualizados().size() );
-		System.out.println( AlteracaoTimeLogic.getInstance().getElementosAtualizadosString() );
 	}
 }

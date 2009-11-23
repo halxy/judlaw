@@ -44,9 +44,9 @@ public class CitacaoDocJudTimeLogicTest {
 
 	@Test
 	/**
-	 * Test method for {@link judlaw.model.logic.time.DocJudTimeLogic#inconsistenciaTemporalSimples(DocumentoJuridico docJud)}.
+	 * Test method for {@link judlaw.model.logic.time.DocJudTimeLogic#inconsistenciaTemporal(DocumentoJuridico docJud)}.
 	 */
-	public void testInconsistenciaTemporalSimples() throws Exception {
+	public void testInconsistenciaTemporal() throws Exception {
 		/* ---------- Documento Juridico ----------*/
 		DocumentoJuridico docJud1 = new DocumentoJuridico();
 		docJud1.setIdentificadorUnico("idUnico1");
@@ -55,20 +55,20 @@ public class CitacaoDocJudTimeLogicTest {
 		
 		/* ---------- Norma e ElementosNorma ----------*/
 		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
-														"dataPublicacaoArt1", "vigenciaArt1");
+														"11/10/2010", "vigenciaArt1");
 		ElementoNorma paragrafo1 = new ElementoNorma("textoParagrafo1", "identificadorUnicoParagrafo1", "tipoParagrafo1", 
-				"dataPublicacaoParagrafo1", "10/10/2010-10/10/2011");
+				"10/10/2010", "10/10/2010-10/10/2011");
 		ElementoNorma inciso1 = new ElementoNorma("textoInciso1", "identificadorUnicoInciso1", "tipoInciso1", 
-				"dataPublicacaoInciso1", "vigenciaInciso1");
+				"12/10/2010", "vigenciaInciso1");
 		ElementoNorma inciso2 = new ElementoNorma("textoInciso2", "identificadorUnicoInciso2", "tipoInciso2", 
-				"dataPublicacaoInciso2", "10/10/2010-10/09/2011");
+				"10/10/2010", "10/10/2010-10/09/2011");
 		
 		paragrafo1.getElementosNorma().add(inciso1);
 		paragrafo1.getElementosNorma().add(inciso2);
 		artigo1.getElementosNorma().add(paragrafo1);
 		
 		ElementoNorma artigo2 = new ElementoNorma("textoArt2", "identificadorUnicoArt2", "tipoArt2", 
-				"dataPublicacaoArt2", "vigenciaArt2");
+				"10/10/2010", "vigenciaArt2");
 		ElementoNorma paragrafo2 = new ElementoNorma("textoParagrafo2", "identificadorUnicoParagrafo2", "tipoParagrafo2", 
 				"dataPublicacaoParagrafo2", "vigenciaParagrafo2");
 		ElementoNorma paragrafo3 = new ElementoNorma("textoParagrafo3", "identificadorUnicoParagrafo3", "tipoParagrafo3", 
@@ -77,7 +77,7 @@ public class CitacaoDocJudTimeLogicTest {
 		artigo2.getElementosNorma().add(paragrafo3);
 		
 		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
-								"dataPublicacaoN1", "10/10/2010-10/10/2012");
+								"10/10/2010", "10/10/2010-10/10/2012");
 		norma1.getElementosNorma().add(artigo1);
 		norma1.getElementosNorma().add(artigo2);
 		normaManager.salvaNorma(norma1);
@@ -133,5 +133,12 @@ public class CitacaoDocJudTimeLogicTest {
 		assertEquals( inciso2.getIdentificadorUnico(), 
 			      citacaoDocJudTimeLogic.inconsistenciaTemporal(docJud1BD).get(1).
 			                                             getElementoNormaDestino().getIdentificadorUnico());
+		
+		/* Verificando o refinamento da inconsistencia temporal */
+		//1) O filho de norma1 (artigo1) esta mais atual +=1;
+		//2) O pai e o filho de paragrafo1 estao mais atuais =+2;
+		assertEquals(2, CitacaoDocJudTimeLogic.getInstance().getElementosNormaFilhosAtualizados().size() );
+		assertEquals(1, CitacaoDocJudTimeLogic.getInstance().getElementosNormaPaiAtualizados().size() );
+		System.out.println( CitacaoDocJudTimeLogic.getInstance().getElementosAtualizadosString() );
 	}
 }
