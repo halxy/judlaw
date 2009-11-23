@@ -42,6 +42,7 @@ public class AlteracaoTimeLogic extends TimeLogic {
 		setNormasPaiAtualizados( new ArrayList<Norma>() );
 		setElementosNormaPaiAtualizados( new ArrayList<ElementoNorma>() );
 		setElementosNormaFilhosAtualizados( new ArrayList<ElementoNorma>() );
+		setElementosAtualizadosString( new ArrayList<String>() );
 	}
 	
 	public List<Alteracao> inconsistenciaTemporal(TextoLegal textoLegal) throws Exception {
