@@ -35,8 +35,17 @@ public class AlteracaoTimeLogic extends TimeLogic {
 		}
 		return alteracaoTimeLogic;
 	}
+	/*
+	 * Inicializa as listas a serem utilizadas na refinacao da inconsistencia temporal
+	 */
+	private void inicializaListas() {
+		setNormasPaiAtualizados( new ArrayList<Norma>() );
+		setElementosNormaPaiAtualizados( new ArrayList<ElementoNorma>() );
+		setElementosNormaFilhosAtualizados( new ArrayList<ElementoNorma>() );
+	}
 	
 	public List<Alteracao> inconsistenciaTemporal(TextoLegal textoLegal) throws Exception {
+		inicializaListas();
 		List<Alteracao> listaResultado = new ArrayList<Alteracao>();
 		List<Alteracao> alteracoesFeitas = textoLegal.getAlteracoesFeitas();
 		/*
