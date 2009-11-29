@@ -137,8 +137,8 @@ public class AlteracaoManager {
 	 * @param dataRevogacao
 	 * @param caracteristica
 	 */
-    public void criaAlteracaoRevogacao(Norma normaOrigem, Norma normaDestino, String dataRevogacao, String caracteristica){
-    	Alteracao alt = new Alteracao(normaOrigem, normaDestino, dataRevogacao, Constantes.REVOGACAO, caracteristica);
+    public void criaAlteracaoRevogacao(Norma normaOrigem, Norma normaDestino, String dataRevogacao, String tipo, String caracteristica){
+    	Alteracao alt = new Alteracao(normaOrigem, normaDestino, dataRevogacao, tipo, caracteristica);
     	dbManager.save(alt);
     	normaOrigem.getAlteracoesFeitas().add(alt);
     	dbManager.save(normaOrigem);
@@ -153,8 +153,8 @@ public class AlteracaoManager {
     	dbManager.save(normaDestino);
     }
     
-    public void criaAlteracaoRevogacao(Norma normaOrigem, ElementoNorma elementoNormaDestino, String dataRevogacao, String caracteristica){
-    	Alteracao alt = new Alteracao(normaOrigem, elementoNormaDestino, dataRevogacao, Constantes.REVOGACAO, caracteristica);
+    public void criaAlteracaoRevogacao(Norma normaOrigem, ElementoNorma elementoNormaDestino, String dataRevogacao, String tipo ,String caracteristica){
+    	Alteracao alt = new Alteracao(normaOrigem, elementoNormaDestino, dataRevogacao, tipo, caracteristica);
     	dbManager.save(alt);
     	normaOrigem.getAlteracoesFeitas().add(alt);
     	dbManager.save(normaOrigem);
@@ -169,8 +169,8 @@ public class AlteracaoManager {
     	dbManager.save(elementoNormaDestino);
     }
 
-    public void criaAlteracaoRevogacao(ElementoNorma elementoNormaOrigem, Norma normaDestino, String dataRevogacao, String caracteristica){
-    	Alteracao alt = new Alteracao(elementoNormaOrigem, normaDestino, dataRevogacao, Constantes.REVOGACAO, caracteristica);
+    public void criaAlteracaoRevogacao(ElementoNorma elementoNormaOrigem, Norma normaDestino, String dataRevogacao, String tipo, String caracteristica){
+    	Alteracao alt = new Alteracao(elementoNormaOrigem, normaDestino, dataRevogacao, tipo, caracteristica);
     	dbManager.save(alt);
     	elementoNormaOrigem.getAlteracoesFeitas().add(alt);
     	dbManager.save(elementoNormaOrigem);
@@ -185,8 +185,8 @@ public class AlteracaoManager {
     	dbManager.save(normaDestino);
     }
     
-    public void criaAlteracaoRevogacao(ElementoNorma elementoNormaOrigem, ElementoNorma elementoNormaDestino, String dataRevogacao, String caracteristica){
-    	Alteracao alt = new Alteracao(elementoNormaOrigem, elementoNormaDestino, dataRevogacao, Constantes.REVOGACAO, caracteristica);
+    public void criaAlteracaoRevogacao(ElementoNorma elementoNormaOrigem, ElementoNorma elementoNormaDestino, String dataRevogacao, String tipo, String caracteristica){
+    	Alteracao alt = new Alteracao(elementoNormaOrigem, elementoNormaDestino, dataRevogacao, tipo, caracteristica);
     	dbManager.save(alt);
     	elementoNormaOrigem.getAlteracoesFeitas().add(alt);
     	dbManager.save(elementoNormaOrigem);
