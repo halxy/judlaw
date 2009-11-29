@@ -328,7 +328,7 @@ public class AlteracaoManagerTest {
 		 * 10/10/2010-10/10/2011
 		 */
 		//NORMA1 Revoga NORMA2;
-		alteracaoManager.criaAlteracaoRevogacao(norma1, norma2, "10/10/2011", "");
+		alteracaoManager.criaAlteracaoRevogacao(norma1, norma2, "10/10/2011", Constantes.REVOGACAO_TOTAL, "");
 		/* ---------- Verifica as vigencias depois das alteracoes ----------*/
 		//Norma2
 		norma2BD = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", norma2.getIdentificadorUnico()).get(0);
@@ -339,21 +339,21 @@ public class AlteracaoManagerTest {
 		assertEquals("10/10/2010-10/10/2011", artigo3BD.getVigencia());
 		
 		//NORMA1 Revoga INCISO2;
-		alteracaoManager.criaAlteracaoRevogacao(norma1, inciso2, "10/10/2011", "");
+		alteracaoManager.criaAlteracaoRevogacao(norma1, inciso2, "10/10/2011", Constantes.REVOGACAO_TOTAL, "");
 		/* ---------- Verifica as vigencias depois das alteracoes ----------*/
 		inciso2BD = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo
         								("identificadorUnico", inciso2.getIdentificadorUnico()).get(0);
 		assertEquals("10/10/2010-10/10/2011", inciso2BD.getVigencia());
 		
 		//PARAGRAFO2 Revoga PARAGRAFO3;
-		alteracaoManager.criaAlteracaoRevogacao(paragrafo2, paragrafo3, "10/10/2011", "");
+		alteracaoManager.criaAlteracaoRevogacao(paragrafo2, paragrafo3, "10/10/2011", Constantes.REVOGACAO_TOTAL, "");
 		/* ---------- Verifica as vigencias depois das alteracoes ----------*/
 		ElementoNorma paragrafo3BD = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo
 												("identificadorUnico", paragrafo3.getIdentificadorUnico()).get(0);
 		assertEquals("10/10/2010-10/10/2011", paragrafo3BD.getVigencia());
 		
 		//PARAGRAFO2 Revoga NORMA1;
-		alteracaoManager.criaAlteracaoRevogacao(paragrafo2, norma1, "10/10/2011", "");
+		alteracaoManager.criaAlteracaoRevogacao(paragrafo2, norma1, "10/10/2011", Constantes.REVOGACAO_TOTAL, "");
 		/* ---------- Verifica se as alteracoes foram feitas corretamente ----------*/
 		//Norma1
 		norma1BD = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", norma1.getIdentificadorUnico()).get(0);
