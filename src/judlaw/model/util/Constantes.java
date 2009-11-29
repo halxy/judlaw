@@ -30,7 +30,8 @@ public class Constantes {
 	// Tipos de Alteracao (Referencia)
 	public static final String INCLUSAO = "Inclusão";
 	public static final String MODIFICACAO = "Modificação";
-	public static final String REVOGACAO = "Revogação";
+	public static final String REVOGACAO_PARCIAL = "Ab-rogação";
+	public static final String REVOGACAO_TOTAL = "Derrogação";
 	
 	// Caracteristicas de Alteracao (Referencia)
 	public static final String MAIS_RESTRITIVA = "Mais-restritiva";
