@@ -36,8 +36,9 @@ public class Cabecalho {
 	private String tribunal; // STF, STJ, TJRS, etc.
 	private String codRegistro; // ver Certidao de Julgamento STJ
 	private String orgaoJulgador; // Pleno, Primeira Turma, etc.
+	private String relator;
 	
-	//Mapeamento um para um
+	//Mapeamento 1-1
 	@OneToOne(mappedBy = "cabecalho")
 	@JoinColumn(name="documentojuridico_id")
 	private DocumentoJuridico documentoJuridico;
@@ -48,10 +49,11 @@ public class Cabecalho {
 	 * @param codRegistro
 	 * @param orgaoJulgador
 	 */
-	public Cabecalho(String tribunal, String codRegistro, String orgaoJulgador) {
+	public Cabecalho(String tribunal, String codRegistro, String orgaoJulgador, String relator) {
 		this.tribunal = tribunal;
 		this.codRegistro = codRegistro;
 		this.orgaoJulgador = orgaoJulgador;
+		this.relator = relator;
 	}
 
 	/**
@@ -97,5 +99,13 @@ public class Cabecalho {
 
 	public void setDocumentoJuridico(DocumentoJuridico documentoJuridico) {
 		this.documentoJuridico = documentoJuridico;
+	}
+
+	public String getRelator() {
+		return relator;
+	}
+
+	public void setRelator(String relator) {
+		this.relator = relator;
 	}
 }

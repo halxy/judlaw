@@ -31,7 +31,7 @@ public class Encerramento {
 	@Column(name="encerramento_id")
 	private Integer id;
 	
-	private String decisao;
+	private String decisao; // no STJ esta como certidao
 	private String local; 
 	
 	//Documento Juridico
