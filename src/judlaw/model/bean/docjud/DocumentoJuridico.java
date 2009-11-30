@@ -80,8 +80,8 @@ public class DocumentoJuridico {
 	private List<Parte> partes; // relator, partes, etc.
 	
 	/* --------- Atributos ----------- */
-	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
-	private String tipo; // tipos de Documentos Juridicos e Documentos Legais
+	private String identificadorUnico; // HC123, etc.
+	private String tipo; // tipos de Documentos Juridicos
 	private String dataExpedicao; // dd/MM/yyy
 	
 	/* --------- Referencias --------- */
