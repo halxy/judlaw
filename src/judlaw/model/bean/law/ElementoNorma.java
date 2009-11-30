@@ -75,19 +75,6 @@ public class ElementoNorma extends TextoLegal {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Norma> normasPai;
 	
-//	/*
-//	 * Pai do Elemento Norma
-//	 */
-//	//Quando o pai do ElementoNorma é outro ElementoNorma
-//	@ManyToOne
-//	@JoinColumn(name="elementonormapai_id", nullable = true)
-//	private ElementoNorma elementoNormaPai;
-//	
-//	//Quando o pai do ElementoNorma é uma Norma
-//	@ManyToOne
-//	@JoinColumn(name="normapai_id", nullable = true)
-//	private Norma normaPai;
-	
 	//ElementoNorma que compoem o elementoNorma
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "ElementosNormaPaiElementoNorma",
