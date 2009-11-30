@@ -15,6 +15,8 @@ import judlaw.model.bean.docjud.Encerramento;
 import judlaw.model.bean.docjud.Parte;
 import judlaw.model.bean.docjud.Relatorio;
 import judlaw.model.bean.docjud.Voto;
+import judlaw.model.bean.ref.CitacaoDocJud;
+import judlaw.model.bean.ref.CitacaoTextLeg;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -53,6 +55,9 @@ public class DocJudXMLManager {
 		this.xstream.alias("parte", Parte.class);
 		this.xstream.alias("relatorio", Relatorio.class);
 		this.xstream.alias("voto", Voto.class);
+		this.xstream.alias("citacoesFeitas", CitacaoDocJud.class);
+		this.xstream.alias("citacoesRecebidasDocJud", CitacaoDocJud.class);
+		this.xstream.alias("citacoesRecebidasTextLeg", CitacaoTextLeg.class);
 	}
 
 	/**
