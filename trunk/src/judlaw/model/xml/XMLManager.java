@@ -66,7 +66,7 @@ public class XMLManager {
 		
 		ObjectOutputStream out;
 		try {
-			out = xstream.createObjectOutputStream( new FileWriter("x.xml"));
+			out = xstream.createObjectOutputStream( new FileWriter("xml\\x.xml"));
 			out.writeObject(docJud1);
 			out.close();
 		} catch (IOException e) {
@@ -75,7 +75,7 @@ public class XMLManager {
 		}
 		
 		try {
-			ObjectInputStream in = xstream.createObjectInputStream( new FileReader("x.xml"));
+			ObjectInputStream in = xstream.createObjectInputStream( new FileReader("xml\\x.xml"));
 			DocumentoJuridico docJud = (DocumentoJuridico) in.readObject();
 			System.out.println(docJud.getIdentificadorUnico());
 		} catch (FileNotFoundException e) {
