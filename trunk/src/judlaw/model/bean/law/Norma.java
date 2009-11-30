@@ -65,10 +65,6 @@ public class Norma extends TextoLegal {
 	)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<ElementoNorma> elementosNorma;
-	
-//	@OneToMany(mappedBy="normaPai", cascade = CascadeType.ALL)
-//    @LazyCollection(LazyCollectionOption.FALSE)
-//	private List<ElementoNorma> elementosNorma;
 
 	/* --------- Atributos --------- */
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
