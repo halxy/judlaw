@@ -1,5 +1,11 @@
 package judlaw.model.xml;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import judlaw.model.bean.docjud.Cabecalho;
@@ -57,7 +63,31 @@ public class XMLManager {
 		docJud1.setEncerramento(encerramento1);
 		docJud1.setVotos(votos);
 		docJud1.setPartes(partes);
-		String xml = xstream.toXML( docJud1 );
-		System.out.println(xml);
+		
+		ObjectOutputStream out;
+		try {
+			out = xstream.createObjectOutputStream( new FileWriter("x.xml"));
+			out.writeObject(docJud1);
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			ObjectInputStream in = xstream.createObjectInputStream( new FileReader("x.xml"));
+			DocumentoJuridico docJud = (DocumentoJuridico) in.readObject();
+			System.out.println(docJud.getIdentificadorUnico());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }
