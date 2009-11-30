@@ -20,20 +20,58 @@ import com.thoughtworks.xstream.XStream;
 
 public class DocJudXMLManager {
 	
+	private XStream xstream = null;
+	private static DocJudXMLManager docJudXmlManager = null;
 	
+	/**
+	 * Singleton
+	 * @return
+	 */
+    public static DocJudXMLManager getInstance(){
+        if(docJudXmlManager == null)
+        	docJudXmlManager = new DocJudXMLManager();
+        return docJudXmlManager;
+    }
+    
+    public XStream getXstream() {
+    	if (xstream == null ) {
+    		xstream = new XStream();
+    		setAliases();
+    	}
+		return xstream;
+	}
 
+	public void setXstream(XStream xstream) {
+		this.xstream = xstream;
+	}
+	
+	private void setAliases() {
+		this.xstream.alias("documentojuridico", DocumentoJuridico.class);
+		this.xstream.alias("cabecalho", Cabecalho.class);
+		this.xstream.alias("ementa", Ementa.class);
+		this.xstream.alias("encerramento", Encerramento.class);
+		this.xstream.alias("parte", Parte.class);
+		this.xstream.alias("relatorio", Relatorio.class);
+		this.xstream.alias("voto", Voto.class);
+	}
+
+	/**
+	 * Salva um documento juridico em XML
+	 * @param documentoJuridico
+	 * @param nomeArquivo nome desejado do arquivo em xml
+	 * @throws IOException 
+	 */
+	public void salvaDocumentoJuridico(DocumentoJuridico documentoJuridico, String nomeArquivo) throws IOException {
+    	setXstream( new XStream() );
+    	//Setando as classes no xstream
+    	setAliases();
+    	//Persistindo
+    	ObjectOutputStream out = xstream.createObjectOutputStream( new FileWriter("xml\\"+ nomeArquivo +".xml"));
+		out.writeObject(documentoJuridico);
+		out.close();
+    }
+	
 	public static void main(String[] args) {
-		
-		XStream xstream = new XStream();
-		
-		xstream.alias("documentojuridico", DocumentoJuridico.class);
-		xstream.alias("cabecalho", Cabecalho.class);
-		xstream.alias("ementa", Ementa.class);
-		xstream.alias("encerramento", Encerramento.class);
-		xstream.alias("parte", Parte.class);
-		xstream.alias("relatorio", Relatorio.class);
-		xstream.alias("voto", Voto.class);
-		
 		//Cabecalho
 		Cabecalho cabecalho1 = new Cabecalho();
 		cabecalho1.setCodRegistro("codRegistro");
@@ -64,16 +102,14 @@ public class DocJudXMLManager {
 		docJud1.setVotos(votos);
 		docJud1.setPartes(partes);
 		
-		ObjectOutputStream out;
 		try {
-			out = xstream.createObjectOutputStream( new FileWriter("xml\\x.xml"));
-			out.writeObject(docJud1);
-			out.close();
-		} catch (IOException e) {
+			DocJudXMLManager.getInstance().salvaDocumentoJuridico(docJud1, "x");
+		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
 		
+		XStream xstream = DocJudXMLManager.getInstance().getXstream();
 		try {
 			ObjectInputStream in = xstream.createObjectInputStream( new FileReader("xml\\x.xml"));
 			DocumentoJuridico docJud = (DocumentoJuridico) in.readObject();
@@ -88,6 +124,5 @@ public class DocJudXMLManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 }
