@@ -77,7 +77,7 @@ public class DocumentoJuridico {
     		}
 	)
 	@LazyCollection(LazyCollectionOption.FALSE)
-	private List<Parte> partes; // relator, partes, etc.
+	private List<Parte> partes; //As partes envolvidas, menos o relator
 	
 	/* --------- Atributos ----------- */
 	private String identificadorUnico; // HC123, etc.
