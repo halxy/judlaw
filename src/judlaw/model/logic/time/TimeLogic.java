@@ -8,6 +8,7 @@
 package judlaw.model.logic.time;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
@@ -143,7 +144,53 @@ public class TimeLogic {
 		String dataInicio = tokenVigencia.nextToken();
 		return dataInicio +"-"+ novaDataFim;
 	}
+	
+	/**
+	 * Passada uma data (dd/mm/yyyy) como parametro, eh retornado o dia anterior à data
+	 * @param data
+	 * @return data com um dia anterior à data de publicacao nova
+	 */
+	public String diaAnterior(String data) {
+		StringTokenizer tokenData = new StringTokenizer(data, Constantes.DELIMITADOR_DATA);
+		//Dia
+		String dia = tokenData.nextToken();
+		int diaInt = Integer.parseInt( dia );
+		//Mes
+		String mes = tokenData.nextToken();
+		int mesInt = Integer.parseInt( mes );
+		//Ano
+		String ano = tokenData.nextToken();
+		int anoInt = Integer.parseInt( ano );
+		//Setando o dia
+		if ( diaInt == 1 ) { 
+			if(mesInt == 1 || mesInt == 2 || mesInt == 4 || mesInt == 6 || mesInt == 8 || 
+			   mesInt == 9 || mesInt == 11) {
+				diaInt = 31;
+			} else if( mesInt == 3 ) {
+				if( anoBissexto( anoInt ) ) {
+					diaInt = 29;
+				} else {
+					diaInt = 28;
+				}
+			} else {
+				diaInt = 30;
+			}
+		}
+		//Setando o mes e o ano
+		if( mesInt == 1) {
+			mesInt = 12;
+			anoInt = anoInt-1;
+		} else {
+			mesInt = mesInt-1;
+		}
+		String diaAnterior = diaInt + Constantes.DELIMITADOR_DATA + mesInt + Constantes.DELIMITADOR_DATA +
+		                     anoInt + Constantes.DELIMITADOR_DATA;
+		return diaAnterior;
+	}
 
+	private boolean anoBissexto(int ano) {
+		return new GregorianCalendar().isLeapYear(ano);
+	}
 	public List<Norma> getNormasPaiAtualizados() {
 		return normasPaiAtualizados;
 	}
