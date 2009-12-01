@@ -183,8 +183,18 @@ public class TimeLogic {
 		} else {
 			mesInt = mesInt-1;
 		}
-		String diaAnterior = diaInt + Constantes.DELIMITADOR_DATA + mesInt + Constantes.DELIMITADOR_DATA +
-		                     anoInt + Constantes.DELIMITADOR_DATA;
+		//Organizando as strings do dia e do mes
+		if(diaInt < 10) {
+			dia = "0" + diaInt;
+		} else {
+			dia = String.valueOf(diaInt);
+		}
+		if(mesInt < 10) {
+			mes = "0" + mesInt;
+		} else {
+			mes = String.valueOf(mesInt);
+		}
+		String diaAnterior = dia + Constantes.DELIMITADOR_DATA + mes + Constantes.DELIMITADOR_DATA + anoInt;
 		return diaAnterior;
 	}
 
