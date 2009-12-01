@@ -108,7 +108,7 @@ public class DocJudXMLManager {
 		docJud1.setPartes(partes);
 		
 		try {
-			DocJudXMLManager.getInstance().salvaDocumentoJuridico(docJud1, "x");
+			DocJudXMLManager.getInstance().salvaDocumentoJuridico(docJud1, "HC1234");
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -116,7 +116,7 @@ public class DocJudXMLManager {
 		
 		XStream xstream = DocJudXMLManager.getInstance().getXstream();
 		try {
-			ObjectInputStream in = xstream.createObjectInputStream( new FileReader("xml\\x.xml"));
+			ObjectInputStream in = xstream.createObjectInputStream( new FileReader("xml\\HC1234.xml"));
 			DocumentoJuridico docJud = (DocumentoJuridico) in.readObject();
 			System.out.println(docJud.getIdentificadorUnico());
 		} catch (FileNotFoundException e) {
