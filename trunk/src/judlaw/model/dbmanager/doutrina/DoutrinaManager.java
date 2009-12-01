@@ -11,7 +11,11 @@ public class DoutrinaManager {
 	private static DBManager dbManager = DBManager.getInstance();
 	
 	
-   /**
+	public void salvaDoutrina(Doutrina doutrina) {
+		dbManager.save( doutrina );
+	}
+   
+		/**
     * Retorna uma instancia da classe DoutrinaManager
     * @return
     */
@@ -29,7 +33,7 @@ public class DoutrinaManager {
 	/**
 	 * removeDoutrinas
 	 */
-	public void removeDocumentosJuridicos() {
+	public void removeDoutrinas() {
 		dbManager.removeAll( new Doutrina() );
 	}
 	

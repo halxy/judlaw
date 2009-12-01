@@ -52,6 +52,7 @@ public class ReferenciaManager {
 		for( CitacaoDocJud citDocJud : CitacaoDocJudManager.getInstance().getCitacoesDocJud() ){
 			citDocJud.setDocumentoJuridicoOrigem(null);
 			citDocJud.setDocumentoJuridicoDestino(null);
+			citDocJud.setDoutrinaDestino(null);
 			citDocJud.setElementoNormaDestino(null);
 			citDocJud.setNormaDestino(null);
 			dbManager.save(citDocJud);

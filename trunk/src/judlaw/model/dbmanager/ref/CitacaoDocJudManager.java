@@ -106,15 +106,18 @@ public class CitacaoDocJudManager {
     	citacaoDocJud.getDocumentoJuridicoOrigem().getCitacoesFeitas().remove( citacaoDocJud );
     	dbManager.save( citacaoDocJud.getDocumentoJuridicoOrigem() );
     	//Destino
-    	if( citacaoDocJud.getDocumentoJuridicoDestino() != null ){
+    	if( citacaoDocJud.getDocumentoJuridicoDestino() != null ){ //DocumentoJuridico
     		citacaoDocJud.getDocumentoJuridicoDestino().getCitacoesRecebidasDocJud().remove( citacaoDocJud );
     		dbManager.save( citacaoDocJud.getDocumentoJuridicoDestino() );
-    	} else if (citacaoDocJud.getNormaDestino() != null ){
+    	} else if (citacaoDocJud.getNormaDestino() != null ){ //Norma
     		citacaoDocJud.getNormaDestino().getCitacoesRecebidasDocJud().remove( citacaoDocJud );
     		dbManager.save( citacaoDocJud.getNormaDestino() );
-    	} else {
+    	} else if (citacaoDocJud.getElementoNormaDestino() != null ){ //ElementoNorma
     		citacaoDocJud.getElementoNormaDestino().getCitacoesRecebidasDocJud().remove( citacaoDocJud );
     		dbManager.save( citacaoDocJud.getElementoNormaDestino() );
+    	} else { //Doutrina
+    		citacaoDocJud.getDoutrinaDestino().getCitacoesRecebidasDocJud().remove( citacaoDocJud );
+    		dbManager.save( citacaoDocJud.getDoutrinaDestino() );
     	}
     	dbManager.remove( citacaoDocJud );
     }
