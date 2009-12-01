@@ -20,6 +20,7 @@ public class Doutrina {
 	private String local;
 	private String anoPublicacao;
 	private String autor;
+	private String isbn;
 	
 	
 	/**
@@ -75,5 +76,13 @@ public class Doutrina {
 
 	public void setAutor(String autor) {
 		this.autor = autor;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 }
