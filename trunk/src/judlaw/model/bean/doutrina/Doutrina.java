@@ -30,6 +30,11 @@ import org.hibernate.annotations.LazyCollectionOption;
  * @author Halley Freitas
  *
  */
+/*
+ * Por ser uma classe de persistencia simples e devidos aos exaustivos testes com as demais classes, 
+ * preferiu-se não criar testes personalizados para ela. No entanto, quando do teste das citacoes feitas,
+ * indiretamente ja é testada sua persistencia.
+ */
 @Entity
 @Table(name = "doutrina")
 @SequenceGenerator(name = "doutrina_seq", sequenceName = "doutrina_seq", initialValue = 1, allocationSize = 1)
