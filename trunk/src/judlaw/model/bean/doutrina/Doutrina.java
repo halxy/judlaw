@@ -7,13 +7,23 @@
  */
 package judlaw.model.bean.doutrina;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import judlaw.model.bean.ref.CitacaoDocJud;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * Classe Doutrina
@@ -30,6 +40,7 @@ public class Doutrina {
 	@Column(name="doutrina_id")
 	private Integer id;
 	
+	//Atributos
 	private String titulo;
 	private String edicao;
 	private String editora;
@@ -37,6 +48,12 @@ public class Doutrina {
 	private String anoPublicacao;
 	private String isbn;
 	private String autor;	
+	
+	//Citacoes recebidas de outros documentos juridicos
+	@OneToMany(mappedBy="doutrinaDestino", cascade = CascadeType.ALL)
+    @Column(name="citacoesrecebidasdocjud_fk")
+    @LazyCollection(LazyCollectionOption.FALSE)
+	private List<CitacaoDocJud> citacoesRecebidasDocJud;
 	
 	/**
 	 * 
@@ -57,12 +74,14 @@ public class Doutrina {
 		this.anoPublicacao = anoPublicacao;
 		this.isbn = isbn;
 		this.autor = autor;
+		this.citacoesRecebidasDocJud = new ArrayList<CitacaoDocJud>();
 	}
 
 	/**
 	 * Construtor vazio
 	 */
 	public Doutrina(){
+		this.citacoesRecebidasDocJud = new ArrayList<CitacaoDocJud>();
 	}
 
 	public Integer getId() {
@@ -127,5 +146,14 @@ public class Doutrina {
 
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
+	}
+
+	public List<CitacaoDocJud> getCitacoesRecebidasDocJud() {
+		return citacoesRecebidasDocJud;
+	}
+
+	public void setCitacoesRecebidasDocJud(
+			List<CitacaoDocJud> citacoesRecebidasDocJud) {
+		this.citacoesRecebidasDocJud = citacoesRecebidasDocJud;
 	}
 }
