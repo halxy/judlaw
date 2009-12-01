@@ -31,7 +31,6 @@ public class TimeLogicTest {
 	 */
 	@Test
 	public void testDataMaisAtual() throws Exception {
-		
 		//Data1 > Data2
 		assertEquals(1, tm.comparaDatas("12/10/2009", "12/10/2008", Constantes.DELIMITADOR_DATA));
 		assertEquals(1, tm.comparaDatas("12/11/2009", "12/10/2009", Constantes.DELIMITADOR_DATA));
@@ -95,5 +94,17 @@ public class TimeLogicTest {
 	@Test
 	public void testnovaDataFimVigencia(){
 		assertEquals("10/10/2009-10/10/2010", tm.novaDataFimVigencia("10/10/2009-11/11/2011", "10/10/2010") );
+	}
+	
+	/**
+	 * Testa se uma novo dia anterior esta sendo retornado
+	 */
+	@Test
+	public void testDiaAnterior(){
+		//Ano anterior
+		assertEquals("31/12/2009", tm.diaAnterior("01/01/2010"));
+		//Ano bissexto
+		assertEquals("29/02/2004", tm.diaAnterior("01/03/2004"));
+		assertEquals("28/02/2009", tm.diaAnterior("01/03/2009"));
 	}
 }
