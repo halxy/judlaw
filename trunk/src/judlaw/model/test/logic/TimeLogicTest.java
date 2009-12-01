@@ -106,5 +106,11 @@ public class TimeLogicTest {
 		//Ano bissexto
 		assertEquals("29/02/2004", tm.diaAnterior("01/03/2004"));
 		assertEquals("28/02/2009", tm.diaAnterior("01/03/2009"));
+		//Outros testes
+		assertEquals("31/03/2008", tm.diaAnterior("01/04/2008"));
+		assertEquals("30/11/2008", tm.diaAnterior("01/12/2008"));
+		assertEquals("29/03/2008", tm.diaAnterior("30/03/2008"));
+		assertEquals("15/10/2008", tm.diaAnterior("16/10/2008"));
+		assertEquals("30/11/2008", tm.diaAnterior("31/11/2008"));
 	}
 }

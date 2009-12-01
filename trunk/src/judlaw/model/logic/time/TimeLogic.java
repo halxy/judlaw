@@ -175,13 +175,15 @@ public class TimeLogic {
 			} else {
 				diaInt = 30;
 			}
-		}
-		//Setando o mes e o ano
-		if( mesInt == 1) {
-			mesInt = 12;
-			anoInt = anoInt-1;
+			//Setando o mes e o ano
+			if( mesInt == 1) {
+				mesInt = 12;
+				anoInt = anoInt-1;
+			} else {
+				mesInt = mesInt-1;
+			}
 		} else {
-			mesInt = mesInt-1;
+			diaInt = diaInt-1;
 		}
 		//Organizando as strings do dia e do mes
 		if(diaInt < 10) {
