@@ -10,6 +10,7 @@ package judlaw.model.dbmanager.ref;
 import java.util.List;
 
 import judlaw.model.bean.docjud.DocumentoJuridico;
+import judlaw.model.bean.doutrina.Doutrina;
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
 import judlaw.model.bean.ref.CitacaoDocJud;
@@ -80,6 +81,20 @@ public class CitacaoDocJudManager {
 		elementoNormaDestino.getCitacoesRecebidasDocJud().add( citacaoDocJud );
 		dbManager.save(documentoJuridicoOrigem);
 		dbManager.save(elementoNormaDestino);
+	}
+	
+	/**
+	 * CitacaoDocJud DocJud -> Doutrina
+	 * @param documentoJuridicoOrigem
+	 * @param doutrinaDestino
+	 */
+	public void criaCitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, Doutrina doutrinaDestino) {
+		CitacaoDocJud citacaoDocJud = new CitacaoDocJud(documentoJuridicoOrigem, doutrinaDestino);
+		dbManager.save(citacaoDocJud);
+		documentoJuridicoOrigem.getCitacoesFeitas().add( citacaoDocJud );
+		doutrinaDestino.getCitacoesRecebidasDocJud().add( citacaoDocJud );
+		dbManager.save(documentoJuridicoOrigem);
+		dbManager.save(doutrinaDestino);
 	}
 	
 	/**
