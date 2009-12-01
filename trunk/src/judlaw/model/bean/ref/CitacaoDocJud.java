@@ -18,6 +18,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import judlaw.model.bean.docjud.DocumentoJuridico;
+import judlaw.model.bean.doutrina.Doutrina;
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
 
@@ -66,6 +67,11 @@ public class CitacaoDocJud extends Referencia {
 	@JoinColumn(name="destinoelementonorma_id", nullable = true)
 	private ElementoNorma elementoNormaDestino;
 	
+	//Quando o destino da citacao eh uma doutrina
+	@ManyToOne
+	@JoinColumn(name="doutrina_id", nullable = true)
+	private Doutrina doutrinaDestino;
+	
 	/**
 	 * Quanto o destino eh outro documento juridico
 	 * @param documentoJuridicoOrigem
@@ -96,6 +102,17 @@ public class CitacaoDocJud extends Referencia {
 	public CitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, ElementoNorma elementoNormaDestino) {
 		this.documentoJuridicoOrigem = documentoJuridicoOrigem;
 		this.elementoNormaDestino = elementoNormaDestino;
+		this.data = documentoJuridicoOrigem.getDataExpedicao();
+	}
+	
+	/**
+	 * Quando o destino eh uma Doutrina
+	 * @param documentoJuridicoOrigem
+	 * @param doutrinaDestino
+	 */
+	public CitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, Doutrina doutrinaDestino) {
+		this.documentoJuridicoOrigem = documentoJuridicoOrigem;
+		this.doutrinaDestino = doutrinaDestino;
 		this.data = documentoJuridicoOrigem.getDataExpedicao();
 	}
 
@@ -151,5 +168,13 @@ public class CitacaoDocJud extends Referencia {
 
 	public void setElementoNormaDestino(ElementoNorma elementoNormaDestino) {
 		this.elementoNormaDestino = elementoNormaDestino;
+	}
+
+	public Doutrina getDoutrinaDestino() {
+		return doutrinaDestino;
+	}
+
+	public void setDoutrinaDestino(Doutrina doutrinaDestino) {
+		this.doutrinaDestino = doutrinaDestino;
 	}
 }
