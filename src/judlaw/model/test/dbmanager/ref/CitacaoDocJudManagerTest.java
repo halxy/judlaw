@@ -9,9 +9,11 @@ package judlaw.model.test.dbmanager.ref;
 
 import static org.junit.Assert.assertEquals;
 import judlaw.model.bean.docjud.DocumentoJuridico;
+import judlaw.model.bean.doutrina.Doutrina;
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
 import judlaw.model.dbmanager.docjud.DocJudManager;
+import judlaw.model.dbmanager.doutrina.DoutrinaManager;
 import judlaw.model.dbmanager.law.ElementoNormaManager;
 import judlaw.model.dbmanager.law.NormaManager;
 import judlaw.model.dbmanager.ref.CitacaoDocJudManager;
@@ -32,13 +34,15 @@ public class CitacaoDocJudManagerTest {
 	private NormaManager normaManager = NormaManager.getInstance();
 	private ElementoNormaManager elementoNormaManager = ElementoNormaManager.getInstance();
 	private DocJudManager docJudManager = DocJudManager.getInstance();
+	private DoutrinaManager doutrinaManager = DoutrinaManager.getInstance();
 	
 	@Before
 	public void setUp() {
 		/* ---------- Esvazia as listas envolvidas ----------*/
 		refManager.removeReferencias();
 		normaManager.removeLaw();
-		docJudManager.removeDocumentosJuridicos();	
+		docJudManager.removeDocumentosJuridicos();
+		doutrinaManager.removeDoutrinas();
 	}
 	
 	@Test
@@ -64,10 +68,16 @@ public class CitacaoDocJudManagerTest {
 		docJudManager.salvaDocumentoJuridico(docJud1);
 		docJudManager.salvaDocumentoJuridico(docJud2);
 		
+		/* Criando e persistindo uma doutrina */
+		Doutrina doutrina = new Doutrina();
+		doutrina.setAutor("autor");
+		doutrinaManager.salvaDoutrina( doutrina );
+		
 		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
 		assertEquals(1, normaManager.getNormas().size() );
 		assertEquals(1, elementoNormaManager.getElementosNorma().size() );
 		assertEquals(2, docJudManager.getDocumentosJuridicos().size() );
+		assertEquals(1, doutrinaManager.getDoutrinas().size() );
 		
 		/* Criando as CitacoesDocJud */
 		//DocJud1 -> DocJud2  (DJ->DJ)
@@ -76,10 +86,12 @@ public class CitacaoDocJudManagerTest {
 		citacaoDocJudManager.criaCitacaoDocJud(docJud1, norma1);
 		//DocJud1 -> Artigo1 (DJ->EN)
 		citacaoDocJudManager.criaCitacaoDocJud(docJud1, artigo1);
+		//DocJud1 -> Doutrina (DJ->DO)
+		citacaoDocJudManager.criaCitacaoDocJud(docJud1, doutrina);
 		
 		/* Verificando se os atributos foram persistidos corretamente */
 		//Quantidade de alteracoes
-		assertEquals(3, citacaoDocJudManager.getCitacoesDocJud().size() );
+		assertEquals(4, citacaoDocJudManager.getCitacoesDocJud().size() );
 		
 		/*
 		 * Atributos das Citacoes
@@ -102,6 +114,12 @@ public class CitacaoDocJudManagerTest {
 			  	  docJud1.getIdentificadorUnico());
 		assertEquals( citacaoDocJudManager.getCitacoesDocJud().get(2).getElementoNormaDestino().getIdentificadorUnico(),
 			      artigo1.getIdentificadorUnico());
+		
+		//DocJud1 -> Doutrina (DJ->DO)
+		assertEquals( citacaoDocJudManager.getCitacoesDocJud().get(3).getDocumentoJuridicoOrigem().getIdentificadorUnico(),
+			  	  docJud1.getIdentificadorUnico());
+		assertEquals( citacaoDocJudManager.getCitacoesDocJud().get(3).getDoutrinaDestino().getAutor(),
+			      doutrina.getAutor());
 	}
 	
 	/**
@@ -130,10 +148,17 @@ public class CitacaoDocJudManagerTest {
 		docJud2.setIdentificadorUnico("idUnico2");
 		docJudManager.salvaDocumentoJuridico(docJud1);
 		docJudManager.salvaDocumentoJuridico(docJud2);
+		
+		/* Criando e persistindo uma doutrina */
+		Doutrina doutrina = new Doutrina();
+		doutrina.setAutor("autor");
+		doutrinaManager.salvaDoutrina( doutrina );
+		
 		/* ---------- Verifica as cardinalidade das tabelas dos elementos envolvidos ----------*/
 		assertEquals(1, normaManager.getNormas().size() );
 		assertEquals(1, elementoNormaManager.getElementosNorma().size() );
 		assertEquals(2, docJudManager.getDocumentosJuridicos().size() );
+		assertEquals(1, doutrinaManager.getDoutrinas().size() );
 		
 		/* Criando as CitacoesDocJud */
 		//DocJud1 -> DocJud2 (DJ->DJ)
@@ -142,10 +167,12 @@ public class CitacaoDocJudManagerTest {
 		citacaoDocJudManager.criaCitacaoDocJud(docJud1, norma1);
 		//DocJud1 -> Artigo1 (DJ->EN)
 		citacaoDocJudManager.criaCitacaoDocJud(docJud1, artigo1);
+		//DocJud1 -> Doutrina (DJ->DO)
+		citacaoDocJudManager.criaCitacaoDocJud(docJud1, doutrina);
 		
 		/* Verificando se os atributos foram persistidos corretamente */
 		//Quantidade de citacoesDocJud
-		assertEquals(3, citacaoDocJudManager.getCitacoesDocJud().size() );
+		assertEquals(4, citacaoDocJudManager.getCitacoesDocJud().size() );
 		/*
 		 * Por algum motivo obscuro, ao pegar a lista elementos, eles nao vem na ordem
 		 * que foram inseridos, dai a diferenca da ordem que foi inserida para a ordem que 
@@ -159,17 +186,20 @@ public class CitacaoDocJudManagerTest {
 		assertEquals(1, elementoNormaManager.getElementosNorma().get(0).getCitacoesRecebidasDocJud().size() );
 		//DocJud1
 		assertEquals(docJud1.getIdentificadorUnico(), docJudManager.getDocumentosJuridicos().get(1).getIdentificadorUnico() );
-		assertEquals(3, docJudManager.getDocumentosJuridicos().get(1).getCitacoesFeitas().size() );
+		assertEquals(4, docJudManager.getDocumentosJuridicos().get(1).getCitacoesFeitas().size() );
 		//DocJud2
 		assertEquals(docJud2.getIdentificadorUnico(), docJudManager.getDocumentosJuridicos().get(0).getIdentificadorUnico() );
 		assertEquals(1, docJudManager.getDocumentosJuridicos().get(0).getCitacoesRecebidasDocJud().size() );
-				
+		//Doutrina
+		assertEquals(doutrina.getAutor(), doutrinaManager.getDoutrinas().get(0).getAutor());
+		assertEquals(1, doutrinaManager.getDoutrinas().get(0).getCitacoesRecebidasDocJud().size());
+		
 		/* ---------- Removendo as citacoes ----------*/
 		/*
 		 * DocJud1 -> DocJud2 (DJ->DJ)
 		 */
 		citacaoDocJudManager.removeCitacaoDocJud( citacaoDocJudManager.getCitacoesDocJud().get(0) );
-		assertEquals(2, citacaoDocJudManager.getCitacoesDocJud().size() );
+		assertEquals(3, citacaoDocJudManager.getCitacoesDocJud().size() );
 		//Norma1
 		assertEquals(norma1.getIdentificadorUnico(), normaManager.getNormas().get(0).getIdentificadorUnico() );
 		assertEquals(1, normaManager.getNormas().get(0).getCitacoesRecebidasDocJud().size() );
@@ -178,7 +208,7 @@ public class CitacaoDocJudManagerTest {
 		assertEquals(1, elementoNormaManager.getElementosNorma().get(0).getCitacoesRecebidasDocJud().size() );
 		//DocJud1
 		assertEquals(docJud1.getIdentificadorUnico(), docJudManager.getDocumentosJuridicos().get(0).getIdentificadorUnico() );
-		assertEquals(2, docJudManager.getDocumentosJuridicos().get(0).getCitacoesFeitas().size() );
+		assertEquals(3, docJudManager.getDocumentosJuridicos().get(0).getCitacoesFeitas().size() );
 		//DocJud2
 		assertEquals(docJud2.getIdentificadorUnico(), docJudManager.getDocumentosJuridicos().get(1).getIdentificadorUnico() );
 		assertEquals(0, docJudManager.getDocumentosJuridicos().get(1).getCitacoesRecebidasDocJud().size() );
@@ -186,7 +216,7 @@ public class CitacaoDocJudManagerTest {
 		 * DocJud1 -> Norma1 (DJ->N)
 		 */
 		citacaoDocJudManager.removeCitacaoDocJud( citacaoDocJudManager.getCitacoesDocJud().get(0) );
-		assertEquals(1, citacaoDocJudManager.getCitacoesDocJud().size() );
+		assertEquals(2, citacaoDocJudManager.getCitacoesDocJud().size() );
 		//Norma1
 		assertEquals(norma1.getIdentificadorUnico(), normaManager.getNormas().get(0).getIdentificadorUnico() );
 		assertEquals(0, normaManager.getNormas().get(0).getCitacoesRecebidasDocJud().size() );
@@ -195,11 +225,20 @@ public class CitacaoDocJudManagerTest {
 		assertEquals(1, elementoNormaManager.getElementosNorma().get(0).getCitacoesRecebidasDocJud().size() );
 		//DocJud1
 		assertEquals(docJud1.getIdentificadorUnico(), docJudManager.getDocumentosJuridicos().get(1).getIdentificadorUnico() );
-		assertEquals(1, docJudManager.getDocumentosJuridicos().get(1).getCitacoesFeitas().size() );
+		assertEquals(2, docJudManager.getDocumentosJuridicos().get(1).getCitacoesFeitas().size() );
 		//DocJud2
 		assertEquals(docJud2.getIdentificadorUnico(), docJudManager.getDocumentosJuridicos().get(0).getIdentificadorUnico() );
 		assertEquals(0, docJudManager.getDocumentosJuridicos().get(0).getCitacoesRecebidasDocJud().size() );
 
+		/*
+		 * DocJud1 -> Doutrina (DJ->DO)
+		 */
+		citacaoDocJudManager.removeCitacaoDocJud( citacaoDocJudManager.getCitacoesDocJud().get(0) );
+		assertEquals(0, doutrinaManager.getDoutrinas().get(0).getCitacoesRecebidasDocJud().size());
+		//DocJud1
+		assertEquals(docJud1.getIdentificadorUnico(), docJudManager.getDocumentosJuridicos().get(1).getIdentificadorUnico() );
+		assertEquals(1, docJudManager.getDocumentosJuridicos().get(1).getCitacoesFeitas().size() );
+		
 		/*
 		 * DocJud1 -> Artigo1 (DJ->EN)
 		 */
@@ -217,5 +256,7 @@ public class CitacaoDocJudManagerTest {
 		//DocJud2
 		assertEquals(docJud2.getIdentificadorUnico(), docJudManager.getDocumentosJuridicos().get(0).getIdentificadorUnico() );
 		assertEquals(0, docJudManager.getDocumentosJuridicos().get(0).getCitacoesRecebidasDocJud().size() );
+	
+		
 	}
 }
