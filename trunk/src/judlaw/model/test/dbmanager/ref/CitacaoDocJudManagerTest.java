@@ -256,7 +256,5 @@ public class CitacaoDocJudManagerTest {
 		//DocJud2
 		assertEquals(docJud2.getIdentificadorUnico(), docJudManager.getDocumentosJuridicos().get(0).getIdentificadorUnico() );
 		assertEquals(0, docJudManager.getDocumentosJuridicos().get(0).getCitacoesRecebidasDocJud().size() );
-	
-		
 	}
 }
