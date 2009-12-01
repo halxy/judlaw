@@ -285,18 +285,17 @@ public class AlteracaoManager {
     
     public void criaAlteracaoModificacao(Norma normaOrigem, ElementoNorma elementoNormaDestino, ElementoNorma elementoNormaModificado, 
             String dataModificacao, String caracteristica){
-    	//Setando o fim da vigencia do elementoNorma alterado
-    	System.out.println("normaOrigem:" +normaOrigem.getIdentificadorUnico());
-    	System.out.println("vai setar a vigencia de: "+elementoNormaDestino.getIdentificadorUnico());
-    	System.out.println("antiga: "+elementoNormaDestino.getVigencia());
-    	elementoNormaDestino.setVigencia( TimeLogic.getInstance().novaDataFimVigencia(elementoNormaDestino.getVigencia(), 
-    							  TimeLogic.getInstance().diaAnterior(dataModificacao)));
-    	System.out.println("nova: "+elementoNormaDestino.getVigencia());
-    	dbManager.save(elementoNormaDestino);
+//    	//Setando o fim da vigencia do elementoNorma alterado
+//    	System.out.println("normaOrigem:" +normaOrigem.getIdentificadorUnico());
+//    	System.out.println("vai setar a vigencia de: "+elementoNormaDestino.getIdentificadorUnico());
+//    	System.out.println("antiga: "+elementoNormaDestino.getVigencia());
+//    	elementoNormaDestino.setVigencia( TimeLogic.getInstance().novaDataFimVigencia(elementoNormaDestino.getVigencia(), 
+//    							  TimeLogic.getInstance().diaAnterior(dataModificacao)));
+//    	System.out.println("nova: "+elementoNormaDestino.getVigencia());
+//    	dbManager.save(elementoNormaDestino);
     	//Criando o novo elementoNorma
     	ElementoNorma novoElementoNorma = new ElementoNorma();
-		ElementoNormaManager.getInstance().setParametrosElementoNorma(elementoNormaModificado, novoElementoNorma);
-		novoElementoNorma.setDataPublicacao( dataModificacao );
+		ElementoNormaManager.getInstance().setParametrosElementoNorma(elementoNormaModificado, novoElementoNorma, dataModificacao);
 		//Pais
 		for( Norma normaPai : elementoNormaModificado.getNormasPai() ){
 			normaPai.getElementosNorma().add( novoElementoNorma );
@@ -335,8 +334,7 @@ public class AlteracaoManager {
     	dbManager.save(elementoNormaDestino);
     	//Criando o novo elementoNorma
     	ElementoNorma novoElementoNorma = new ElementoNorma();
-		ElementoNormaManager.getInstance().setParametrosElementoNorma(elementoNormaModificado, novoElementoNorma);
-		novoElementoNorma.setDataPublicacao( dataModificacao );
+		ElementoNormaManager.getInstance().setParametrosElementoNorma(elementoNormaModificado, novoElementoNorma, dataModificacao);
 		//Pais
 		for( Norma normaPai : elementoNormaModificado.getNormasPai() ){
 			normaPai.getElementosNorma().add( novoElementoNorma );
