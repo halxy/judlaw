@@ -118,15 +118,17 @@ public class NormaManager {
      * @param norma
      * @param novaNorma
      */
-    public void setParametrosNorma(Norma norma, Norma novaNorma) {
+    public void setParametrosNorma(Norma norma, Norma novaNorma, String dataModificacao) {
     	novaNorma.setEpigrafe( norma.getEpigrafe() );
     	novaNorma.setEmenta( norma.getEmenta() );
     	novaNorma.setAutoria( norma.getAutoria() );
     	novaNorma.setLocal( norma.getLocal() );
     	novaNorma.setIdentificadorUnico( norma.getIdentificadorUnico() );
     	novaNorma.setTipo( norma.getTipo() );
-    	novaNorma.setDataPublicacao( norma.getDataPublicacao() );
-    	novaNorma.setVigencia( norma.getVigencia() );
+    	//Temporalidade
+    	novaNorma.setDataPublicacao( dataModificacao );
+    	novaNorma.setVigencia( dataModificacao + "-99/99/9999" );
+    	//Filhos
     	for(ElementoNorma eleN : norma.getElementosNorma() ) {
     		novaNorma.getElementosNorma().add( eleN );
     	}
