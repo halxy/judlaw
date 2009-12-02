@@ -134,9 +134,13 @@ public class ElementoNormaManager {
 	 * @param novoElementoNorma
 	 */
 	public void setParametrosElementoNorma(ElementoNorma elementoNorma, ElementoNorma novoElementoNorma, String dataModificacao){
-		novoElementoNorma.setTexto( elementoNorma.getTexto() );
+		//Atributos que nao se alteram
 		novoElementoNorma.setIdentificadorUnico( elementoNorma.getIdentificadorUnico() );
 		novoElementoNorma.setTipo( elementoNorma.getTipo() );
+		//Atributos que se alteram
+		if( isEmpty(novoElementoNorma.getTexto())) {
+			novoElementoNorma.setTexto( elementoNorma.getTexto() );
+		}	
 		//Temporalidade
 		novoElementoNorma.setDataPublicacao( dataModificacao );
 		novoElementoNorma.setVigencia( dataModificacao + "-99/99/9999" );
@@ -144,7 +148,7 @@ public class ElementoNormaManager {
 		for(ElementoNorma eleN : elementoNorma.getElementosNorma() ) {
 			novoElementoNorma.getElementosNorma().add( eleN );
     	}
-		//Pais
+		//Adiciona os pais do elementoNorma
 		if( elementoNorma.getNormasPai().size() > 0 ){
 			for( Norma norma : elementoNorma.getNormasPai()) {
 				novoElementoNorma.getNormasPai().add( norma );
@@ -154,5 +158,12 @@ public class ElementoNormaManager {
 				novoElementoNorma.getElementosNormaPai().add( elementoNormaAux );
 			}
 		}	
+	}
+	
+	/*
+	 * Verifica se um atributo do ElementoNorma esta vazio
+	 */
+	private boolean isEmpty(String atributo) {
+		return atributo == null || atributo.equalsIgnoreCase("");
 	}
 }
