@@ -574,12 +574,12 @@ public class AlteracaoManagerTest {
 		assertEquals( "20/11/2011-99/99/9999", artigo1ModBD.getVigencia());
 		assertEquals ( artigo1.getTexto(), artigo1BD.getTexto() );
 		assertEquals ( "10/10/2010-19/11/2011", artigo1BD.getVigencia() );
-//		//Filhos
-//		//Paragrafo1
-//		assertEquals( 1, artigo1BDAux.getElementosNorma().size() );
-//		ElementoNorma paragrafo1BDAux = (ElementoNorma) artigo1BDAux.getElementosNorma().get(0);
-//		assertEquals( paragrafo1BDAux.getIdentificadorUnico(), paragrafo1.getIdentificadorUnico() );
-//		assertEquals( 2, paragrafo1BDAux.getElementosNormaPai().size() );
+		//Filhos
+		//Paragrafo1
+		assertEquals( 1, artigo1ModBD.getElementosNorma().size() );
+		ElementoNorma paragrafo1BDAux = (ElementoNorma) artigo1ModBD.getElementosNorma().get(0);
+		assertEquals( paragrafo1BDAux.getIdentificadorUnico(), paragrafo1.getIdentificadorUnico() );
+		assertEquals( 2, paragrafo1BDAux.getElementosNormaPai().size() );
 	}
 	
 //	/**
