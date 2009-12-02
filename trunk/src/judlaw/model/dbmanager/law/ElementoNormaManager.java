@@ -130,29 +130,29 @@ public class ElementoNormaManager {
      * Obs: as referencias nao sao replicadas, pois entende-se que so percentem a um momento temporal
      * do banco de dados, entao um elementonorma modificado naquele momento temporal nao recebe as referencias
      * da versao antiga
-	 * @param elementoNormaModificado
+	 * @param elementoNorma
 	 * @param novoElementoNorma
 	 */
-	public void setParametrosElementoNorma(ElementoNorma elementoNormaModificado, ElementoNorma novoElementoNorma){
-		novoElementoNorma.setTexto( elementoNormaModificado.getTexto() );
-		novoElementoNorma.setIdentificadorUnico( elementoNormaModificado.getIdentificadorUnico() );
-		novoElementoNorma.setTipo( elementoNormaModificado.getTipo() );
-		novoElementoNorma.setDataPublicacao( elementoNormaModificado.getDataPublicacao() );
-		novoElementoNorma.setVigencia( elementoNormaModificado.getVigencia() );
+	public void setParametrosElementoNorma(ElementoNorma elementoNorma, ElementoNorma novoElementoNorma, String dataModificacao){
+		novoElementoNorma.setTexto( elementoNorma.getTexto() );
+		novoElementoNorma.setIdentificadorUnico( elementoNorma.getIdentificadorUnico() );
+		novoElementoNorma.setTipo( elementoNorma.getTipo() );
+		//Temporalidade
+		novoElementoNorma.setDataPublicacao( dataModificacao );
+		novoElementoNorma.setVigencia( dataModificacao + "-99/99/9999" );
 		//ElementosNorma
-		for(ElementoNorma eleN : elementoNormaModificado.getElementosNorma() ) {
+		for(ElementoNorma eleN : elementoNorma.getElementosNorma() ) {
 			novoElementoNorma.getElementosNorma().add( eleN );
     	}
 		//Pais
-		if( elementoNormaModificado.getNormasPai().size() > 0 ){
-			for( Norma norma : elementoNormaModificado.getNormasPai()) {
+		if( elementoNorma.getNormasPai().size() > 0 ){
+			for( Norma norma : elementoNorma.getNormasPai()) {
 				novoElementoNorma.getNormasPai().add( norma );
 			}
 		} else {
-			for( ElementoNorma elementoNorma : elementoNormaModificado.getElementosNormaPai() ) {
-				novoElementoNorma.getElementosNormaPai().add( elementoNorma );
+			for( ElementoNorma elementoNormaAux : elementoNorma.getElementosNormaPai() ) {
+				novoElementoNorma.getElementosNormaPai().add( elementoNormaAux );
 			}
-		}
-		
+		}	
 	}
 }
