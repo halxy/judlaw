@@ -321,9 +321,6 @@ public class AlteracaoManager {
 		dbManager.save( alteracao );
     }
     
-    /*
-     * REFAZER BASEADO NO ANTERIOR
-     */
     public void criaAlteracaoModificacao(ElementoNorma elementoNormaOrigem, ElementoNorma elementoNormaDestino, ElementoNorma elementoNormaModificado, 
             String dataModificacao, String caracteristica){
     	//Setando o fim da vigencia do elementoNorma alterado
@@ -331,18 +328,17 @@ public class AlteracaoManager {
     							  TimeLogic.getInstance().diaAnterior(dataModificacao)));
     	dbManager.save(elementoNormaDestino);
     	//Criando o novo elementoNorma
-    	ElementoNorma novoElementoNorma = new ElementoNorma();
-		ElementoNormaManager.getInstance().setParametrosElementoNorma(elementoNormaModificado, novoElementoNorma, dataModificacao);
+		ElementoNormaManager.getInstance().setParametrosElementoNorma(elementoNormaDestino, elementoNormaModificado, dataModificacao);
 		//Pais
 		for( Norma normaPai : elementoNormaModificado.getNormasPai() ){
-			normaPai.getElementosNorma().add( novoElementoNorma );
+			normaPai.getElementosNorma().add( elementoNormaModificado );
 			dbManager.save( normaPai );
 		}
 		for( ElementoNorma elementoNormaPai : elementoNormaModificado.getElementosNormaPai() ){
-			elementoNormaPai.getElementosNorma().add( novoElementoNorma );
+			elementoNormaPai.getElementosNorma().add( elementoNormaModificado );
 			dbManager.save( elementoNormaPai );
 		}
-		ElementoNormaManager.getInstance().salvaElementoAlterado( novoElementoNorma );
+		ElementoNormaManager.getInstance().salvaElementoAlterado( elementoNormaModificado );
 		//Criando a alteracao
 		Alteracao alteracao = new Alteracao(elementoNormaOrigem, elementoNormaDestino, dataModificacao, Constantes.MODIFICACAO, caracteristica);
 		dbManager.save( alteracao );
