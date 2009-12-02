@@ -285,27 +285,22 @@ public class AlteracaoManager {
     
     public void criaAlteracaoModificacao(Norma normaOrigem, ElementoNorma elementoNormaDestino, ElementoNorma elementoNormaModificado, 
             String dataModificacao, String caracteristica){
-//    	//Setando o fim da vigencia do elementoNorma alterado
-//    	System.out.println("normaOrigem:" +normaOrigem.getIdentificadorUnico());
-//    	System.out.println("vai setar a vigencia de: "+elementoNormaDestino.getIdentificadorUnico());
-//    	System.out.println("antiga: "+elementoNormaDestino.getVigencia());
-//    	elementoNormaDestino.setVigencia( TimeLogic.getInstance().novaDataFimVigencia(elementoNormaDestino.getVigencia(), 
-//    							  TimeLogic.getInstance().diaAnterior(dataModificacao)));
-//    	System.out.println("nova: "+elementoNormaDestino.getVigencia());
-//    	dbManager.save(elementoNormaDestino);
+    	//Setando o fim da vigencia do elementoNorma alterado
+    	elementoNormaDestino.setVigencia( TimeLogic.getInstance().novaDataFimVigencia(elementoNormaDestino.getVigencia(), 
+    							  TimeLogic.getInstance().diaAnterior(dataModificacao)));
+    	dbManager.save(elementoNormaDestino);
     	//Criando o novo elementoNorma
-    	ElementoNorma novoElementoNorma = new ElementoNorma();
-		ElementoNormaManager.getInstance().setParametrosElementoNorma(elementoNormaModificado, novoElementoNorma, dataModificacao);
+		ElementoNormaManager.getInstance().setParametrosElementoNorma(elementoNormaDestino, elementoNormaModificado, dataModificacao);
 		//Pais
 		for( Norma normaPai : elementoNormaModificado.getNormasPai() ){
-			normaPai.getElementosNorma().add( novoElementoNorma );
+			normaPai.getElementosNorma().add( elementoNormaModificado );
 			dbManager.save( normaPai );
 		}
 		for( ElementoNorma elementoNormaPai : elementoNormaModificado.getElementosNormaPai() ){
-			elementoNormaPai.getElementosNorma().add( novoElementoNorma );
+			elementoNormaPai.getElementosNorma().add( elementoNormaModificado );
 			dbManager.save( elementoNormaPai );
 		}
-		ElementoNormaManager.getInstance().salvaElementoAlterado( novoElementoNorma );
+		ElementoNormaManager.getInstance().salvaElementoAlterado( elementoNormaModificado );
 		//Criando a alteracao
 		Alteracao alteracao = new Alteracao(normaOrigem, elementoNormaDestino, dataModificacao, Constantes.MODIFICACAO, caracteristica);
 		dbManager.save( alteracao );
@@ -326,6 +321,9 @@ public class AlteracaoManager {
 		dbManager.save( alteracao );
     }
     
+    /*
+     * REFAZER BASEADO NO ANTERIOR
+     */
     public void criaAlteracaoModificacao(ElementoNorma elementoNormaOrigem, ElementoNorma elementoNormaDestino, ElementoNorma elementoNormaModificado, 
             String dataModificacao, String caracteristica){
     	//Setando o fim da vigencia do elementoNorma alterado

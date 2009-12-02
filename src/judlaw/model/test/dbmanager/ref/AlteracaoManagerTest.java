@@ -547,11 +547,15 @@ public class AlteracaoManagerTest {
 		/* 
 		 * AlteracaoModificacao2 = Norma2 modifica Artigo1
 		 */
-		ElementoNorma artigo1Aux = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo("identificadorUnico", 
+		artigo1BD = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo("identificadorUnico", 
                 																		artigo1.getIdentificadorUnico()).get(0);
-		artigo1Aux.setTexto("textoArt1Aux"); //Modificando o texto
-		artigo1Aux.setTipo("tipoArt1Aux"); //Modificando o tipo
-		alteracaoManager.criaAlteracaoModificacao(norma2, artigo1, artigo1Aux, "20/11/2011", Constantes.MAIS_RESTRITIVA);
+		assertEquals( artigo1BD.getIdentificadorUnico(), artigo1.getIdentificadorUnico() );
+		assertEquals( 2, artigo1BD.getNormasPai().size() );
+		assertEquals( 1, artigo1BD.getElementosNorma().size() );
+		
+		ElementoNorma artigo1Mod = new ElementoNorma();
+		artigo1Mod.setTexto("textoArt1Novo");
+		alteracaoManager.criaAlteracaoModificacao(norma2, artigo1, artigo1Mod, "20/11/2011", Constantes.MAIS_RESTRITIVA);
 		/* ---------- Cardinalidades ----------*/
 		assertEquals( 3, normaManager.getNormas().size() );
 		assertEquals( 3, elementoNormaManager.getElementosNorma().size() );
@@ -560,23 +564,22 @@ public class AlteracaoManagerTest {
 		/* ---------- Verificando os atributos do novo Elemento----------*/
 		Alteracao alteracaoModificacaoBD2 = alteracaoManager.getAlteracoes().get(1);
 		assertEquals( 2, elementoNormaManager.selectElementoPorAtributo("identificadorUnico", artigo1.getIdentificadorUnico()).size());
-		ElementoNorma artigo1BDMod = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo("identificadorUnico", 
-				artigo1.getIdentificadorUnico()).get(0);
-		ElementoNorma artigo1BDAux = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo("identificadorUnico", 
-									artigo1.getIdentificadorUnico()).get(1);
+		artigo1BD = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo("identificadorUnico", 
+				artigo1.getIdentificadorUnico()).get(1);
+		ElementoNorma artigo1ModBD = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo("identificadorUnico", 
+									artigo1.getIdentificadorUnico()).get(0);
 		//Atributos
-		assertEquals( artigo1BDAux.getDataPublicacao(), alteracaoModificacaoBD2.getData());
-		assertEquals( "textoArt1Aux", artigo1BDAux.getTexto());
-		assertEquals( "tipoArt1Aux", artigo1BDAux.getTipo());
-		assertEquals( "20/11/2011-99/99/9999", artigo1BDAux.getVigencia());
-		assertEquals ( artigo1.getTipo(), artigo1BDMod.getTipo() );
-//		assertEquals ( "10/10/2010-19/11/2011", artigo1BD2.getVigencia() );
-		//Filhos
-		//Paragrafo1
-		assertEquals( 1, artigo1BDAux.getElementosNorma().size() );
-		ElementoNorma paragrafo1BDAux = (ElementoNorma) artigo1BDAux.getElementosNorma().get(0);
-		assertEquals( paragrafo1BDAux.getIdentificadorUnico(), paragrafo1.getIdentificadorUnico() );
-		assertEquals( 2, paragrafo1BDAux.getElementosNormaPai().size() );
+		assertEquals( artigo1ModBD.getDataPublicacao(), alteracaoModificacaoBD2.getData());
+		assertEquals( "textoArt1Novo", artigo1ModBD.getTexto());
+		assertEquals( "20/11/2011-99/99/9999", artigo1ModBD.getVigencia());
+		assertEquals ( artigo1.getTexto(), artigo1BD.getTexto() );
+		assertEquals ( "10/10/2010-19/11/2011", artigo1BD.getVigencia() );
+//		//Filhos
+//		//Paragrafo1
+//		assertEquals( 1, artigo1BDAux.getElementosNorma().size() );
+//		ElementoNorma paragrafo1BDAux = (ElementoNorma) artigo1BDAux.getElementosNorma().get(0);
+//		assertEquals( paragrafo1BDAux.getIdentificadorUnico(), paragrafo1.getIdentificadorUnico() );
+//		assertEquals( 2, paragrafo1BDAux.getElementosNormaPai().size() );
 	}
 	
 //	/**
