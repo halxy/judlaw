@@ -47,7 +47,6 @@ public class DBManager {
 		HibernateUtil.commitTransaction();
 		HibernateUtil.closeSession();
 	}
-
 	/**
 	 * Retrieve the persisted object.
 	 * @param object The object to persist.
