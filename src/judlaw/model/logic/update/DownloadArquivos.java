@@ -55,7 +55,6 @@ public class DownloadArquivos {
 				nomeArquivoLocal += ".html";
 			}
 			os = new BufferedOutputStream(new FileOutputStream(diretorio+"\\"+nomeArquivoLocal));
-			
 			URLConn = fileUrl.openConnection();
 			is = URLConn.getInputStream();
 			buf = new byte[size];
@@ -114,7 +113,10 @@ public class DownloadArquivos {
 			System.err.println("Especifique o caminho correto.");
 		}
 	}
-			
+	
+	/*
+	 * Main para testes
+	 */
 	public static void main(String[] args){
 			DownloadArquivos.getInstance().downloadArquivo("http://www.planalto.gov.br/ccivil_03/LEIS/L7685.htm", ".", Constantes.DOWNLOAD_HTML); 
 	}
