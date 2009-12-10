@@ -118,7 +118,7 @@ public class DownloadArquivos {
 	 * Main para testes
 	 */
 	public static void main(String[] args){
-			DownloadArquivos.getInstance().downloadArquivo("http://www.planalto.gov.br/ccivil_03/LEIS/L7685.htm", ".", Constantes.DOWNLOAD_HTML); 
+			DownloadArquivos.getInstance().downloadArquivo("http://www.planalto.gov.br/ccivil_03/Decreto-Lei/Del2848compilado.htm", ".", Constantes.DOWNLOAD_HTML); 
 	}
 }
 

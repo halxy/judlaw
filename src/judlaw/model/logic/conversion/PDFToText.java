@@ -88,8 +88,7 @@ public class PDFToText {
      * Main para testes
      */
     public static void main(String args[]) {
-    	PDFToText pdfText = new PDFToText();
-    	String pdfToText = pdfText.pdftoText("HC84445.pdf");
+    	String pdfToText = PDFToText.getInstance().pdftoText("HC84445.pdf");
     	System.out.println(pdfToText);
     }  
 }
