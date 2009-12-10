@@ -15,11 +15,15 @@
 	<classpathentry kind="lib" path="lib/hibernate/slf4j-jdk14-1.5.6.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate/slf4j-nop-1.5.6.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate/slf4j-simple-1.5.6.jar"/>
-	<classpathentry kind="lib" path="lib/junit-4.7.jar"/>
-	<classpathentry kind="lib" path="lib/easyaccept.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate/hibernate-annotations.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate/hibernate-commons-annotations.jar"/>
 	<classpathentry kind="lib" path="lib/xml/xpp3_min-1.1.4c.jar"/>
 	<classpathentry kind="lib" path="lib/xml/xstream-1.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/tests/easyaccept.jar"/>
+	<classpathentry kind="lib" path="lib/tests/junit-4.7.jar"/>
+	<classpathentry kind="lib" path="lib/conversion/html/nekohtml.jar"/>
+	<classpathentry kind="lib" path="lib/conversion/html/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="lib/conversion/pdf/FontBox-0.1.0-dev.jar"/>
+	<classpathentry kind="lib" path="lib/conversion/pdf/PDFBox-0.7.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
