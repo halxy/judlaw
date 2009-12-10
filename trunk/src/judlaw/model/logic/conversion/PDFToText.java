@@ -80,7 +80,7 @@ public class PDFToText {
                e.printStackTrace();
             }
         }      
-        System.out.println("Conversao concluida com sucesso.");
+        System.out.println("Conversão concluida com sucesso.");
         return parsedText;
     }
 	    
