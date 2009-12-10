@@ -45,6 +45,9 @@ public class Norma extends TextoLegal {
 	@Column(name="norma_id")
 	private Integer id;
 	
+	// URL
+	private String url;
+	
 	// Parte Preliminar
 	private String epigrafe;
 	private String ementa;
@@ -276,5 +279,13 @@ public class Norma extends TextoLegal {
 
 	public void setAlteracoesRecebidas(List<Alteracao> alteracoesRecebidas) {
 		this.alteracoesRecebidas = alteracoesRecebidas;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }
