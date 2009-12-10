@@ -25,11 +25,22 @@ import judlaw.model.util.Constantes;
 public class DownloadArquivos {
 
 	final static int size = 1024;
+	private static DownloadArquivos downloadArquivos = null;
 	
+	
+   /**
+    * Retorna uma instancia da classe DownloadArquivos
+    * @return
+    */
+    public static DownloadArquivos getInstance(){
+        if(downloadArquivos == null)
+        	downloadArquivos = new DownloadArquivos();
+        return downloadArquivos;
+    }
 	/*
 	 * Faz o download de um arquivo
 	 */
-	private static void download(String endereco, String nomeArquivoLocal, String diretorio, String tipo){
+	private void download(String endereco, String nomeArquivoLocal, String diretorio, String tipo){
 		OutputStream os = null;
 		URLConnection URLConn = null;
 		InputStream is = null;
@@ -70,42 +81,41 @@ public class DownloadArquivos {
 	/*
 	 * Imprime o resultado do download
 	 */
-	private static void imprimeDownload(int byteEscrito, String nomeArquivoLocal) {
-		System.out.println("Arquivo baixado com sucesso");
+	private void imprimeDownload(int byteEscrito, String nomeArquivoLocal) {
 		int mb = byteEscrito / 1024;
 		if(mb < 1000) {
-			System.out.println("File name:\""+nomeArquivoLocal+ "\"\nTamanho :" + mb + "KB");
+			System.out.println("Arquivo \""+nomeArquivoLocal+ "\" baixado com sucesso.\nTamanho :" + mb + "KB");
 		} else {
 			double x = (double) mb / 1000;
-			System.out.println("File name:\""+nomeArquivoLocal+ "\"\nTamanho :" + x + "MB");		
+			System.out.println("Arquivo \""+nomeArquivoLocal+ "\" baixado com sucesso.\nTamanho :" + x + "MB");		
 		}
 	}
 
-	public static void downloadArquivo(String fileAddress, String destinationDir, String tipo) {
-	// Find the index of last occurance of character ‘/’ and ‘.’.
-	int lastIndexOfSlash =
-	fileAddress.lastIndexOf('/');
-	int lastIndexOfPeriod =
-	fileAddress.lastIndexOf('.');
-
-	// Find the name of file to be downloaded from the address.
-	String fileName=fileAddress.substring
-	(lastIndexOfSlash + 1);
-
-	// Check whether path or file name is given correctly.
-	if (lastIndexOfPeriod >=1 &&  lastIndexOfSlash >= 0 && lastIndexOfSlash < fileAddress.length())
-			{
-			download(fileAddress,fileName,
-			destinationDir, tipo);
-			}
-			else
-			{
-			System.err.println("Specify correct path or file name.");
-	}
+	/**
+	 * 
+	 * @param endereco
+	 * @param destinationDir
+	 * @param tipo
+	 */
+	public void downloadArquivo(String endereco, String diretorio, String tipo) {
+		// Acha o indice da ultima ocorrencia de "/" e "."
+		int ultimoIndiceDaBarra = endereco.lastIndexOf('/');
+		int ultimoIndiceDoPonto = endereco.lastIndexOf('.');
+	
+		// Acha o nome a ser salvo do arquivo pelo endereco
+		String nomeArquivoLocal = endereco.substring(ultimoIndiceDaBarra + 1);
+	
+		// Check whether path or file name is given correctly.
+		if (ultimoIndiceDoPonto >=1 &&  ultimoIndiceDaBarra >= 0 && ultimoIndiceDaBarra < endereco.length()) {
+			download( endereco, nomeArquivoLocal, diretorio, tipo );
+		}
+		else {
+			System.err.println("Especifique o caminho correto.");
+		}
 	}
 			
 	public static void main(String[] args){
-			downloadArquivo("http://en.wikipedia.org/wiki/HTML", ".", Constantes.DOWNLOAD_HTML); 
-		}
+			DownloadArquivos.getInstance().downloadArquivo("http://en.wikipedia.org/wiki/HTML", ".", Constantes.DOWNLOAD_HTML); 
+	}
 }
 
