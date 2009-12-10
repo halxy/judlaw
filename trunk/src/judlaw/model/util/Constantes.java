@@ -42,4 +42,7 @@ public class Constantes {
 	public static final String DELIMITADOR_DATA = "/";
 	public static final String DELIMITADOR_VIGENCIA = "-";
 	
+	// Tipos de arquivos Download
+	public static final String DOWNLOAD_ARQUIVO = "Arquivo";
+	public static final String DOWNLOAD_HTML = "Html";
 }
