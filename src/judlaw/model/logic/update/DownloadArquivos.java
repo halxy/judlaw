@@ -50,7 +50,8 @@ public class DownloadArquivos {
 			byte[] buf;
 			int byteLido, byteEscrito = 0;
 			fileUrl= new URL(endereco);
-			if(tipo.equalsIgnoreCase(Constantes.DOWNLOAD_HTML)) { //Caso o arquivo seja um html
+			if(tipo.equalsIgnoreCase(Constantes.DOWNLOAD_HTML) &&
+			   !nomeArquivoLocal.contains("htm")) { //Caso o arquivo seja um html
 				nomeArquivoLocal += ".html";
 			}
 			os = new BufferedOutputStream(new FileOutputStream(diretorio+"\\"+nomeArquivoLocal));
