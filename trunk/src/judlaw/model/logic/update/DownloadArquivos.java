@@ -92,7 +92,7 @@ public class DownloadArquivos {
 	}
 
 	/**
-	 * 
+	 * Faz o download de um arquivo ou pagina html
 	 * @param endereco
 	 * @param destinationDir
 	 * @param tipo
@@ -115,7 +115,7 @@ public class DownloadArquivos {
 	}
 			
 	public static void main(String[] args){
-			DownloadArquivos.getInstance().downloadArquivo("http://en.wikipedia.org/wiki/HTML", ".", Constantes.DOWNLOAD_HTML); 
+			DownloadArquivos.getInstance().downloadArquivo("http://www.planalto.gov.br/ccivil_03/LEIS/L7685.htm", ".", Constantes.DOWNLOAD_HTML); 
 	}
 }
 
