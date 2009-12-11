@@ -25,5 +25,6 @@
 	<classpathentry kind="lib" path="lib/conversion/html/xercesImpl.jar"/>
 	<classpathentry kind="lib" path="lib/conversion/pdf/FontBox-0.1.0-dev.jar"/>
 	<classpathentry kind="lib" path="lib/conversion/pdf/PDFBox-0.7.3.jar"/>
+	<classpathentry kind="lib" path="lib/search/lucene-core-3.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
