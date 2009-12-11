@@ -1,4 +1,4 @@
-package judlaw.model.xmlmanager;
+package judlaw.model.persistence.xmlmanager;
 
 import java.io.FileWriter;
 import java.io.IOException;

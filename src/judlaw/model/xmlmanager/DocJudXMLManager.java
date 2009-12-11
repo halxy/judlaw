@@ -1,4 +1,4 @@
-package judlaw.model.xmlmanager;
+package judlaw.model.persistence.xmlmanager;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
