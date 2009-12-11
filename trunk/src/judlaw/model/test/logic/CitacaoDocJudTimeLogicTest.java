@@ -11,12 +11,12 @@ import static org.junit.Assert.assertEquals;
 import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
-import judlaw.model.dbmanager.docjud.DocJudManager;
-import judlaw.model.dbmanager.law.ElementoNormaManager;
-import judlaw.model.dbmanager.law.NormaManager;
-import judlaw.model.dbmanager.ref.CitacaoDocJudManager;
-import judlaw.model.dbmanager.ref.ReferenciaManager;
 import judlaw.model.logic.time.CitacaoDocJudTimeLogic;
+import judlaw.model.persistence.dbmanager.docjud.DocJudManager;
+import judlaw.model.persistence.dbmanager.law.ElementoNormaManager;
+import judlaw.model.persistence.dbmanager.law.NormaManager;
+import judlaw.model.persistence.dbmanager.ref.CitacaoDocJudManager;
+import judlaw.model.persistence.dbmanager.ref.ReferenciaManager;
 
 import org.junit.Before;
 import org.junit.Test;
