@@ -35,6 +35,6 @@ public class TextToFile {
      * Main para testes
      */
     public static void main(String[] args) {
-		TextToFile.getInstance().textToFile("ola", "ola.txt");
+		TextToFile.getInstance().textToFile(PDFToText.getInstance().pdftoText("HC84445.pdf"), "HC84445.txt");
 	}
 }
