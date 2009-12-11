@@ -5,12 +5,12 @@
  * Sistema JudLaw
  * Mestrando: Halley Freitas	
  */
-package judlaw.model.dbmanager.ref;
+package judlaw.model.persistence.dbmanager.ref;
 
 import judlaw.model.bean.ref.Alteracao;
 import judlaw.model.bean.ref.CitacaoDocJud;
 import judlaw.model.bean.ref.CitacaoTextLeg;
-import judlaw.model.dbmanager.DBManager;
+import judlaw.model.persistence.dbmanager.DBManager;
 
 
 /**

@@ -5,13 +5,13 @@
  * Sistema JudLaw
  * Mestrando: Halley Freitas	
  */
-package judlaw.model.dbmanager.law;
+package judlaw.model.persistence.dbmanager.law;
 
 import java.util.List;
 
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
-import judlaw.model.dbmanager.DBManager;
+import judlaw.model.persistence.dbmanager.DBManager;
 
 /**
  * Classe ElementoNormaManager - responsável por gerenciar as operacoes no banco de dados dos elementosNorma 

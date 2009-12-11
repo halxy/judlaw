@@ -5,17 +5,17 @@
  * Sistema JudLaw
  * Mestrando: Halley Freitas	
  */
-package judlaw.model.dbmanager.ref;
+package judlaw.model.persistence.dbmanager.ref;
 
 import java.util.List;
 
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
 import judlaw.model.bean.ref.Alteracao;
-import judlaw.model.dbmanager.DBManager;
-import judlaw.model.dbmanager.law.ElementoNormaManager;
-import judlaw.model.dbmanager.law.NormaManager;
 import judlaw.model.logic.time.TimeLogic;
+import judlaw.model.persistence.dbmanager.DBManager;
+import judlaw.model.persistence.dbmanager.law.ElementoNormaManager;
+import judlaw.model.persistence.dbmanager.law.NormaManager;
 import judlaw.model.util.Constantes;
 
 /**

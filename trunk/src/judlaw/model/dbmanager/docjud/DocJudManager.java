@@ -5,7 +5,7 @@
  * Sistema JudLaw
  * Mestrando: Halley Freitas	
  */
-package judlaw.model.dbmanager.docjud;
+package judlaw.model.persistence.dbmanager.docjud;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import judlaw.model.bean.docjud.Encerramento;
 import judlaw.model.bean.docjud.Parte;
 import judlaw.model.bean.docjud.Relatorio;
 import judlaw.model.bean.docjud.Voto;
-import judlaw.model.dbmanager.DBManager;
+import judlaw.model.persistence.dbmanager.DBManager;
 
 
 /**
