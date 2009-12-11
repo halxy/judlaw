@@ -5,7 +5,7 @@
  * Sistema JudLaw
  * Mestrando: Halley Freitas	
  */
-package judlaw.model.dbmanager;
+package judlaw.model.persistence.dbmanager;
 
 import java.io.Serializable;
 import java.util.ArrayList;

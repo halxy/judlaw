@@ -1,9 +1,9 @@
-package judlaw.model.dbmanager.doutrina;
+package judlaw.model.persistence.dbmanager.doutrina;
 
 import java.util.List;
 
 import judlaw.model.bean.doutrina.Doutrina;
-import judlaw.model.dbmanager.DBManager;
+import judlaw.model.persistence.dbmanager.DBManager;
 
 public class DoutrinaManager {
 
