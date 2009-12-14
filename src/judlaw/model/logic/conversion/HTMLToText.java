@@ -16,7 +16,19 @@ public class HTMLToText {
 	private StringBuffer TextBuffer;
 	private InputSource inSource;
     
-    /*
+	private static HTMLToText htmlToText = null;
+	
+	
+	   /**
+	    * Retorna uma instancia da classe HTMLToText
+	    * @return
+	    */
+	    public static HTMLToText getInstance() {
+	        if(htmlToText == null)
+	        	htmlToText = new HTMLToText();
+	        return htmlToText;
+	    }
+	/*
      * Processa o texto dos nodes recursivamente
      */
     private void processNode(Node node) {

@@ -35,6 +35,7 @@ public class TextToFile {
      * Main para testes
      */
     public static void main(String[] args) {
-		TextToFile.getInstance().textToFile(PDFToText.getInstance().pdftoText("HC84445.pdf"), "HC84445.txt");
-	}
+//		TextToFile.getInstance().textToFile(PDFToText.getInstance().pdftoText("Del2848compilado.htm"), "Del2848compilado.htm.txt");
+    	TextToFile.getInstance().textToFile(HTMLToText.getInstance().htmltoText("Del2848compilado.htm"), "Del2848compilado.htm.txt");
+    }
 }
