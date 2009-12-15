@@ -275,7 +275,7 @@ public class AlteracaoManager {
     							  TimeLogic.getInstance().diaAnterior(dataModificacao)));
     	dbManager.save(normaDestino);
     	//Criando a nova norma
-    	Norma novaNorma = new Norma();
+    	Norma novaNorma = new Norma();  //PODE SER ISSO
     	NormaManager.getInstance().setParametrosNorma(normaModificada, novaNorma, dataModificacao);
     	NormaManager.getInstance().salvaNormaAlterada( novaNorma );
     	//Criando a alteracao
