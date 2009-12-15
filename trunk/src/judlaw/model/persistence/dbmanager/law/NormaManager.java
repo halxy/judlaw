@@ -119,11 +119,13 @@ public class NormaManager {
      * @param novaNorma
      */
     public void setParametrosNorma(Norma norma, Norma novaNorma, String dataModificacao) {
+    	novaNorma.setUrl( norma.getUrl() );
     	novaNorma.setEmenta( norma.getEmenta() );
     	novaNorma.setAutoria( norma.getAutoria() );
     	novaNorma.setLocal( norma.getLocal() );
     	novaNorma.setIdentificadorUnico( norma.getIdentificadorUnico() );
     	novaNorma.setTipo( norma.getTipo() );
+    	novaNorma.setNumero( norma.getNumero() );
     	//Temporalidade
     	novaNorma.setDataPublicacao( dataModificacao );
     	novaNorma.setVigencia( dataModificacao + "-99/99/9999" );
