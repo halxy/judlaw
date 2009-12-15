@@ -53,7 +53,7 @@ public class CitacaoDocJudManagerTest {
 		 *        ElementoNorma1      
 		 */
 		/* Criando e persistindo a norma e o elementoNorma*/
-		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+		Norma norma1 = new Norma("ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
 				"dataPublicacaoN1", "vigenciaN1");
 		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
 				"dataPublicacaoArt1", "vigenciaArt1");
@@ -133,7 +133,7 @@ public class CitacaoDocJudManagerTest {
 		 *        ElementoNorma1      ElementoNorma2
 		 */
 		/* Criando e persistindo as normas e elementosNorma*/
-		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+		Norma norma1 = new Norma("ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
 				"dataPublicacaoN1", "vigenciaN1");
 		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
 				"dataPublicacaoArt1", "vigenciaArt1");

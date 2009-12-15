@@ -76,13 +76,13 @@ public class CitacaoDocJudTimeLogicTest {
 		artigo2.getElementosNorma().add(paragrafo2);
 		artigo2.getElementosNorma().add(paragrafo3);
 		
-		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+		Norma norma1 = new Norma("ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
 								"10/10/2010", "10/10/2010-10/10/2012");
 		norma1.getElementosNorma().add(artigo1);
 		norma1.getElementosNorma().add(artigo2);
 		normaManager.salvaNorma(norma1);
 		
-		Norma norma2 = new Norma("epigrafeN2", "ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
+		Norma norma2 = new Norma("ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
 				"dataPublicacaoN2", "10/10/2010-09/10/2011");
 		normaManager.salvaNorma(norma2);
 		

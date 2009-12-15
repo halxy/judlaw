@@ -52,6 +52,7 @@ public class ElementoNorma extends TextoLegal {
 	
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
 	private String tipo; // tipo do textoLegal
+	private int numero;
 	private String dataPublicacao; // dd/MM/yyy
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
 	
@@ -298,5 +299,13 @@ public class ElementoNorma extends TextoLegal {
 
 	public void setAlteracoesRecebidas(List<Alteracao> alteracoesRecebidas) {
 		this.alteracoesRecebidas = alteracoesRecebidas;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 }

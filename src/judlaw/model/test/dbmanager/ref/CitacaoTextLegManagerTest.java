@@ -51,13 +51,13 @@ public class CitacaoTextLegManagerTest {
 		 *        ElementoNorma1      ElementoNorma2
 		 */
 		/* Criando e persistindo as normas e elementosNorma*/
-		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+		Norma norma1 = new Norma("ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
 				"dataPublicacaoN1", "vigenciaN1");
 		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
 				"dataPublicacaoArt1", "vigenciaArt1");
 		norma1.getElementosNorma().add(artigo1);
 		
-		Norma norma2 = new Norma("epigrafeN2", "ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
+		Norma norma2 = new Norma("ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
 				"dataPublicacaoN2", "vigenciaN2");
 		ElementoNorma artigo2 = new ElementoNorma("textoArt2", "identificadorUnicoArt2", "tipoArt2", 
 				"dataPublicacaoArt2", "vigenciaArt2");
@@ -184,12 +184,12 @@ public class CitacaoTextLegManagerTest {
 		 *        ElementoNorma1      ElementoNorma2
 		 */
 		/* Criando e persistindo as normas e elementosNorma*/
-		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+		Norma norma1 = new Norma("ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
 				"dataPublicacaoN1", "vigenciaN1");
 		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
 				"dataPublicacaoArt1", "vigenciaArt1");
 		norma1.getElementosNorma().add(artigo1);
-		Norma norma2 = new Norma("epigrafeN2", "ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
+		Norma norma2 = new Norma("ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
 				"dataPublicacaoN2", "vigenciaN2");
 		ElementoNorma artigo2 = new ElementoNorma("textoArt2", "identificadorUnicoArt2", "tipoArt2", 
 				"dataPublicacaoArt2", "vigenciaArt2");
