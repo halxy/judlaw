@@ -1,5 +1,6 @@
 package judlaw.model.logic.time;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import judlaw.model.bean.law.ElementoNorma;
@@ -47,13 +48,20 @@ public class LawTimeLogic {
      */
     public Norma reconstroiNorma(ElementoNorma elementoNorma) throws Exception {
     	List<ElementoNorma> elementosPai = elementoNorma.getElementosNormaPai();
-    	ElementoNorma eleNormaAux = new ElementoNorma();
+    	ElementoNorma eleNormaAux = elementoNorma;
     	while( elementosPai.size() > 0 ) { // Retorna o elementoNorma mais proximo da norma
     		eleNormaAux = elementosPai.get(0);
     		elementosPai = eleNormaAux.getElementosNormaPai();
     	}
     	// Recuperando as normasPai.
-    	List<Norma> normasPai = eleNormaAux.getNormasPai();
+    	ArrayList<Norma> normasPai = new ArrayList<Norma>();
+    	for( Norma normaPai : eleNormaAux.getNormasPai() ) {
+    		if(TimeLogic.getInstance().comparaDatas(normaPai.getDataPublicacao(), 
+    												elementoNorma.getDataPublicacao(), 
+    												Constantes.DELIMITADOR_DATA) < 1) {
+    			normasPai.add( normaPai );
+    		}
+    	}
     	return normaMaisAtual(normasPai);
     }
 }
