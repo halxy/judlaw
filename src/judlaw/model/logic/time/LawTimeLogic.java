@@ -48,10 +48,13 @@ public class LawTimeLogic {
      */
     public Norma reconstroiNorma(ElementoNorma elementoNorma) throws Exception {
     	List<ElementoNorma> elementosPai = elementoNorma.getElementosNormaPai();
-    	ElementoNorma eleNormaAux = elementoNorma;
+    	ElementoNorma eleNormaAux = null;
     	while( elementosPai.size() > 0 ) { // Retorna o elementoNorma mais proximo da norma
     		eleNormaAux = elementosPai.get(0);
     		elementosPai = eleNormaAux.getElementosNormaPai();
+    	}
+    	if( eleNormaAux == null ) { //se nao houverem elementosPai
+    		eleNormaAux = elementoNorma;
     	}
     	// Recuperando as normasPai.
     	ArrayList<Norma> normasPai = new ArrayList<Norma>();
