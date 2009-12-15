@@ -110,6 +110,9 @@ public class LawTimeLogicTest {
 				"10/10/2010", "10/10/2010-99/99/9999");
 		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
 				"10/10/2010", "10/10/2010-99/99/9999");
+		ElementoNorma paragrafo1 = new ElementoNorma("textoParagrafo1", "identificadorUnicoParagrafo1", "tipoParagrafo1", 
+				"10/10/2010", "10/10/2010-99/99/9999");
+		artigo1.getElementosNorma().add(paragrafo1);
 		norma1.getElementosNorma().add( artigo1 );
 		normaManager.salvaNorma(norma1);
 		Norma norma2 = new Norma("ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
@@ -118,7 +121,7 @@ public class LawTimeLogicTest {
 		
 		/* ---------- Cardinalidades ----------*/
 		assertEquals( 2, normaManager.getNormas().size() );
-		assertEquals( 1, elementoNormaManager.getElementosNorma().size() );
+		assertEquals( 2, elementoNormaManager.getElementosNorma().size() );
 		
 		/* 
 		 * AlteracaoModificacao1 = Norma2 modifica Artigo1
@@ -147,7 +150,7 @@ public class LawTimeLogicTest {
 		
 		/* ---------- Cardinalidades ----------*/
 		assertEquals( 4, normaManager.getNormas().size() );
-		assertEquals( 2, elementoNormaManager.getElementosNorma().size() );
+		assertEquals( 3, elementoNormaManager.getElementosNorma().size() );
 		
 		/* ---------- Verificando os filhos das Normas em t1, t2 e t3 ----------*/
 		assertEquals(3, normaManager.selectNormaPorAtributo("identificadorUnico", 
@@ -165,8 +168,14 @@ public class LawTimeLogicTest {
 		
 		assertEquals(3, artt1BD.getNormasPai().size());
 		assertEquals(3, artt1BD2.getNormasPai().size());
+		assertEquals(1, artt1BD.getElementosNorma().size());
+		assertEquals(1, artt1BD2.getElementosNorma().size());
+		
+		ElementoNorma par1BD = (ElementoNorma) elementoNormaManager.selectElementoPorAtributo("identificadorUnico", 
+				paragrafo1.getIdentificadorUnico()).get(0);
 		try {
 			assertEquals("localN1", lawTimeLogic.reconstroiNorma(artt1BD).getLocal());
+			assertEquals("localN1", lawTimeLogic.reconstroiNorma(par1BD).getLocal());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
