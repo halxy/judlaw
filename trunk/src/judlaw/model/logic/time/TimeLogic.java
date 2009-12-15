@@ -25,6 +25,9 @@ import judlaw.model.util.Constantes;
 public class TimeLogic {
 
 	private static TimeLogic timeLogic = null;
+	/*
+	 * Atributos utilizados pelos algoritmos de verificacao da consistencia temporal
+	 */
 	private List<Norma> normasPaiAtualizados = new ArrayList<Norma>();
 	private List<ElementoNorma> elementosNormaPaiAtualizados = new ArrayList<ElementoNorma>();
 	private List<ElementoNorma> elementosNormaFilhosAtualizados = new ArrayList<ElementoNorma>();
@@ -39,6 +42,41 @@ public class TimeLogic {
 			timeLogic = new TimeLogic();
 		}
 		return timeLogic;
+	}
+	
+	public List<Norma> getNormasPaiAtualizados() {
+		return normasPaiAtualizados;
+	}
+
+	public void setNormasPaiAtualizados(List<Norma> normasPaiAtualizados) {
+		this.normasPaiAtualizados = normasPaiAtualizados;
+	}
+
+	public List<ElementoNorma> getElementosNormaPaiAtualizados() {
+		return elementosNormaPaiAtualizados;
+	}
+
+	public void setElementosNormaPaiAtualizados(
+			List<ElementoNorma> elementosNormaPaiAtualizados) {
+		this.elementosNormaPaiAtualizados = elementosNormaPaiAtualizados;
+	}
+
+	public List<ElementoNorma> getElementosNormaFilhosAtualizados() {
+		return elementosNormaFilhosAtualizados;
+	}
+
+	public void setElementosNormaFilhosAtualizados(
+			List<ElementoNorma> elementosNormaFilhosAtualizados) {
+		this.elementosNormaFilhosAtualizados = elementosNormaFilhosAtualizados;
+	}
+
+	public List<String> getElementosAtualizadosString() {
+		return elementosAtualizadosString;
+	}
+
+	public void setElementosAtualizadosString(
+			List<String> elementosAtualizadosString) {
+		this.elementosAtualizadosString = elementosAtualizadosString;
 	}
 	
 	/**
@@ -200,41 +238,43 @@ public class TimeLogic {
 		return diaAnterior;
 	}
 
+	/*
+	 * Retorna se um ano é bissexto
+	 */
 	private boolean anoBissexto(int ano) {
 		return new GregorianCalendar().isLeapYear(ano);
 	}
-	public List<Norma> getNormasPaiAtualizados() {
-		return normasPaiAtualizados;
-	}
-
-	public void setNormasPaiAtualizados(List<Norma> normasPaiAtualizados) {
-		this.normasPaiAtualizados = normasPaiAtualizados;
-	}
-
-	public List<ElementoNorma> getElementosNormaPaiAtualizados() {
-		return elementosNormaPaiAtualizados;
-	}
-
-	public void setElementosNormaPaiAtualizados(
-			List<ElementoNorma> elementosNormaPaiAtualizados) {
-		this.elementosNormaPaiAtualizados = elementosNormaPaiAtualizados;
-	}
-
-	public List<ElementoNorma> getElementosNormaFilhosAtualizados() {
-		return elementosNormaFilhosAtualizados;
-	}
-
-	public void setElementosNormaFilhosAtualizados(
-			List<ElementoNorma> elementosNormaFilhosAtualizados) {
-		this.elementosNormaFilhosAtualizados = elementosNormaFilhosAtualizados;
-	}
-
-	public List<String> getElementosAtualizadosString() {
-		return elementosAtualizadosString;
-	}
-
-	public void setElementosAtualizadosString(
-			List<String> elementosAtualizadosString) {
-		this.elementosAtualizadosString = elementosAtualizadosString;
+	
+	/**
+	 * Recebe o mes na forma de uma String (eg. Novembro) e retorna sua forma numeral (eg. 11)
+	 * @param mes
+	 * @return
+	 */
+	public int mesStringToInt(String mes) {
+		if( mes.equalsIgnoreCase("janeiro") ) {
+			return 1;
+		} else if ( mes.equalsIgnoreCase("fevereiro") ) {
+			return 2;
+		} else if ( mes.equalsIgnoreCase("março") || mes.equalsIgnoreCase("marco") ) {
+			return 3;
+		} else if ( mes.equalsIgnoreCase("abril") ) {
+			return 4;
+		} else if ( mes.equalsIgnoreCase("maio") ) {
+			return 5;
+		} else if ( mes.equalsIgnoreCase("junho") ) {
+			return 6;
+		} else if ( mes.equalsIgnoreCase("julho") ) {
+			return 7;
+		} else if ( mes.equalsIgnoreCase("agosto") ) {
+			return 8;
+		} else if ( mes.equalsIgnoreCase("setembro") ) {
+			return 9;
+		} else if ( mes.equalsIgnoreCase("outubro") ) {
+			return 10;
+		} else if ( mes.equalsIgnoreCase("novembro") ) {
+			return 11;
+		} else { //Dezembro
+			return 12;
+		}
 	}
 }
