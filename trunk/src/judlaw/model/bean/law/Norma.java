@@ -48,14 +48,6 @@ public class Norma extends TextoLegal {
 	// URL
 	private String url;
 	
-	// Parte Preliminar
-	private String epigrafe;
-	private String ementa;
-	private String autoria;
-	
-	// Parte Final
-	private String local;
-	
 	//Norma é o Mapping Owner.
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "normasPaiElementoNorma",
@@ -70,9 +62,19 @@ public class Norma extends TextoLegal {
 	private List<ElementoNorma> elementosNorma;
 
 	/* --------- Atributos --------- */
-	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
-	private String tipo; // tipo do textoLegal
+	
+	// Parte Preliminar
+	private String ementa;
+	private String autoria;
+	//Epigrafe
+	private String tipo;
+	private int numero;
 	private String dataPublicacao; // dd/MM/yyy
+	
+	// Parte Final
+	private String local;
+	
+	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
 	
 	/* --------- Referencias --------- */
@@ -111,10 +113,9 @@ public class Norma extends TextoLegal {
     @LazyCollection(LazyCollectionOption.FALSE)
 	private List<Alteracao> alteracoesRecebidas;
 	
-	public Norma(String epigrafe, String ementa, String autoria, String local,
+	public Norma(String ementa, String autoria, String local,
 			List<ElementoNorma> elementosNorma, String identificadorUnico,
 			String tipo, String dataPublicacao, String vigencia) {
-		this.epigrafe = epigrafe;
 		this.ementa = ementa;
 		this.autoria = autoria;
 		this.local = local;
@@ -125,10 +126,9 @@ public class Norma extends TextoLegal {
 		this.vigencia = vigencia;
 	}
 
-	public Norma(String epigrafe, String ementa, String autoria, String local,
+	public Norma(String ementa, String autoria, String local,
 			String identificadorUnico, String tipo, String dataPublicacao,
 			String vigencia) {
-		this.epigrafe = epigrafe;
 		this.ementa = ementa;
 		this.autoria = autoria;
 		this.local = local;
@@ -165,14 +165,6 @@ public class Norma extends TextoLegal {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getEpigrafe() {
-		return epigrafe;
-	}
-
-	public void setEpigrafe(String epigrafe) {
-		this.epigrafe = epigrafe;
 	}
 
 	public String getEmenta() {
@@ -287,5 +279,13 @@ public class Norma extends TextoLegal {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 }

@@ -71,7 +71,7 @@ public class LawManagerTest {
 		artigo2.getElementosNorma().add(paragrafo2);
 		artigo2.getElementosNorma().add(paragrafo3);
 		
-		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+		Norma norma1 = new Norma("ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
 								"dataPublicacaoN1", "vigenciaN1");
 		norma1.getElementosNorma().add(artigo1);
 		norma1.getElementosNorma().add(artigo2);
@@ -159,7 +159,7 @@ public class LawManagerTest {
 		artigo2.getElementosNorma().add(paragrafo2);
 		artigo2.getElementosNorma().add(paragrafo3);
 		
-		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+		Norma norma1 = new Norma("ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
 								"dataPublicacaoN1", "vigenciaN1");
 		norma1.getElementosNorma().add(artigo1);
 		norma1.getElementosNorma().add(artigo2);
@@ -222,7 +222,7 @@ public class LawManagerTest {
 		artigo2.getElementosNorma().add(paragrafo2);
 		artigo2.getElementosNorma().add(paragrafo3);
 		
-		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+		Norma norma1 = new Norma("ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
 								"dataPublicacaoN1", "vigenciaN1");
 		norma1.getElementosNorma().add(artigo1);
 		norma1.getElementosNorma().add(artigo2);
@@ -280,7 +280,7 @@ public class LawManagerTest {
 		paragrafo1.getElementosNorma().add(inciso2);
 		artigo1.getElementosNorma().add(paragrafo1);
 		
-		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+		Norma norma1 = new Norma("ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
 								"dataPublicacaoN1", "vigenciaN1");
 		norma1.getElementosNorma().add(artigo1);
 		normaManager.salvaNorma(norma1);
@@ -378,13 +378,13 @@ public class LawManagerTest {
 		paragrafo1.getElementosNorma().add(inciso2);
 		artigo1.getElementosNorma().add(paragrafo1);
 		
-		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+		Norma norma1 = new Norma("ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
 								"dataPublicacaoN1", "vigenciaN1");
 		norma1.getElementosNorma().add(artigo1);
 		normaManager.salvaNorma(norma1);
 		
 		/* ---------- Norma2 ----------*/
-		Norma norma2 = new Norma("epigrafeN2", "ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
+		Norma norma2 = new Norma("ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
 				"dataPublicacaoN2", "vigenciaN2");
 		normaManager.salvaNorma(norma2);
 		
@@ -458,13 +458,13 @@ public class LawManagerTest {
 		paragrafo1.getElementosNorma().add(inciso2);
 		artigo1.getElementosNorma().add(paragrafo1);
 		
-		Norma norma1 = new Norma("epigrafeN1", "ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
+		Norma norma1 = new Norma("ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
 								"dataPublicacaoN1", "vigenciaN1");
 		norma1.getElementosNorma().add(artigo1);
 		normaManager.salvaNorma(norma1);
 		
 		/* ---------- Norma2 ----------*/
-		Norma norma2 = new Norma("epigrafeN2", "ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
+		Norma norma2 = new Norma("ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
 				"dataPublicacaoN2", "vigenciaN2");
 		normaManager.salvaNorma(norma2);
 		
