@@ -138,7 +138,7 @@ public class ElementoNormaManager {
 		novoElementoNorma.setIdentificadorUnico( elementoNorma.getIdentificadorUnico() );
 		novoElementoNorma.setTipo( elementoNorma.getTipo() );
 		//Atributos que se alteram
-		if( isEmpty(novoElementoNorma.getTexto())) {
+		if( isEmpty(novoElementoNorma.getTexto()) ) {
 			novoElementoNorma.setTexto( elementoNorma.getTexto() );
 		}	
 		//Temporalidade
