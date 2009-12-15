@@ -39,7 +39,6 @@ public class AlteracaoManagerTest {
 		/* ---------- Esvazia as listas envolvidas ----------*/
 		refManager.removeReferencias();
 		normaManager.removeLaw();
-//		elementoNormaManager.removeElementosNorma();
 		docJudManager.removeDocumentosJuridicos();	
 	}
 	
