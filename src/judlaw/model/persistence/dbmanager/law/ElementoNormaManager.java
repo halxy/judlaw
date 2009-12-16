@@ -134,11 +134,15 @@ public class ElementoNormaManager {
 	 * @param novoElementoNorma
 	 */
 	public void setParametrosElementoNorma(ElementoNorma elementoNorma, ElementoNorma novoElementoNorma, String dataModificacao){
-		//Atributos que nao se alteram
-		novoElementoNorma.setIdentificadorUnico( elementoNorma.getIdentificadorUnico() );
-		novoElementoNorma.setTipo( elementoNorma.getTipo() );
-		novoElementoNorma.setNumero( elementoNorma.getNumero() );
-		//Atributos que se alteram
+		if(isEmpty(novoElementoNorma.getIdentificadorUnico())){
+			novoElementoNorma.setIdentificadorUnico( elementoNorma.getIdentificadorUnico() );
+    	}
+		if(isEmpty(novoElementoNorma.getTipo())){
+    		novoElementoNorma.setTipo( elementoNorma.getTipo() );
+    	}
+    	if(novoElementoNorma.getNumero() == 0){
+    		novoElementoNorma.setNumero( elementoNorma.getNumero() );
+    	}
 		if( isEmpty(novoElementoNorma.getTexto()) ) {
 			novoElementoNorma.setTexto( elementoNorma.getTexto() );
 		}	
