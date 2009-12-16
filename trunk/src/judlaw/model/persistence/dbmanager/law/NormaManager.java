@@ -62,7 +62,7 @@ public class NormaManager {
     	List<ElementoNorma> elementosNorma = norma.getElementosNorma(); // 1o nivel - elementosNorma filhos da Norma
     	for(ElementoNorma eleN : elementosNorma) {
     		eleN.getNormasPai().add( norma );
-    		dbManager.save( eleN );
+    //		dbManager.save( eleN );
     	}
 		//Persistindo
     	dbManager.save(norma);
