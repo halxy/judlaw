@@ -119,7 +119,7 @@ public class NormaManager {
      * @param novaNorma
      */
     public void setParametrosNorma(Norma norma, Norma novaNorma, String dataModificacao) {
-    	if( isEmpty(novaNorma.getUrl() ) ) {
+    	if( isEmpty(novaNorma.getUrl() ) ) { //TODO FAZERRR
     		novaNorma.setUrl( norma.getUrl() );
     	}
     	novaNorma.setEmenta( norma.getEmenta() );
