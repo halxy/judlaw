@@ -138,13 +138,15 @@ public class LawTimeLogicTest {
 				      norma1BD.getElementosNorma().get(1).getNormasPai().get(0).getIdentificadorUnico());
 		
 		/* ---------- Adicionando Normat2 e Normat3 ----------*/
-		Norma normat2 = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", 
-                			norma1.getIdentificadorUnico()).get(0);
+//		Norma normat2 = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", 
+//                			norma1.getIdentificadorUnico()).get(0);
+		Norma normat2 = new Norma();
 		normat2.setLocal("localN1t2");
 		alteracaoManager.criaAlteracaoModificacao(norma2, norma1, normat2, "11/11/2011", Constantes.MAIS_RESTRITIVA);
 		
-		Norma normat3 = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", 
-    			norma1.getIdentificadorUnico()).get(0);
+//		Norma normat3 = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", 
+//    			norma1.getIdentificadorUnico()).get(0);
+		Norma normat3 = new Norma();
 		normat3.setLocal("localN1t3");
 		alteracaoManager.criaAlteracaoModificacao(norma2, norma1, normat3, "12/12/2012", Constantes.MAIS_RESTRITIVA);
 		

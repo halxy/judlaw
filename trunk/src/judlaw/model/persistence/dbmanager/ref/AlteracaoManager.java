@@ -275,11 +275,11 @@ public class AlteracaoManager {
     							  TimeLogic.getInstance().diaAnterior(dataModificacao)));
     	dbManager.save(normaDestino);
     	//Criando a nova norma
-    	Norma novaNorma = new Norma();
-    	NormaManager.getInstance().setParametrosNorma(normaModificada, novaNorma, dataModificacao);
-    	NormaManager.getInstance().salvaNormaAlterada( novaNorma );
-//    	NormaManager.getInstance().setParametrosNorma(normaDestino, normaModificada, dataModificacao);
-//    	NormaManager.getInstance().salvaNormaAlterada( normaModificada );
+//    	Norma novaNorma = new Norma();
+//    	NormaManager.getInstance().setParametrosNorma(normaModificada, novaNorma, dataModificacao);
+//    	NormaManager.getInstance().salvaNormaAlterada( novaNorma );
+    	NormaManager.getInstance().setParametrosNorma(normaDestino, normaModificada, dataModificacao);
+    	NormaManager.getInstance().salvaNormaAlterada( normaModificada );
     	//Criando a alteracao
     	Alteracao alteracao = new Alteracao(normaOrigem, normaDestino, dataModificacao, Constantes.MODIFICACAO, caracteristica);
     	dbManager.save( alteracao );
