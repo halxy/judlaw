@@ -80,7 +80,6 @@ public class DocJudXMLManager {
 		//Cabecalho
 		Cabecalho cabecalho1 = new Cabecalho();
 		cabecalho1.setCodRegistro("codRegistro");
-		cabecalho1.setOrgaoJulgador("orgaoJulgador");
 		cabecalho1.setTribunal("tribunal");
 		//Ementa
 		Ementa ementa1 = new Ementa("ementa1");
