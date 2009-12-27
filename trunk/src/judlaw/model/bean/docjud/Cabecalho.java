@@ -39,7 +39,6 @@ public class Cabecalho {
 	private String local;
 	private String codRegistro; // ver Certidao de Julgamento STJ
 	private String orgaoJulgador; // Pleno, Primeira Turma, etc.
-	private String relator;
 	
 	//Mapeamento 1-1
 	@OneToOne(mappedBy = "cabecalho")
@@ -55,7 +54,6 @@ public class Cabecalho {
 		this.local = local;
 		this.codRegistro = codRegistro;
 		this.orgaoJulgador = orgaoJulgador;
-		this.relator = relator;
 	}
 
 	/**
@@ -101,14 +99,6 @@ public class Cabecalho {
 
 	public void setDocumentoJuridico(DocumentoJuridico documentoJuridico) {
 		this.documentoJuridico = documentoJuridico;
-	}
-
-	public String getRelator() {
-		return relator;
-	}
-
-	public void setRelator(String relator) {
-		this.relator = relator;
 	}
 
 	public String getTipo() {
