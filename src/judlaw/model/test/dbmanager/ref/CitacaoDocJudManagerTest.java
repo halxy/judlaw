@@ -143,7 +143,7 @@ public class CitacaoDocJudManagerTest {
 		/* Criando e persistindo o documento juridico */
 		DocumentoJuridico docJud1 = new DocumentoJuridico();
 		docJud1.setIdentificadorUnico("idUnico1");
-		docJud1.setDataExpedicao("16/11/2009");
+		docJud1.setDataJulgamento("16/11/2009");
 		DocumentoJuridico docJud2 = new DocumentoJuridico();
 		docJud2.setIdentificadorUnico("idUnico2");
 		docJudManager.salvaDocumentoJuridico(docJud1);

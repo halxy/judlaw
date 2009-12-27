@@ -80,7 +80,7 @@ public class CitacaoDocJud extends Referencia {
 	public CitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, DocumentoJuridico documentoJuridicoDestino) {
 		this.documentoJuridicoOrigem = documentoJuridicoOrigem;
 		this.documentoJuridicoDestino = documentoJuridicoDestino;
-		this.data = documentoJuridicoOrigem.getDataExpedicao();
+		this.data = documentoJuridicoOrigem.getDataJulgamento();
 	}
 	
 	/**
@@ -91,7 +91,7 @@ public class CitacaoDocJud extends Referencia {
 	public CitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, Norma normaDestino) {
 		this.documentoJuridicoOrigem = documentoJuridicoOrigem;
 		this.normaDestino = normaDestino;
-		this.data = documentoJuridicoOrigem.getDataExpedicao();
+		this.data = documentoJuridicoOrigem.getDataJulgamento();
 	}
 	
 	/**
@@ -102,7 +102,7 @@ public class CitacaoDocJud extends Referencia {
 	public CitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, ElementoNorma elementoNormaDestino) {
 		this.documentoJuridicoOrigem = documentoJuridicoOrigem;
 		this.elementoNormaDestino = elementoNormaDestino;
-		this.data = documentoJuridicoOrigem.getDataExpedicao();
+		this.data = documentoJuridicoOrigem.getDataJulgamento();
 	}
 	
 	/**
@@ -113,7 +113,7 @@ public class CitacaoDocJud extends Referencia {
 	public CitacaoDocJud(DocumentoJuridico documentoJuridicoOrigem, Doutrina doutrinaDestino) {
 		this.documentoJuridicoOrigem = documentoJuridicoOrigem;
 		this.doutrinaDestino = doutrinaDestino;
-		this.data = documentoJuridicoOrigem.getDataExpedicao();
+		this.data = documentoJuridicoOrigem.getDataJulgamento();
 	}
 
 	/**

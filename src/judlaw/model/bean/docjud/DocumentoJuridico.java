@@ -81,9 +81,8 @@ public class DocumentoJuridico {
 	
 	/* --------- Atributos ----------- */
 	private String identificadorUnico; // HC123, etc.
-	private String dataExpedicao; // dd/MM/yyy - data que foi feito o documento
+	private String dataJulgamento; // dd/MM/yyy - data que foi feito o documento
 	private String dataPublicacao; // dd/MM/yyy - data que foi publicado oficialmente - quando comeca a valer
-	private String orgaoJulgador; // Pleno, Primeira Turma, etc.
 	
 	/* --------- Referencias --------- */
 	// Citacoes feitas
@@ -127,7 +126,7 @@ public class DocumentoJuridico {
 		this.encerramento = encerramento;
 		this.partes = partes;
 		this.identificadorUnico = identificadorUnico;
-		this.dataExpedicao = dataPublicacao;
+		this.dataJulgamento = dataPublicacao;
 	}
 
 	/**
@@ -209,12 +208,12 @@ public class DocumentoJuridico {
 		this.identificadorUnico = identificadorUnico;
 	}
 
-	public String getDataExpedicao() {
-		return dataExpedicao;
+	public String getDataJulgamento() {
+		return dataJulgamento;
 	}
 
-	public void setDataExpedicao(String dataExpedicao) {
-		this.dataExpedicao = dataExpedicao;
+	public void setDataJulgamento(String dataJulgamento) {
+		this.dataJulgamento = dataJulgamento;
 	}
 
 	public List<CitacaoDocJud> getCitacoesFeitas() {
@@ -241,14 +240,6 @@ public class DocumentoJuridico {
 	public void setCitacoesRecebidasTextLeg(
 			List<CitacaoTextLeg> citacoesRecebidasTextLeg) {
 		this.citacoesRecebidasTextLeg = citacoesRecebidasTextLeg;
-	}
-
-	public String getOrgaoJulgador() {
-		return orgaoJulgador;
-	}
-
-	public void setOrgaoJulgador(String orgaoJulgador) {
-		this.orgaoJulgador = orgaoJulgador;
 	}
 
 	public String getDataPublicacao() {

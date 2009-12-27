@@ -32,6 +32,7 @@ public class Encerramento {
 	private Integer id;
 	
 	private String decisao; // no STJ esta como certidao
+	private String orgaoJulgador; // Pleno, Primeira Turma, etc.
 	
 	//Documento Juridico
 	@OneToOne(mappedBy = "encerramento")
@@ -65,6 +66,14 @@ public class Encerramento {
 	
 	public void setDecisao(String decisao) {
 		this.decisao = decisao;
+	}
+
+	public String getOrgaoJulgador() {
+		return orgaoJulgador;
+	}
+
+	public void setOrgaoJulgador(String orgaoJulgador) {
+		this.orgaoJulgador = orgaoJulgador;
 	}
 
 	public DocumentoJuridico getDocumentoJuridico() {
