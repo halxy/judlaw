@@ -81,7 +81,6 @@ public class DocumentoJuridico {
 	
 	/* --------- Atributos ----------- */
 	private String identificadorUnico; // HC123, etc.
-	private String tipo; // tipos de Documentos Juridicos
 	private String dataExpedicao; // dd/MM/yyy
 	
 	/* --------- Referencias --------- */
@@ -117,7 +116,7 @@ public class DocumentoJuridico {
 	 */
 	public DocumentoJuridico(Cabecalho cabecalho, Ementa ementa,
 			Relatorio relatorio, List<Voto> votos, Encerramento encerramento,
-			List<Parte> partes, String identificadorUnico, String tipo,
+			List<Parte> partes, String identificadorUnico,
 			String dataPublicacao) {
 		this.cabecalho = cabecalho;
 		this.ementa = ementa;
@@ -126,7 +125,6 @@ public class DocumentoJuridico {
 		this.encerramento = encerramento;
 		this.partes = partes;
 		this.identificadorUnico = identificadorUnico;
-		this.tipo = tipo;
 		this.dataExpedicao = dataPublicacao;
 	}
 
@@ -207,14 +205,6 @@ public class DocumentoJuridico {
 
 	public void setIdentificadorUnico(String identificadorUnico) {
 		this.identificadorUnico = identificadorUnico;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
 	}
 
 	public String getDataExpedicao() {
