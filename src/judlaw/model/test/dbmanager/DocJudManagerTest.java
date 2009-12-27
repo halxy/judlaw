@@ -81,7 +81,7 @@ public class DocJudManagerTest {
 		//Relatorio
 		Relatorio relatorio1 = new Relatorio("relatorio1");
 		//Encerramento
-		Encerramento encerramento1 = new Encerramento("decisao1", "local1");
+		Encerramento encerramento1 = new Encerramento("decisao1");
 		//Votos
 		ArrayList<Voto> votos = new ArrayList<Voto>();
 		votos.add( new Voto("voto1") );
@@ -137,7 +137,6 @@ public class DocJudManagerTest {
 		
 		//ENCERRAMENTO
 		assertEquals( docJudBD.getEncerramento().getDecisao(), docJud1.getEncerramento().getDecisao() );
-		assertEquals( docJudBD.getEncerramento().getLocal(), docJud1.getEncerramento().getLocal() );
 		//Relacao Bidirecional
 		assertEquals( docJudBD.getEncerramento().getDocumentoJuridico().getIdentificadorUnico(), 
 					  docJud1.getEncerramento().getDocumentoJuridico().getIdentificadorUnico() );
@@ -185,7 +184,7 @@ public class DocJudManagerTest {
 		//Relatorio
 		Relatorio relatorio1 = new Relatorio("relatorio1");
 		//Encerramento
-		Encerramento encerramento1 = new Encerramento("decisao1", "local1");
+		Encerramento encerramento1 = new Encerramento("decisao1");
 		//Votos
 		ArrayList<Voto> votos = new ArrayList<Voto>();
 		votos.add( new Voto("voto1") );
@@ -256,7 +255,7 @@ public class DocJudManagerTest {
 		//Relatorio
 		Relatorio relatorio1 = new Relatorio("relatorio1");
 		//Encerramento
-		Encerramento encerramento1 = new Encerramento("decisao1", "local1");
+		Encerramento encerramento1 = new Encerramento("decisao1");
 		//Votos
 		ArrayList<Voto> votos = new ArrayList<Voto>();
 		votos.add( new Voto("voto1") );
@@ -303,7 +302,6 @@ public class DocJudManagerTest {
 		
 		//ENCERRAMENTO
 		assertEquals( docJudBD.getEncerramento().getDecisao(), docJud1.getEncerramento().getDecisao() );
-		assertEquals( docJudBD.getEncerramento().getLocal(), docJud1.getEncerramento().getLocal() );
 		//Relacao Bidirecional
 		assertEquals( docJudBD.getEncerramento().getDocumentoJuridico().getIdentificadorUnico(), 
 					  docJud1.getEncerramento().getDocumentoJuridico().getIdentificadorUnico() );
@@ -447,7 +445,7 @@ public class DocJudManagerTest {
 		//Relatorio
 		Relatorio relatorio1 = new Relatorio("relatorio1");
 		//Encerramento
-		Encerramento encerramento1 = new Encerramento("decisao1", "local1");
+		Encerramento encerramento1 = new Encerramento("decisao1");
 		
 		/* ---------- Criacao e Persistencia do DocumentoJuridico ----------*/	
 		DocumentoJuridico docJud1 = new DocumentoJuridico();
@@ -667,7 +665,7 @@ public class DocJudManagerTest {
 		//Relatorio
 		Relatorio relatorio1 = new Relatorio("relatorio1");
 		//Encerramento
-		Encerramento encerramento1 = new Encerramento("decisao1", "local1");
+		Encerramento encerramento1 = new Encerramento("decisao1");
 		//Votos
 		ArrayList<Voto> votos = new ArrayList<Voto>();
 		votos.add( new Voto("voto1") );
@@ -706,7 +704,6 @@ public class DocJudManagerTest {
 					  docJud1.getIdentificadorUnico() );
 		//Encerramento
 		List<Encerramento> encerramentos = encerramentoManager.selectEncerramentoPorAtributo("decisao", "decisao1");
-		assertEquals( encerramentos.get(0).getLocal(), encerramento1.getLocal() );
 		assertEquals( encerramentos.get(0).getDocumentoJuridico().getIdentificadorUnico(), 
 					  docJud1.getIdentificadorUnico() );
 	}

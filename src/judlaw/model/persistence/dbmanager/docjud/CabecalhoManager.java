@@ -55,6 +55,9 @@ public class CabecalhoManager {
 		cabecalhoBD.setCodRegistro( cabecalho.getCodRegistro() );
 		cabecalhoBD.setOrgaoJulgador( cabecalho.getOrgaoJulgador() );
 		cabecalhoBD.setTribunal( cabecalho.getTribunal() );
+		cabecalhoBD.setTipo( cabecalho.getTipo() );
+		cabecalhoBD.setNumero( cabecalho.getNumero() );
+		cabecalhoBD.setLocal( cabecalho.getLocal() );
 		cabecalhoBD.setDocumentoJuridico(docJud);
 		dbManager.save(cabecalhoBD);
 		docJud.setCabecalho(cabecalhoBD);
