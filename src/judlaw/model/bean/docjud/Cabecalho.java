@@ -34,6 +34,7 @@ public class Cabecalho {
 	
 	//Atributos
 	private String tribunal; // STF, STJ, TJRS, etc.
+	private String tipo; // tipos de Documentos Juridicos
 	private String codRegistro; // ver Certidao de Julgamento STJ
 	private String orgaoJulgador; // Pleno, Primeira Turma, etc.
 	private String relator;
@@ -107,5 +108,13 @@ public class Cabecalho {
 
 	public void setRelator(String relator) {
 		this.relator = relator;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 }
