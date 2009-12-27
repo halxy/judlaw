@@ -39,7 +39,6 @@ public class Cabecalho {
 	private String local;
 	private String codRegistro; // ver Certidao de Julgamento STJ
 	
-	
 	//Mapeamento 1-1
 	@OneToOne(mappedBy = "cabecalho")
 	@JoinColumn(name="documentojuridico_id")
