@@ -81,7 +81,8 @@ public class DocumentoJuridico {
 	
 	/* --------- Atributos ----------- */
 	private String identificadorUnico; // HC123, etc.
-	private String dataExpedicao; // dd/MM/yyy
+	private String dataExpedicao; // dd/MM/yyy - data que foi feito o documento
+	private String dataPublicacao; // dd/MM/yyy - data que foi publicado oficialmente - quando comeca a valer
 	private String orgaoJulgador; // Pleno, Primeira Turma, etc.
 	
 	/* --------- Referencias --------- */
@@ -248,5 +249,13 @@ public class DocumentoJuridico {
 
 	public void setOrgaoJulgador(String orgaoJulgador) {
 		this.orgaoJulgador = orgaoJulgador;
+	}
+
+	public String getDataPublicacao() {
+		return dataPublicacao;
+	}
+
+	public void setDataPublicacao(String dataPublicacao) {
+		this.dataPublicacao = dataPublicacao;
 	}
 }
