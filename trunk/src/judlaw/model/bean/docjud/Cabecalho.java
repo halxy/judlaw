@@ -35,6 +35,8 @@ public class Cabecalho {
 	//Atributos
 	private String tribunal; // STF, STJ, TJRS, etc.
 	private String tipo; // tipos de Documentos Juridicos
+	private int numero;
+	private String local;
 	private String codRegistro; // ver Certidao de Julgamento STJ
 	private String orgaoJulgador; // Pleno, Primeira Turma, etc.
 	private String relator;
@@ -44,14 +46,13 @@ public class Cabecalho {
 	@JoinColumn(name="documentojuridico_id")
 	private DocumentoJuridico documentoJuridico;
 
-	/**
-	 * 
-	 * @param tribunal
-	 * @param codRegistro
-	 * @param orgaoJulgador
-	 */
-	public Cabecalho(String tribunal, String codRegistro, String orgaoJulgador, String relator) {
+	public Cabecalho(String tribunal, String tipo, int numero, String local,
+			String codRegistro, String orgaoJulgador, String relator) {
+		super();
 		this.tribunal = tribunal;
+		this.tipo = tipo;
+		this.numero = numero;
+		this.local = local;
 		this.codRegistro = codRegistro;
 		this.orgaoJulgador = orgaoJulgador;
 		this.relator = relator;
@@ -116,5 +117,21 @@ public class Cabecalho {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public String getLocal() {
+		return local;
+	}
+
+	public void setLocal(String local) {
+		this.local = local;
 	}
 }
