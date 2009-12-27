@@ -64,6 +64,7 @@ public class EncerramentoManager {
 			encerramentoBD = new Encerramento();
 		}
 		encerramentoBD.setDecisao( encerramento.getDecisao() );
+		encerramentoBD.setOrgaoJulgador( encerramento.getOrgaoJulgador() );
 		encerramentoBD.setDocumentoJuridico(docJud);
 		dbManager.save(encerramentoBD);
 		docJud.setEncerramento(encerramentoBD);

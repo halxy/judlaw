@@ -50,7 +50,7 @@ public class CitacaoDocJudTimeLogicTest {
 		/* ---------- Documento Juridico ----------*/
 		DocumentoJuridico docJud1 = new DocumentoJuridico();
 		docJud1.setIdentificadorUnico("idUnico1");
-		docJud1.setDataExpedicao("10/10/2011");
+		docJud1.setDataJulgamento("10/10/2011");
 		docJudManager.salvaDocumentoJuridico(docJud1);
 		
 		/* ---------- Norma e ElementosNorma ----------*/
