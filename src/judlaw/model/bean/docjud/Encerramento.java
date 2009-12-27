@@ -32,7 +32,6 @@ public class Encerramento {
 	private Integer id;
 	
 	private String decisao; // no STJ esta como certidao
-	private String local; 
 	
 	//Documento Juridico
 	@OneToOne(mappedBy = "encerramento")
@@ -43,9 +42,8 @@ public class Encerramento {
 	 * @param decisao
 	 * @param local
 	 */
-	public Encerramento(String decisao, String local) {
+	public Encerramento(String decisao) {
 		this.decisao = decisao;
-		this.local = local;
 	}
 	
 	/**
@@ -67,14 +65,6 @@ public class Encerramento {
 	
 	public void setDecisao(String decisao) {
 		this.decisao = decisao;
-	}
-	
-	public String getLocal() {
-		return local;
-	}
-	
-	public void setLocal(String local) {
-		this.local = local;
 	}
 
 	public DocumentoJuridico getDocumentoJuridico() {
