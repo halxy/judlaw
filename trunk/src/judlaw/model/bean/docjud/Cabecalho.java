@@ -38,7 +38,7 @@ public class Cabecalho {
 	private int numero;
 	private String local;
 	private String codRegistro; // ver Certidao de Julgamento STJ
-	private String orgaoJulgador; // Pleno, Primeira Turma, etc.
+	
 	
 	//Mapeamento 1-1
 	@OneToOne(mappedBy = "cabecalho")
@@ -46,14 +46,13 @@ public class Cabecalho {
 	private DocumentoJuridico documentoJuridico;
 
 	public Cabecalho(String tribunal, String tipo, int numero, String local,
-			String codRegistro, String orgaoJulgador, String relator) {
+			String codRegistro, String relator) {
 		super();
 		this.tribunal = tribunal;
 		this.tipo = tipo;
 		this.numero = numero;
 		this.local = local;
 		this.codRegistro = codRegistro;
-		this.orgaoJulgador = orgaoJulgador;
 	}
 
 	/**
@@ -83,14 +82,6 @@ public class Cabecalho {
 
 	public void setCodRegistro(String codRegistro) {
 		this.codRegistro = codRegistro;
-	}
-
-	public String getOrgaoJulgador() {
-		return orgaoJulgador;
-	}
-
-	public void setOrgaoJulgador(String orgaoJulgador) {
-		this.orgaoJulgador = orgaoJulgador;
 	}
 	
 	public DocumentoJuridico getDocumentoJuridico() {

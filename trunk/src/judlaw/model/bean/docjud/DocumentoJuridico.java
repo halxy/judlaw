@@ -82,6 +82,7 @@ public class DocumentoJuridico {
 	/* --------- Atributos ----------- */
 	private String identificadorUnico; // HC123, etc.
 	private String dataExpedicao; // dd/MM/yyy
+	private String orgaoJulgador; // Pleno, Primeira Turma, etc.
 	
 	/* --------- Referencias --------- */
 	// Citacoes feitas
@@ -239,5 +240,13 @@ public class DocumentoJuridico {
 	public void setCitacoesRecebidasTextLeg(
 			List<CitacaoTextLeg> citacoesRecebidasTextLeg) {
 		this.citacoesRecebidasTextLeg = citacoesRecebidasTextLeg;
+	}
+
+	public String getOrgaoJulgador() {
+		return orgaoJulgador;
+	}
+
+	public void setOrgaoJulgador(String orgaoJulgador) {
+		this.orgaoJulgador = orgaoJulgador;
 	}
 }

@@ -53,7 +53,6 @@ public class CabecalhoManager {
 			cabecalhoBD = new Cabecalho();
 		}
 		cabecalhoBD.setCodRegistro( cabecalho.getCodRegistro() );
-		cabecalhoBD.setOrgaoJulgador( cabecalho.getOrgaoJulgador() );
 		cabecalhoBD.setTribunal( cabecalho.getTribunal() );
 		cabecalhoBD.setTipo( cabecalho.getTipo() );
 		cabecalhoBD.setNumero( cabecalho.getNumero() );
