@@ -63,6 +63,7 @@ public class EncerramentoManager {
 		if(encerramentoBD == null) {
 			encerramentoBD = new Encerramento();
 		}
+		encerramentoBD.setAcordao( encerramento.getAcordao() );
 		encerramentoBD.setDecisao( encerramento.getDecisao() );
 		encerramentoBD.setOrgaoJulgador( encerramento.getOrgaoJulgador() );
 		encerramentoBD.setDocumentoJuridico(docJud);
