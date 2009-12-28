@@ -86,7 +86,7 @@ public class DocJudXMLManager {
 		//Relatorio
 		Relatorio relatorio1 = new Relatorio("relatorio1");
 		//Encerramento
-		Encerramento encerramento1 = new Encerramento("decisao1");
+		Encerramento encerramento1 = new Encerramento("acordao", "decisao1", "orgaoJulgador");
 		//Votos
 		ArrayList<Voto> votos = new ArrayList<Voto>();
 		votos.add( new Voto("voto1") );

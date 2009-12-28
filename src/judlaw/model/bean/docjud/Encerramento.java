@@ -31,7 +31,8 @@ public class Encerramento {
 	@Column(name="encerramento_id")
 	private Integer id;
 	
-	private String decisao; // no STJ esta como certidao
+	private String acordao; // nao deixa de ser uma decisao tambem
+	private String decisao; // no STJ esta na certidao, no STF em extrato da ata
 	private String orgaoJulgador; // Pleno, Primeira Turma, etc.
 	
 	//Documento Juridico
@@ -40,13 +41,16 @@ public class Encerramento {
 	
 	/**
 	 * 
+	 * @param acordao
 	 * @param decisao
-	 * @param local
+	 * @param orgaoJulgador
 	 */
-	public Encerramento(String decisao) {
+	public Encerramento(String acordao, String decisao, String orgaoJulgador) {
+		this.acordao = acordao;
 		this.decisao = decisao;
+		this.orgaoJulgador = orgaoJulgador;
 	}
-	
+
 	/**
 	 * Construtor Vazio
 	 */
@@ -82,5 +86,13 @@ public class Encerramento {
 
 	public void setDocumentoJuridico(DocumentoJuridico documentoJuridico) {
 		this.documentoJuridico = documentoJuridico;
+	}
+
+	public String getAcordao() {
+		return acordao;
+	}
+
+	public void setAcordao(String acordao) {
+		this.acordao = acordao;
 	}
 }
