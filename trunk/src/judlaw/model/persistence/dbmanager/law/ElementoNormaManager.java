@@ -140,7 +140,7 @@ public class ElementoNormaManager {
 		if(isEmpty(novoElementoNorma.getTipo())){
     		novoElementoNorma.setTipo( elementoNorma.getTipo() );
     	}
-    	if(novoElementoNorma.getNumero() == 0){
+    	if(isEmpty(novoElementoNorma.getNumero())){
     		novoElementoNorma.setNumero( elementoNorma.getNumero() );
     	}
 		if( isEmpty(novoElementoNorma.getTexto()) ) {
