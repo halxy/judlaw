@@ -52,7 +52,7 @@ public class ElementoNorma extends TextoLegal {
 	
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
 	private String tipo; // tipo do textoLegal
-	private int numero;
+	private String numero; // tem que ser String por causa do incisos e alineas.
 	private String dataPublicacao; // dd/MM/yyy
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
 	
@@ -301,11 +301,11 @@ public class ElementoNorma extends TextoLegal {
 		this.alteracoesRecebidas = alteracoesRecebidas;
 	}
 
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 }
