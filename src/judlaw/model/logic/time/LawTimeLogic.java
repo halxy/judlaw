@@ -56,7 +56,10 @@ public class LawTimeLogic {
     	if( eleNormaAux == null ) { //se nao houverem elementosPai
     		eleNormaAux = elementoNorma;
     	}
-    	// Recuperando as normasPai.
+    	/*
+    	 *  Recuperando as normasPai que possuem data de publicacao menor ou igual à data
+    	 *  de publicação do elementoNorma para depois pegar o maior da lista.
+    	 */
     	ArrayList<Norma> normasPai = new ArrayList<Norma>();
     	for( Norma normaPai : eleNormaAux.getNormasPai() ) {
     		if(TimeLogic.getInstance().comparaDatas(normaPai.getDataPublicacao(), 
