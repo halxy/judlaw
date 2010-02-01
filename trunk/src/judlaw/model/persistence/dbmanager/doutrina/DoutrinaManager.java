@@ -14,7 +14,7 @@ import judlaw.model.persistence.dbmanager.DBManager;
 
 /**
  * Classe DoutrinaManager. Define as operacoes no BD das doutrinas 
- * @author halley
+ * @author Halley Freitas
  *
  */
 public class DoutrinaManager {
