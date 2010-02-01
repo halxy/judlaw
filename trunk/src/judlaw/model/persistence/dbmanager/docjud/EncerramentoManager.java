@@ -14,7 +14,7 @@ import judlaw.model.bean.docjud.Encerramento;
 import judlaw.model.persistence.dbmanager.DBManager;
 
 /**
- * Classe EncerramentoManager - define as operacoes no BD dos Encerramentos
+ * Classe EncerramentoManager. Define as operacoes no BD dos Encerramentos
  * @author Halley Freitas
  *
  */

@@ -14,7 +14,7 @@ import judlaw.model.bean.docjud.DocumentoJuridico;
 import judlaw.model.persistence.dbmanager.DBManager;
 
 /**
- * Classe CabecalhoManager - define as operacoes no BD dos Cabecalhos
+ * Classe CabecalhoManager. Define as operacoes no BD dos Cabecalhos
  * @author Halley Freitas
  *
  */
@@ -24,7 +24,7 @@ public class CabecalhoManager {
 	private static DBManager dbManager = DBManager.getInstance();
 	
 	/**
-	 * 
+	 * Singleton
 	 * @return
 	 */
 	public static CabecalhoManager getInstance(){
@@ -38,6 +38,9 @@ public class CabecalhoManager {
 		return dbManager.selectAll( new Cabecalho() );
 	}
 	
+	/**
+	 * Remove todos os cabecalhos
+	 */
 	public void removeCabecalhos() {
 		dbManager.removeAll( new Cabecalho() );
 	}
