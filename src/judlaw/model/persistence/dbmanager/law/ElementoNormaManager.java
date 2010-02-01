@@ -45,7 +45,7 @@ public class ElementoNormaManager {
 			salvaFilhosElementoRecursivo(filho);
 		}
     }
-      
+    
     /**
      * Persiste um elementoNorma na base de dados
      * @param elementoNorma
