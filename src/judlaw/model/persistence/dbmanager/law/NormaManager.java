@@ -111,7 +111,7 @@ public class NormaManager {
     }
     
     /**
-     * Replica os atributos de uma norma em outra.
+     * Replica alguns atributos de uma norma em outra, visando à edição de uma norma no BD.
      * Obs: as referencias nao sao replicadas, pois entende-se que so percentem a um momento temporal
      * do banco de dados, entao uma norma modificada naquele momento temporal nao recebe as referencias
      * da versao antiga
