@@ -128,6 +128,68 @@ public class LawTimeLogicTest {
 	}
 	
 	@Test
+	public void testReconstroiNormaTemporal() {
+		/*
+		 *            A r t i g o 1
+		 *           /     |       \
+		 *    Par1(V)   Par2(INV) Par3(V)
+		 *   /    \        |         \
+		 * IN1(V)IN2(INV) IN3(INV)   IN4(V)
+		 */
+		
+		// DataLimite
+		String data = "11/11/2011";
+		// ElementosNorma
+		ElementoNorma in1 = new ElementoNorma();
+		in1.setVigencia("10/10/2010-99/99/9999");
+		ElementoNorma in2 = new ElementoNorma();
+		in2.setVigencia("10/10/2010-10/10/2010");
+		ElementoNorma in3 = new ElementoNorma();
+		in3.setVigencia("10/10/2010-10/10/2010");
+		ElementoNorma in4 = new ElementoNorma();
+		in4.setVigencia("10/10/2010-11/11/2011");
+		
+		ElementoNorma par1 = new ElementoNorma();
+		par1.setVigencia("10/10/2010-99/99/9999");
+		par1.getElementosNorma().add(in1);
+		par1.getElementosNorma().add(in2);
+		assertEquals( 2, par1.getElementosNorma().size() );
+		
+		ElementoNorma par2 = new ElementoNorma();
+		par2.setVigencia("10/10/2010-10/10/2010");
+		par2.getElementosNorma().add(in3);
+		assertEquals( 1, par2.getElementosNorma().size() );
+		
+		ElementoNorma par3 = new ElementoNorma();
+		par3.setVigencia("10/10/2010-99/99/9999");
+		par3.getElementosNorma().add(in4);
+		assertEquals( 1, par3.getElementosNorma().size() );
+		
+		ElementoNorma art1 = new ElementoNorma();
+		art1.setVigencia("10/10/2010-99/99/9999");
+		art1.getElementosNorma().add(par1);
+		art1.getElementosNorma().add(par2);
+		art1.getElementosNorma().add(par3);
+		assertEquals( 3, art1.getElementosNorma().size() );
+		
+		Norma norma1 = new Norma();
+		norma1.getElementosNorma().add(art1);
+		
+		try {
+			lawTimeLogic.reconstroiNormaTemporal(norma1, data);
+			//Verificando se os filhos foram validados recursivamente
+			assertEquals( 2, art1.getElementosNorma().size() );
+			
+			assertEquals( 1, par1.getElementosNorma().size() );
+			assertEquals( "10/10/2010-99/99/9999", par1.getElementosNorma().get(0).getVigencia() );
+			
+			assertEquals( 1, par3.getElementosNorma().size() );
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
 	public void testNormaMaisAtual() {
 		/*
 		 * Normas
