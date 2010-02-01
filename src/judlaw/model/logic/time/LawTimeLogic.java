@@ -5,6 +5,7 @@ import java.util.List;
 
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
+import judlaw.model.persistence.dbmanager.law.NormaManager;
 import judlaw.model.util.Constantes;
 
 public class LawTimeLogic {
@@ -69,5 +70,18 @@ public class LawTimeLogic {
     		}
     	}
     	return normaMaisAtual(normasPai);
+    }
+    
+    /**
+     * Reconstroi temporalmente uma norma através de uma data passada como parâmetro
+     * @param norma
+     * @param data
+     * @return
+     */
+    public Norma reconstroiNormaTemporal(Norma norma, String data) {
+    	Norma visaoNormaTemporal = new Norma();
+    	NormaManager.getInstance().setTodosParametrosNorma(norma, visaoNormaTemporal);
+    	//TODO
+    	return visaoNormaTemporal;
     }
 }
