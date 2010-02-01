@@ -17,7 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * Classe Encerramento
+ * Classe Encerramento. Representa o encerramento de um documento juridico.
  * @author Halley Freitas
  *
  */
@@ -56,42 +56,87 @@ public class Encerramento {
 	 */
 	public Encerramento(){}
 
+	/* -------------------------------------------------
+	 * --------------- GETTERS e SETTERS ---------------
+	 * -------------------------------------------------
+	 */
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getDecisao() {
 		return decisao;
 	}
 	
+	/**
+	 * 
+	 * @param decisao
+	 */
 	public void setDecisao(String decisao) {
 		this.decisao = decisao;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getOrgaoJulgador() {
 		return orgaoJulgador;
 	}
 
+	/**
+	 * 
+	 * @param orgaoJulgador
+	 */
 	public void setOrgaoJulgador(String orgaoJulgador) {
 		this.orgaoJulgador = orgaoJulgador;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public DocumentoJuridico getDocumentoJuridico() {
 		return documentoJuridico;
 	}
 
+	/**
+	 * 
+	 * @param documentoJuridico
+	 */
 	public void setDocumentoJuridico(DocumentoJuridico documentoJuridico) {
 		this.documentoJuridico = documentoJuridico;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getAcordao() {
 		return acordao;
 	}
 
+	/**
+	 * 
+	 * @param acordao
+	 */
 	public void setAcordao(String acordao) {
 		this.acordao = acordao;
 	}

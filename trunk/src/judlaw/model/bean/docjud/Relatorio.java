@@ -17,7 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * Classe Relatorio
+ * Classe Relatorio. Representa o relatorio de um documento juridico
  * @author Halley Freitas
  *
  */
@@ -50,26 +50,55 @@ public class Relatorio {
 	 */
 	public Relatorio(){}
 
+	/* -------------------------------------------------
+	 * --------------- GETTERS e SETTERS ---------------
+	 * -------------------------------------------------
+	 */
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTexto() {
 		return texto;
 	}
 
+	/**
+	 * 
+	 * @param texto
+	 */
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public DocumentoJuridico getDocumentoJuridico() {
 		return documentoJuridico;
 	}
 
+	/**
+	 * 
+	 * @param documentoJuridico
+	 */
 	public void setDocumentoJuridico(DocumentoJuridico documentoJuridico) {
 		this.documentoJuridico = documentoJuridico;
 	}

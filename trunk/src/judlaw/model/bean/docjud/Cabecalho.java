@@ -18,7 +18,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * Classe Cabecalho - parte do DocumentoJuridico
+ * Classe Cabecalho. Parte inicial de um DocumentoJuridico
  * @author Halley Freitas
  *
  */
@@ -44,9 +44,17 @@ public class Cabecalho {
 	@JoinColumn(name="documentojuridico_id")
 	private DocumentoJuridico documentoJuridico;
 
+	/**
+	 * Construtor default
+	 * @param tribunal
+	 * @param tipo
+	 * @param numero
+	 * @param local
+	 * @param codRegistro
+	 * @param relator
+	 */
 	public Cabecalho(String tribunal, String tipo, int numero, String local,
 			String codRegistro, String relator) {
-		super();
 		this.tribunal = tribunal;
 		this.tipo = tipo;
 		this.numero = numero;
@@ -59,58 +67,119 @@ public class Cabecalho {
 	 */
 	public Cabecalho() {}
 	
+	/* -------------------------------------------------
+	 * --------------- GETTERS e SETTERS ---------------
+	 * -------------------------------------------------
+	 */
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTribunal() {
 		return tribunal;
 	}
 
+	/**
+	 * 
+	 * @param tribunal
+	 */
 	public void setTribunal(String tribunal) {
 		this.tribunal = tribunal;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getCodRegistro() {
 		return codRegistro;
 	}
 
+	/**
+	 * 
+	 * @param codRegistro
+	 */
 	public void setCodRegistro(String codRegistro) {
 		this.codRegistro = codRegistro;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public DocumentoJuridico getDocumentoJuridico() {
 		return documentoJuridico;
 	}
 
+	/**
+	 * 
+	 * @param documentoJuridico
+	 */
 	public void setDocumentoJuridico(DocumentoJuridico documentoJuridico) {
 		this.documentoJuridico = documentoJuridico;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTipo() {
 		return tipo;
 	}
 
+	/**
+	 * 
+	 * @param tipo
+	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getNumero() {
 		return numero;
 	}
 
+	/**
+	 * 
+	 * @param numero
+	 */
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getLocal() {
 		return local;
 	}
 
+	/**
+	 * 
+	 * @param local
+	 */
 	public void setLocal(String local) {
 		this.local = local;
 	}
