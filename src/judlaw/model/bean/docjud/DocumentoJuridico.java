@@ -31,7 +31,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 /**
- * Classe DocumentoJuridico - representa os documentos juridicos
+ * Classe DocumentoJuridico. Representa os documentos juridicos.
  * @author Halley Freitas
  *
  */
@@ -144,26 +144,55 @@ public class DocumentoJuridico {
 		this.citacoesRecebidasTextLeg = new ArrayList<CitacaoTextLeg>();
 	}
 	
+	/* -------------------------------------------------
+	 * --------------- GETTERS e SETTERS ---------------
+	 * -------------------------------------------------
+	 */
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Cabecalho getCabecalho() {
 		return cabecalho;
 	}
 	
+	/**
+	 * 
+	 * @param cabecalho
+	 */
 	public void setCabecalho(Cabecalho cabecalho) {
 		this.cabecalho = cabecalho;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public Ementa getEmenta() {
 		return ementa;
 	}
 	
+	/**
+	 * 
+	 * @param ementa
+	 */
 	public void setEmenta(Ementa ementa) {
 		this.ementa = ementa;
 	}
@@ -172,80 +201,156 @@ public class DocumentoJuridico {
 		return relatorio;
 	}
 	
+	/**
+	 * 
+	 * @param relatorio
+	 */
 	public void setRelatorio(Relatorio relatorio) {
 		this.relatorio = relatorio;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Voto> getVotos() {
 		return votos;
 	}
 	
+	/**
+	 * 
+	 * @param votos
+	 */
 	public void setVotos(List<Voto> votos) {
 		this.votos = votos;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public Encerramento getEncerramento() {
 		return encerramento;
 	}
 	
+	/**
+	 * 
+	 * @param encerramento
+	 */
 	public void setEncerramento(Encerramento encerramento) {
 		this.encerramento = encerramento;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Parte> getPartes() {
 		return partes;
 	}
 	
+	/**
+	 * 
+	 * @param partes
+	 */
 	public void setPartes(List<Parte> partes) {
 		this.partes = partes;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getIdentificadorUnico() {
 		return identificadorUnico;
 	}
 
+	/**
+	 * 
+	 * @param identificadorUnico
+	 */
 	public void setIdentificadorUnico(String identificadorUnico) {
 		this.identificadorUnico = identificadorUnico;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getDataJulgamento() {
 		return dataJulgamento;
 	}
 
+	/**
+	 * 
+	 * @param dataJulgamento
+	 */
 	public void setDataJulgamento(String dataJulgamento) {
 		this.dataJulgamento = dataJulgamento;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<CitacaoDocJud> getCitacoesFeitas() {
 		return citacoesFeitas;
 	}
 
+	/**
+	 * 
+	 * @param citacoesFeitas
+	 */
 	public void setCitacoesFeitas(List<CitacaoDocJud> citacoesFeitas) {
 		this.citacoesFeitas = citacoesFeitas;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<CitacaoDocJud> getCitacoesRecebidasDocJud() {
 		return citacoesRecebidasDocJud;
 	}
 
+	/**
+	 * 
+	 * @param citacoesRecebidasDocJud
+	 */
 	public void setCitacoesRecebidasDocJud(
 			List<CitacaoDocJud> citacoesRecebidasDocJud) {
 		this.citacoesRecebidasDocJud = citacoesRecebidasDocJud;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<CitacaoTextLeg> getCitacoesRecebidasTextLeg() {
 		return citacoesRecebidasTextLeg;
 	}
 
+	/**
+	 * 
+	 * @param citacoesRecebidasTextLeg
+	 */
 	public void setCitacoesRecebidasTextLeg(
 			List<CitacaoTextLeg> citacoesRecebidasTextLeg) {
 		this.citacoesRecebidasTextLeg = citacoesRecebidasTextLeg;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getDataPublicacao() {
 		return dataPublicacao;
 	}
 
+	/**
+	 * 
+	 * @param dataPublicacao
+	 */
 	public void setDataPublicacao(String dataPublicacao) {
 		this.dataPublicacao = dataPublicacao;
 	}
