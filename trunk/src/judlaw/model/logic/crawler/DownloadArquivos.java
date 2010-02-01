@@ -18,7 +18,7 @@ import java.net.URLConnection;
 import judlaw.model.util.Constantes;
 
 /**
- * 
+ * Classe DownloadArquivos. Faz o download de arquivos da Internet.
  * @author Halley Freitas
  *
  */
@@ -105,7 +105,7 @@ public class DownloadArquivos {
 		// Acha o nome a ser salvo do arquivo pelo endereco
 		String nomeArquivoLocal = endereco.substring(ultimoIndiceDaBarra + 1);
 	
-		// Check whether path or file name is given correctly.
+		// Chega se o path ou o nome do arquivo foi inserido de forma correta.
 		if (ultimoIndiceDoPonto >=1 &&  ultimoIndiceDaBarra >= 0 && ultimoIndiceDaBarra < endereco.length()) {
 			download( endereco, nomeArquivoLocal, diretorio, tipo );
 		}
