@@ -20,7 +20,7 @@ import judlaw.model.persistence.dbmanager.DBManager;
 
 
 /**
- * Classe DocJudManager - responsável por gerenciar as operacoes no banco de dados dos documentos jurídicos 
+ * Classe DocJudManager. Gerencia as operacoes no banco de dados dos documentos jurídicos 
  * @author Halley Freitas
  *
  */

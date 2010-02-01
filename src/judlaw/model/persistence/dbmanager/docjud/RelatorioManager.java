@@ -14,7 +14,7 @@ import judlaw.model.bean.docjud.Relatorio;
 import judlaw.model.persistence.dbmanager.DBManager;
 
 /**
- * Classe RelatorioManager - define as operacoes no BD dos Relatorios
+ * Classe RelatorioManager. Define as operacoes no BD dos Relatorios
  * @author Halley Freitas
  *
  */

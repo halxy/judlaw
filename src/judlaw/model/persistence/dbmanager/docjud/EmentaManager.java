@@ -14,7 +14,7 @@ import judlaw.model.bean.docjud.Ementa;
 import judlaw.model.persistence.dbmanager.DBManager;
 
 /**
- * Classe EmentaManager - define as operacoes no BD das Ementas
+ * Classe EmentaManager. Define as operacoes no BD das Ementas
  * @author Halley Freitas
  *
  */

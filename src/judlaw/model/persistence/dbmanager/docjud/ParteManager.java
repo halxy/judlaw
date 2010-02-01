@@ -14,7 +14,7 @@ import judlaw.model.bean.docjud.Parte;
 import judlaw.model.persistence.dbmanager.DBManager;
 
 /**
- * Classe ParteManager - define as operacoes no BD das Partes
+ * Classe ParteManager. Define as operacoes no BD das Partes
  * @author Halley Freitas
  *
  */

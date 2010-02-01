@@ -14,7 +14,7 @@ import judlaw.model.bean.docjud.Voto;
 import judlaw.model.persistence.dbmanager.DBManager;
 
 /**
- * Classe VotoManager - define as operacoes no BD dos Votos
+ * Classe VotoManager. Define as operacoes no BD dos Votos
  * @author Halley Freitas
  *
  */
@@ -42,6 +42,11 @@ public class VotoManager {
 		dbManager.removeAll( new Voto() );
 	}
 	
+	/**
+	 * Adiciona um voto a um documento juridico
+	 * @param voto
+	 * @param docJud
+	 */
 	public void adicionaVoto(Voto voto, DocumentoJuridico docJud) {
 		List<Voto> votos = docJud.getVotos();
 		votos.add(voto);
@@ -50,6 +55,11 @@ public class VotoManager {
 		dbManager.save(voto);
 	}
 	
+	/**
+	 * Remove um voto de um documentoJuridico
+	 * @param voto
+	 * @param docJud
+	 */
 	public void removeVoto(Voto voto, DocumentoJuridico docJud) {
 		List<Voto> votos = docJud.getVotos();
 		votos.remove( voto );
@@ -57,6 +67,12 @@ public class VotoManager {
 		dbManager.remove( voto );
 	}
 	
+	/**
+	 * Altera um voto de um documento juridico
+	 * @param votoLista
+	 * @param newVoto
+	 * @param docJud
+	 */
 	public void alteraVotoBD(Voto votoLista, Voto newVoto, DocumentoJuridico docJud) {
 		List<Voto> votos = docJud.getVotos();
 		votos.get( votos.indexOf(votoLista) ).setTexto( newVoto.getTexto() );
