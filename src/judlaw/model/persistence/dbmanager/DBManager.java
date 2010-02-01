@@ -18,7 +18,7 @@ import org.hibernate.criterion.Restrictions;
 
 
 /**
- * Classe DBManager - define as operacoes feitas no banco de dados
+ * Classe DBManager. Define as operacoes feitas no banco de dados
  * @author Halley Freitas
  *
  */
