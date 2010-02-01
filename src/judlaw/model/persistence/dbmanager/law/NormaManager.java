@@ -38,7 +38,7 @@ public class NormaManager {
     }
     
     /**
-     * 
+     * Persiste uma norma no BD
      * @param norma
      */
     public void salvaNorma(Norma norma) {

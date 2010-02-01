@@ -14,7 +14,7 @@ import judlaw.model.bean.law.Norma;
 import judlaw.model.persistence.dbmanager.DBManager;
 
 /**
- * Classe ElementoNormaManager - responsável por gerenciar as operacoes no banco de dados dos elementosNorma 
+ * Classe ElementoNormaManager. Responsável por gerenciar as operacoes no banco de dados dos elementosNorma 
  * @author Halley Freitas
  *
  */
@@ -54,6 +54,11 @@ public class ElementoNormaManager {
 		salvaFilhosElementoRecursivo(elementoNorma);
 	}
 	
+	/**
+	 * Persisnte um elemento alterado no BD, bem como adiciona-o na lista de pais
+	 * dos elementosNorma filhos
+	 * @param elementoNorma
+	 */
 	public void salvaElementoAlterado(ElementoNorma elementoNorma) {    	
     	List<ElementoNorma> elementosNorma = elementoNorma.getElementosNorma();
     	for(ElementoNorma eleN : elementosNorma) {
