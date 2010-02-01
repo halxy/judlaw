@@ -48,7 +48,9 @@ public class CitacaoTextLegTimeLogic extends TimeLogic {
 	}
 	
 	/**
-	 * Verifica as inconsistencias temporais de citacoes feitas por um texto legal
+	 * Verifica as inconsistencias temporais de citacoes feitas por um texto legal. Também
+	 * são armazenados "warnings" caso o pai ou algum dos filhos do texto legal referenciado tenha sido
+	 * atualizado.
 	 * @param textoLegal
 	 * @return
 	 * @throws Exception

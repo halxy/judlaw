@@ -17,7 +17,7 @@ import judlaw.model.bean.ref.Alteracao;
 import judlaw.model.util.Constantes;
 
 /**
- * Classe AlteracaoTimeLogic - define a logica temporal das alteracoes feitas por normas e elementosNorma
+ * Classe AlteracaoTimeLogic. Define a logica temporal das alteracoes feitas por normas e elementosNorma.
  * @author Halley Freitas
  *
  */
@@ -45,6 +45,15 @@ public class AlteracaoTimeLogic extends TimeLogic {
 		setElementosAtualizadosString( new ArrayList<String>() );
 	}
 	
+	/**
+	 * Verifica se ha alguma inconsistencia temporal nas alteracoes feitas por um texto legal. Caso a data da referencia feita pela norma seja mais atual que a dataFim
+	 * de vigencia das normas e dos elementosNorma, a referencia esta temporalmente inconsistente. Também
+	 * são armazenados "warnings" caso o pai ou algum dos filhos do texto legal referenciado tenha sido
+	 * atualizado.
+	 * @param textoLegal
+	 * @return Lista de alteracoes feitas que estao inconsistentes temporalmente
+	 * @throws Exception
+	 */
 	public List<Alteracao> inconsistenciaTemporal(TextoLegal textoLegal) throws Exception {
 		inicializaListas();
 		List<Alteracao> listaResultado = new ArrayList<Alteracao>();
