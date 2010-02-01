@@ -6,6 +6,7 @@ import java.util.List;
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
 import judlaw.model.bean.law.TextoLegal;
+import judlaw.model.bean.ref.Alteracao;
 import judlaw.model.bean.ref.CitacaoDocJud;
 import judlaw.model.bean.ref.CitacaoTextLeg;
 import judlaw.model.bean.ref.Referencia;
@@ -122,7 +123,19 @@ public class LawTimeLogic {
 			}
 		}
 		return citacoesDJValidas;
-}
+    }
+    
+    public List<Alteracao> alteracoesValidas(List<Alteracao> alteracoes,
+    												 String data) throws Exception {
+    	List<Alteracao> alteracoesValidas = new ArrayList<Alteracao>();
+    	for(Alteracao alt : alteracoes) {
+    		if( referenciaValida(alt, data) ) {
+    			alteracoesValidas.add( alt );
+    		}
+    	}
+    	return alteracoesValidas;
+    }
+
     
     /**
      * Valida as referências de uma norma
@@ -134,7 +147,9 @@ public class LawTimeLogic {
     	norma.setCitacoesFeitas( citacoesTextLegValidas(norma.getCitacoesFeitas(), data) );
     	norma.setCitacoesRecebidasTextLeg( citacoesTextLegValidas(norma.getCitacoesRecebidasTextLeg(), 
     			                           data) );
-    	norma.setCitacoesRecebidasDocJud( citacoesDocJudValidas(norma.getCitacoesRecebidasDocJud(), data));
+    	norma.setCitacoesRecebidasDocJud( citacoesDocJudValidas(norma.getCitacoesRecebidasDocJud(), data) );
+    	norma.setAlteracoesFeitas( alteracoesValidas(norma.getAlteracoesFeitas(), data) );
+    	norma.setAlteracoesRecebidas( alteracoesValidas(norma.getAlteracoesRecebidas(), data) );
     }
     
     /**
@@ -148,6 +163,7 @@ public class LawTimeLogic {
     	Norma visaoNormaTemporal = new Norma();
     	NormaManager.getInstance().setTodosParametrosNorma(norma, visaoNormaTemporal);
     	validaElementosNorma( visaoNormaTemporal, data );
+    	validaReferencias( visaoNormaTemporal, data);
     	return visaoNormaTemporal;
     }
     
