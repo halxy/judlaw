@@ -13,10 +13,6 @@ import java.util.List;
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
 import judlaw.model.bean.law.TextoLegal;
-import judlaw.model.bean.ref.Alteracao;
-import judlaw.model.bean.ref.CitacaoDocJud;
-import judlaw.model.bean.ref.CitacaoTextLeg;
-import judlaw.model.bean.ref.Referencia;
 import judlaw.model.persistence.dbmanager.law.NormaManager;
 import judlaw.model.util.Constantes;
 
@@ -25,7 +21,7 @@ import judlaw.model.util.Constantes;
  * @author Halley Freitas
  *
  */
-public class LawTimeLogic {
+public class LawTimeLogic extends TimeLogic {
     
 	private static LawTimeLogic lawTimeLogic = null;
 	
@@ -102,73 +98,6 @@ public class LawTimeLogic {
     	}	
     }
     
-	/**
-	 * Retorna se uma referencia (citacao ou alteracao) foi feita a partir daquela data
-	 * @param referencia
-	 * @param data
-	 * @return
-	 * @throws Exception
-	 */
-	public boolean referenciaValida(Referencia referencia, String data) throws Exception {
-		String dataRef = referencia.getData();		
-		return TimeLogic.getInstance().comparaDatas(dataRef, data, Constantes.DELIMITADOR_DATA) >= 0 ;
-	}
-	
-	/**
-	 * Dada uma lista de citacoesTextLeg e uma data, sao retornadas aquelas que ainda estao validas
-	 * @param citacoesTL
-	 * @param data
-	 * @return Lista de citaçõesTextLeg que possuem data igual ou superior à data passada como parâmetro
-	 * @throws Exception
-	 */
-    public List<CitacaoTextLeg> citacoesTextLegValidas(List<CitacaoTextLeg> citacoesTL,
-    													 String data) throws Exception {
-    	List<CitacaoTextLeg> citacoesTLValidas = new ArrayList<CitacaoTextLeg>();
-    	for(CitacaoTextLeg citTL : citacoesTL) {
-    		if( referenciaValida(citTL, data) ) {
-    			citacoesTLValidas.add( citTL );
-    		}
-    	}
-    	return citacoesTLValidas;
-    }
-    
-    /**
-     * Dada uma lista de citacoesDocJud e uma data, sao retornadas aquelas que ainda estao validas
-     * @param citacoesDJ
-     * @param data
-     * @return Lista de citaçõesDocJud que possuem data igual ou superior à data passada como parâmetro
-     * @throws Exception
-     */
-    public List<CitacaoDocJud> citacoesDocJudValidas(List<CitacaoDocJud> citacoesDJ,
-			 										   String data) throws Exception {
-		List<CitacaoDocJud> citacoesDJValidas = new ArrayList<CitacaoDocJud>();
-		for(CitacaoDocJud citDJ : citacoesDJ) {
-			if( referenciaValida(citDJ, data) ) {
-			citacoesDJValidas.add( citDJ );
-			}
-		}
-		return citacoesDJValidas;
-    }
-    
-    /**
-     * Dada uma lista de alteracoes e uma data, sao retornadas aquelas que ainda estao validas
-     * @param alteracoes
-     * @param data
-     * @return
-     * @throws Exception
-     */
-    public List<Alteracao> alteracoesValidas(List<Alteracao> alteracoes,
-    												 String data) throws Exception {
-    	List<Alteracao> alteracoesValidas = new ArrayList<Alteracao>();
-    	for(Alteracao alt : alteracoes) {
-    		if( referenciaValida(alt, data) ) {
-    			alteracoesValidas.add( alt );
-    		}
-    	}
-    	return alteracoesValidas;
-    }
-
-    
     /**
      * Valida as referências de uma norma
      * @param norma
@@ -176,12 +105,12 @@ public class LawTimeLogic {
      * @throws Exception 
      */
     public void validaReferencias(Norma norma, String data) throws Exception {
-    	norma.setCitacoesFeitas( citacoesTextLegValidas(norma.getCitacoesFeitas(), data) );
-    	norma.setCitacoesRecebidasTextLeg( citacoesTextLegValidas(norma.getCitacoesRecebidasTextLeg(), 
+    	norma.setCitacoesFeitas( CitacaoTextLegTimeLogic.getInstance().citacoesTextLegValidas(norma.getCitacoesFeitas(), data) );
+    	norma.setCitacoesRecebidasTextLeg( CitacaoTextLegTimeLogic.getInstance().citacoesTextLegValidas(norma.getCitacoesRecebidasTextLeg(), 
     			                           data) );
-    	norma.setCitacoesRecebidasDocJud( citacoesDocJudValidas(norma.getCitacoesRecebidasDocJud(), data) );
-    	norma.setAlteracoesFeitas( alteracoesValidas(norma.getAlteracoesFeitas(), data) );
-    	norma.setAlteracoesRecebidas( alteracoesValidas(norma.getAlteracoesRecebidas(), data) );
+    	norma.setCitacoesRecebidasDocJud( CitacaoDocJudTimeLogic.getInstance().citacoesDocJudValidas(norma.getCitacoesRecebidasDocJud(), data) );
+    	norma.setAlteracoesFeitas( AlteracaoTimeLogic.getInstance().alteracoesValidas(norma.getAlteracoesFeitas(), data) );
+    	norma.setAlteracoesRecebidas( AlteracaoTimeLogic.getInstance().alteracoesValidas(norma.getAlteracoesRecebidas(), data) );
     }
     
     /**

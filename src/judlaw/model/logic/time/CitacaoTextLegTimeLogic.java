@@ -134,4 +134,22 @@ public class CitacaoTextLegTimeLogic extends TimeLogic {
 		}
 		return listaResultado;
 	}
+	
+	/**
+	 * Dada uma lista de citacoesTextLeg e uma data, sao retornadas aquelas que ainda estao validas
+	 * @param citacoesTL
+	 * @param data
+	 * @return Lista de citaçõesTextLeg que possuem data igual ou superior à data passada como parâmetro
+	 * @throws Exception
+	 */
+    public List<CitacaoTextLeg> citacoesTextLegValidas(List<CitacaoTextLeg> citacoesTL,
+    													 String data) throws Exception {
+    	List<CitacaoTextLeg> citacoesTLValidas = new ArrayList<CitacaoTextLeg>();
+    	for(CitacaoTextLeg citTL : citacoesTL) {
+    		if( referenciaValida(citTL, data) ) {
+    			citacoesTLValidas.add( citTL );
+    		}
+    	}
+    	return citacoesTLValidas;
+    }
 }

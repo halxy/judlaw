@@ -15,10 +15,11 @@ import java.util.StringTokenizer;
 
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
+import judlaw.model.bean.ref.Referencia;
 import judlaw.model.util.Constantes;
 
 /**
- * Classe TimeLogic - define a logica temporal geral do sistema
+ * Classe TimeLogic. Define a logica temporal geral do sistema
  * @author Halley Freitas
  *
  */
@@ -276,5 +277,17 @@ public class TimeLogic {
 		} else { //Dezembro
 			return 12;
 		}
+	}
+	
+	/**
+	 * Retorna se uma referencia (citacao ou alteracao) foi feita a partir daquela data
+	 * @param referencia
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean referenciaValida(Referencia referencia, String data) throws Exception {
+		String dataRef = referencia.getData();		
+		return TimeLogic.getInstance().comparaDatas(dataRef, data, Constantes.DELIMITADOR_DATA) >= 0 ;
 	}
 }

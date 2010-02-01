@@ -133,4 +133,22 @@ public class CitacaoDocJudTimeLogic extends TimeLogic {
 		}
 		return listaResultado;
 	}
+	
+	/**
+     * Dada uma lista de citacoesDocJud e uma data, sao retornadas aquelas que ainda estao validas
+     * @param citacoesDJ
+     * @param data
+     * @return Lista de citaçõesDocJud que possuem data igual ou superior à data passada como parâmetro
+     * @throws Exception
+     */
+    public List<CitacaoDocJud> citacoesDocJudValidas(List<CitacaoDocJud> citacoesDJ,
+			 										   String data) throws Exception {
+		List<CitacaoDocJud> citacoesDJValidas = new ArrayList<CitacaoDocJud>();
+		for(CitacaoDocJud citDJ : citacoesDJ) {
+			if( referenciaValida(citDJ, data) ) {
+			citacoesDJValidas.add( citDJ );
+			}
+		}
+		return citacoesDJValidas;
+    }
 }
