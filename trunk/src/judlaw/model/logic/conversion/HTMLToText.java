@@ -16,7 +16,12 @@ import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
- 
+
+/**
+ * Classe HTMLToText. Converte um documento HTML em String
+ * @author Halley Freitas
+ *
+ */
 public class HTMLToText {
 	
 	private FileInputStream fin;
@@ -56,7 +61,7 @@ public class HTMLToText {
     /**
      * Extrai o texto de um HTML
      * @param fileName
-     * @return
+     * @return String com o conteudo do HTML (apenas o texto)
      */
     public String htmltoText(String fileName) {
     	DOMFragmentParser parser = new DOMFragmentParser();   	
