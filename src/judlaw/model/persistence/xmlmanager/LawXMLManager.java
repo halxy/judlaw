@@ -35,6 +35,10 @@ public class LawXMLManager {
         return lawXmlManager;
     }
     
+    /**
+     * 
+     * @return
+     */
 	public XStream getXstreamNorma() {
 		if (xstreamNorma == null ) {
 			xstreamNorma = new XStream();
@@ -43,10 +47,17 @@ public class LawXMLManager {
 		return xstreamNorma;
 	}
 
+	/**
+	 * 
+	 * @param xstreamNorma
+	 */
 	public void setXstreamNorma(XStream xstreamNorma) {
 		this.xstreamNorma = xstreamNorma;
 	}
 
+	/*
+	 * Seta os aliases (partes) da norma.
+	 */
 	private void setAliasesNorma() {
 		this.xstreamNorma.alias("norma", Norma.class);
 		this.xstreamNorma.alias("elementosNorma", ElementoNorma.class);
@@ -57,6 +68,12 @@ public class LawXMLManager {
 		this.xstreamNorma.alias("alteracoesRecebidas", Alteracao.class);
 	}
 	
+	/**
+	 * 
+	 * @param norma
+	 * @param nomeArquivo
+	 * @throws IOException
+	 */
 	public void salvaNorma(Norma norma, String nomeArquivo) throws IOException {
     	setXstreamNorma( new XStream() );
     	//Setando as classes no xstream
@@ -67,6 +84,10 @@ public class LawXMLManager {
 		out.close();
     }
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public XStream getXstreamElementoNorma() {
 		if (xstreamElementoNorma == null ) {
 			xstreamElementoNorma = new XStream();
@@ -75,10 +96,17 @@ public class LawXMLManager {
 		return xstreamElementoNorma;
 	}
 	
+	/**
+	 * 
+	 * @param xstreamElementoNorma
+	 */
 	public void setXstreamElementoNorma(XStream xstreamElementoNorma) {
 		this.xstreamElementoNorma = xstreamElementoNorma;
 	}
 
+	/*
+	 * Seta os aliases (partes) de um elementoNorma.
+	 */
 	private void setAliasesElementoNorma() {
 		this.xstreamElementoNorma.alias("elementosNormaPai", ElementoNorma.class);
 		this.xstreamElementoNorma.alias("normasPai", Norma.class);
@@ -90,6 +118,12 @@ public class LawXMLManager {
 		this.xstreamElementoNorma.alias("alteracoesRecebidas", Alteracao.class);
 	}
 	
+	/**
+	 * Persiste um elementoNorma em um arquivo XML
+	 * @param elementoNorma
+	 * @param nomeArquivo
+	 * @throws IOException
+	 */
 	public void salvaElementoNorma(ElementoNorma elementoNorma, String nomeArquivo) throws IOException {
     	setXstreamElementoNorma( new XStream() );
     	//Setando as classes no xstream
@@ -100,6 +134,9 @@ public class LawXMLManager {
 		out.close();
     }
 	
+	/*
+	 * Main para testes
+	 */
 	public static void main(String[] args) {
 		Norma norma = new Norma();
 		norma.setDataPublicacao("oa");
