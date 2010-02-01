@@ -11,6 +11,9 @@ import java.util.List;
 
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
+import judlaw.model.bean.ref.Alteracao;
+import judlaw.model.bean.ref.CitacaoDocJud;
+import judlaw.model.bean.ref.CitacaoTextLeg;
 import judlaw.model.persistence.dbmanager.DBManager;
 
 
@@ -146,6 +149,48 @@ public class NormaManager {
     	//Filhos
     	for(ElementoNorma eleN : norma.getElementosNorma() ) {
     		novaNorma.getElementosNorma().add( eleN );
+    	}
+    }
+    
+    /**
+     * Seta todos os parametros de uma norma em outra.
+     * @param norma
+     * @param novaNorma
+     */
+    public void setTodosParametros(Norma norma, Norma novaNorma) {
+    	//Atributos comuns
+    	novaNorma.setUrl( norma.getUrl() );
+    	novaNorma.setEmenta( norma.getEmenta() );
+    	novaNorma.setAutoria( norma.getAutoria() );
+    	novaNorma.setTipo( norma.getTipo() );
+    	novaNorma.setNumero( norma.getNumero() );
+    	novaNorma.setDataPublicacao( norma.getDataPublicacao() );
+    	novaNorma.setLocal( norma.getLocal() );
+    	novaNorma.setIdentificadorUnico( norma.getIdentificadorUnico() );
+    	novaNorma.setVigencia( norma.getVigencia() );
+    	//Filhos
+    	for( ElementoNorma eleN : norma.getElementosNorma() ) {
+    		novaNorma.getElementosNorma().add( eleN );
+    	}
+    	/*
+    	 * Referências - também são passadas para a nova norma
+    	 */
+    	//Citações
+    	for ( CitacaoTextLeg citTL : norma.getCitacoesFeitas() ) {
+    		novaNorma.getCitacoesFeitas().add( citTL );
+    	}
+    	for ( CitacaoTextLeg citTL : norma.getCitacoesRecebidasTextLeg() ) {
+    		novaNorma.getCitacoesRecebidasTextLeg().add( citTL );
+    	}
+    	for ( CitacaoDocJud citDJ : norma.getCitacoesRecebidasDocJud() ) {
+    		novaNorma.getCitacoesRecebidasDocJud().add( citDJ );
+    	}
+    	//Alterações
+    	for ( Alteracao alt : norma.getAlteracoesFeitas() ) {
+    		novaNorma.getAlteracoesFeitas().add( alt );
+    	}
+    	for ( Alteracao alt : norma.getAlteracoesRecebidas() ) {
+    		novaNorma.getAlteracoesRecebidas().add( alt );
     	}
     }
     
