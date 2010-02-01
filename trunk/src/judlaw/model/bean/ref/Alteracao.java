@@ -140,10 +140,23 @@ public class Alteracao extends Referencia {
 	 */
 	public Alteracao(){}
 	
+	/* -------------------------------------------------
+	 * --------------- GETTERS e SETTERS ---------------
+	 * -------------------------------------------------
+	 */
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -180,42 +193,82 @@ public class Alteracao extends Referencia {
 		this.caracteristica = caracteristica;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.ref.Referencia#getData()
+	 */
 	public String getData() {
 		return data;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.ref.Referencia#setData(java.lang.String)
+	 */
 	public void setData(String data) {
 		this.data = data;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Norma getNormaOrigem() {
 		return normaOrigem;
 	}
 
+	/**
+	 * 
+	 * @param normaOrigem
+	 */
 	public void setNormaOrigem(Norma normaOrigem) {
 		this.normaOrigem = normaOrigem;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ElementoNorma getElementoNormaOrigem() {
 		return elementoNormaOrigem;
 	}
 
+	/**
+	 * 
+	 * @param elementoNormaOrigem
+	 */
 	public void setElementoNormaOrigem(ElementoNorma elementoNormaOrigem) {
 		this.elementoNormaOrigem = elementoNormaOrigem;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Norma getNormaDestino() {
 		return normaDestino;
 	}
 
+	/**
+	 * 
+	 * @param normaDestino
+	 */
 	public void setNormaDestino(Norma normaDestino) {
 		this.normaDestino = normaDestino;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ElementoNorma getElementoNormaDestino() {
 		return elementoNormaDestino;
 	}
 
+	/**
+	 * 
+	 * @param elementoNormaDestino
+	 */
 	public void setElementoNormaDestino(ElementoNorma elementoNormaDestino) {
 		this.elementoNormaDestino = elementoNormaDestino;
 	}

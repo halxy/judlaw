@@ -121,59 +121,120 @@ public class CitacaoDocJud extends Referencia {
 	 */
 	public CitacaoDocJud(){}
 	
+	/* -------------------------------------------------
+	 * --------------- GETTERS e SETTERS ---------------
+	 * -------------------------------------------------
+	 */
+	
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.ref.Referencia#getData()
+	 */
 	public String getData() {
 		return data;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.ref.Referencia#setData(java.lang.String)
+	 */
 	public void setData(String data) {
 		this.data = data;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public DocumentoJuridico getDocumentoJuridicoOrigem() {
 		return documentoJuridicoOrigem;
 	}
 
+	/**
+	 * 
+	 * @param documentoJuridicoOrigem
+	 */
 	public void setDocumentoJuridicoOrigem(DocumentoJuridico documentoJuridicoOrigem) {
 		this.documentoJuridicoOrigem = documentoJuridicoOrigem;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public DocumentoJuridico getDocumentoJuridicoDestino() {
 		return documentoJuridicoDestino;
 	}
 
+	/**
+	 * 
+	 * @param documentoJuridicoDestino
+	 */
 	public void setDocumentoJuridicoDestino(
 			DocumentoJuridico documentoJuridicoDestino) {
 		this.documentoJuridicoDestino = documentoJuridicoDestino;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Norma getNormaDestino() {
 		return normaDestino;
 	}
 
+	/**
+	 * 
+	 * @param normaDestino
+	 */
 	public void setNormaDestino(Norma normaDestino) {
 		this.normaDestino = normaDestino;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ElementoNorma getElementoNormaDestino() {
 		return elementoNormaDestino;
 	}
 
+	/**
+	 * 
+	 * @param elementoNormaDestino
+	 */
 	public void setElementoNormaDestino(ElementoNorma elementoNormaDestino) {
 		this.elementoNormaDestino = elementoNormaDestino;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Doutrina getDoutrinaDestino() {
 		return doutrinaDestino;
 	}
 
+	/**
+	 * 
+	 * @param doutrinaDestino
+	 */
 	public void setDoutrinaDestino(Doutrina doutrinaDestino) {
 		this.doutrinaDestino = doutrinaDestino;
 	}

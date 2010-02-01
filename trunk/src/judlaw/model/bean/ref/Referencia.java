@@ -31,6 +31,9 @@ public abstract class Referencia {
 		this.data = data;
 	}
 	
+	/**
+	 * Construtor vazio
+	 */
 	public Referencia(){}
 
 	/**
