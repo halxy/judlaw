@@ -27,6 +27,11 @@ import judlaw.model.bean.ref.CitacaoTextLeg;
 
 import com.thoughtworks.xstream.XStream;
 
+/**
+ * Classe DocJudXMLManager. Define a persistencia dos documentos juridicos em XML
+ * @author Halley Freitas
+ *
+ */
 public class DocJudXMLManager {
 	
 	private XStream xstream = null;
@@ -42,6 +47,10 @@ public class DocJudXMLManager {
         return docJudXmlManager;
     }
     
+    /**
+     * 
+     * @return
+     */
     public XStream getXstream() {
     	if (xstream == null ) {
     		xstream = new XStream();
@@ -50,10 +59,17 @@ public class DocJudXMLManager {
 		return xstream;
 	}
 
+    /**
+     * 
+     * @param xstream
+     */
 	public void setXstream(XStream xstream) {
 		this.xstream = xstream;
 	}
 	
+	/*
+	 * Seta os aliases, ou partes do documento juridico
+	 */
 	private void setAliases() {
 		this.xstream.alias("documentojuridico", DocumentoJuridico.class);
 		this.xstream.alias("cabecalho", Cabecalho.class);
@@ -83,6 +99,9 @@ public class DocJudXMLManager {
 		out.close();
     }
 	
+	/*
+	 * Main para testes
+	 */
 	public static void main(String[] args) {
 		//Cabecalho
 		Cabecalho cabecalho1 = new Cabecalho();
