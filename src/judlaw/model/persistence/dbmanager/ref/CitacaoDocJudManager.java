@@ -17,7 +17,7 @@ import judlaw.model.bean.ref.CitacaoDocJud;
 import judlaw.model.persistence.dbmanager.DBManager;
 
 /**
- * Classe CitacaoDocJudManager - responsável por gerenciar as operacoes no banco de dados das citacoesDocJud
+ * Classe CitacaoDocJudManager. Responsável por gerenciar as operacoes no banco de dados das citacoesDocJud
  * @author Halley Freitas
  *
  */
