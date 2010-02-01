@@ -133,4 +133,22 @@ public class AlteracaoTimeLogic extends TimeLogic {
 		}
 		return listaResultado;
 	}
+	
+	/**
+     * Dada uma lista de alteracoes e uma data, sao retornadas aquelas que ainda estao validas
+     * @param alteracoes
+     * @param data
+     * @return
+     * @throws Exception
+     */
+    public List<Alteracao> alteracoesValidas(List<Alteracao> alteracoes,
+    												 String data) throws Exception {
+    	List<Alteracao> alteracoesValidas = new ArrayList<Alteracao>();
+    	for(Alteracao alt : alteracoes) {
+    		if( referenciaValida(alt, data) ) {
+    			alteracoesValidas.add( alt );
+    		}
+    	}
+    	return alteracoesValidas;
+    }
 }
