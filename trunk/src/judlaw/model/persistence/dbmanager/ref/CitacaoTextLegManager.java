@@ -16,7 +16,7 @@ import judlaw.model.bean.ref.CitacaoTextLeg;
 import judlaw.model.persistence.dbmanager.DBManager;
 
 /**
- * Classe CitacaoTextLegManager - responsável por gerenciar as operacoes no banco de dados das citacoesTextLeg 
+ * Classe CitacaoTextLegManager. Responsável por gerenciar as operacoes no banco de dados das citacoesTextLeg 
  * @author Halley Freitas
  *
  */

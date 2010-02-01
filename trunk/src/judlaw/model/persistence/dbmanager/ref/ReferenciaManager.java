@@ -14,7 +14,7 @@ import judlaw.model.persistence.dbmanager.DBManager;
 
 
 /**
- * Classe ReferenciaManager - responsável por gerenciar as operacoes no banco de dados das referencias: 
+ * Classe ReferenciaManager. Responsável por gerenciar as operacoes no banco de dados das referencias: 
  * Alteracao, CitacaoDocJud e CitacaoDocLeg;
  * @author Halley Freitas
  *

@@ -19,7 +19,7 @@ import judlaw.model.persistence.dbmanager.law.NormaManager;
 import judlaw.model.util.Constantes;
 
 /**
- * Classe AlteracaoManager - responsável por gerenciar as operacoes no banco de dados das alteracoes 
+ * Classe AlteracaoManager. Responsável por gerenciar as operacoes no banco de dados das alteracoes 
  * @author Halley Freitas
  *
  */
