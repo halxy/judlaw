@@ -8,7 +8,7 @@
 package judlaw.model.util;
 
 /**
- * Classe Constantes - contem as contantes utilizadas pelo sistema
+ * Classe Constantes. Contem as contantes utilizadas pelo sistema
  * @author Halley Freitas
  *
  */
