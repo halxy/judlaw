@@ -17,7 +17,7 @@ import judlaw.model.bean.ref.CitacaoDocJud;
 import judlaw.model.util.Constantes;
 
 /**
- * Classe CitacaoDocJudTimeLogic - define a logica temporal das citacoes de documentos juridicos
+ * Classe CitacaoDocJudTimeLogic. Define a logica temporal das citacoes feitas por documentos juridicos.
  * @author Halley Freitas
  *
  */
@@ -47,7 +47,9 @@ public class CitacaoDocJudTimeLogic extends TimeLogic {
 	}
 	
 	/**
-	 * Dado um documentoJuridico, retorna as citacoes temporalmente inconsistentes feitas por ele.
+	 * Dado um documentoJuridico, retorna as citacoes temporalmente inconsistentes feitas por ele. Também
+	 * são armazenados "warnings" caso o pai ou algum dos filhos do texto legal referenciado tenha sido
+	 * atualizado.
 	 * @param docJud
 	 * @return Citacoes temporalmente inconsistentes feitas por ele.
 	 * @throws Exception
