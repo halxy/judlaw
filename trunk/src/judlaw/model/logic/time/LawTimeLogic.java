@@ -5,6 +5,7 @@ import java.util.List;
 
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
+import judlaw.model.bean.law.TextoLegal;
 import judlaw.model.persistence.dbmanager.law.NormaManager;
 import judlaw.model.util.Constantes;
 
@@ -22,6 +23,55 @@ public class LawTimeLogic {
 		}
 		return lawTimeLogic;
 	}
+	
+	/**
+	 * Retorna se um TextoLegal (Norma ou ElementoNorma) ainda é válido dada uma determinada
+	 * data
+	 * @param tl
+	 * @param data
+	 * @return Caso retorna 0 ou 1, o Texto Legal ainda é valido.
+	 * @throws Exception Caso haja alguma ma formatacao
+	 */
+	public boolean textoLegalValido(TextoLegal tl, String data) throws Exception {
+		String vigenciaTL = tl.getVigencia();		
+		return TimeLogic.getInstance().comparaVigenciaComData(vigenciaTL, Constantes.DELIMITADOR_VIGENCIA,
+				   data, Constantes.DELIMITADOR_DATA) >= 0;
+	}
+	
+    /**
+     * Dada uma lista de elementosNorma e uma certa data, são retornados os elementosNorma cuja data
+     * de vigência não foram ainda expirados.
+     * @param elementosNorma
+     * @param data
+     * @return
+     * @throws Exception Caso haja alguma ma-formatacao na data
+     */
+    public List<ElementoNorma> elementosNormaValidosData(List<ElementoNorma> elementosNorma,
+    		                                              String data) throws Exception {
+    	List<ElementoNorma> elementosValidos = new ArrayList<ElementoNorma>();
+    	for( ElementoNorma eleN : elementosNorma ) {
+    		if ( LawTimeLogic.getInstance().textoLegalValido(eleN, data) ) {
+    			elementosValidos.add( eleN );
+    		}
+    	}
+    	return elementosValidos;
+    }
+    
+    /**
+     * Dado um elementoNorma raiz, verifica recursivamente em todos os filhos e nos filhos dos filhos
+     * quais elementos sao validos de acordo com uma data passada
+     * @param elementoNorma
+     * @param data
+     * @throws Exception Caso haja uma ma-formatacao na data
+     */
+    public void filhosValidosRecursivo(ElementoNorma elementoNorma, String data) throws Exception {
+    	//Começando pelo primeiro nivel sao podados os filhos antes de fazer a recursividade
+    	elementoNorma.setElementosNorma( elementosNormaValidosData( elementoNorma.getElementosNorma(), data) );
+    	List<ElementoNorma> filhos = elementoNorma.getElementosNorma(); 
+		for(ElementoNorma filho : filhos) {
+			filhosValidosRecursivo(filho, data);
+		}
+    }
 	
 	/**
      * Dada uma lista de normas, retorna aquela que possui a data de publicacao mais atual.
