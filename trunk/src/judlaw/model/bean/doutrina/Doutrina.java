@@ -26,7 +26,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 /**
- * Classe Doutrina
+ * Classe Doutrina. Representa uma doutrina referenciada pelos documentos juridicos.
  * @author Halley Freitas
  *
  */
@@ -89,74 +89,151 @@ public class Doutrina {
 		this.citacoesRecebidasDocJud = new ArrayList<CitacaoDocJud>();
 	}
 
+	/* -------------------------------------------------
+	 * --------------- GETTERS e SETTERS ---------------
+	 * -------------------------------------------------
+	 */
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTitulo() {
 		return titulo;
 	}
 
+	/**
+	 * 
+	 * @param titulo
+	 */
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getEdicao() {
 		return edicao;
 	}
 
+	/**
+	 * 
+	 * @param edicao
+	 */
 	public void setEdicao(String edicao) {
 		this.edicao = edicao;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getEditora() {
 		return editora;
 	}
 
+	/**
+	 * 
+	 * @param editora
+	 */
 	public void setEditora(String editora) {
 		this.editora = editora;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getLocal() {
 		return local;
 	}
 
+	/**
+	 * 
+	 * @param local
+	 */
 	public void setLocal(String local) {
 		this.local = local;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getAnoPublicacao() {
 		return anoPublicacao;
 	}
 
+	/**
+	 * 
+	 * @param anoPublicacao
+	 */
 	public void setAnoPublicacao(String anoPublicacao) {
 		this.anoPublicacao = anoPublicacao;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getAutor() {
 		return autor;
 	}
 
+	/**
+	 * 
+	 * @param autor
+	 */
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getIsbn() {
 		return isbn;
 	}
 
+	/**
+	 * 
+	 * @param isbn
+	 */
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<CitacaoDocJud> getCitacoesRecebidasDocJud() {
 		return citacoesRecebidasDocJud;
 	}
 
+	/**
+	 * 
+	 * @param citacoesRecebidasDocJud
+	 */
 	public void setCitacoesRecebidasDocJud(
 			List<CitacaoDocJud> citacoesRecebidasDocJud) {
 		this.citacoesRecebidasDocJud = citacoesRecebidasDocJud;
