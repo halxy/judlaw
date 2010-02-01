@@ -41,42 +41,91 @@ public abstract class TextoLegal {
 	public String getIdentificadorUnico() {
 		return identificadorUnico;
 	}
+	
+	/**
+	 * 
+	 * @param identificadorUnico
+	 */
 	public void setIdentificadorUnico(String identificadorUnico) {
 		this.identificadorUnico = identificadorUnico;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTipo() {
 		return tipo;
 	}
 	
+	/**
+	 * 
+	 * @param tipo
+	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getDataPublicacao() {
 		return dataPublicacao;
 	}
 	
+	/**
+	 * 
+	 * @param dataPublicacao
+	 */
 	public void setDataPublicacao(String dataPublicacao) {
 		this.dataPublicacao = dataPublicacao;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getVigencia() {
 		return vigencia;
 	}
 	
+	/**
+	 * 
+	 * @param vigencia
+	 */
 	public void setVigencia(String vigencia) {
 		this.vigencia = vigencia;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<CitacaoTextLeg> getCitacoesFeitas() {
 		return citacoesFeitas;
 	}
+	
+	/**
+	 * 
+	 * @param citacoesFeitas
+	 */
 	public void setCitacoesFeitas(List<CitacaoTextLeg> citacoesFeitas) {
 		this.citacoesFeitas = citacoesFeitas;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Alteracao> getAlteracoesFeitas() {
 		return alteracoesFeitas;
 	}
+	
+	/**
+	 * 
+	 * @param alteracoesFeitas
+	 */
 	public void setAlteracoesFeitas(List<Alteracao> alteracoesFeitas) {
 		this.alteracoesFeitas = alteracoesFeitas;
 	}
