@@ -157,7 +157,7 @@ public class NormaManager {
      * @param norma
      * @param novaNorma
      */
-    public void setTodosParametros(Norma norma, Norma novaNorma) {
+    public void setTodosParametrosNorma(Norma norma, Norma novaNorma) {
     	//Atributos comuns
     	novaNorma.setUrl( norma.getUrl() );
     	novaNorma.setEmenta( norma.getEmenta() );
