@@ -20,6 +20,11 @@ import judlaw.model.bean.ref.Referencia;
 import judlaw.model.persistence.dbmanager.law.NormaManager;
 import judlaw.model.util.Constantes;
 
+/**
+ * Classe LawTimeLogic. Define a logica temporal associada aos textos legais (normas e elementosNorma).
+ * @author Halley Freitas
+ *
+ */
 public class LawTimeLogic {
     
 	private static LawTimeLogic lawTimeLogic = null;
@@ -109,7 +114,13 @@ public class LawTimeLogic {
 		return TimeLogic.getInstance().comparaDatas(dataRef, data, Constantes.DELIMITADOR_DATA) >= 0 ;
 	}
 	
-	
+	/**
+	 * Dada uma lista de citacoesTextLeg e uma data, sao retornadas aquelas que ainda estao validas
+	 * @param citacoesTL
+	 * @param data
+	 * @return Lista de citaçõesTextLeg que possuem data igual ou superior à data passada como parâmetro
+	 * @throws Exception
+	 */
     public List<CitacaoTextLeg> citacoesTextLegValidas(List<CitacaoTextLeg> citacoesTL,
     													 String data) throws Exception {
     	List<CitacaoTextLeg> citacoesTLValidas = new ArrayList<CitacaoTextLeg>();
@@ -121,6 +132,13 @@ public class LawTimeLogic {
     	return citacoesTLValidas;
     }
     
+    /**
+     * Dada uma lista de citacoesDocJud e uma data, sao retornadas aquelas que ainda estao validas
+     * @param citacoesDJ
+     * @param data
+     * @return Lista de citaçõesDocJud que possuem data igual ou superior à data passada como parâmetro
+     * @throws Exception
+     */
     public List<CitacaoDocJud> citacoesDocJudValidas(List<CitacaoDocJud> citacoesDJ,
 			 										   String data) throws Exception {
 		List<CitacaoDocJud> citacoesDJValidas = new ArrayList<CitacaoDocJud>();
@@ -132,6 +150,13 @@ public class LawTimeLogic {
 		return citacoesDJValidas;
     }
     
+    /**
+     * Dada uma lista de alteracoes e uma data, sao retornadas aquelas que ainda estao validas
+     * @param alteracoes
+     * @param data
+     * @return
+     * @throws Exception
+     */
     public List<Alteracao> alteracoesValidas(List<Alteracao> alteracoes,
     												 String data) throws Exception {
     	List<Alteracao> alteracoesValidas = new ArrayList<Alteracao>();
@@ -163,14 +188,17 @@ public class LawTimeLogic {
      * Reconstroi temporalmente uma norma através de uma data passada como parâmetro
      * @param norma
      * @param data
-     * @return
+     * @return Norma que representa a visão temporal atual da norma passada como parâmetro
      * @throws Exception Caso haja uma ma-formatacao nas datas
      */
     public Norma reconstroiNormaTemporal(Norma norma, String data) throws Exception {
     	Norma visaoNormaTemporal = new Norma();
     	NormaManager.getInstance().setTodosParametrosNorma(norma, visaoNormaTemporal);
+    	// Exclui da visão os elementosNorma que não estão válidos em relação à data
     	validaElementosNorma( visaoNormaTemporal, data );
+    	// Exclui da visão as referências que não estão válidas em relação à data
     	validaReferencias( visaoNormaTemporal, data);
+    	// Retorna a visão
     	return visaoNormaTemporal;
     }
     
