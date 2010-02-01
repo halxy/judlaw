@@ -16,7 +16,7 @@ import org.pdfbox.pdmodel.PDDocument;
 import org.pdfbox.util.PDFTextStripper;
 
 /**
- * Classe PDFToText - Converte um PDF para String.
+ * Classe PDFToText. Converte um PDF para String.
  * @author Halley Freitas
  *
  */

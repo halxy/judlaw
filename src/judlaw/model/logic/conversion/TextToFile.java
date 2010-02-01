@@ -9,6 +9,11 @@ package judlaw.model.logic.conversion;
 
 import java.io.PrintWriter;
 
+/**
+ * Classe TextToFile. Cria um documento .txt a partir de uma String.
+ * @author Halley Freitas
+ *
+ */
 public class TextToFile {
 
 	private static TextToFile textToFile = null;
@@ -23,7 +28,7 @@ public class TextToFile {
         return textToFile;
     }
 	/**
-	 * Transforma um texto em um arquivo txt;
+	 * Persiste o conteudo de uma String em um documento .txt
 	 * @param pdfText
 	 * @param fileName
 	 */
