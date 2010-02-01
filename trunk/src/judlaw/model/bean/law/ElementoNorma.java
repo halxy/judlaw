@@ -187,125 +187,238 @@ public class ElementoNorma extends TextoLegal {
 		this.normasPai = new ArrayList<Norma>();
 	}
 
+	/* -------------------------------------------------
+	 * --------------- GETTERS e SETTERS ---------------
+	 * -------------------------------------------------
+	 */
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTexto() {
 		return texto;
 	}
-	
+
+	/**
+	 * 
+	 * @param texto
+	 */
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
 
-	public List<ElementoNorma> getElementosNorma() {
-		return elementosNorma;
-	}
-
-	public void setElementosNorma(List<ElementoNorma> elementosNorma) {
-		this.elementosNorma = elementosNorma;
-	}
-
+	/**
+	 * 
+	 */
 	public String getIdentificadorUnico() {
 		return identificadorUnico;
 	}
 
+	/**
+	 * 
+	 */
 	public void setIdentificadorUnico(String identificadorUnico) {
 		this.identificadorUnico = identificadorUnico;
 	}
 
+	/**
+	 * 
+	 */
 	public String getTipo() {
 		return tipo;
 	}
 
+	/**
+	 * 
+	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
+	public String getNumero() {
+		return numero;
+	}
+
+	/**
+	 * 
+	 * @param numero
+	 */
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	/**
+	 * 
+	 */
 	public String getDataPublicacao() {
 		return dataPublicacao;
 	}
 
+	/**
+	 * 
+	 */
 	public void setDataPublicacao(String dataPublicacao) {
 		this.dataPublicacao = dataPublicacao;
 	}
 
+	/**
+	 * 
+	 */
 	public String getVigencia() {
 		return vigencia;
 	}
 
+	/**
+	 * 
+	 */
 	public void setVigencia(String vigencia) {
 		this.vigencia = vigencia;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<ElementoNorma> getElementosNormaPai() {
 		return elementosNormaPai;
 	}
 
+	/**
+	 * 
+	 * @param elementosNormaPai
+	 */
 	public void setElementosNormaPai(List<ElementoNorma> elementosNormaPai) {
 		this.elementosNormaPai = elementosNormaPai;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Norma> getNormasPai() {
 		return normasPai;
 	}
 
+	/**
+	 * 
+	 * @param normasPai
+	 */
 	public void setNormasPai(List<Norma> normasPai) {
 		this.normasPai = normasPai;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
+	public List<ElementoNorma> getElementosNorma() {
+		return elementosNorma;
+	}
+
+	/**
+	 * 
+	 * @param elementosNorma
+	 */
+	public void setElementosNorma(List<ElementoNorma> elementosNorma) {
+		this.elementosNorma = elementosNorma;
+	}
+
+	/**
+	 * 
+	 */
+	public List<CitacaoTextLeg> getCitacoesFeitas() {
+		return citacoesFeitas;
+	}
+
+	/**
+	 * 
+	 */
+	public void setCitacoesFeitas(List<CitacaoTextLeg> citacoesFeitas) {
+		this.citacoesFeitas = citacoesFeitas;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
 	public List<CitacaoDocJud> getCitacoesRecebidasDocJud() {
 		return citacoesRecebidasDocJud;
 	}
 
+	/**
+	 * 
+	 * @param citacoesRecebidasDocJud
+	 */
 	public void setCitacoesRecebidasDocJud(
 			List<CitacaoDocJud> citacoesRecebidasDocJud) {
 		this.citacoesRecebidasDocJud = citacoesRecebidasDocJud;
 	}
 
-	public List<CitacaoTextLeg> getCitacoesFeitas() {
-		return citacoesFeitas;
-	}
-
-	public void setCitacoesFeitas(List<CitacaoTextLeg> citacoesFeitas) {
-		this.citacoesFeitas = citacoesFeitas;
-	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public List<CitacaoTextLeg> getCitacoesRecebidasTextLeg() {
 		return citacoesRecebidasTextLeg;
 	}
 
+	/**
+	 * 
+	 * @param citacoesRecebidasTextLeg
+	 */
 	public void setCitacoesRecebidasTextLeg(
 			List<CitacaoTextLeg> citacoesRecebidasTextLeg) {
 		this.citacoesRecebidasTextLeg = citacoesRecebidasTextLeg;
 	}
 
+	/**
+	 * 
+	 */
 	public List<Alteracao> getAlteracoesFeitas() {
 		return alteracoesFeitas;
 	}
 
+	/**
+	 * 
+	 */
 	public void setAlteracoesFeitas(List<Alteracao> alteracoesFeitas) {
 		this.alteracoesFeitas = alteracoesFeitas;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Alteracao> getAlteracoesRecebidas() {
 		return alteracoesRecebidas;
 	}
 
+	/**
+	 * 
+	 * @param alteracoesRecebidas
+	 */
 	public void setAlteracoesRecebidas(List<Alteracao> alteracoesRecebidas) {
 		this.alteracoesRecebidas = alteracoesRecebidas;
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
 	}
 }

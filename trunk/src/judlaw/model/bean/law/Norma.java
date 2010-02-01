@@ -159,132 +159,265 @@ public class Norma extends TextoLegal {
 		this.alteracoesRecebidas = new ArrayList<Alteracao>();
 	}
 
+	/* -------------------------------------------------
+	 * --------------- GETTERS e SETTERS ---------------
+	 * -------------------------------------------------
+	 */
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getEmenta() {
 		return ementa;
 	}
 
+	/**
+	 * 
+	 * @param ementa
+	 */
 	public void setEmenta(String ementa) {
 		this.ementa = ementa;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getAutoria() {
 		return autoria;
 	}
 
+	/**
+	 * 
+	 * @param autoria
+	 */
 	public void setAutoria(String autoria) {
 		this.autoria = autoria;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<ElementoNorma> getElementosNorma() {
 		return elementosNorma;
 	}
 
+	/**
+	 * 
+	 * @param elementosNorma
+	 */
 	public void setElementosNorma(List<ElementoNorma> elementosNorma) {
 		this.elementosNorma = elementosNorma;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getLocal() {
 		return local;
 	}
 
+	/**
+	 * 
+	 * @param local
+	 */
 	public void setLocal(String local) {
 		this.local = local;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.law.TextoLegal#getIdentificadorUnico()
+	 */
 	public String getIdentificadorUnico() {
 		return identificadorUnico;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.law.TextoLegal#setIdentificadorUnico(java.lang.String)
+	 */
 	public void setIdentificadorUnico(String identificadorUnico) {
 		this.identificadorUnico = identificadorUnico;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.law.TextoLegal#getTipo()
+	 */
 	public String getTipo() {
 		return tipo;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.law.TextoLegal#setTipo(java.lang.String)
+	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.law.TextoLegal#getDataPublicacao()
+	 */
 	public String getDataPublicacao() {
 		return dataPublicacao;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.law.TextoLegal#setDataPublicacao(java.lang.String)
+	 */
 	public void setDataPublicacao(String dataPublicacao) {
 		this.dataPublicacao = dataPublicacao;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.law.TextoLegal#getVigencia()
+	 */
 	public String getVigencia() {
 		return vigencia;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.law.TextoLegal#setVigencia(java.lang.String)
+	 */
 	public void setVigencia(String vigencia) {
 		this.vigencia = vigencia;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.law.TextoLegal#getCitacoesFeitas()
+	 */
 	public List<CitacaoTextLeg> getCitacoesFeitas() {
 		return citacoesFeitas;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.law.TextoLegal#setCitacoesFeitas(java.util.List)
+	 */
 	public void setCitacoesFeitas(List<CitacaoTextLeg> citacoesFeitas) {
 		this.citacoesFeitas = citacoesFeitas;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<CitacaoDocJud> getCitacoesRecebidasDocJud() {
 		return citacoesRecebidasDocJud;
 	}
 
+	/**
+	 * 
+	 * @param citacoesRecebidasDocJud
+	 */
 	public void setCitacoesRecebidasDocJud(
 			List<CitacaoDocJud> citacoesRecebidasDocJud) {
 		this.citacoesRecebidasDocJud = citacoesRecebidasDocJud;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<CitacaoTextLeg> getCitacoesRecebidasTextLeg() {
 		return citacoesRecebidasTextLeg;
 	}
 
+	/**
+	 * 
+	 * @param citacoesRecebidasTextLeg
+	 */
 	public void setCitacoesRecebidasTextLeg(
 			List<CitacaoTextLeg> citacoesRecebidasTextLeg) {
 		this.citacoesRecebidasTextLeg = citacoesRecebidasTextLeg;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.law.TextoLegal#getAlteracoesFeitas()
+	 */
 	public List<Alteracao> getAlteracoesFeitas() {
 		return alteracoesFeitas;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.law.TextoLegal#setAlteracoesFeitas(java.util.List)
+	 */
 	public void setAlteracoesFeitas(List<Alteracao> alteracoesFeitas) {
 		this.alteracoesFeitas = alteracoesFeitas;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Alteracao> getAlteracoesRecebidas() {
 		return alteracoesRecebidas;
 	}
 
+	/**
+	 * 
+	 * @param alteracoesRecebidas
+	 */
 	public void setAlteracoesRecebidas(List<Alteracao> alteracoesRecebidas) {
 		this.alteracoesRecebidas = alteracoesRecebidas;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getUrl() {
 		return url;
 	}
 
+	/**
+	 * 
+	 * @param url
+	 */
 	public void setUrl(String url) {
 		this.url = url;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getNumero() {
 		return numero;
 	}
 
+	/**
+	 * 
+	 * @param numero
+	 */
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}

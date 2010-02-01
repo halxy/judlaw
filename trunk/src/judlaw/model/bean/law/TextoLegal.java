@@ -29,6 +29,15 @@ public abstract class TextoLegal {
 	private List<CitacaoTextLeg> citacoesFeitas;
 	private List<Alteracao> alteracoesFeitas;
 	
+	/* -------------------------------------------------
+	 * --------------- GETTERS e SETTERS ---------------
+	 * -------------------------------------------------
+	 */
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getIdentificadorUnico() {
 		return identificadorUnico;
 	}
