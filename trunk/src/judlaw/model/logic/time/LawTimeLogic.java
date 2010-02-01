@@ -6,6 +6,9 @@ import java.util.List;
 import judlaw.model.bean.law.ElementoNorma;
 import judlaw.model.bean.law.Norma;
 import judlaw.model.bean.law.TextoLegal;
+import judlaw.model.bean.ref.CitacaoDocJud;
+import judlaw.model.bean.ref.CitacaoTextLeg;
+import judlaw.model.bean.ref.Referencia;
 import judlaw.model.persistence.dbmanager.law.NormaManager;
 import judlaw.model.util.Constantes;
 
@@ -50,7 +53,7 @@ public class LawTimeLogic {
     		                                              String data) throws Exception {
     	List<ElementoNorma> elementosValidos = new ArrayList<ElementoNorma>();
     	for( ElementoNorma eleN : elementosNorma ) {
-    		if ( LawTimeLogic.getInstance().textoLegalValido(eleN, data) ) {
+    		if ( textoLegalValido(eleN, data) ) {
     			elementosValidos.add( eleN );
     		}
     	}
@@ -73,7 +76,82 @@ public class LawTimeLogic {
 		}
     }
 	
+    /**
+     * Valida todos os elementosNorma de uma norma
+     * @param norma
+     * @param data
+     * @throws Exception
+     */
+    public void validaElementosNorma(Norma norma, String data) throws Exception {
+    	norma.setElementosNorma( elementosNormaValidosData( norma.getElementosNorma(), data) );
+    	for( ElementoNorma eleN : norma.getElementosNorma() ) {
+    		filhosValidosRecursivo(eleN, data);
+    	}	
+    }
+    
 	/**
+	 * Retorna se uma referencia (citacao ou alteracao) foi feita a partir daquela data
+	 * @param referencia
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean referenciaValida(Referencia referencia, String data) throws Exception {
+		String dataRef = referencia.getData();		
+		return TimeLogic.getInstance().comparaDatas(dataRef, data, Constantes.DELIMITADOR_DATA) >= 0 ;
+	}
+	
+	
+    public List<CitacaoTextLeg> citacoesTextLegValidas(List<CitacaoTextLeg> citacoesTL,
+    													 String data) throws Exception {
+    	List<CitacaoTextLeg> citacoesTLValidas = new ArrayList<CitacaoTextLeg>();
+    	for(CitacaoTextLeg citTL : citacoesTL) {
+    		if( referenciaValida(citTL, data) ) {
+    			citacoesTLValidas.add( citTL );
+    		}
+    	}
+    	return citacoesTLValidas;
+    }
+    
+    public List<CitacaoDocJud> citacoesDocJudValidas(List<CitacaoDocJud> citacoesDJ,
+			 										   String data) throws Exception {
+		List<CitacaoDocJud> citacoesDJValidas = new ArrayList<CitacaoDocJud>();
+		for(CitacaoDocJud citDJ : citacoesDJ) {
+			if( referenciaValida(citDJ, data) ) {
+			citacoesDJValidas.add( citDJ );
+			}
+		}
+		return citacoesDJValidas;
+}
+    
+    /**
+     * Valida as referências de uma norma
+     * @param norma
+     * @param data
+     * @throws Exception 
+     */
+    public void validaReferencias(Norma norma, String data) throws Exception {
+    	norma.setCitacoesFeitas( citacoesTextLegValidas(norma.getCitacoesFeitas(), data) );
+    	norma.setCitacoesRecebidasTextLeg( citacoesTextLegValidas(norma.getCitacoesRecebidasTextLeg(), 
+    			                           data) );
+    	norma.setCitacoesRecebidasDocJud( citacoesDocJudValidas(norma.getCitacoesRecebidasDocJud(), data));
+    }
+    
+    /**
+     * Reconstroi temporalmente uma norma através de uma data passada como parâmetro
+     * @param norma
+     * @param data
+     * @return
+     * @throws Exception Caso haja uma ma-formatacao nas datas
+     */
+    public Norma reconstroiNormaTemporal(Norma norma, String data) throws Exception {
+    	Norma visaoNormaTemporal = new Norma();
+    	NormaManager.getInstance().setTodosParametrosNorma(norma, visaoNormaTemporal);
+    	validaElementosNorma( visaoNormaTemporal, data );
+    	return visaoNormaTemporal;
+    }
+    
+    /**
      * Dada uma lista de normas, retorna aquela que possui a data de publicacao mais atual.
      * @param normas
      * @return
@@ -120,18 +198,5 @@ public class LawTimeLogic {
     		}
     	}
     	return normaMaisAtual(normasPai);
-    }
-    
-    /**
-     * Reconstroi temporalmente uma norma através de uma data passada como parâmetro
-     * @param norma
-     * @param data
-     * @return
-     */
-    public Norma reconstroiNormaTemporal(Norma norma, String data) {
-    	Norma visaoNormaTemporal = new Norma();
-    	NormaManager.getInstance().setTodosParametrosNorma(norma, visaoNormaTemporal);
-    	//TODO
-    	return visaoNormaTemporal;
     }
 }
