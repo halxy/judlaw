@@ -35,6 +35,40 @@ public class LawTimeLogicTest {
 	}
 	
 	@Test
+	public void testElementosNormaValidosData() {
+		// ElementosNorma
+		ElementoNorma ele1 = new ElementoNorma();
+		ele1.setVigencia("10/10/2010-11/11/2011");
+		ElementoNorma ele2 = new ElementoNorma();
+		ele2.setVigencia("10/10/2010-99/99/9999");
+		ElementoNorma ele3 = new ElementoNorma();
+		ele3.setVigencia("10/10/2010-11/11/2010");
+		ElementoNorma ele4 = new ElementoNorma();
+		ele4.setVigencia("10/10/2010-10/11/2011");
+		// Norma
+		Norma norma1 = new Norma();
+		norma1.getElementosNorma().add( ele1 );
+		norma1.getElementosNorma().add( ele2 );
+		norma1.getElementosNorma().add( ele3 );
+		norma1.getElementosNorma().add( ele4 );
+		// DataLimite
+		String data = "11/11/2011";
+		// Testes
+		assertEquals( 4, norma1.getElementosNorma().size() );
+		try {
+			norma1.setElementosNorma( lawTimeLogic.elementosNormaValidosData(norma1.getElementosNorma(), data));
+			/*
+			 * Espera-se que apenas dois elementos restem: ele1 e ele2;
+			 */
+			assertEquals( 2, norma1.getElementosNorma().size() );
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		assertEquals( ele1.getVigencia(), norma1.getElementosNorma().get(0).getVigencia() );
+		assertEquals( ele2.getVigencia(), norma1.getElementosNorma().get(1).getVigencia() );
+	}
+	
+	@Test
 	public void testNormaMaisAtual() {
 		/*
 		 * Normas
