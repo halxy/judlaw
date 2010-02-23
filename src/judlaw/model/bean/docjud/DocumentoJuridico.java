@@ -49,6 +49,19 @@ public class DocumentoJuridico {
     @JoinColumn(name="cabecalho_fk", nullable = true)
 	private Cabecalho cabecalho;
 	
+	// DocumentoJuridico é o Mapping Owner.
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "docjudpartes",
+			joinColumns = {
+				@JoinColumn(name="documentojuridico_id")           
+    		},
+    		inverseJoinColumns = {
+				@JoinColumn(name="parte_id")
+    		}
+	)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<Parte> partes; //As partes envolvidas, menos o relator
+	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="ementa_fk")
 	private Ementa ementa;
@@ -65,19 +78,6 @@ public class DocumentoJuridico {
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="encerramento_fk")
 	private Encerramento encerramento;
-	
-	// DocumentoJuridico é o Mapping Owner.
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "docjudpartes",
-			joinColumns = {
-				@JoinColumn(name="documentojuridico_id")           
-    		},
-    		inverseJoinColumns = {
-				@JoinColumn(name="parte_id")
-    		}
-	)
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private List<Parte> partes; //As partes envolvidas, menos o relator
 	
 	/* --------- Atributos ----------- */
 	private String identificadorUnico; // HC123, etc.
