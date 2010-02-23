@@ -45,9 +45,6 @@ public class Norma extends TextoLegal {
 	@Column(name="norma_id")
 	private Integer id;
 	
-	// URL
-	private String url;
-	
 	//Norma é o Mapping Owner.
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "normasPaiElementoNorma",
@@ -76,6 +73,9 @@ public class Norma extends TextoLegal {
 	
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
+	
+	// URL
+	private String url;
 	
 	/* --------- Referencias --------- */
 	/*
