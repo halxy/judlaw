@@ -7,11 +7,8 @@
  */
 package judlaw.model.persistence.xmlmanager;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
@@ -22,7 +19,6 @@ import judlaw.model.bean.docjud.Encerramento;
 import judlaw.model.bean.docjud.Parte;
 import judlaw.model.bean.docjud.Relatorio;
 import judlaw.model.bean.docjud.Voto;
-import judlaw.model.bean.law.Norma;
 import judlaw.model.bean.ref.CitacaoDocJud;
 import judlaw.model.bean.ref.CitacaoTextLeg;
 
