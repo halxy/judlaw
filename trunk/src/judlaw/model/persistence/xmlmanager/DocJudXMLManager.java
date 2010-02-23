@@ -22,6 +22,7 @@ import judlaw.model.bean.docjud.Encerramento;
 import judlaw.model.bean.docjud.Parte;
 import judlaw.model.bean.docjud.Relatorio;
 import judlaw.model.bean.docjud.Voto;
+import judlaw.model.bean.law.Norma;
 import judlaw.model.bean.ref.CitacaoDocJud;
 import judlaw.model.bean.ref.CitacaoTextLeg;
 
@@ -171,11 +172,56 @@ public class DocJudXMLManager {
 		docJud1.setEncerramento(encerramento1);
 		docJud1.setVotos(votos);
 		docJud1.setPartes(partes);
-		
 		docJud1.setDataJulgamento("25/11/2009");
 		docJud1.setDataPublicacao("30/11/2009");
 		
-		/* ---------- Criacao e Persistencia do DocumentoJuridico ----------*/		
+		/* ---------- Criacao e Persistencia do DocumentoJuridico ----------*/
+		DocumentoJuridico docJud2 = new DocumentoJuridico();
+		//Cabecalho
+		Cabecalho cabecalho2 = new Cabecalho();
+		cabecalho2.setTribunal("Superior Tribunal de Justiça");
+		cabecalho2.setTipo("AgRg no AGRAVO DE INSTRUMENTO");
+		cabecalho2.setNumero(728461);
+		cabecalho2.setLocal("Paraná");
+		cabecalho2.setCodRegistro("2005/0206139-2");
+		
+		//Partes
+		ArrayList<Parte> partes2 = new ArrayList<Parte>();
+		partes2.add( new Parte("RELATOR", "MINISTRO MAURO CAMPBELL MARQUES") );
+		
+		//Ementa
+		Ementa ementa2 = new Ementa("Ementa do AgRg no AGRAVO DE INSTRUMENTO 728461");
+		
+		//Relatorio
+		Relatorio relatorio2 = new Relatorio("Relatório do AgRg no AGRAVO DE INSTRUMENTO 728461");
+		
+		//Votos
+		ArrayList<Voto> votos2 = new ArrayList<Voto>();
+		votos.add( new Voto("Primeiro voto") );
+		votos.add( new Voto("Segundo voto") );
+		
+		//Encerramento
+		Encerramento encerramento2 = new Encerramento();
+		encerramento2.setAcordao("ACÓRDÃO do AgRg no AGRAVO DE INSTRUMENTO 728461");		
+		encerramento2.setDecisao("Decisáo do AgRg no AGRAVO DE INSTRUMENTO 728461" );
+		encerramento2.setOrgaoJulgador("SEGUNDA TURMA");
+		
+		docJud2.setIdentificadorUnico("AgRgnoAg728461");
+		docJud2.setCabecalho(cabecalho2);
+		docJud2.setEmenta(ementa2);
+		docJud2.setRelatorio(relatorio2);
+		docJud2.setEncerramento(encerramento2);
+		docJud2.setVotos(votos2);
+		docJud2.setPartes(partes2);
+		docJud2.setDataJulgamento("23/06/2009");
+		docJud2.setDataPublicacao("23/11/2009");
+		
+		CitacaoDocJud citacaoDJ1 = new CitacaoDocJud(docJud1, docJud2);
+		docJud1.getCitacoesFeitas().add( citacaoDJ1 );
+		
+//		CitacaoTextLeg citacaoTL1 = new CitacaoTextLeg(new Norma(), docJud1, "27/11/2010");
+//		docJud1.getCitacoesRecebidasTextLeg().add( citacaoTL1 );
+		
 		try {
 			DocJudXMLManager.getInstance().salvaDocumentoJuridico(docJud1, "resp1120616PR");
 		} catch (IOException e1) {
@@ -183,20 +229,20 @@ public class DocJudXMLManager {
 			e1.printStackTrace();
 		}
 		
-		XStream xstream = DocJudXMLManager.getInstance().getXstream();
-		try {
-			ObjectInputStream in = xstream.createObjectInputStream( new FileReader("xml\\HC1234.xml"));
-			DocumentoJuridico docJud = (DocumentoJuridico) in.readObject();
-			System.out.println(docJud.getIdentificadorUnico());
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		XStream xstream = DocJudXMLManager.getInstance().getXstream();
+//		try {
+//			ObjectInputStream in = xstream.createObjectInputStream( new FileReader("xml\\HC1234.xml"));
+//			DocumentoJuridico docJud = (DocumentoJuridico) in.readObject();
+//			System.out.println(docJud.getIdentificadorUnico());
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 }
