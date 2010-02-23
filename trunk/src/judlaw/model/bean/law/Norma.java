@@ -44,6 +44,23 @@ public class Norma extends TextoLegal {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="norma_seq")
 	@Column(name="norma_id")
 	private Integer id;
+
+	/* --------- Atributos --------- */
+	
+	//Epigrafe
+	private String tipo;
+	private int numero;
+	private String dataPublicacao; // dd/MM/yyy
+	
+	// Parte Preliminar
+	private String ementa;
+	private String autoria;
+	
+	// Parte Final
+	private String local;
+	
+	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
+	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
 	
 	//Norma é o Mapping Owner.
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -57,22 +74,6 @@ public class Norma extends TextoLegal {
 	)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<ElementoNorma> elementosNorma;
-
-	/* --------- Atributos --------- */
-	
-	// Parte Preliminar
-	private String ementa;
-	private String autoria;
-	//Epigrafe
-	private String tipo;
-	private int numero;
-	private String dataPublicacao; // dd/MM/yyy
-	
-	// Parte Final
-	private String local;
-	
-	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
-	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
 	
 	// URL
 	private String url;
