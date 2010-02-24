@@ -177,6 +177,10 @@ public class LawXMLManager {
 		art3.setVigencia("19/11/2009-99/99/9999");
 		art3.setTexto("Esta Lei entra em vigor na data de sua publicação.");
 		
+		norma.getElementosNorma().add(art1);
+		norma.getElementosNorma().add(art2);
+		norma.getElementosNorma().add(art3);
+		
 		try {
 			LawXMLManager.getInstance().salvaNorma(norma, "lei12095");
 		} catch (IOException e1) {
