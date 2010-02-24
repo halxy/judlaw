@@ -47,14 +47,15 @@ public class ElementoNorma extends TextoLegal {
 	@Column(name="elementonorma_id")
 	private Integer id;
 
-	// Texto do Elemento da Norma
-	private String texto;
-	
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
 	private String tipo; // tipo do textoLegal
 	private String numero; // tem que ser String por causa do incisos e alineas.
 	private String dataPublicacao; // dd/MM/yyy
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
+	// Texto do Elemento da Norma
+	private String texto;
+	
+	
 	
 	/*
 	 * O relacionamento é de M-N porque quando o ElementoNorma pai de um ElementoNorma eh modificado
