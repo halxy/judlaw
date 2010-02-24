@@ -55,8 +55,6 @@ public class ElementoNorma extends TextoLegal {
 	// Texto do Elemento da Norma
 	private String texto;
 	
-	
-	
 	/*
 	 * O relacionamento é de M-N porque quando o ElementoNorma pai de um ElementoNorma eh modificado
 	 * (sofre uma AlteracaoModificacao), entao por ser um BD Temporal, eh criada uma nova 
