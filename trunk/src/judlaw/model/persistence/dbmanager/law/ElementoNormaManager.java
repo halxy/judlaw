@@ -145,8 +145,8 @@ public class ElementoNormaManager {
 		if(isEmpty(novoElementoNorma.getTipo())){
     		novoElementoNorma.setTipo( elementoNorma.getTipo() );
     	}
-    	if(isEmpty(novoElementoNorma.getNumero())){
-    		novoElementoNorma.setNumero( elementoNorma.getNumero() );
+    	if(isEmpty(novoElementoNorma.getIdentificador())){
+    		novoElementoNorma.setIdentificador( elementoNorma.getIdentificador() );
     	}
 		if( isEmpty(novoElementoNorma.getTexto()) ) {
 			novoElementoNorma.setTexto( elementoNorma.getTexto() );
