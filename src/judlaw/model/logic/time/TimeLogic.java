@@ -146,6 +146,22 @@ public class TimeLogic {
 	}
 	
 	/**
+	 * Retorna se uma vigencia esta em vacatio legis
+	 * @param vigencia
+	 * @param delimitadorVigencia
+	 * @param data
+	 * @param delimitadorData
+	 * @return Caso retorne 1, esta em vacatio legis, ou seja, a data passada é anterior ao inicio da vigencia
+	 * @throws Exception
+	 */
+	public int vacatioLegis(String vigencia, String delimitadorVigencia, 
+            String data, String delimitadorData) throws Exception {
+		StringTokenizer tokenVigencia = new StringTokenizer(vigencia, delimitadorVigencia);
+		String inicioVigencia = tokenVigencia.nextToken(); // passando o primeiro token referente à data inicio da vigencia
+		return comparaDatas(inicioVigencia, data, delimitadorData);
+	}
+	
+	/**
 	 * Compara as vigencias e retorna qual a mais atual
 	 * @param vigencia1
 	 * @param vigencia2

@@ -45,9 +45,11 @@ public class LawTimeLogic extends TimeLogic {
 	 * @throws Exception Caso haja alguma ma formatacao
 	 */
 	public boolean textoLegalValido(TextoLegal tl, String data) throws Exception {
-		String vigenciaTL = tl.getVigencia();		
-		return TimeLogic.getInstance().comparaVigenciaComData(vigenciaTL, Constantes.DELIMITADOR_VIGENCIA,
-				   data, Constantes.DELIMITADOR_DATA) >= 0;
+		String vigenciaTL = tl.getVigencia();				
+		return ( (TimeLogic.getInstance().comparaVigenciaComData(vigenciaTL, Constantes.DELIMITADOR_VIGENCIA,
+				   data, Constantes.DELIMITADOR_DATA) >= 0) && 
+				  (TimeLogic.getInstance().vacatioLegis(vigenciaTL, Constantes.DELIMITADOR_VIGENCIA, 
+				   data, Constantes.DELIMITADOR_DATA) <= 0) );
 	}
 	
     /**
