@@ -50,8 +50,12 @@ public class ElementoNorma extends TextoLegal {
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
 	private String tipo; // tipo do textoLegal
 	private String identificador; // tem que ser String por causa do incisos e alineas.
+	
+	// Parte Temporal
 	private String dataPublicacao; // dd/MM/yyy
+	private String validade; // dd/MM/yyyy-dd2/MM2/yyy2
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
+	
 	// Texto do Elemento da Norma
 	private String texto;
 	
@@ -419,5 +423,19 @@ public class ElementoNorma extends TextoLegal {
 	 */
 	public void setAlteracoesRecebidas(List<Alteracao> alteracoesRecebidas) {
 		this.alteracoesRecebidas = alteracoesRecebidas;
+	}
+
+	/*
+	 * @see judlaw.model.bean.law.TextoLegal#getValidade()
+	 */
+	public String getValidade() {
+		return validade;
+	}
+
+	/*
+	 * @see judlaw.model.bean.law.TextoLegal#setValidade(java.lang.String)
+	 */
+	public void setValidade(String validade) {
+		this.validade = validade;
 	}
 }
