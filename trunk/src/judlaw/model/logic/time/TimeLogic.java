@@ -123,80 +123,83 @@ public class TimeLogic {
 	}
 	
 	/**
-	 * Compara uma vigencia com uma data para saber se o prazo da vigencia é mais atual que
-	 * a data
-	 * @param vigencia
-	 * @param delimitadorVigencia
-	 * @param data
-	 * @param delimitador
-	 * @return 0 ou 1 Caso a vigencia esteja valida em comparacao ao parametro data, -1 caso a vigencia
-	 * ja nao seja mais valida neste mesma data.
-	 * @throws Exception Caso as datas dos parametros fimVigencia e data estejam mal-formatadas
-	 */
-	public int comparaVigenciaComData(String vigencia, String delimitadorVigencia, 
-			                          String data, String delimitadorData) throws Exception {
-		/*
-		 * Modelo de vigencia esperada:
-		 * dd1/mm1/yyyy1-dd2/mm2/yyyy2
-		 */
-		StringTokenizer tokenVigencia = new StringTokenizer(vigencia, delimitadorVigencia);
-		tokenVigencia.nextToken(); // passando o primeiro token referente à data inicio da vigencia
-		String fimVigencia = tokenVigencia.nextToken();
-		return comparaDatas(fimVigencia, data, delimitadorData);
-	}
-	
-	/**
-	 * Retorna se uma vigencia esta em vacatio legis
-	 * @param vigencia
-	 * @param delimitadorVigencia
+	 * Compara a data_inicio de um intervalo com uma data passada como parâmetro para saber qual a data 
+	 * mais atual 
+	 * @param intervalo
+	 * @param String delimitadorIntervalo
 	 * @param data
 	 * @param delimitadorData
-	 * @return Caso retorne 1, esta em vacatio legis, ou seja, a data passada é anterior ao inicio da vigencia
+	 * @return 0 ou 1 Caso a data_inicio do intervalo seja maior em comparacao ao parametro data, -1 caso 
+	 * contrario
 	 * @throws Exception
 	 */
-	public int vacatioLegis(String vigencia, String delimitadorVigencia, 
+	public int comparaInicioIntervaloComData(String intervalo, String delimitadorIntervalo, 
             String data, String delimitadorData) throws Exception {
-		StringTokenizer tokenVigencia = new StringTokenizer(vigencia, delimitadorVigencia);
-		String inicioVigencia = tokenVigencia.nextToken(); // passando o primeiro token referente à data inicio da vigencia
+		StringTokenizer tokenVigencia = new StringTokenizer(intervalo, delimitadorIntervalo);
+		// passando o primeiro token referente à data inicio do intervalo
+		String inicioVigencia = tokenVigencia.nextToken(); 
 		return comparaDatas(inicioVigencia, data, delimitadorData);
 	}
 	
 	/**
-	 * Compara as vigencias e retorna qual a mais atual
-	 * @param vigencia1
-	 * @param vigencia2
-	 * @param delimitadorVigencias
-	 * @param delimitadorDatas
-	 * @return 1 se a Vigencia1 tiver uma data fim maior, 0 se as datas fim forem iguais e -1 caso
-	 * a data fim da Vigencia2 for maior.
-	 * @throws Exception Caso as datas dos parametros fimVigencia1 e fimVigencia2 estejam mal-formatadas
+	 * Compara a data_fim de um intervalo com uma data passada como parâmetro para saber qual a data 
+	 * mais atual 
+	 * @param intervalo
+	 * @param delimitadorIntervalo
+	 * @param data
+	 * @param delimitador
+	 * @return 0 ou 1 Caso a data_fim do intervalo seja maior em comparacao ao parametro data, -1 caso 
+	 * contrario
+	 * @throws Exception Caso as datas dos parametros fimIntervalo e data estejam mal-formatadas
 	 */
-	public int comparaVigencias(String vigencia1, String vigencia2, 
-								String delimitadorVigencias, String delimitadorDatas) throws Exception {
+	public int comparaFimIntervaloComData(String intervalo, String delimitadorIntervalo, 
+			                          String data, String delimitadorData) throws Exception {
 		/*
-		 * Modelo de vigencia esperada:
+		 * Modelo de intervalo esperado:
 		 * dd1/mm1/yyyy1-dd2/mm2/yyyy2
 		 */
-		//FimVigencia1
-		StringTokenizer tokenVigencia = new StringTokenizer(vigencia1, delimitadorVigencias);
-		tokenVigencia.nextToken(); // passando o primeiro token referente à data inicio da vigencia
-		String fimVigencia1 = tokenVigencia.nextToken();
-		//FimVigencia2
-		StringTokenizer tokenVigencia2 = new StringTokenizer(vigencia2, delimitadorVigencias);
-		tokenVigencia2.nextToken(); // passando o primeiro token referente à data inicio da vigencia
-		String fimVigencia2 = tokenVigencia2.nextToken();
-		return comparaDatas(fimVigencia1, fimVigencia2, delimitadorDatas);
+		StringTokenizer tokenIntervalo = new StringTokenizer(intervalo, delimitadorIntervalo);
+		tokenIntervalo.nextToken(); // passando o primeiro token referente à data inicio do intervalo
+		String fimIntervalo = tokenIntervalo.nextToken();
+		return comparaDatas(fimIntervalo, data, delimitadorData);
 	}
 	
 	/**
-	 * A dataFim da vigencia passada como parametro eh modificada para uma nova data
-	 * @param vigencia
+	 * Compara os intervalos e retorna qual a mais atual
+	 * @param intervalo1
+	 * @param intervalo2
+	 * @param delimitadorIntervalos
+	 * @param delimitadorDatas
+	 * @return 1 se a Intervalo1 tiver uma data fim maior, 0 se as datas fim forem iguais e -1 caso
+	 * a data fim da Intervalo2 for maior.
+	 * @throws Exception Caso as datas dos parametros fimIntervalo1 e fimIntervalo2 estejam mal-formatadas
+	 */
+	public int comparaIntervalos(String intervalo1, String intervalo2, 
+								String delimitadorIntervalos, String delimitadorDatas) throws Exception {
+		/*
+		 * Modelo de intervalo esperada:
+		 * dd1/mm1/yyyy1-dd2/mm2/yyyy2
+		 */
+		//FimIntervalo1
+		StringTokenizer tokenIntervalo = new StringTokenizer(intervalo1, delimitadorIntervalos);
+		tokenIntervalo.nextToken(); // passando o primeiro token referente à data inicio da intervalo
+		String fimIntervalo1 = tokenIntervalo.nextToken();
+		//FimIntervalo2
+		StringTokenizer tokenIntervalo2 = new StringTokenizer(intervalo2, delimitadorIntervalos);
+		tokenIntervalo2.nextToken(); // passando o primeiro token referente à data inicio da intervalo
+		String fimIntervalo2 = tokenIntervalo2.nextToken();
+		return comparaDatas(fimIntervalo1, fimIntervalo2, delimitadorDatas);
+	}
+	
+	/**
+	 * A dataFim da intervalo passada como parametro eh modificada para uma nova data
+	 * @param intervalo
 	 * @param novaDataFim
 	 * @return
 	 */
-	public String novaDataFimVigencia(String vigencia, String novaDataFim) {
-		StringTokenizer tokenVigencia = new StringTokenizer(vigencia, Constantes.DELIMITADOR_VIGENCIA);
-		String dataInicio = tokenVigencia.nextToken();
+	public String novaDataFimIntervalo(String intervalo, String novaDataFim) {
+		StringTokenizer tokenIntervalo = new StringTokenizer(intervalo, Constantes.DELIMITADOR_INTERVALO);
+		String dataInicio = tokenIntervalo.nextToken();
 		return dataInicio +"-"+ novaDataFim;
 	}
 	
