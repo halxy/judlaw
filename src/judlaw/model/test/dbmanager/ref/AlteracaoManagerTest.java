@@ -480,7 +480,6 @@ public class AlteracaoManagerTest {
 		/* ---------- Criando Norma1, Artigo1, Paragrafo1 e Norma2 ----------*/
 		Norma norma1 = new Norma("ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
 				"dataPublicacaoN1", "10/10/2010-99/99/9999");
-		norma1.setUrl("url");
 		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
 				"dataPublicacaoArt1", "10/10/2010-99/99/9999");
 		ElementoNorma paragrafo1 = new ElementoNorma("textoParagrafo1", "identificadorUnicoParagrafo1", "tipoParagrafo1", 
@@ -508,7 +507,7 @@ public class AlteracaoManagerTest {
 //		Norma norma1Aux = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", 
 //				                                                      norma1.getIdentificadorUnico()).get(0);
 		Norma norma1Aux = new Norma();
-		norma1Aux.setUrl("novaUrl"); // Modificando a ementa
+		norma1Aux.setEmenta("novaEmenta"); // Modificando a ementa
 		/* 
 		 * AlteracaoModificacao1 = Norma2 modifica Norma1
 		 */
@@ -523,15 +522,15 @@ public class AlteracaoManagerTest {
 		Alteracao alteracaoModificacaoBD = alteracaoManager.getAlteracoes().get(0);
 		assertEquals( 2, normaManager.selectNormaPorAtributo("identificadorUnico",norma1.getIdentificadorUnico()).size());
 		Norma norma1BD = (Norma) normaManager.selectNormaPorAtributo("url", 
-																	 norma1.getUrl()).get(0);
+																	 norma1.getEmenta()).get(0);
 		Norma norma1BDAux = (Norma) normaManager.selectNormaPorAtributo("url", 
-																	 norma1Aux.getUrl()).get(0);
+																	 norma1Aux.getEmenta()).get(0);
 		//Atributos
-		assertEquals( "novaUrl", norma1BDAux.getUrl());
+		assertEquals( "novaEmenta", norma1BDAux.getEmenta());
 		assertEquals( norma1BDAux.getDataPublicacao(), alteracaoModificacaoBD.getData());
 		assertEquals( "20/11/2011-99/99/9999", norma1BDAux.getVigencia());
 		assertEquals( "10/10/2010-19/11/2011", norma1BD.getVigencia());
-		assertEquals( norma1.getUrl(), norma1BD.getUrl());
+		assertEquals( norma1.getEmenta(), norma1BD.getEmenta());
 		//Filhos
 		//Artigo1
 		assertEquals( 1, norma1BDAux.getElementosNorma().size() );
@@ -580,10 +579,10 @@ public class AlteracaoManagerTest {
 		//Verificando os filhos da Norma1 e Norma1Aux
 		norma1BD = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", 
 				norma1.getIdentificadorUnico()).get(0);
-		assertEquals("url", norma1BD.getUrl());
+		assertEquals("ementaN1", norma1BD.getEmenta());
 		norma1BDAux = (Norma) normaManager.selectNormaPorAtributo("identificadorUnico", 
 									norma1.getIdentificadorUnico()).get(1);
-		assertEquals("novaUrl", norma1BDAux.getUrl());
+		assertEquals("novaEmenta", norma1BDAux.getEmenta());
 		assertEquals(2, norma1BD.getElementosNorma().size());
 		assertEquals(2, norma1BDAux.getElementosNorma().size());
 		//Verificando os atributos das versoes do artigo1
