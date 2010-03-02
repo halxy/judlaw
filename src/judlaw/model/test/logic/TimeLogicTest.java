@@ -50,24 +50,24 @@ public class TimeLogicTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void comparaVigenciaComData() throws Exception {
+	public void comparaFimIntervaloComData() throws Exception {
 		// Vigencia dentro do prazo de validade
-		assertEquals(1, tm.comparaVigenciaComData("12/10/2009-12/10/2010", Constantes.DELIMITADOR_VIGENCIA, 
+		assertEquals(1, tm.comparaFimIntervaloComData("12/10/2009-12/10/2010", Constantes.DELIMITADOR_INTERVALO, 
 												  "12/10/2009", Constantes.DELIMITADOR_DATA) );
-		assertEquals(1, tm.comparaVigenciaComData("12/10/2009-12/10/2010", Constantes.DELIMITADOR_VIGENCIA, 
+		assertEquals(1, tm.comparaFimIntervaloComData("12/10/2009-12/10/2010", Constantes.DELIMITADOR_INTERVALO, 
 				  								   "12/09/2010", Constantes.DELIMITADOR_DATA) );
-		assertEquals(1, tm.comparaVigenciaComData("12/10/2009-12/10/2010", Constantes.DELIMITADOR_VIGENCIA, 
+		assertEquals(1, tm.comparaFimIntervaloComData("12/10/2009-12/10/2010", Constantes.DELIMITADOR_INTERVALO, 
 				   								  "11/10/2010", Constantes.DELIMITADOR_DATA) );
 		
-		assertEquals(0, tm.comparaVigenciaComData("12/10/2009-12/10/2010", Constantes.DELIMITADOR_VIGENCIA, 
+		assertEquals(0, tm.comparaFimIntervaloComData("12/10/2009-12/10/2010", Constantes.DELIMITADOR_INTERVALO, 
 												  "12/10/2010", Constantes.DELIMITADOR_DATA) );
 		
 		// Vigencia expirada
-		assertEquals(-1, tm.comparaVigenciaComData("12/10/2009-12/10/2010", Constantes.DELIMITADOR_VIGENCIA, 
+		assertEquals(-1, tm.comparaFimIntervaloComData("12/10/2009-12/10/2010", Constantes.DELIMITADOR_INTERVALO, 
 				  								  "12/10/2011", Constantes.DELIMITADOR_DATA) );
-		assertEquals(-1, tm.comparaVigenciaComData("12/10/2009-12/10/2010", Constantes.DELIMITADOR_VIGENCIA, 
+		assertEquals(-1, tm.comparaFimIntervaloComData("12/10/2009-12/10/2010", Constantes.DELIMITADOR_INTERVALO, 
 				   								  "12/11/2010", Constantes.DELIMITADOR_DATA) );
-		assertEquals(-1, tm.comparaVigenciaComData("12/10/2009-12/10/2010", Constantes.DELIMITADOR_VIGENCIA, 
+		assertEquals(-1, tm.comparaFimIntervaloComData("12/10/2009-12/10/2010", Constantes.DELIMITADOR_INTERVALO, 
 												   "13/10/2010", Constantes.DELIMITADOR_DATA) );
 	}
 	
@@ -79,13 +79,13 @@ public class TimeLogicTest {
 	public void testComparaVigencias() throws Exception {
 		// Vigencias com fins iguais
 		assertEquals(0, tm.comparaVigencias("12/10/2009-12/10/2010", "13/10/2009-12/10/2010", 
-											Constantes.DELIMITADOR_VIGENCIA, Constantes.DELIMITADOR_DATA) );
+											Constantes.DELIMITADOR_INTERVALO, Constantes.DELIMITADOR_DATA) );
 		// Vigencia1 com datafim maior que Vigencia2
 		assertEquals(1, tm.comparaVigencias("12/10/2009-12/10/2010", "12/10/2009-11/10/2010", 
-				Constantes.DELIMITADOR_VIGENCIA, Constantes.DELIMITADOR_DATA) );
+				Constantes.DELIMITADOR_INTERVALO, Constantes.DELIMITADOR_DATA) );
 		// Vigencia2 com datafim maior que Vigencia1
 		assertEquals(-1, tm.comparaVigencias("12/10/2009-11/10/2010", "12/10/2009-12/10/2010", 
-				Constantes.DELIMITADOR_VIGENCIA, Constantes.DELIMITADOR_DATA) );
+				Constantes.DELIMITADOR_INTERVALO, Constantes.DELIMITADOR_DATA) );
 	}
 	
 	/**
