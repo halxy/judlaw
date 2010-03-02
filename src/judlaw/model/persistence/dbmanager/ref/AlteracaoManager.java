@@ -144,7 +144,7 @@ public class AlteracaoManager {
     	dbManager.save(normaOrigem);
     	//Setando a nova vigencia da normaDestino
     	normaDestino.getAlteracoesRecebidas().add(alt);
-    	String vigenciaExpirada = TimeLogic.getInstance().novaDataFimVigencia(normaDestino.getVigencia(), dataRevogacao);
+    	String vigenciaExpirada = TimeLogic.getInstance().novaDataFimIntervalo(normaDestino.getVigencia(), dataRevogacao);
     	normaDestino.setVigencia( vigenciaExpirada );
     	//Setando a vigencia expirada para os elementosNorma filhos
     	for(ElementoNorma eleNorma : normaDestino.getElementosNorma()) {
@@ -160,7 +160,7 @@ public class AlteracaoManager {
     	dbManager.save(normaOrigem);
     	//Setando a nova vigencia do elementoNormaDestino
     	elementoNormaDestino.getAlteracoesRecebidas().add(alt);
-    	String vigenciaExpirada = TimeLogic.getInstance().novaDataFimVigencia(elementoNormaDestino.getVigencia(), dataRevogacao);
+    	String vigenciaExpirada = TimeLogic.getInstance().novaDataFimIntervalo(elementoNormaDestino.getVigencia(), dataRevogacao);
     	elementoNormaDestino.setVigencia( vigenciaExpirada );
     	//Setando a vigencia expirada para os elementosNorma filhos
     	for(ElementoNorma eleNorma : elementoNormaDestino.getElementosNorma()) {
@@ -176,7 +176,7 @@ public class AlteracaoManager {
     	dbManager.save(elementoNormaOrigem);
     	//Setando a nova vigencia da normaDestino
     	normaDestino.getAlteracoesRecebidas().add(alt);
-    	String vigenciaExpirada = TimeLogic.getInstance().novaDataFimVigencia(normaDestino.getVigencia(), dataRevogacao);
+    	String vigenciaExpirada = TimeLogic.getInstance().novaDataFimIntervalo(normaDestino.getVigencia(), dataRevogacao);
     	normaDestino.setVigencia( vigenciaExpirada );
     	//Setando a vigencia expirada para os elementosNorma filhos
     	for(ElementoNorma eleNorma : normaDestino.getElementosNorma()) {
@@ -192,7 +192,7 @@ public class AlteracaoManager {
     	dbManager.save(elementoNormaOrigem);
     	//Setando a nova vigencia do elementoNormaDestino
     	elementoNormaDestino.getAlteracoesRecebidas().add(alt);
-    	String vigenciaExpirada = TimeLogic.getInstance().novaDataFimVigencia(elementoNormaDestino.getVigencia(), dataRevogacao);
+    	String vigenciaExpirada = TimeLogic.getInstance().novaDataFimIntervalo(elementoNormaDestino.getVigencia(), dataRevogacao);
     	elementoNormaDestino.setVigencia( vigenciaExpirada );
     	//Setando a vigencia expirada para os elementosNorma filhos
     	for(ElementoNorma eleNorma : elementoNormaDestino.getElementosNorma()) {
@@ -271,7 +271,7 @@ public class AlteracaoManager {
     public void criaAlteracaoModificacao(Norma normaOrigem, Norma normaDestino, Norma normaModificada, 
     		                             String dataModificacao, String caracteristica){
     	//Setando o fim da vigencia da norma alterada
-    	normaDestino.setVigencia( TimeLogic.getInstance().novaDataFimVigencia(normaDestino.getVigencia(), 
+    	normaDestino.setVigencia( TimeLogic.getInstance().novaDataFimIntervalo(normaDestino.getVigencia(), 
     							  TimeLogic.getInstance().diaAnterior(dataModificacao)));
     	dbManager.save(normaDestino);
     	//Criando a nova norma
@@ -288,7 +288,7 @@ public class AlteracaoManager {
     public void criaAlteracaoModificacao(Norma normaOrigem, ElementoNorma elementoNormaDestino, ElementoNorma elementoNormaModificado, 
             String dataModificacao, String caracteristica){
     	//Setando o fim da vigencia do elementoNorma alterado
-    	elementoNormaDestino.setVigencia( TimeLogic.getInstance().novaDataFimVigencia(elementoNormaDestino.getVigencia(), 
+    	elementoNormaDestino.setVigencia( TimeLogic.getInstance().novaDataFimIntervalo(elementoNormaDestino.getVigencia(), 
     							  TimeLogic.getInstance().diaAnterior(dataModificacao)));
     	dbManager.save(elementoNormaDestino);
     	//Criando o novo elementoNorma
@@ -311,7 +311,7 @@ public class AlteracaoManager {
     public void criaAlteracaoModificacao(ElementoNorma elementoNormaOrigem, Norma normaDestino, Norma normaModificada, 
             String dataModificacao, String caracteristica){
     	//Setando o fim da vigencia da norma alterada
-    	normaDestino.setVigencia( TimeLogic.getInstance().novaDataFimVigencia(normaDestino.getVigencia(), 
+    	normaDestino.setVigencia( TimeLogic.getInstance().novaDataFimIntervalo(normaDestino.getVigencia(), 
     							  TimeLogic.getInstance().diaAnterior(dataModificacao)));
     	dbManager.save(normaDestino);
     	//Criando a nova norma
@@ -326,7 +326,7 @@ public class AlteracaoManager {
     public void criaAlteracaoModificacao(ElementoNorma elementoNormaOrigem, ElementoNorma elementoNormaDestino, ElementoNorma elementoNormaModificado, 
             String dataModificacao, String caracteristica){
     	//Setando o fim da vigencia do elementoNorma alterado
-    	elementoNormaDestino.setVigencia( TimeLogic.getInstance().novaDataFimVigencia(elementoNormaDestino.getVigencia(), 
+    	elementoNormaDestino.setVigencia( TimeLogic.getInstance().novaDataFimIntervalo(elementoNormaDestino.getVigencia(), 
     							  TimeLogic.getInstance().diaAnterior(dataModificacao)));
     	dbManager.save(elementoNormaDestino);
     	//Criando o novo elementoNorma
