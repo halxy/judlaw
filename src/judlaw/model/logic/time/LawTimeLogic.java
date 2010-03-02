@@ -24,6 +24,7 @@ import judlaw.model.util.Constantes;
 public class LawTimeLogic extends TimeLogic {
     
 	private static LawTimeLogic lawTimeLogic = null;
+	private TimeLogic timeLogic = TimeLogic.getInstance();
 	
 	/**
 	 * Singleton
@@ -37,24 +38,39 @@ public class LawTimeLogic extends TimeLogic {
 	}
 	
 	/**
-	 * Retorna se um TextoLegal (Norma ou ElementoNorma) ainda é válido dada uma determinada
-	 * data
+	 * Retorna se um TextoLegal (Norma ou ElementoNorma) está válido em uma determinada data.
 	 * @param tl
 	 * @param data
-	 * @return Caso retorna 0 ou 1, o Texto Legal ainda é valido.
-	 * @throws Exception Caso haja alguma ma formatacao
+	 * @return true, caso o textoLegal esteja valido. false, caso contrario.
+	 * @throws Exception
 	 */
 	public boolean textoLegalValido(TextoLegal tl, String data) throws Exception {
+		String validadeTL = tl.getValidade();				
+		return timeLogic.dataContidaEmIntervalo(data, Constantes.DELIMITADOR_DATA, 
+				                                validadeTL, Constantes.DELIMITADOR_INTERVALO);
+	}
+	
+	/*
+	 * IMPORTANTE: Pode haver casos em que a norma está válida, porém não está vigente. No entanto,
+	 * o contrário não é verdadeiro, então sempre que um elemento não for mais valido, ele também
+	 * não é mais vigente.
+	 */
+	/**
+	 * Retorna se um TextoLegal (Norma ou ElementoNorma) está vigente em uma determinada data.
+	 * @param tl
+	 * @param data
+	 * @return true, caso o textoLegal esteja vigente. false, caso contrario.
+	 * @throws Exception
+	 */
+	public boolean textoLegalVigente(TextoLegal tl, String data) throws Exception {
 		String vigenciaTL = tl.getVigencia();				
-		return ( (TimeLogic.getInstance().comparaVigenciaComData(vigenciaTL, Constantes.DELIMITADOR_VIGENCIA,
-				   data, Constantes.DELIMITADOR_DATA) >= 0) && 
-				  (TimeLogic.getInstance().vacatioLegis(vigenciaTL, Constantes.DELIMITADOR_VIGENCIA, 
-				   data, Constantes.DELIMITADOR_DATA) <= 0) );
+		return timeLogic.dataContidaEmIntervalo(data, Constantes.DELIMITADOR_DATA, 
+												vigenciaTL, Constantes.DELIMITADOR_INTERVALO);
 	}
 	
     /**
      * Dada uma lista de elementosNorma e uma certa data, são retornados os elementosNorma cuja data
-     * de vigência não foram ainda expirados.
+     * de validade não foram ainda expirados.
      * @param elementosNorma
      * @param data
      * @return
@@ -72,6 +88,25 @@ public class LawTimeLogic extends TimeLogic {
     }
     
     /**
+     * Dada uma lista de elementosNorma e uma certa data, são retornados os elementosNorma cuja data
+     * de vigencia não foram ainda expirados.
+     * @param elementosNorma
+     * @param data
+     * @return
+     * @throws Exception Caso haja alguma ma-formatacao na data
+     */
+    public List<ElementoNorma> elementosNormaVigentesData(List<ElementoNorma> elementosNorma,
+    		                                              String data) throws Exception {
+    	List<ElementoNorma> elementosVigentes = new ArrayList<ElementoNorma>();
+    	for( ElementoNorma eleN : elementosNorma ) {
+    		if ( textoLegalVigente(eleN, data) ) {
+    			elementosVigentes.add( eleN );
+    		}
+    	}
+    	return elementosVigentes;
+    }
+    
+    /**
      * Dado um elementoNorma raiz, verifica recursivamente em todos os filhos e nos filhos dos filhos
      * quais elementos sao validos de acordo com uma data passada
      * @param elementoNorma
@@ -86,14 +121,30 @@ public class LawTimeLogic extends TimeLogic {
 			filhosValidosRecursivo(filho, data);
 		}
     }
+    
+    /**
+     * Dado um elementoNorma raiz, verifica recursivamente em todos os filhos e nos filhos dos filhos
+     * quais elementos sao vigentes de acordo com uma data passada
+     * @param elementoNorma
+     * @param data
+     * @throws Exception Caso haja uma ma-formatacao na data
+     */
+    public void filhosVigentesRecursivo(ElementoNorma elementoNorma, String data) throws Exception {
+    	//Começando pelo primeiro nivel sao podados os filhos antes de fazer a recursividade
+    	elementoNorma.setElementosNorma( elementosNormaVigentesData( elementoNorma.getElementosNorma(), data) );
+    	List<ElementoNorma> filhos = elementoNorma.getElementosNorma(); 
+		for(ElementoNorma filho : filhos) {
+			filhosVigentesRecursivo(filho, data);
+		}
+    }
 	
     /**
-     * Valida todos os elementosNorma de uma norma
+     * Valida todos os elementosNorma de uma norma quanto à validade
      * @param norma
      * @param data
      * @throws Exception
      */
-    public void validaElementosNorma(Norma norma, String data) throws Exception {
+    public void validaElementosNormaValidade(Norma norma, String data) throws Exception {
     	norma.setElementosNorma( elementosNormaValidosData( norma.getElementosNorma(), data) );
     	for( ElementoNorma eleN : norma.getElementosNorma() ) {
     		filhosValidosRecursivo(eleN, data);
@@ -101,7 +152,21 @@ public class LawTimeLogic extends TimeLogic {
     }
     
     /**
-     * Valida as referências de uma norma
+     * Valida todos os elementosNorma de uma norma quanto à vigência
+     * @param norma
+     * @param data
+     * @throws Exception
+     */
+    public void validaElementosNormaVigencia(Norma norma, String data) throws Exception {
+    	norma.setElementosNorma( elementosNormaVigentesData( norma.getElementosNorma(), data) );
+    	for( ElementoNorma eleN : norma.getElementosNorma() ) {
+    		filhosVigentesRecursivo(eleN, data);
+    	}	
+    }
+    
+    /**
+     * Valida as referências de uma norma. Método utilizado para a reconstrução temporal de uma norma, 
+     * ou seja, só retorna as referências feitas a partir daquela data
      * @param norma
      * @param data
      * @throws Exception 
@@ -116,17 +181,37 @@ public class LawTimeLogic extends TimeLogic {
     }
     
     /**
-     * Reconstroi temporalmente uma norma através de uma data passada como parâmetro
+     * Reconstroi temporalmente uma norma através de uma data passada como parâmetro. Não são retornados
+     * os elementos que não estão válidos.
      * @param norma
      * @param data
      * @return Norma que representa a visão temporal atual da norma passada como parâmetro
      * @throws Exception Caso haja uma ma-formatacao nas datas
      */
-    public Norma reconstroiNormaTemporal(Norma norma, String data) throws Exception {
+    public Norma reconstroiNormaTemporalValidade(Norma norma, String data) throws Exception {
     	Norma visaoNormaTemporal = new Norma();
     	NormaManager.getInstance().setTodosParametrosNorma(norma, visaoNormaTemporal);
     	// Exclui da visão os elementosNorma que não estão válidos em relação à data
-    	validaElementosNorma( visaoNormaTemporal, data );
+    	validaElementosNormaValidade( visaoNormaTemporal, data );
+    	// Exclui da visão as referências que não estão válidas em relação à data
+    	validaReferencias( visaoNormaTemporal, data);
+    	// Retorna a visão
+    	return visaoNormaTemporal;
+    }
+    
+    /**
+     * Reconstroi temporalmente uma norma através de uma data passada como parâmetro. Não são retornados
+     * os elementos que não estão vigentes
+     * @param norma
+     * @param data
+     * @return Norma que representa a visão temporal atual da norma passada como parâmetro
+     * @throws Exception Caso haja uma ma-formatacao nas datas
+     */
+    public Norma reconstroiNormaTemporalVigencia(Norma norma, String data) throws Exception {
+    	Norma visaoNormaTemporal = new Norma();
+    	NormaManager.getInstance().setTodosParametrosNorma(norma, visaoNormaTemporal);
+    	// Exclui da visão os elementosNorma que não estão válidos em relação à data
+    	validaElementosNormaVigencia( visaoNormaTemporal, data );
     	// Exclui da visão as referências que não estão válidas em relação à data
     	validaReferencias( visaoNormaTemporal, data);
     	// Retorna a visão

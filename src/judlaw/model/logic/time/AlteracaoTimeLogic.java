@@ -67,10 +67,8 @@ public class AlteracaoTimeLogic extends TimeLogic {
 		for( Alteracao alteracao : alteracoesFeitas ){
 			//Caso a alteracao foi feita a uma norma
 			if ( alteracao.getNormaDestino() != null ){
-				if ( comparaVigenciaComData(alteracao.getNormaDestino().getVigencia(), 
-						                    Constantes.DELIMITADOR_VIGENCIA, 
-						                    alteracao.getData(), 
-						                    Constantes.DELIMITADOR_DATA) < 0 ) { /* Caso for < 0, a data da ref eh mais atual
+				if ( !dataContidaEmIntervalo(alteracao.getData(), Constantes.DELIMITADOR_DATA, 
+						alteracao.getNormaDestino().getVigencia(), Constantes.DELIMITADOR_INTERVALO) ) { /* Caso for < 0, a data da ref eh mais atual
 						                     									que a dataFim da vigencia. */
 					listaResultado.add( alteracao );
 				}
@@ -88,10 +86,8 @@ public class AlteracaoTimeLogic extends TimeLogic {
 				}
 			//Caso a alteracao foi feita a um elementonorma
 			} else if ( alteracao.getElementoNormaDestino() != null ){
-				if ( comparaVigenciaComData(alteracao.getElementoNormaDestino().getVigencia(), 
-	                    					Constantes.DELIMITADOR_VIGENCIA, 
-	                    					alteracao.getData(), 
-	                    					Constantes.DELIMITADOR_DATA) < 0 ) { /* Caso for < 0, a data da ref eh mais atual
+				if ( !dataContidaEmIntervalo(alteracao.getData(), Constantes.DELIMITADOR_DATA, 
+						alteracao.getElementoNormaDestino().getVigencia(), Constantes.DELIMITADOR_INTERVALO) ) { /* Caso for < 0, a data da ref eh mais atual
 																				 que a dataFim da vigencia. */
 					listaResultado.add( alteracao );
 				}
