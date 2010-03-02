@@ -183,7 +183,7 @@ public class LawTimeLogicTest {
 		norma1.getElementosNorma().add(art1);
 		
 		try {
-			lawTimeLogic.reconstroiNormaTemporal(norma1, data);
+			lawTimeLogic.reconstroiNormaTemporalVigencia(norma1, data);
 			//Verificando se os filhos foram validados recursivamente
 			assertEquals( 2, art1.getElementosNorma().size() );
 			
