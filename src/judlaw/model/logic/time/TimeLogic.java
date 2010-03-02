@@ -123,13 +123,13 @@ public class TimeLogic {
 	}
 	
 	/**
-	 * 
+	 * Retorna se uma data esta contida em um intervalo
 	 * @param data
 	 * @param delimitadorData
 	 * @param intervalo
 	 * @param delimitadorIntervalo
-	 * @return
-	 * @throws Exception
+	 * @return true, caso a data esteja contida no intervalo. false, caso contrario.
+	 * @throws Exception Caso alguma das datas envolvidas esteja mal-formatada
 	 */
 	public boolean dataContidaEmIntervalo(String data, String delimitadorData, String intervalo, 
 			                               String delimitadorIntervalo) throws Exception {
