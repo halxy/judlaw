@@ -78,13 +78,13 @@ public class TimeLogicTest {
 	@Test
 	public void testComparaVigencias() throws Exception {
 		// Vigencias com fins iguais
-		assertEquals(0, tm.comparaVigencias("12/10/2009-12/10/2010", "13/10/2009-12/10/2010", 
+		assertEquals(0, tm.comparaIntervalos("12/10/2009-12/10/2010", "13/10/2009-12/10/2010", 
 											Constantes.DELIMITADOR_INTERVALO, Constantes.DELIMITADOR_DATA) );
 		// Vigencia1 com datafim maior que Vigencia2
-		assertEquals(1, tm.comparaVigencias("12/10/2009-12/10/2010", "12/10/2009-11/10/2010", 
+		assertEquals(1, tm.comparaIntervalos("12/10/2009-12/10/2010", "12/10/2009-11/10/2010", 
 				Constantes.DELIMITADOR_INTERVALO, Constantes.DELIMITADOR_DATA) );
 		// Vigencia2 com datafim maior que Vigencia1
-		assertEquals(-1, tm.comparaVigencias("12/10/2009-11/10/2010", "12/10/2009-12/10/2010", 
+		assertEquals(-1, tm.comparaIntervalos("12/10/2009-11/10/2010", "12/10/2009-12/10/2010", 
 				Constantes.DELIMITADOR_INTERVALO, Constantes.DELIMITADOR_DATA) );
 	}
 	
@@ -93,7 +93,7 @@ public class TimeLogicTest {
 	 */
 	@Test
 	public void testnovaDataFimVigencia(){
-		assertEquals("10/10/2009-10/10/2010", tm.novaDataFimVigencia("10/10/2009-11/11/2011", "10/10/2010") );
+		assertEquals("10/10/2009-10/10/2010", tm.novaDataFimIntervalo("10/10/2009-11/11/2011", "10/10/2010") );
 	}
 	
 	/**
