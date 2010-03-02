@@ -153,7 +153,6 @@ public class LawXMLManager {
 		ElementoNorma art1 = new ElementoNorma();
 		art1.setIdentificadorUnico("art1_lei12095");
 		art1.setTipo("artigo");
-		art1.setNumero("1");
 		art1.setDataPublicacao("19/11/2009");
 		art1.setVigencia("19/11/2009-99/99/9999");
 		art1.setTexto("A cidade de Sant’Ana do Livramento, localizada na fronteira oeste do Estado do Rio Grande do Sul, " +
@@ -163,7 +162,6 @@ public class LawXMLManager {
 		ElementoNorma art2 = new ElementoNorma();
 		art2.setIdentificadorUnico("art2_lei12095");
 		art2.setTipo("artigo");
-		art2.setNumero("2");
 		art2.setDataPublicacao("19/11/2009");
 		art2.setVigencia("19/11/2009-99/99/9999");
 		art2.setTexto("O Poder Executivo promoverá ampla divulgação desta Lei, inclusive no âmbito do Mercosul, da " +
@@ -172,7 +170,6 @@ public class LawXMLManager {
 		ElementoNorma art3 = new ElementoNorma();
 		art3.setIdentificadorUnico("art3_lei12095");
 		art3.setTipo("artigo");
-		art3.setNumero("3");
 		art3.setDataPublicacao("19/11/2009");
 		art3.setVigencia("19/11/2009-99/99/9999");
 		art3.setTexto("Esta Lei entra em vigor na data de sua publicação.");
@@ -184,7 +181,6 @@ public class LawXMLManager {
 		try {
 			LawXMLManager.getInstance().salvaNorma(norma, "lei12095");
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		System.out.println( LawXMLManager.getInstance().getXstreamNorma().toXML( norma ));
