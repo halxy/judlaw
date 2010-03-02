@@ -40,7 +40,7 @@ public class Constantes {
 	
 	// Delimitadores
 	public static final String DELIMITADOR_DATA = "/";
-	public static final String DELIMITADOR_VIGENCIA = "-";
+	public static final String DELIMITADOR_INTERVALO = "-";
 	
 	// Tipos de arquivos Download
 	public static final String DOWNLOAD_ARQUIVO = "Arquivo";
