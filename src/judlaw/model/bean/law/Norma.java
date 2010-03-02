@@ -46,6 +46,7 @@ public class Norma extends TextoLegal {
 	private Integer id;
 
 	/* --------- Atributos --------- */
+	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
 	
 	//Epigrafe
 	private String tipo;
@@ -59,7 +60,8 @@ public class Norma extends TextoLegal {
 	// Parte Final
 	private String local;
 	
-	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
+	// Parte Temporal
+	private String validade; // dd/MM/yyyy-dd2/MM2/yyy2
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
 	
 	//Norma é o Mapping Owner.
@@ -74,9 +76,6 @@ public class Norma extends TextoLegal {
 	)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<ElementoNorma> elementosNorma;
-	
-	// URL
-	private String url;
 	
 	/* --------- Referencias --------- */
 	/*
@@ -395,22 +394,6 @@ public class Norma extends TextoLegal {
 	 * 
 	 * @return
 	 */
-	public String getUrl() {
-		return url;
-	}
-
-	/**
-	 * 
-	 * @param url
-	 */
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
 	public int getNumero() {
 		return numero;
 	}
@@ -421,5 +404,19 @@ public class Norma extends TextoLegal {
 	 */
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+
+	/*
+	 * @see judlaw.model.bean.law.TextoLegal#getValidade()
+	 */
+	public String getValidade() {
+		return validade;
+	}
+
+	/*
+	 * @see judlaw.model.bean.law.TextoLegal#setValidade(java.lang.String)
+	 */
+	public void setValidade(String validade) {
+		this.validade = validade;
 	}
 }
