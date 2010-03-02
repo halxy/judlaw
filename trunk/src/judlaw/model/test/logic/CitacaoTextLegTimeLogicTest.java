@@ -42,38 +42,38 @@ public class CitacaoTextLegTimeLogicTest {
 	}
 
 	@Test
-	public void testInconsistenciaTemporalSimples() throws Exception {
+	public void testInconsistenciaTemporal() throws Exception {
 		/* ---------- Norma e ElementosNorma ----------*/
 		ElementoNorma artigo1 = new ElementoNorma("textoArt1", "identificadorUnicoArt1", "tipoArt1", 
-														"dataPublicacaoArt1", "vigenciaArt1");
+														"10/10/2010", "vigenciaArt1");
 		ElementoNorma paragrafo1 = new ElementoNorma("textoParagrafo1", "identificadorUnicoParagrafo1", "tipoParagrafo1", 
-				"dataPublicacaoParagrafo1", "10/10/2010-10/10/2011");
+				"10/10/2010", "10/10/2010-10/10/2011");
 		ElementoNorma inciso1 = new ElementoNorma("textoInciso1", "identificadorUnicoInciso1", "tipoInciso1", 
-				"dataPublicacaoInciso1", "vigenciaInciso1");
+				"10/10/2010", "vigenciaInciso1");
 		ElementoNorma inciso2 = new ElementoNorma("textoInciso2", "identificadorUnicoInciso2", "tipoInciso2", 
-				"dataPublicacaoInciso2", "10/10/2010-10/09/2011");
+				"10/10/2010", "10/10/2010-10/09/2011");
 		
 		paragrafo1.getElementosNorma().add(inciso1);
 		paragrafo1.getElementosNorma().add(inciso2);
 		artigo1.getElementosNorma().add(paragrafo1);
 		
 		ElementoNorma artigo2 = new ElementoNorma("textoArt2", "identificadorUnicoArt2", "tipoArt2", 
-				"dataPublicacaoArt2", "vigenciaArt2");
+				"10/10/2010", "vigenciaArt2");
 		ElementoNorma paragrafo2 = new ElementoNorma("textoParagrafo2", "identificadorUnicoParagrafo2", "tipoParagrafo2", 
-				"dataPublicacaoParagrafo2", "vigenciaParagrafo2");
+				"10/10/2010", "vigenciaParagrafo2");
 		ElementoNorma paragrafo3 = new ElementoNorma("textoParagrafo3", "identificadorUnicoParagrafo3", "tipoParagrafo3", 
-				"dataPublicacaoParagrafo3", "vigenciaParagrafo3");
+				"10/10/2010", "vigenciaParagrafo3");
 		artigo2.getElementosNorma().add(paragrafo2);
 		artigo2.getElementosNorma().add(paragrafo3);
 		
 		Norma norma1 = new Norma("ementaN1", "autoriaN1", "localN1", "identificadorUnicoN1", "tipoN1", 
-								"dataPublicacaoN1", "10/10/2010-10/10/2012");
+								"10/10/2010", "10/10/2010-10/10/2012");
 		norma1.getElementosNorma().add(artigo1);
 		norma1.getElementosNorma().add(artigo2);
 		normaManager.salvaNorma(norma1);
 		
 		Norma norma2 = new Norma("ementaN2", "autoriaN2", "localN2", "identificadorUnicoN2", "tipoN2", 
-				"dataPublicacaoN2", "10/10/2010-09/10/2011");
+				"10/10/2010", "10/10/2010-09/10/2011");
 		normaManager.salvaNorma(norma2);
 		
 		/*
