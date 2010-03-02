@@ -521,9 +521,9 @@ public class AlteracaoManagerTest {
 		/* ---------- Verificando os atributos da nova Norma----------*/
 		Alteracao alteracaoModificacaoBD = alteracaoManager.getAlteracoes().get(0);
 		assertEquals( 2, normaManager.selectNormaPorAtributo("identificadorUnico",norma1.getIdentificadorUnico()).size());
-		Norma norma1BD = (Norma) normaManager.selectNormaPorAtributo("url", 
+		Norma norma1BD = (Norma) normaManager.selectNormaPorAtributo("ementa", 
 																	 norma1.getEmenta()).get(0);
-		Norma norma1BDAux = (Norma) normaManager.selectNormaPorAtributo("url", 
+		Norma norma1BDAux = (Norma) normaManager.selectNormaPorAtributo("ementa", 
 																	 norma1Aux.getEmenta()).get(0);
 		//Atributos
 		assertEquals( "novaEmenta", norma1BDAux.getEmenta());
