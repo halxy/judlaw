@@ -149,7 +149,7 @@ public class CitacaoTextLegManagerTest {
 		assertEquals( normaManager.getNormas().get(1).getCitacoesFeitas().get(0).getData(),
 				  	  "16/11/2009");
 		assertEquals( normaManager.getNormas().get(1).getCitacoesRecebidasTextLeg().get(0).getData(),
-	  	  				"19/11/2009");
+	  	  			   "19/11/2009");
 		//NORMA2
 		assertEquals( normaManager.getNormas().get(0).getIdentificadorUnico(),
 				      norma2.getIdentificadorUnico());
