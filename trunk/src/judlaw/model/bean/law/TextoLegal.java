@@ -24,6 +24,7 @@ public abstract class TextoLegal {
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
 	private String tipo; // tipo do textoLegal
 	private String dataPublicacao; // dd/MM/yyy
+	private String validade; // dd/MM/yyyy-dd2/MM2/yyy2
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
 	
 	private List<CitacaoTextLeg> citacoesFeitas;
@@ -128,5 +129,21 @@ public abstract class TextoLegal {
 	 */
 	public void setAlteracoesFeitas(List<Alteracao> alteracoesFeitas) {
 		this.alteracoesFeitas = alteracoesFeitas;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public String getValidade() {
+		return validade;
+	}
+
+	/**
+	 * 
+	 * @param validade
+	 */
+	public void setValidade(String validade) {
+		this.validade = validade;
 	}
 }
