@@ -122,9 +122,6 @@ public class NormaManager {
      * @param novaNorma
      */
     public void setParametrosNorma(Norma norma, Norma novaNorma, String dataModificacao) {
-    	if( isEmpty(novaNorma.getUrl()) ) {
-    		novaNorma.setUrl( norma.getUrl() );
-    	}
     	if(isEmpty(novaNorma.getEmenta())){
     		novaNorma.setEmenta( norma.getEmenta() );
     	}
@@ -159,7 +156,6 @@ public class NormaManager {
      */
     public void setTodosParametrosNorma(Norma norma, Norma novaNorma) {
     	//Atributos comuns
-    	novaNorma.setUrl( norma.getUrl() );
     	novaNorma.setEmenta( norma.getEmenta() );
     	novaNorma.setAutoria( norma.getAutoria() );
     	novaNorma.setTipo( norma.getTipo() );
