@@ -68,11 +68,8 @@ public class CitacaoTextLegTimeLogic extends TimeLogic {
 		for( CitacaoTextLeg citacao : citacoesFeitas ){
 			//Caso a citacao foi feita a uma norma
 			if ( citacao.getNormaDestino() != null ){
-				if ( comparaVigenciaComData(citacao.getNormaDestino().getVigencia(), 
-						                    Constantes.DELIMITADOR_VIGENCIA, 
-						                    citacao.getData(), 
-						                    Constantes.DELIMITADOR_DATA) < 0 ) { /* Caso for < 0, a data da ref eh mais atual
-						                     									que a dataFim da vigencia. */
+				if ( !dataContidaEmIntervalo(citacao.getData(), Constantes.DELIMITADOR_DATA, 
+						citacao.getNormaDestino().getVigencia(), Constantes.DELIMITADOR_INTERVALO) ){ 
 					listaResultado.add( citacao );
 				}
 				/*
@@ -89,11 +86,8 @@ public class CitacaoTextLegTimeLogic extends TimeLogic {
 				}
 			//Caso a citacao foi feita a um elementonorma
 			} else if ( citacao.getElementoNormaDestino() != null ){
-				if ( comparaVigenciaComData(citacao.getElementoNormaDestino().getVigencia(), 
-	                    					Constantes.DELIMITADOR_VIGENCIA, 
-	                    					citacao.getData(), 
-	                    					Constantes.DELIMITADOR_DATA) < 0 ) { /* Caso for < 0, a data da ref eh mais atual
-																				 que a dataFim da vigencia. */
+				if ( !dataContidaEmIntervalo(citacao.getData(), Constantes.DELIMITADOR_DATA, 
+						citacao.getElementoNormaDestino().getVigencia(), Constantes.DELIMITADOR_INTERVALO) ) {
 					listaResultado.add( citacao );
 				}
 				/*
