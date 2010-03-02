@@ -123,46 +123,26 @@ public class TimeLogic {
 	}
 	
 	/**
-	 * Compara a data_inicio de um intervalo com uma data passada como parâmetro para saber qual a data 
-	 * mais atual 
-	 * @param intervalo
-	 * @param String delimitadorIntervalo
+	 * 
 	 * @param data
 	 * @param delimitadorData
-	 * @return 0 ou 1 Caso a data_inicio do intervalo seja maior em comparacao ao parametro data, -1 caso 
-	 * contrario
-	 * @throws Exception
-	 */
-	public int comparaInicioIntervaloComData(String intervalo, String delimitadorIntervalo, 
-            String data, String delimitadorData) throws Exception {
-		StringTokenizer tokenVigencia = new StringTokenizer(intervalo, delimitadorIntervalo);
-		// passando o primeiro token referente à data inicio do intervalo
-		String inicioVigencia = tokenVigencia.nextToken(); 
-		return comparaDatas(inicioVigencia, data, delimitadorData);
-	}
-	
-	/**
-	 * Compara a data_fim de um intervalo com uma data passada como parâmetro para saber qual a data 
-	 * mais atual 
 	 * @param intervalo
 	 * @param delimitadorIntervalo
-	 * @param data
-	 * @param delimitador
-	 * @return 0 ou 1 Caso a data_fim do intervalo seja maior em comparacao ao parametro data, -1 caso 
-	 * contrario
-	 * @throws Exception Caso as datas dos parametros fimIntervalo e data estejam mal-formatadas
+	 * @return
+	 * @throws Exception
 	 */
-	public int comparaFimIntervaloComData(String intervalo, String delimitadorIntervalo, 
-			                          String data, String delimitadorData) throws Exception {
-		/*
-		 * Modelo de intervalo esperado:
-		 * dd1/mm1/yyyy1-dd2/mm2/yyyy2
-		 */
+	public boolean dataContidaEmIntervalo(String data, String delimitadorData, String intervalo, 
+			                               String delimitadorIntervalo) throws Exception {
 		StringTokenizer tokenIntervalo = new StringTokenizer(intervalo, delimitadorIntervalo);
-		tokenIntervalo.nextToken(); // passando o primeiro token referente à data inicio do intervalo
-		String fimIntervalo = tokenIntervalo.nextToken();
-		return comparaDatas(fimIntervalo, data, delimitadorData);
+		String dataInicioIntervalo = tokenIntervalo.nextToken();
+		String dataFimIntervalo = tokenIntervalo.nextToken();
+		if( (comparaDatas(data, dataInicioIntervalo, delimitadorData) >= 0) && 
+			(comparaDatas(data, dataFimIntervalo, delimitadorData) <= 0) ) {
+			return true;
+		}
+		return false;
 	}
+	
 	
 	/**
 	 * Compara os intervalos e retorna qual a mais atual
