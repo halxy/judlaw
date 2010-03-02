@@ -42,7 +42,7 @@ public class LawTimeLogicTest {
 	}
 	
 	@Test
-	public void testElementosNormaValidosData() {
+	public void testElementosNormaVigentesData() {
 		// DataLimite
 		String data = "11/11/2011";
 		// ElementosNorma
@@ -63,7 +63,7 @@ public class LawTimeLogicTest {
 		// Testes
 		assertEquals( 4, norma1.getElementosNorma().size() );
 		try {
-			norma1.setElementosNorma( lawTimeLogic.elementosNormaValidosData(norma1.getElementosNorma(), data));
+			norma1.setElementosNorma( lawTimeLogic.elementosNormaVigentesData(norma1.getElementosNorma(), data));
 			/*
 			 * Espera-se que apenas dois elementos restem: ele1 e ele2;
 			 */
@@ -76,7 +76,7 @@ public class LawTimeLogicTest {
 	}
 	
 	@Test
-	public void testFilhosValidosRecursivo() {
+	public void testFilhosVigentesRecursivo() {
 		/*
 		 *            A r t i g o 1
 		 *           /     |       \
@@ -121,7 +121,7 @@ public class LawTimeLogicTest {
 		assertEquals( 3, art1.getElementosNorma().size() );
 		
 		try {
-			lawTimeLogic.filhosValidosRecursivo(art1, data);
+			lawTimeLogic.filhosVigentesRecursivo(art1, data);
 			//Verificando se os filhos foram validados recursivamente
 			assertEquals( 2, art1.getElementosNorma().size() );
 			
