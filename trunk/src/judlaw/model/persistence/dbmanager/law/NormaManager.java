@@ -140,8 +140,12 @@ public class NormaManager {
     	if(novaNorma.getNumero() == 0){
     		novaNorma.setNumero( norma.getNumero() );
     	}
-    	//Temporalidade
+    	/*
+    	 * Temporalidade - devido ao vacatiolegis, a vigencia tem que ser passada como parâmetro, 
+    	 * não pode ser herdada ou induzida, como eh o caso dos demais atributos.
+    	 */
     	novaNorma.setDataPublicacao( dataModificacao );
+    	
     	//Filhos
     	for(ElementoNorma eleN : norma.getElementosNorma() ) {
     		novaNorma.getElementosNorma().add( eleN );
