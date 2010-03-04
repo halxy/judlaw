@@ -153,7 +153,7 @@ public class ElementoNormaManager {
 		}	
 		//Temporalidade
 		novoElementoNorma.setDataPublicacao( dataModificacao );
-		novoElementoNorma.setVigencia( dataModificacao + "-99/99/9999" );
+		
 		//ElementosNorma
 		for(ElementoNorma eleN : elementoNorma.getElementosNorma() ) {
 			novoElementoNorma.getElementosNorma().add( eleN );

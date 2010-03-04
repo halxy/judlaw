@@ -142,7 +142,6 @@ public class NormaManager {
     	}
     	//Temporalidade
     	novaNorma.setDataPublicacao( dataModificacao );
-    	novaNorma.setVigencia( dataModificacao + "-99/99/9999" );
     	//Filhos
     	for(ElementoNorma eleN : norma.getElementosNorma() ) {
     		novaNorma.getElementosNorma().add( eleN );
