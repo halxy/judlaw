@@ -508,6 +508,7 @@ public class AlteracaoManagerTest {
 //				                                                      norma1.getIdentificadorUnico()).get(0);
 		Norma norma1Aux = new Norma();
 		norma1Aux.setEmenta("novaEmenta"); // Modificando a ementa
+		norma1Aux.setVigencia( "20/11/2011-99/99/9999" );
 		/* 
 		 * AlteracaoModificacao1 = Norma2 modifica Norma1
 		 */
@@ -555,6 +556,7 @@ public class AlteracaoManagerTest {
 		
 		ElementoNorma artigo1Mod = new ElementoNorma();
 		artigo1Mod.setTexto("textoArt1Novo");
+		artigo1Mod.setVigencia("20/11/2011-99/99/9999");
 		alteracaoManager.criaAlteracaoModificacao(norma2, artigo1BD, artigo1Mod, "20/11/2011", Constantes.MAIS_RESTRITIVA);
 		/*
 		 *                         Norma1 (+Norma1New)                 Norma2
