@@ -151,7 +151,10 @@ public class ElementoNormaManager {
 		if( isEmpty(novoElementoNorma.getTexto()) ) {
 			novoElementoNorma.setTexto( elementoNorma.getTexto() );
 		}	
-		//Temporalidade
+		/*
+    	 * Temporalidade - devido ao vacatiolegis, a vigencia tem que ser passada como parâmetro, 
+    	 * não pode ser herdada ou induzida, como eh o caso dos demais atributos.
+    	 */
 		novoElementoNorma.setDataPublicacao( dataModificacao );
 		
 		//ElementosNorma
