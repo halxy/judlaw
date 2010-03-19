@@ -38,7 +38,7 @@ public class Alteracao extends Referencia {
 	// Atributos
 	private String data; // data em que foi feita a referência
 	private String tipo; // inclusao, revogacao, alteracao;
-	private String caracteristica; // mais branda, mais punitiva, etc.
+	private String resultadoAlteracao; // resultante da alteracao.
 	
 	/* --------- Referencias --------- */
 	/*
@@ -73,15 +73,15 @@ public class Alteracao extends Referencia {
 	 * @param normaDestino
 	 * @param data
 	 * @param tipo
-	 * @param caracteristica
+	 * @param resultadoAlteracao
 	 */
 	public Alteracao(Norma normaOrigem, Norma normaDestino, String data, String tipo,
-			String caracteristica) {
+			String resultadoAlteracao) {
 		this.normaOrigem = normaOrigem;
 		this.normaDestino = normaDestino;
 		this.data = data;
 		this.tipo = tipo;
-		this.caracteristica = caracteristica;
+		this.resultadoAlteracao = resultadoAlteracao;
 	}
 	
 	/**
@@ -90,15 +90,15 @@ public class Alteracao extends Referencia {
 	 * @param elementoNormaDestino
 	 * @param data
 	 * @param tipo
-	 * @param caracteristica
+	 * @param resultadoAlteracao
 	 */
 	public Alteracao(Norma normaOrigem, ElementoNorma elementoNormaDestino, String data, String tipo,
-			String caracteristica) {
+			String resultadoAlteracao) {
 		this.normaOrigem = normaOrigem;
 		this.elementoNormaDestino = elementoNormaDestino;
 		this.data = data;
 		this.tipo = tipo;
-		this.caracteristica = caracteristica;
+		this.resultadoAlteracao = resultadoAlteracao;
 	}
 	
 	/**
@@ -107,15 +107,15 @@ public class Alteracao extends Referencia {
 	 * @param normaDestino
 	 * @param data
 	 * @param tipo
-	 * @param caracteristica
+	 * @param resultadoAlteracao
 	 */
 	public Alteracao(ElementoNorma elementoNormaOrigem, Norma normaDestino, String data, String tipo,
-			String caracteristica) {
+			String resultadoAlteracao) {
 		this.elementoNormaOrigem = elementoNormaOrigem;
 		this.normaDestino = normaDestino;
 		this.data = data;
 		this.tipo = tipo;
-		this.caracteristica = caracteristica;
+		this.resultadoAlteracao = resultadoAlteracao;
 	}
 	
 	/**
@@ -124,15 +124,15 @@ public class Alteracao extends Referencia {
 	 * @param elementoNormaDestino
 	 * @param data
 	 * @param tipo
-	 * @param caracteristica
+	 * @param resultadoAlteracao
 	 */
 	public Alteracao(ElementoNorma elementoNormaOrigem, ElementoNorma elementoNormaDestino, String data, String tipo,
-			String caracteristica) {
+			String resultadoAlteracao) {
 		this.elementoNormaOrigem = elementoNormaOrigem;
 		this.elementoNormaDestino = elementoNormaDestino;
 		this.data = data;
 		this.tipo = tipo;
-		this.caracteristica = caracteristica;
+		this.resultadoAlteracao = resultadoAlteracao;
 	}
 
 	/**
@@ -181,16 +181,16 @@ public class Alteracao extends Referencia {
 	 * 
 	 * @return
 	 */
-	public String getCaracteristica() {
-		return caracteristica;
+	public String getResultadoAlteracao() {
+		return resultadoAlteracao;
 	}
 
 	/**
 	 * 
-	 * @param caracteristica
+	 * @param resultadoAlteracao
 	 */
-	public void setCaracteristica(String caracteristica) {
-		this.caracteristica = caracteristica;
+	public void setResultadoAlteracao(String resultadoAlteracao) {
+		this.resultadoAlteracao = resultadoAlteracao;
 	}
 
 	/*
