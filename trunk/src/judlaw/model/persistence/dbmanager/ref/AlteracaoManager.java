@@ -398,7 +398,7 @@ public class AlteracaoManager {
 	public void alteraAlteracao(Alteracao newAlteracao, Alteracao oldAlteracao){
 		oldAlteracao.setData( newAlteracao.getData() );
 		oldAlteracao.setTipo( newAlteracao.getTipo() );
-		oldAlteracao.setCaracteristica( newAlteracao.getCaracteristica() );
+		oldAlteracao.setResultadoAlteracao( newAlteracao.getResultadoAlteracao() );
 		dbManager.save( oldAlteracao );
 	}
 }
