@@ -47,6 +47,9 @@ public class Norma extends TextoLegal {
 
 	/* --------- Atributos --------- */
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
+	private String esfera; //Federal, Municipal, Estadual.
+	private String apelido;
+	private String versao; //numVersao#data
 	
 	//Epigrafe
 	private String tipo;
@@ -63,6 +66,7 @@ public class Norma extends TextoLegal {
 	// Parte Temporal
 	private String validade; // dd/MM/yyyy-dd2/MM2/yyy2
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
+
 	
 	//Norma é o Mapping Owner.
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -419,4 +423,37 @@ public class Norma extends TextoLegal {
 	public void setValidade(String validade) {
 		this.validade = validade;
 	}
+
+	public String getEsfera() {
+		return esfera;
+	}
+
+	public void setEsfera(String esfera) {
+		this.esfera = esfera;
+	}
+
+	public String getApelido() {
+		return apelido;
+	}
+
+	public void setApelido(String apelido) {
+		this.apelido = apelido;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.law.TextoLegal#getVersao()
+	 */
+	public String getVersao() {
+		return versao;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.law.TextoLegal#setVersao(java.lang.String)
+	 */
+	public void setVersao(String versao) {
+		this.versao = versao;
+	}
+	
 }

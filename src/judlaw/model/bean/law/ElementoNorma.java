@@ -55,6 +55,7 @@ public class ElementoNorma extends TextoLegal {
 	private String dataPublicacao; // dd/MM/yyy
 	private String validade; // dd/MM/yyyy-dd2/MM2/yyy2
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
+	private String versao; //numVersao#data
 	
 	// Texto do Elemento da Norma
 	private String texto;
@@ -437,5 +438,21 @@ public class ElementoNorma extends TextoLegal {
 	 */
 	public void setValidade(String validade) {
 		this.validade = validade;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.law.TextoLegal#getVersao()
+	 */
+	public String getVersao() {
+		return versao;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see judlaw.model.bean.law.TextoLegal#setVersao(java.lang.String)
+	 */
+	public void setVersao(String versao) {
+		this.versao = versao;
 	}
 }
