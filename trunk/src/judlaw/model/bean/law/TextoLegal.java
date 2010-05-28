@@ -26,6 +26,7 @@ public abstract class TextoLegal {
 	private String dataPublicacao; // dd/MM/yyy
 	private String validade; // dd/MM/yyyy-dd2/MM2/yyy2
 	private String vigencia; // dd/MM/yyyy-dd2/MM2/yyy2
+	private String versao; //numVersao#data
 	
 	private List<CitacaoTextLeg> citacoesFeitas;
 	private List<Alteracao> alteracoesFeitas;
@@ -145,5 +146,13 @@ public abstract class TextoLegal {
 	 */
 	public void setValidade(String validade) {
 		this.validade = validade;
+	}
+
+	public String getVersao() {
+		return versao;
+	}
+
+	public void setVersao(String versao) {
+		this.versao = versao;
 	}
 }
