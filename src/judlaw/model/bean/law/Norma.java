@@ -49,7 +49,7 @@ public class Norma extends TextoLegal {
 	private String identificadorUnico; // cp_art120; lei1234; cc_art1_par2.
 	private String esfera; //Federal, Municipal, Estadual.
 	private String apelido;
-	private String versao; //numVersao#data
+	private int versao;
 	
 	//Epigrafe
 	private String tipo;
@@ -440,19 +440,11 @@ public class Norma extends TextoLegal {
 		this.apelido = apelido;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see judlaw.model.bean.law.TextoLegal#getVersao()
-	 */
-	public String getVersao() {
+	public int getVersao() {
 		return versao;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see judlaw.model.bean.law.TextoLegal#setVersao(java.lang.String)
-	 */
-	public void setVersao(String versao) {
+	public void setVersao(int versao) {
 		this.versao = versao;
 	}
 	
